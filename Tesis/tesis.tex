@@ -1,0 +1,174 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez.
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%En este archivo se conjuntan las partes que conforman la tesis, además
+%se introducen algunas directivas para personalizar el comportamiento del
+%trabajo para determinadas secciones.
+
+
+%Aquí se indica que la tesis consta de un reporte a dos páginas con
+%letra de tamaño 12.
+\documentclass[12pt,twoside]{report}
+
+%Este paquete permite la carga adecuada de subarchivos .tex, respetando
+%(con ayuda de la opción subpreambles=true) los paquetes cargados en cada
+%subarchivo.
+\usepackage[subpreambles=true]{standalone}
+
+%Se cargan todos los paquetes que se encuentran en packages_used.sty
+\usepackage{packages_used_standard}
+
+%Aquí se le indica al documento que el número máximo de secciones anidadas 
+%toleradas es 4, esto sobre todo tiene repercusiones en el Apéndice.
+\setcounter{secnumdepth}{4}
+
+%Para agregar una nueva pagina en blanco sin que se
+%recorra el contenido que se encuentre en páginas posteriores.
+\newcommand\blankpage{%
+                      \null
+                      \thispagestyle{empty}%
+                      \addtocounter{page}{-1}%
+                      \newpage
+                     }
+
+%Para ajustar los colores de los hipervínculos.
+\hypersetup{
+            colorlinks = true,
+            linkcolor = black,
+            filecolor = magenta,      
+            urlcolor = cyan
+           }
+ 
+%Aquí se indica la ruta de las imágenes que se utilizarán en la tesis.
+\graphicspath{ 
+              {images/}
+             }
+
+%Se modifica el "Indice General" para que en su lugar se escriba
+%"Tabla de Contenido".
+\addto\captionsspanish{
+                       % Reemplazar "spanish" con el lenguaje que se usa
+                       \renewcommand{\contentsname}%
+                       {Tabla de Contenido}%
+                      }
+
+%Por defecto al inicio de cada capítulo aparece "Chapter N", entonces
+%con esta instrucción se elimina ese espacio por defecto.
+%\titleformat{\chapter}[display]{\normalfont\bfseries\centering}{}{0pt}{\LARGE}
+
+%Se modifica el formato de todas las secciones de la tesis.
+\titleformat*{\section}{\Large\bfseries}
+
+%Se modifica el formato de todos los capítulos de la tesis.
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{11pt}{\Huge}
+
+%Las siguientes líneas corresponden a la información que se 
+%mostrará en el encabezado de las páginas.
+%A la izquierda de cada página par se mostrará el texto 
+%"No. Página - Capítulo No. X"
+\fancyhead[LE]{\textbf{\thepage}\ \ \ \ Capítulo\ \thechapter}
+
+%A la derecha de cada página par no se mostrará nada.
+\fancyhead[RE]{}
+
+%A la izquierda de cada página impar no se mostrará nada.
+\fancyhead[LO]{}
+
+%A la derecha de cada página impar se muestra la información 
+%"Nombre del capítulo - No. Página"
+\fancyhead[RO]{\leftmark \ \ \ \ \textbf{\thepage}}
+
+%A continuacipón se contemplan las características que tendrá
+%el pie de las páginas.
+%Con esta línea se coloca un margen en la parte inferior para
+%identificar al pie de página.
+\renewcommand{\footrulewidth}{0.4pt}% default es 0pt
+
+%En la parte izquierda del pie de página (sin importar si es par 
+%o impar) se pondrá la palabra "UNAM".
+\lfoot{UNAM}
+
+%En la parte derecha del pie de página (sin importar si es par 
+%o impar) se pone la palabra "Facultad de Ciencias".
+\rfoot{Facultad de Ciencias}
+
+%Enla parte centro del pie de página (sin importar si es par 
+%o impar) se coloca un espacio vacío.
+\cfoot{}
+
+%Se comienzan a integrar las partes de la tesis.
+\begin{document}
+
+       %Se inserta la portada que se encuentra en el archivo cover.tex.
+       \input{chapters/cover}
+
+       %Se lleva a cabo la elaboración del título anterios.
+       \maketitle 
+
+       %Se inserta la presentación que se encuentra en presentation.tex.
+       \input{chapters/presentation}
+
+       %Se elabora la tabla de contenido de los capítulos siguientes.
+       \tableofcontents   
+
+       %Para que la tabla de contenido no tenga numeración se coloca esta
+       %instrucción.
+       \pagenumbering{gobble}
+
+       %Se agrega una hoja en blanco entre la tabla de contenido y el primer
+       %capítulo
+       \addtocontents{toc}{\protect\thispagestyle{empty}}
+
+       %Con esta instrucción se activan el formato personalizado para encabezado
+       %y pie de página descrito anteriormente.
+       \pagestyle{fancy}      
+
+       %A continuación se modifica la información que se colocará en el encabezado
+       %de páginas impares del lado derecho "Nombre del Capítulo".
+       \renewcommand{\chaptermark}[1]{%
+                                     \markboth{#1}{}
+                                    }
+
+       %Se inserta la información contenida en el archivo chapter1.tex.
+       \input{chapters/chapter1} 
+
+       %Se ingresa la información que yace en el archivo chapter2.tex.
+       \input{chapters/chapter2}
+
+       %Ahora se coloca la información que se encuentra en el archivo chapter3.tex.
+       \input{chapters/chapter3}
+       
+       %Luego se inserta la información del archivo chapter4.tex.
+       \input{chapters/chapter4}
+
+       %Luego se inserta la información del archivo chapter5.tex.
+       \input{chapters/chapter5}
+
+       %La siguiente instrucción elimina la palabra "Capítulo" tanto para la
+       %bibliografía como el apéndice.
+       \makeatletter
+       \def\@makechapterhead#1{%
+                               \vspace*{50\p@}%
+                               {\parindent \z@ \raggedright \normalfont
+         
+                               \interlinepenalty\@M
+                               \Huge \bfseries #1\par\nobreak
+                               \vskip 40\p@
+                               }
+                              }
+       \makeatother
+
+       %Para la bibliografía y el apéndice en el encabezado izquiero de páginas pares
+       %sólo se mostrarán las palabras "Bibliografía" y "Apéndice" respectivamente.        
+       \fancyhead[LE]{\textbf{\thepage}\ \ \ \ \leftmark}
+
+       %Se ingresa la información localizada en el archivo bibliography.tex.
+       \input{chapters/bibliography}
+
+       %\addtocontents{toc}{\cftpagenumbersoff{chapter}}
+       %Se coloca la información que yace en el archivo appendix.tex.
+       \input{chapters/appendix}
+
+%Termina la inserción de elementos en el documento.
+\end{document}

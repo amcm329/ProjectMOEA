@@ -1,0 +1,303 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo contiene información relativa al Apéndice de la tesis,
+%más en específico se muestran las característivas básicas del programa
+%M.O.E.A. Software.
+%Para profundizar en detalles relacionados con el contenido y organización
+%del código fuente se recomienda ver el Manual Técnico.
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se cargan todos los paquetes que residen en el archivo packages_used_standard.sty
+\usepackage{packages_used_standard}
+
+%Comienza el documento.
+\begin{document}
+
+%Empieza el capítulo relacionado con el Apéndice.
+%Se coloca la estructura \chapter* para ocultar 
+%el capítulo actual en la Tabla de Contenido y coloca
+%una versión personalizada.
+\chapter*{Apéndice}
+
+%Con esta línea se añade el capítulo personalizado
+%del que se habló previamente.
+\addcontentsline{toc}{chapter}{Apéndice}\markboth{Apéndice}{}
+
+%Se coloca el vínculo interno procedente del capítulo 1 (c1_1).
+\label{sec:c1_1}
+
+%Para que la sección del Apéndice en la Tabla de Contenido
+%NO tenga subsecciones visibles.
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+Esta sección corresponde a la incursión de detalles elementales 
+relacionados con el producto de software denominado \textbf{M.O.E.A. Software}, 
+la cual recopila las características de dicho producto tales 
+como el diseño y datos alusivos a la construcción y ejecución 
+del programa.\break
+Con base en lo anterior, es preciso mencionar que en este 
+apartado existe terminología meramente técnica que se contempla 
+para garantizar una mayor comprensión del proyecto.\medskip\break
+Habiendo proporcionado el anterior preámbulo, la finalidad es, 
+a grandes rasgos, otorgar una guía rápida y concisa al usuario 
+en lo concerniente a la motivación e implementación del producto 
+de software, la idea detrás de ésto radica en notificar al usuario 
+de todos los pormenores encontrados en el desarrollo del programa 
+y de esta manera lograr que su interacción con el producto sea 
+afable, evitando para ello la mayor cantidad de contratiempos 
+posible.\medskip\break
+Es importante mencionar que en caso de querer ahondar más 
+minuciosamente en los componentes del programa se ofrece un 
+\textbf{Manual Técnico} que contiene precisadas todas las funcionalidades 
+con su respectiva explicación, las cuales han sido creadas para 
+poder erigir el producto de software .\break
+Dicho manual se ha constituido en un documento independiente al 
+trabajo de tesis que, aunque guarda una cierta distancia con los 
+temas que se revisan aquí al estar asociado a un panorama más 
+técnico, también contiene referencias de carácter analítico para 
+poder enlazar adecuadamente lo estipulado en este medio con aquél.\medskip\break
+A continuación se abarca más detalladamente cada uno de los rasgos 
+del producto de software.
+
+%Ahora comienza la sección enfocada hacia las Características de 
+%Diseño, las cuales son las bases lógicas en las que se basa el
+%producto de software.
+\section{Características de Diseño}
+En esta parte se considera todo lo relacionado con la arquitectura 
+de diseño.\break
+Este concepto corresponde al tipo de organización que se suele 
+emplear para agrupar y comunicar apropiadamente cada uno de los 
+componentes del producto de software con la finalidad de minimizar 
+los tiempos de corrección y actualización del código, así como 
+proporcionar una presentación digerible para cualquiera que desee 
+familiarizarse con las partes codificadas.\medskip\break
+Para este proyecto se ha elegido la arquitectura denominada MVC 
+\textbf{(Model-View-Controller ó Modelo-Vista-Controlador)}.\break
+Siguiendo este tipo de organización, se colocan las funcionalidades 
+en tres categorías principales, que son:
+
+\begin{itemize}
+\item \textbf{Model (ó Modelo)}, se almacenan todos los elementos 
+que realizan el proceso analítico, en este caso todo lo relacionado 
+con la ejecución de M.O.E.A.’s y la recolección de resultados.
+\item \textbf{View (ó Vista)}, se coloca todo aquéllo asociado a 
+la interfaz gráfica del programa y en el caso del proyecto, la 
+graficación apropiada de resultados.
+\item \textbf{Controller (ó Controlador)}, se guarda toda la 
+parafernalia relativa al control de las comunicaciones entre la 
+Vista y el Modelo.
+\end{itemize}
+
+El proceso usual de interacción entre dichas categorías es el 
+siguiente:
+
+\begin{enumerate}
+\item El usuario inserta las configuraciones pertinentes en la 
+Vista, las cuales permitirán obtener resultados detallados del 
+M.O.E.A. que se fuera a ejecutar.
+\item El Controlador obtiene las configuraciones previamente 
+insertadas por el usuario; durante esta etapa se realiza una 
+verificación y saneamiento de dichas configuraciones. Si el 
+proceso fue exitoso se procede ir al paso \textbf{(3)}, en 
+cualquier otro caso se retrocede al paso \textbf{(1)} con una 
+notificación de error.
+\item El Modelo se encarga de ejecutar el algoritmo precisado 
+por el usuario en \textbf{(1)}, para ello se le proporcionan 
+todas las configuraciones adjuntas. Una vez concluido el proceso 
+el Modelo le regresa los resultados al Controlador.
+\item El Controlador toma los resultados y a su vez los transfiere 
+a la Vista, la cual se encarga de mostrar al usuario los datos 
+finales de manera gráfica.
+\end{enumerate}
+
+Señalando nuevamente al Manual Técnico, en éste el usuario notará 
+que las funcionalidades están colocadas siguiendo un listado 
+basado en la arquitectura antes mencionada.\break
+Esto permite vislumbrar de manera secundaria los elementos y 
+sus relaciones.
+
+%Comienza la sección concerniente a las Características Técnicas,
+%esto es, la mención de las herramientas que se utilizaron para
+%la elaboración del programa.
+\section{Características Técnicas}
+%Se coloca el vínculo interno procedente del capítulo 1 (c1_2).
+\label{sec:c1_2}
+Adentrándose en una perspectiva tecnológica el programa 
+\textbf{M.O.E.A. Software} está elaborado usando el lenguaje 
+de programación Python en su versión 2.7.3. 
+\textbf{\href{http://www.python.org}{\break\textcolor{blue}{(http://www.python.org)}}}\medskip\break
+Conviene primeramente explicar la motivación detrás del uso de 
+dicho lenguaje; desde el punto de vista del autor éste es 
+sintácticamente fácil de aprender lo cual implica un esfuerzo 
+reducido en la lectura y comprensión del código fuente por 
+lo que de esta manera el usuario puede familiarizarse 
+rápidamente con las funcionalidades elaboradas.\break
+Por otra parte, al ser un lenguaje de alto nivel, éste permite 
+la agrupación de varias instrucciones en pocos comandos 
+\textbf{(a esto se le conoce también como azúcar sintáctica)}, 
+como resultado se crea un código no tan extenso que de nueva 
+cuenta agiliza su interpretación  por parte del usuario.\medskip\break
+Llegados a este punto se pudiera uno cuestionar la existencia 
+de otros productos desoftware cuyo fin se pareciera o fuera 
+el mismo que el que se muestra en el presente trabajo de tesis.\break
+Si bien existen paquetes que realizan operaciones relacionadas 
+tanto con la Optimización Multiobjetivo como con los Algoritmos 
+Evolutivos, como los siguientes:
+\begin{itemize}
+\item \textbf{DEAP, Distributed Evolutionary Algorithms in Python}\break\textbf{\href{https://pypi.python.org/pypi/deap}{\textcolor{blue}{(https://pypi.python.org/pypi/deap)}}}.
+\item \textbf{PyGMO, Python Parallel Global Multiobjective Optimizer}\break\textbf{\href{http://esa.github.io/pygmo/}{\textcolor{blue}{(http://esa.github.io/pygmo/)}}}.
+\item \textbf{jMetal, Metaheuristic Algorithms in Java}\break\textbf{\href{http://jmetal.sourceforge.net/}{\textcolor{blue}{(http://jmetal.sourceforge.net/)}}}.
+\item \textbf{MOEA Framework} \textbf{\href{http://moeaframework.org/}{\textcolor{blue}{(http://moeaframework.org/)}}}.
+\item \textbf{Borg MOEA} \textbf{\href{http://borgmoea.org/}{\textcolor{blue}{(http://borgmoea.org/)}}}.
+\end{itemize}
+
+Se pueden percibir ciertas diferencias, en primera instancia 
+podemos señalar el lenguaje de programación utilizado, pues 
+jMetal y MOEA Framework se han elaborado usando el lenguaje 
+de programación Java; desde otra perspectiva el paquete PyGMO 
+aunque ofrece técnicas de Optimización Multiobjetivo éstas no 
+se centran en el uso de Algoritmos Evolutivos precisamente sino 
+que ofrece una gama aparte de métodosrelacionados con el primer 
+tema.\break
+Enfocándose en la disponibilidad Borg MOEA resulta ser un 
+programa muy completo, sin embargo su uso se restringe sólo a 
+ciertas operaciones de tipo comercial o estudiantil por lo que 
+en ese sentido su extensión se encuentra limitada.\break
+Finalmente el paquete que más se acerca, DEAP, aunque maneja un 
+catálogo mayor de Algoritmos Evolutivos no considera la 
+graficación de resultados además de que es preciso aprender la 
+sintaxis misma del paquete para poder operar con las funcionalidades 
+y ello implica que el uso está dirigido hacia un público más 
+especializado en el tema.\medskip\break
+Dicho lo anterior, sin desmerecer el esfuerzo y dedicación que 
+se ha puesto en cada uno de los trabajos antes mencionados, 
+con base en estas comparaciones se podrá aseverar que el desarrollo 
+de \textbf{M.O.E.A. Software} tiene finalidades distintas, ya 
+que, como se ha mencionado con anterioridad, su uso se enfoca 
+hacia el acercamiento inicial de los Algoritmos Evolutivos 
+Multiobjetivo desde un panorama gráfico donde para ello el usuario 
+tiene total libertad de revisar y/o modificar el código fuente 
+anexado sin necesidad de ninguna capa intermedia de aprendizaje 
+debido a que todo el proyecto ha sido escrito usando la sintaxis 
+más simple.\medskip\break
+En lo concerniente al contenido del producto de software, lo que 
+se incluye en el proyecto son tanto los ejecutables como el código 
+fuente.\break 
+La principal diferencia entre éstos radica en que los primeros 
+son programas que contienen todas las dependencias necesarias 
+ya anexadas para que el usuario únicamente se enfoque en la 
+ejecución e interacción con el producto de software, por otra 
+parte el código fuente almacena las funcionalidades desarrolladas 
+de \textbf{M.O.E.A. Software} pero para su ejecución es preciso 
+que el usuario instale algunas dependencias en su sistema 
+operativo.\medskip\break
+Para los ejecutables se ha determinado enfocarse en sistemas 
+operativos Windows y GNU/Linux por su popularidad \cite{b8}, 
+sin embargo, debido a una falla de origen con una de las 
+dependencias usadas en el producto de software \textbf{(Matplotlib)} 
+se ha tenido la necesidad de crear un ejecutable por cada 
+sistema operativo. De esta manera los que se encuentran soportados 
+son:
+
+\begin{itemize}
+\item \textbf{Windows}.
+\item \textbf{Debian}.
+\item \textbf{Ubuntu}.
+\item \textbf{CentOS}.
+\item \textbf{Fedora}.
+\end{itemize}
+
+No importa la versión utilizada siempre y cuando sea del mismo 
+linaje de sistema operativo empleado.\medskip\break
+Algo muy importante a mencionar es que los ejecutables han sido 
+creados para sistemas operativos de 32 bits, esto ya que en 
+teoría los programas hechos para sistemas de 32 bits son admisibles 
+en sistemas de 64 bits, no así el caso contrario.\break
+A pesar de esto, mientras este factor en los sistemas operativos 
+Windows no presenta problema, en los relativos a GNU/Linux de 
+64 bits sí puesto que se ha detectado que éstos no contienen los 
+paquetes necesarios para poder ejecutar programas de 32 bits.\break
+Dado que este proyecto no contempla este tipo de paquetes y 
+hasta el término de este proyecto no se han podido integrar a 
+los ejecutables es imprescindible alertar al usuario sobre estas 
+condiciones.\break
+Lo ideal sería el uso de un sistema operativo de 32 bits pero en 
+caso de no ser posible se deben instalar los paquetes que permitan 
+la ejecución de programas de 32 bits.\medskip\break
+Es menester mencionar el programa utilizado para la elaboración 
+de los ejecutables, para este proyecto se ha utilizado la herramienta 
+\textbf{PyInstaller (versión 3.2) \href{http://www.pyinstaller.org}{\break\textcolor{blue}{(http://www.pyinstaller.org)}}}.\break
+A grandes rasgos lo que realiza este ejecutable es introducir el 
+código fuente,paqueterías y demás aditamentos necesarios dentro 
+de un contenedor que eventualmente llega a ser el ejecutable.\break
+Dicho de otra forma, PyInstaller crea un ínfimo ambiente controlado 
+en el quese puede ejecutar \textbf{M.O.E.A. Software} dando la 
+ilusión de que se ha creado un programa ejecutable independiente.\medskip\break
+En el peor de los escenarios, si no se tiene la posibilidad de 
+operar con los archivos ejecutables ya sea por el problema antes 
+mencionado o porque los sistemas soportados no coinciden con el 
+sistema del usuario se ofrece el código fuente, al estar elaborado 
+en Python y éste a su vez ser un lenguaje multiplataforma 
+\textbf{(se puede instalar en cualquier sistema operativo)} como 
+consecuencia lógica se indaga que el código fuente puede ser 
+ejecutado en cualquier sistema si se cuenta con las dependencias 
+adecuadas.\medskip\break
+Como se ha mencionado anteriormente el producto de software ha 
+sido escrito usando la sintaxis más simple y ello implica que se 
+ha construido utilizando sólo las dependencias necesarias para 
+garantizar que aún empleando el código fuente se conciba la máxima 
+independencia posible del producto de software.\medskip\break
+Para utilizar el código fuente es necesario, además de la instalación 
+obligatoria de Python 2.7.3 \textbf{(otras versiones causarían problemas de incompatibilidad)}
+las siguientes dependencias:
+
+\begin{itemize}
+\item \textbf{Tkinter}, versión 8.5 \textbf{\break\href{http://tkinter.unpythonic.net/wiki/How\_to\_install\_Tkinter}{\textcolor{blue}{(http://tkinter.unpythonic.net/wiki/How\_to\_install\_Tkinter)}}}.
+\item \textbf{Matplotlib}, versión 1.1.1rc2 \textbf{\href{http://matplotlib.org/}{\textcolor{blue}{(http://matplotlib.org/)}}}.
+\end{itemize}
+
+La preferencia por las versiones de las dependencias no es 
+estricta, no obstante se recomienda seguir estas indicaciones 
+lo más fielmente posible para garantizar resultados satisfactorios.\break
+De manera similar para con los archivos ejecutables, dado que 
+los sistemas operativos en los que se use el programa pueden 
+variar sólo se indican las bibliotecas empleadas, le corresponde 
+al usuario instalarlas en su sistema operativo.\medskip\break
+Por otra parte el desarrollo del programa se llevó a cabo 
+primordialmente usando entornos virtuales con la ayuda de 
+la herramienta \textbf{VirtualBox \break\href{https://www.virtualbox.org/}{\textcolor{blue}{(https://www.virtualbox.org/)}}}\break
+Entonces, los sistemas operativos creados fueron:
+
+\begin{itemize}
+\item \textbf{Windows 7 \textit{Home Premium} (32 bits)}; 1GB Memoria RAM, Procesador Intel Core i5.
+\item \textbf{Debian 7 \textit{Wheezy} (32 bits)}; 1GB Memoria RAM, Procesador Intel Core i5.
+\end{itemize}
+
+Tanto la construcción del código como las pruebas consecuentes 
+fueron hechas en estos sistemas debido a que se necesitaba 
+asegurarse que el producto de software funcionara en los entornos 
+principales Windows y GNU/Linux.\medskip\break
+Se considera importante mencionar las características de los 
+sistemas operativos creados con la finalidad de enfatizar la 
+elaboración del producto de software bajo escenarios con 
+condiciones paupérrimas; de esta manera se garantiza un rendimiento 
+favorable en sistemas con los mismos o mayores recursos.\medskip\break
+Para construir los ejecutables de los demás sistemas operativos 
+se crearonpor igual sistemas virtualizados, sin embargo dado 
+que sólo fueron utilizados para los fines señalados no se 
+considera importante profundizar más en sus características.\medskip\break
+Finalmente es menester mencionar que las instrucciones y 
+aditamentos ilustrativos en la interfaz gráfica del programa 
+se encuentran plasmados en el idioma inglés,el objetivo de tal 
+acción tiene dos metas: pulir las habilidades lingüísticas del 
+autor e incentivar a los estudiantes con la práctica de dicho 
+idioma, de todas formas la gramática y vocabulario empleados 
+son sencillos y no se encontrará dificultad alguna en la comprensión 
+del tema.
+
+%Termina el documento.
+\end{document}

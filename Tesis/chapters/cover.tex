@@ -1,0 +1,139 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez.
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo permite elaborar la portada y por ende el título de 
+%la obra; además se incluyen elementos adicionales como información 
+%básica del autor,nombre completo de la asesora, incluso se proyectan 
+%imágenes con los escudos tanto de la U.N.A.M como de la Facultad de 
+%Ciencias.       
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se cargan todos los paquetes que residen en el archivo packages_used_standard.sty
+\usepackage{packages_used_standard}
+
+%Comienza el documento.
+\begin{document}
+
+%Es menester colocar estas directivas alusivas al título y a la 
+%fecha para que éstas se puedan colocar en otras secciones de la 
+%portada y no cause errores en la distribución de elementos.
+\title{}
+\date{}
+
+%Se coloca esta directiva para eliminar encabezado y pie de 
+%página.
+\thispagestyle{empty}
+
+%Se hace un recorrido horizontal a la izquierda para centrar 
+%la portada.
+\hskip+0.2cm
+%La portada se divide en dos secciones, a continuación se trata
+%la primera sección que consiste en los escudos tanto de la U.N.A.M.
+%y la Facultad de Ciencias, además de las franjas horizontales.
+\begin{minipage}[c][10cm][s]{3cm}
+      %Se coloca este espacio para ajustar esta sección adecuadamente
+      %de manera vertical para que no haya mucho espacio debajo.
+      \vspace{-1.2cm}
+      %Todo el contenido de esta sección se pasa a la 
+      %izquierda.
+      \flushleft
+      
+      %Se coloca y centra el escudo de la U.N.A.M.
+      \center{\includegraphics[width=2.8cm,height=2.9cm]{images/unam.pdf}}
+      
+      %Se adjunta un espacio entre el escudo y las franjas.
+      \vspace{0.7cm}
+ 
+      %Se ponen las 3 franjas verticales.
+      \center{
+              \vrule width.5pt height15cm\hskip5mm
+              \vrule width2pt height15cm\hskip5mm
+              \vrule width.5pt height15cm
+             } \\
+
+      %Se agrega un espacio entre las franjas y el otro escudo.
+      \vspace{0.5cm}
+
+      %Se añade y centra el escudo de la Facultad de Ciencias.
+      \center{\includegraphics[width=3.0cm,height=3.1cm]{images/ciencias.pdf}}
+
+\end{minipage}
+%Se añade este espacio para separar adecuadamente las dos franjas 
+%horizontales con el escudo de la U.N.A.M.
+\hspace{0.6cm}
+%Termina la primera sección.
+%No se debe quitar el espacio entre las secciones porque eso 
+%repercute en la portada.
+%La segunda sección contiene toda la información adicional de la portada.
+\begin{minipage}[c][9.7cm][s]{9.9cm}
+      %Se coloca este espacio para ajustar esta sección adecuadamente
+      %de manera vertical para que no haya mucho espacio debajo.
+      \vspace{-1.2cm}
+      %Todo el contenidd de esta sección se mueve a la derecha.
+      \flushright   
+   
+      %Se centran los nombres de la Universidad, las franjas horizontales
+      %y la Facultad.
+      \center{              
+              %Se hace una reducción de espacio vertical para que el nombre
+              %de la Universidad esté en el mismo renglón que el inicio del
+              %escudo de la U.N.A.M.
+              %\vspace{-0.8cm}
+
+              %Se crea y centra el nombre de la Universidad.
+              \center{
+                      {\fontsize{16pt}{16pt}\selectfont U}{\fontsize{13pt}{13pt}\selectfont NIVERSIDAD} {\fontsize{16pt}{16pt}\selectfont N}{\fontsize{13pt}{13pt}\selectfont ACIONAL} 
+                      {\fontsize{16pt}{16pt}\selectfont A}{\fontsize{13pt}{13pt}\selectfont UTÓNOMA} \\[6pt]
+                      {\fontsize{13pt}{13pt}\selectfont DE} 
+                      {\fontsize{16pt}{16pt}\selectfont M}{\fontsize{13pt}{13pt}\selectfont ÉXICO} 
+                     } \\
+
+              %Se crean las dos franjas horizontales.   
+              \vspace{0.3cm}
+              \hrule height2pt\hspace{15pt}
+              \vspace{0.5cm}
+              \hrule height.5pt\hspace{15pt}	
+              \vspace{0.8cm}
+          
+              %Se inicia con el nombre de la Facultad.
+              {\fontsize{16pt}{16pt}\selectfont F}{\fontsize{13pt}{13pt}\selectfont ACULTAD DE } {\fontsize{16pt}{16pt}\selectfont C}{\fontsize{13pt}{13pt}\selectfont IENCIAS}\\[2.0cm]
+   
+              %Se agrega el nombre de la tesis.
+              %\large{\scshape \rmfamily Algoritmos Evolutivos Multiobjetivo y Evaluadores de Desempeño a Través de un Producto de Software  }\\[1.7cm]
+              \uppercase{\large{A}\normalsize{lgoritmos} \large{E}\normalsize{volutivos} \large{M}\normalsize{ultiobjetivo y} \large{E}\normalsize{valuadores de} \large{D}\normalsize{esempeño a} \large{T}\normalsize{ravés de un} \large{P}\normalsize{roducto de} \large{S}\normalsize{oftware}}\\[1.8cm]
+
+              %Se escribe la palabra "TESIS" separada por espacios de 1 cm.
+              \Huge{T \hspace{1cm} E \hspace{1cm} S \hspace{1cm} I \hspace{1cm} S  }\\[1.6cm]
+ 
+              %Se pone la frase "QUE PARA OBTENER EL TÍTULO DE:".
+              \normalsize{QUE PARA OBTENER EL TÍTULO DE:}\\[1.5cm]
+
+              %Se añade la frase "Licenciado en Ciencias de la Computación".
+              \normalsize{\uppercase{Licenciado en Ciencias de la Computación}  }\\[1.1cm]
+
+              %Se adjunta la palabra "PRESENTA:" separada por espacios de 2 ex (cada ex equivale a 0.6cm).
+              \normalsize{P \hspace{2ex} R \hspace{2ex} E \hspace{2ex} S \hspace{2ex} E \hspace{2ex} N \hspace{2ex} T \hspace{2ex} A \hspace{2ex} :}\\[1.5cm]
+
+              %Se establece el nombre del autor de la tesis (en mayúsculas).
+              \normalsize{\uppercase{Aarón Martín Castillo Medina}  }\\[1.4cm]
+
+              %Se agrega la palabra "TUTORA".
+              \normalsize{TUTORA  }\\[0.27cm]
+
+              %Se coloca el nombre de la asesora de la tesis.
+              \normalsize{\uppercase{Dra. Katya Rodríguez Vázquez}  }\\[1.4cm]
+
+              %Se adjunta el año de la publicación.
+              \normalsize{\the\year}
+
+      }%Termina el primer center
+
+%Termina la segunda sección.
+\end{minipage}
+
+%Termina el documento.
+\end{document}

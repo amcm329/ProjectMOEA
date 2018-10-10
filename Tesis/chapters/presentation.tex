@@ -1,0 +1,139 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo contiene información relacionada con la Presentación,
+%de la tesis que incluye el resumen del trabajo escrito, los agradecimientos
+%y la dedicatoria.
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se cargan todos los paquetes que residen en el archivo packages_used_standard.sty
+\usepackage{packages_used_standard}
+
+%Empieza el documento.
+\begin{document}
+
+%Con esto se indica que el número de página va escrito en numeración
+%romana.
+\pagenumbering{roman}
+
+%Comienza el capítulo dedicado al Resumen, es decir, muestra un esbozo
+%de todo el contenido que posteriormente se desglosará.
+\chapter*{\centerline{Resumen}}
+Se proporciona una introducción concisa relativa a la definición, 
+constitución y ejemplificación de los Algoritmos Evolutivos 
+Multiobjetivo \textbf{(en inglés Multi-Objective Evolutionary Algorithms ó simplemente M.O.E.A.s)} 
+así como sus evaluadores de desempeño.\medskip\break
+Para poder realizar las operaciones pertinentes se toma como 
+base un entorno gráfico específicamente elaborado para este 
+trabajo, el cual lleva por denominación \textbf{M.O.E.A. Software}; 
+con base en éste se realizan pruebas para analizar y corroborar 
+las medidas de desempeño contempladas en la teoría.\medskip\break
+A su vez el producto de software en sí constituye una pieza 
+de divulgación con la finalidad de acercar a los interesados 
+en el estudio de este tipo de técnicas a través de un ambiente 
+dinámico; por ende se incluye información relacionada con la 
+construcción y ejecución del programa antes mencionado para 
+guiar a aquéllos que deseen adentrarse en lo concerniente al 
+ámbito técnico del producto.
+
+%Después del Resumen se agrega una página en blanco.
+\newpage\null\thispagestyle{empty}\newpage
+
+%Comienza el capítulo dedicado a los Agradecimientos tanto académicos
+%como personales.
+\chapter*{\centerline{Agradecimientos}}
+
+%En construcción
+%\begin{comment}
+
+\vspace{-1.4cm}
+Primero que nada en el escenario académico quiero darle 
+las gracias a la Dra. Katya Rodríguez Vázquez por su magna 
+paciencia al momento de dirigir y corregir mi tesis, amén 
+de su disposición para reforzar el conocimiento adquirido 
+e incluso la transmisión de consejos a través de su experiencia.\break
+Además incluyo a los profesores/doctores X Y Z por sus 
+invaluables aportes a mi trabajo escrito.\break
+También deseo señalar al Dr. Otto Hahn Herrera y a Emiliano 
+Valdés Guerrero, por ser un modelo de inspiración y ambición 
+cultural y por incluirme en los proyectos en donde obtuve 
+sólidas bases profesionales.\break
+Nombro a la profesora M. en C. Adriana Espinosa Contreras 
+por el conocimiento facilitado, solidaridad, franqueza y 
+por haber creído en mí a través de mi primera oportunidad 
+laboral.\medskip\break
+Saliendo del plano académico y entrando al plano laboral 
+quiero mencionar a mi jefe Rubén Sergio Paniagua Aguilar 
+por su tolerancia para conmigo al poder prescindir de mis 
+actividades momentáneamente y dedicarme al avance de esta 
+obra, así como por su visión al permitirme compartir este 
+tipo de temas y considerarlos en el entorno en el que nos 
+desenvolvemos.\break
+Por otra parte anhelo recordar a Bianca García Álvarez y 
+Juan Carlos Torres Patiño porque son un claro ejemplo de 
+que aún en los lugares más inhóspitos se puede cultivar una 
+firme y fructífera amistad.\medskip\break
+En un nivel más personal brindo reconocimiento a Manuel y 
+Logan por su fraternidad, palabras de aliento y la voluntad 
+de escuchar mi tema de especialidad aún cuando nuestras 
+disciplinas son distintas.\break
+A Karla y Dinorah por el apoyo otorgado y las incontables 
+horas de pláticas en las que me expresaban su cariño y 
+estímulos.\break
+A Teresa, Paula y Kathy por las sugerencias concisas y los 
+momentos sublimes que, aunque escasos, han sido motivo de 
+lucha y persistencia.\break
+A Paulina Segovia por las muestras de afecto que indican 
+que no importa la distancia para sentir aprecio por una 
+persona.\break
+A la profesora Laura Gasparyan,\selectlanguage{russian} огромное 
+спасибо за помощь и советы, я никогда не забуду ваши слова.\selectlanguage{spanish}\break
+A Lyudmila Tolstaya,\selectlanguage{russian} я тебя чувствую, 
+я всегда с тобой.\selectlanguage{spanish}\break
+A Yulia Boroshko,\selectlanguage{russian} наша дружба это 
+очень важная для меня, спасибо.\selectlanguage{spanish}
+
+%\end{comment}
+
+%Después de los Agradecimientos se añade una página en blanco.
+\newpage\null\thispagestyle{empty}\newpage
+
+%Ahora se construye la parte correspondiente a la Dedicatoria.
+\chapter*{\centerline{Dedicatoria}}
+
+%En construcción
+%\begin{comment}
+
+\textit{A mis padres Rosa María y Martín; no hay palabras que 
+describan todo el amor y gratificación que tengo para con 
+ustedes. Merezcan ésto}.\bigskip
+
+\textit{A mis hermanos Rosalba y Víctor Eduardo; dicen que un 
+hermano es un amigo proporcionado por la naturaleza. Es cierto. 
+Los quiero}.\bigskip
+
+\textit{A mis abuelos María Concepción} \textbf{(\scalebox{0.8}{\Cross})} 
+\textit{y Pedro} \textbf{(\scalebox{0.8}{\Cross})}\textit{; en donde quiera 
+que estén espero se sientan orgullosos. Sepan que les estoy 
+muy agradecido por todo}.\bigskip
+
+\textit{A mis abuelos Cristina y Ramón; la fortaleza y 
+perseverancia son características que he asimilado de ustedes 
+y las tengo siempre presentes}.\bigskip
+
+\textit{A mis tíos Luis Alberto, Arturo, Juan Manuel, Carlos, 
+Juan Carlos, Ricardo \textbf{(\scalebox{0.8}{\Cross})} y Óscar; 
+de cada uno he tomado muestras de dedicación, esfuerzo y valor 
+para enfrentar las vicisitudes más acérrimas}.
+
+%\end{comment}
+
+%Después de la Dedicatoria se añade una página en blanco.
+\newpage\null\thispagestyle{empty}\newpage
+
+%Termina el documento.
+\end{document}

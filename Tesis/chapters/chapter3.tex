@@ -1,0 +1,213 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo contiene información relacionada con las características,
+%algoritmos y aplicaciones relacionados con los M.O.E.A.'s así como las 
+%métricas de desempeño que se utilizarán e incluso una introducción al
+%producto de software elaborado con base en todo lo anterior.
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se añaden los paquetes a usarse localizados en packages_used_standard.sty
+\usepackage{packages_used_standard}
+
+%Comienza el documento.
+\begin{document}
+
+%Comienza el capítulo relacionado con la estructura interna,
+%ejemplos y métricas alusivas a un M.O.E.A.
+\chapter {M.O.E.A.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Rankeo}
+
+\section{Aptitud Compartida}  
+También llamado Shared Fitness
+
+\section{Algoritmos}
+Con base en el capítulo anterior, el funcionamiento de un M.O.E.A. 
+\textbf{(resolver un problema de optimización multiobjetivo usando 
+algoritmos evolutivos)} generalmente se lleva a cabo de la siguiente 
+manera:
+
+\begin{enumerate}[1.]
+\item Usando una Representación Cromosómica, crear la Población Padre y evaluar cada uno de los Individuos respecto a las funciones objetivo.
+
+\item Asignar un Ranking a los Individuos de la Población Padre.  
+
+\item Con base en el Ranking, asignar la Aptitud \textbf{(en inglés Fitness)} a cada uno de los Individuos.
+
+\item Tomando en cuenta el Fitness, aplicar las operaciones de Selección, Cruza y Mutación con la finalidad de crear una Población Hija. Todos los métodos empleados en este punto deben funcionar acorde a la Representación Cromosómica del punto 1.
+
+\item \textbf{(Opcional)} Utilizar el Fitness Compartido \textbf{(en inglés Shared Fitness)} para aplicar una elección más minuciosa de los mejores Individuos en la Población Hija. 
+
+\item Designar a la población Hija como la nueva población Padre.
+
+\item Repetir los pasos 2 a 6 hasta haber alcanzado un número límite de generaciones \textbf{(iteraciones)}. 
+\end{enumerate}
+
+A grandes rasgos la diferencia entre un M.O.E.A. y otro es la Presión Selectiva 
+\textbf{(en inglés Selective Pressure)} que se aplica durante el procedimiento, para fines de este proyecto
+se trata de la tolerancia para seleccionar a los Individuos de calidad media o baja frente a los
+mejores. Una baja Presión Selectiva permite elegir Individuos no tan aptos; el caso es análogo para
+una alta Presión Selectiva.
+
+
+
+\subsection{V.E.G.A.}
+La forma de proceder del algoritmo es la siguiente:
+
+\begin{enumerate} 
+\item Se crea la Población Padre (de tamaño \(n\)).
+\item Tomando en cuenta las \(k\) funciones objetivo y la Población Padre, se crean \(k\) subpoblaciones de tamaño \(n/k\) cada una, si este número llega a ser irracional se pueden hacer ajustes con respecto de la distribución de los Individuos.
+\item Por cada subpoblación, se aplica la técnica de Selección y obtienen los \(n/k\) Individuos, terminado esto se deben unificar todos los seleccionados de nuevo en una súper Población.
+\item Con la súper Población del paso 3, se crea a la población Hija, la cual pasará a convertirse en la la nueva Población Padre.
+\item Se repiten los pasos 2 a 4 hasta haber alcanzado el número de generaciones \textbf{(iteraciones)} límite.
+\end{enumerate}
+
+Como se puede apreciar es una implementación muy sencilla 
+de optimización multiobjetivo, sin embargo el inconveniente 
+que tiene es la fácil pérdida de material genético valioso.\break
+Lo anterior significa que un Individuo que en una generación 
+previa era el mejor para una función objetivo \(i\) al momento 
+de ser separado y seleccionado en una subpoblación \(j\) \textbf{(y por ende analizado bajo la función objetivo \(j\))} 
+puede ser muy malo en calidad y por tanto no ser seleccionado;
+perdiéndose la ganancia genética hasta el momento obtenida para 
+la función objetivo \(i;\ i \neq j\).\medskip\break
+Por ello es que se puede decir que V.E.G.A. genera soluciones 
+promedio que destacan con una calidad media para todas las 
+funciones objetivo.\medskip\break
+Finalmente hay que comentar que para este algoritmo no se requiere 
+aplicar un Ranking específico, no obstante, se ha decidido utilizar 
+el de Fonseca \& Flemming \textbf{(véase Model/Community/Community.py)} 
+pues es el más sencillo de implementar.
+
+\subsection{M.O.G.A.}
+Su funcionamiento es el siguiente:
+
+\begin{enumerate} 
+\item Se crea la Población Padre, se evalúan las funciones objetivo de sus correspondientes Individuos.
+\item Se asigna a los Individuos un Ranking \textbf{(Fonseca \& Flemming)} y posteriormente se calcula el Niche Count de la Población Padre.
+\item Tomando en cuenta los valores del punto 2 se obtiene el Fitness para cada Individuo y posteriormente su Shared Fitness.
+\item Se aplica el operador de selección sobre la Población Padre para determinar los elegidos para dejar descendencia.
+\item Se crea la Población Hija, se evalúan las funciones objetivo de sus correspondientes Individuos.
+\item Se asigna a los Individuos un Ranking \textbf{(Fonseca \& Flemming)} y posteriormente se calcula el Niche Count de la Población Hija.
+\item Tomando en cuenta los valores del punto 6 se obtiene el Fitness para cada Individuo y posteriormente su Shared Fitness.
+\item La Población Hija pasará a ser la nueva Población Padre.
+\item Se repiten los pasos 4 a 8 hasta que se haya alcanzado el número límite de generaciones \textbf{(iteraciones)}.
+\end{enumerate}
+
+Como se puede apreciar, la implementación de este algoritmo es 
+muy sencilla, además se rige casi en su totalidad por el 
+Shared Fitness \textbf{(ó Fitness Compartido)}, por lo que 
+la Presión Selectiva \textbf{(ó Selective Pressure)} incluida 
+dependerá en gran medida de la función de Distancia que se utilice, 
+así como de la magnitud indicada por el usuario.\medskip\break
+Finalmente es menester mencionar que para esta implementación el 
+Ranking utilizado debe ser estrictamente el de Fonseca \& Flemming 
+
+\subsection{S.P.E.A. 2}
+Se desarrolla la implementación de la técnica M.O.E.A. 
+conocida como S.P.E.A. II \textbf{(Strength Pareto Evolutionary Algorithm ó Algoritmo Evolutivo de Fuerza de Pareto)}.\break
+El funcionamiento del algoritmo es el siguiente:
+
+\begin{enumerate}
+\item Se inicializa una población llamada \emph{P} y un conjunto inicialmente vacío llamado \emph{E} \textbf{(E albergará Individuos también)}; ambos son de tamaño n.
+\item Se asigna el Fitness a los Individuos de \emph{P} y \emph{E} \textbf{(para ello se evalúan las funciones objetivo de los Individuos de ambos conjuntos y se asigna el Ranking Zitzler \& Thiele)}.
+\item A continuación se funden \emph{P} y \emph{E} en una súper Población \textbf{(llamémosle S también señalado en el algoritmo como Mating Pool, de tamaño n)}.Para ello primero se añaden los Individuos \emph{NO DOMINADOS} de \emph{P} en \emph{S} y posteriormente los \emph{NO DOMINADOS} de \emph{E} en \emph{S}.\break 
+Aquí se distinguen dos casos:
+      \begin{itemize}
+      \item Si llegasen a faltar Individuos se añaden al azar Individuos \emph{DOMINADOS} de \emph{P} en \emph{S} hasta completar la demanda.
+      \item Si después de la fusión el número de Individuos supera a n, entonces se hace un truncamiento en \emph{S} hasta ajustar su tamaño a n.
+      \end{itemize}
+\item \emph{S} será la nueva \emph{E}, además se crea la población Hija de la recién creada \emph{E} \textbf{(E-Child)}.
+\item E-Child será la nueva P.
+\item Se repiten los pasos 2 a 5 hasta que se haya alcanzado el límite de generaciones \textbf{(iteraciones)}.
+\end{enumerate}
+
+Finalmente lo que se regresa es \emph{E}, ya que ahí es 
+donde se han almacenado los mejores Individuos de todas 
+las generaciones.\medskip\break
+La característica de este algoritmo es que tiene una 
+Presión Selectiva alta ya que se da prioridad a los 
+Individuos no dominados \textbf{(de ahí el nombre de Fuerza de Pareto ó los más fuertes con respecto al principio de Pareto)},
+y el hecho de mezclar a \emph{E} y \emph{P} en una 
+súper Población garantiza la conservación de los mejores 
+Individuos sin importar el transcurso de las generaciones \textbf{(a eso se le conoce como Elitismo)}, 
+pero también da una tolerancia, aunque mínima, a los Individuos 
+de menor calidad como en el punto 3.\break
+Además al momento de actualizar \emph{S} a \emph{E} y 
+E-Child a \emph{P} se tiene una especie de seguro de vida, 
+es decir, si en algún momento la población E-Child llegara a
+tener una calidad baja se tiene el respaldo de \emph{E} 
+para una generación posterior para formar \emph{S}.\medskip\break
+Se debe tener en cuenta que el algoritmo originalmente no 
+contempla ni una súper Población \emph{S} ni E-Child 
+sino que en los pasos 3 y 4 se utiliza solamente \emph{E} 
+para referirse tanto a E-child como a \emph{S}, sin embargo 
+para no confundir al usuario en la funcionalidad del método 
+se decidió colocar contenedores extra para poder diferenciar 
+más precisamente a los elementos involucrados.\medskip\break
+Algo muy importante a mencionar es que en el paso 1 y al momento 
+de crear la población E-Child es necesario evaluar las funciones 
+objetivo, asignar un Ranking y posteriormente un Fitness para 
+que se puedan aplicar los operadores geneticos \textbf{(véase Model/GeneticOperator)}, 
+para este caso el Ranking es estrictamente el de Zitzler \& Thiele; 
+
+\subsection{N.S.G.A. II}
+La forma de proceder del método es la siguiente:
+
+\begin{enumerate}
+\item Se crea una Población Padre \textbf{(de tamaño n)}, a la cual se le evalúan las funciones objetivo de sus Individuos, se les asigna un Ranking \textbf{(Goldberg)} y posteriormente se les otorga un Fitness.
+\item Con base en la Población Padre se aplica el operador de Selección para elegir a los Individuos que serán aptos para reproducirse.
+\item Usando a los elementos del punto 2, se crea una Población Hija \textbf{(de tamaño n)}.
+\item Se crea una súper Población \textbf{(llamémosle S, de tamaño 2n)} que albergará todos los Individuos tanto de la Población Padre como Hija; a \emph{S} se le evalúan las funciones objetivo de sus Individuos, se les asigna un Ranking \textbf{(Goldberg)} y posteriormente se les otorga un Fitness.
+\item La súper Población \emph{S} se divide en subcategorías de acuerdo a los niveles de dominancia que existan, es decir, existirá la categoría de dominancia 0, la cual almacena Individuos que tengan una dominancia de 0 Individuos \textbf{(ningún Individuo los domina)}, existirá la categoría de dominancia 1 con el significado análogo y así sucesivamente hasta haber cubierto todos los niveles de dominancia existentes.
+\item Se construye la nueva Población Padre, pare ello constará de los Individuos de \emph{S} donde la prioridad será el nivel de dominancia, es decir, primero se añaden los elementos del nivel 0,luego los del nivel 1 y así en lo sucesivo hasta haber adquirido n elementos.
+Se debe aclarar que la adquisición de Individuos por nivel debe ser total, esto significa que no se pueden dejar Individuos sueltos para el mismo nivel de dominancia.\break
+Supongamos que a un nivel k existen tantos Individuos que su presunta adquisición supera el tamaño n, en este caso se debe hacer lo siguiente:
+      \begin{enumerate}
+      \item Se crea una Población provisional \textbf{(Prov)} con los Individuos del nivel k, se evalúan las funciones objetivo a cada uno de sus Individuos, se les asigna un Ranking \textbf{(Goldberg)} y posteriormente se les asigna el Fitness.\break
+            Con los valores anteriores se calcula el Niche Count \textbf{(véase Model/SharingFunction)} de los Individuos; una vez hecho ésto se seleccionan desde Prov los Individuos faltantes con los mayores Niche Count, esto hasta completar el tamaño n de la nueva Población Padre.
+      \end{enumerate}
+\item Al haber conformado la nueva Población Padre, se evalúan las funciones objetivo de sus Individuos, se les asigna el Ranking correspondiente \textbf{(Goldberg)} y se les atribuye su Fitness.
+\item Se repiten los pasos 2 a 7 hasta haber alcanzado el límite de generaciones \textbf{(iteraciones)}.
+\end{enumerate}
+
+Como su nombre lo indica, la característica de este algoritmo es 
+la clasificación de los Individuos en niveles para su posterior 
+selección.\break
+Esto al principio propicia una Presión Selectiva moderada por 
+la ausencia de elementos con dominancia baja que suele existir 
+en las primeras generaciones, sin embargo en iteraciones posteriores 
+se agudiza la Presión Selectiva ya que eventualmente la mayoría de 
+los Individuos serán alojados en las primeras categorías de dominancia, 
+cubriendo casi instantáneamente la demanda de Individuos necesaria en 
+el paso 6, por lo que las categorías posteriores serán cada vez 
+menos necesarias con el paso de los ciclos.\medskip\break
+Por otra parte la fusión de las Poblaciones en \emph{S} garantiza 
+que siempre se conserven a los mejores Individuos independientemente 
+de la generación transcurrida, a eso se le llama Elitismo.\break
+Por cierto que en el algoritmo original no existe un nombre oficial 
+para \emph{S} sino más bien se señala como una estructura genérica, 
+sin embargo se le ha formalizado con un identificador para guiar 
+apropiadamente al usuario en el flujo del algoritmo.\medskip\break
+Para finalizar se señala que el uso del ranking de Goldberg 
+
+\section{M.O.P.}      
+\section{Indicadores de Desempeño}
+\section{Introducción a M.O.E.A Software}
+Habiendo detallado todos los elementos 
+
+M.O.E.A. Software surge como una solución ante la problemática blablabla.
+
+Para abordar detalles de índole más técnica se recomienda visitar la sección **Características Técnicas** perteneciente al Apéndice.
+
+\label{sec:p_1}    
+
+%Termina el documento.
+\end{document}

@@ -1,0 +1,79 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo guarda las referencias bibliográficas que 
+%se utilizan a lo largo de todos los demás capítulos.
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se cargan todos los paquetes que residen en el archivo packages_used_standard.sty
+\usepackage{packages_used_standard}
+
+%Comienza el documento.
+\begin{document}
+
+%Dado que se utiliza Bibtex para crear la bibliografía, ésta 
+%por defecto no adhiere la mención correspondiente en la Tabla 
+%de Contenido, entonces con esta línea se añade el capítulo 
+%correspondiente.
+\addcontentsline{toc}{chapter}{Bibliografía}\markboth{Bibliografía}{}
+
+%Comienza la sección dedicada a la Bibliografía (con Bibtex)
+\begin{thebibliography}{15}
+
+%Utilizada en el capítulo 2.
+\bibitem{b1}
+Charles Darwin. \textit{El Origen de las Especies}. (Spanish) [\textit{On 
+the Origin of Species}]. Translator: Antonio de Zulueta, Biblioteca Virtual 
+Miguel de Cervantes, pages 460–461, 1859.
+
+%Utilizada en el capítulo 2.
+\bibitem{b2}
+hola mundo
+
+%Utilizada en el capítulo 2.
+\bibitem{b4}
+Francis Ysidro Edgeworth. \textit{Mathematical Psychics: An Essay on the 
+Application of Mathematics to the Moral Sciences}. Kegan Paul and Co., 
+London, 1881.
+
+%Utilizada en el capítulo 2.
+\bibitem{b5}
+Carlos A. Coello Coello, Gary B. Lamont, David A. Van Veldhuizen. \textit{Evolutionary 
+Algorithms for Solving Multi-Objective Problems}. Springer, New York, 
+Second edition, September 2007, ISBN 978-0-387-36797-2.
+
+%Utilizada en el capítulo 2.
+\bibitem{b6}
+Juan Arturo Herrera, Katya Rodríguez Vázquez. \textit{Técnicas de Programación 
+Matemática para Optimización Multi-Criterio: Estado del Arte}. Instituto de 
+Investigaciones en Matemáticas Aplicadas y en Sistemas, Universidad Nacional 
+Autónoma de México, Reporte Técnico EMO07-01.
+
+%Comienza la sección alusiva a la Mesografía.
+\section{Mesografía}
+
+%Utilizada en el capítulo 2.
+\bibitem{b3}
+Verhoef, Herman A. \textit{Community Ecology}. March, 2015.\break
+\textit{http://www.oxfordbibliographies.com/view/document/obo-9780199830060/obo-9780199830060-0042.xml}
+
+%Localizada en el capítulo 4.
+\bibitem{b7}
+Kalyanmoy Deb. \textit{Software for Multi-Objective NSGA-II Code in C}.\break
+\textit{http://www.iitk.ac.in/kangal/codes.shtml}
+
+%Localizada en el Apéndice.
+\bibitem{b8}
+Gartner Inc. \textit{Windows Comes Up Third in OS Clash Two Years Early}.
+\textit{http://www.computerworld.com/article/3050931/microsoft-windows/
+windows-comes-up-third-in-os-clash-two-years-early.html}
+
+%Termina la sección dedicada a la Bibliografía.
+\end{thebibliography}
+
+%Termina el documento.
+\end{document}

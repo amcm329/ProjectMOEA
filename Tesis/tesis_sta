@@ -1,0 +1,45 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez.
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Como parte del uso del paquete "standalone", el archivo tesis.tex
+%se apoya de este archivo para averiguar el total de subarchivos 
+%existentes, así como los correspondientes paquetes cargados por 
+%cada uno. 
+%De esta manera siempre que se compile el proyecto se genera un 
+%archivo denominado tesis.sta; si llega a existir alguna falla 
+%durante el proceso de compilación se debe en gran medida a dicho 
+%archivo, por ello es que simplemente se reemplaza el contenido 
+%de este archivo con el de aquél y se vuelve a ejecutar la 
+%compilación.      
+
+
+\standalonepreambles
+\subpreamble{chapters/cover.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\subpreamble{chapters/presentation.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\subpreamble{chapters/chapter1.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\subpreamble{chapters/chapter2.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\subpreamble{chapters/chapter3.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\subpreamble{chapters/chapter4.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\subpreamble{chapters/chapter5.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\subpreamble{chapters/bibliography.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\subpreamble{chapters/appendix.tex}
+\usepackage {packages_used_standard}
+\endsubpreamble
+\endstandalonepreambles

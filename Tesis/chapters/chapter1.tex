@@ -1,0 +1,166 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo contiene información relacionada con la Introducción,
+%la cual manifiesta la motivación y contenido del trabajo de tesis,
+%en éste último se detallan los temas vistos en cada capítulo.
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se cargan todos los paquetes que residen en el archivo packages_used_standard.sty
+\usepackage{packages_used_standard}
+
+%Comienza el documento.
+\begin{document}
+
+%Se reinicia la numeración de paginación a 1.
+\pagenumbering{gobble}
+
+%Dado que el archivo .tex anterior se encuentra en numeración romana,
+%con esta directiva se indica que se comienza con la numeración arábiga.
+\pagenumbering{arabic} 
+
+%Tomando en cuenta que la Tabla de Contenido tiene prioridad y por
+%ende se le asigna la página 1, con esta directiva a la tabla se le 
+%asigna la página 0 y entonces el capítulo empieza con la página 1.
+\setcounter{page}{0}
+
+%Comienza el capítulo relacionado con la Introducción de la obra escrita,
+%indicando su contenido y detalle de cada sección incluida.
+\chapter{Introducción}
+El presente documento tiene como meta otorgar un preámbulo 
+preciso relativo a los Algoritmos Evolutivos Multiobjetivo \textbf{(en inglés Multi-Objective Evolutionary Algorithms ó
+simplemente M.O.E.A.s)} haciendo énfasis en su descripción, 
+modelado y análisis mediante evaluadores de desempeño, 
+apoyándose en un programa propiamente creado para este 
+trabajo nombrado \textbf{M.O.E.A. Software}.\medskip\break
+La motivación detrás de dicho desarrollo se debe a que, 
+desde el punto de vista del autor, la inmersión a este tema 
+con un enfoque pragmático enriquece los comentarios, discusiones 
+y retroalimentaciones suscitadas alrededor de este proyecto; 
+por otra parte la visualización de resultados de manera expedita 
+facilita la comprensión de los elementos que conforman tanto 
+a este documento como al producto de software.\medskip\break
+Entonces, concretando ideas, se persiguen principalmente dos 
+objetivos:
+
+\begin{itemize}
+\item Crear un producto de software que emule las características 
+y funcionalidades de los M.O.E.A.s \textbf{(M.O.E.A. Software)} 
+con la finalidad de incentivar a las personas a acercarse y 
+operar con este tipo de técnicas.
+\item Usando el producto de software antes mencionado, realizar 
+un análisis básico sobre los resultados derivados del uso de 
+los M.O.E.A.s para determinar su comportamiento y desempeño 
+tanto teórico como práctico, tomando como fundamento las 
+métricas desarrolladas para esta finalidad.
+\end{itemize}
+
+Con respecto del primer objetivo, es importante añadir que, si 
+bien el producto de software por sí solo representa un tópico 
+por separado, para fines de este proyecto se le tratará como 
+el medio y no el fin; no obstante se agregan algunos recursos 
+que ilustran su construcción y uso con la finalidad de que 
+quien así lo desee pueda modificar o potenciar su estructura.\break
+Lo anterior se encuentra orientado hacia una perspectiva técnica.\medskip\break 
+Apuntando al segundo objetivo, para lograr un acercamiento preciso 
+del tema sin saturar de información al lector se lleva a cabo 
+la revisión de los cuatro M.O.E.A.s más representativos, los 
+cuales son:
+
+\begin{itemize}
+\item {V.E.G.A. \textbf{(Vector Evaluated Genetic Algorithm)}.}
+\item {M.O.G.A. \textbf{(Multi-Objective Genetic Algorithm)}.}
+\item {S.P.E.A. 2 \textbf{(Strength Pareto Evolutionary Algorithm 2)}.}
+\item {N.S.G.A. II \textbf{(Non-Dominated Sorting Genetic Algorithm II)}.}
+\end{itemize}
+
+La selección determinada con anterioridad implica la existencia 
+de un listado extenso de técnicas que si bien son importantes, 
+no son imprescindibles para una primera aproximación por parte 
+del lector.\break 
+A pesar de esto, se proporcionarán las referencias correspondientes 
+para que se puedan estudiar adicionalmente.\break
+El procedimiento es similar para con las métricas de desempeño.\medskip\break
+Un detalle importante a considerar es que durante el desarrollo 
+del escrito se usarán los términos ``lector'' y ``usuario'' \textbf{(este último sobre todo en la 
+sección \hyperref[sec:c1_1]{\textcolor{blue}{Apéndice}})}; para 
+estos fines ambos términos se referirán a la persona que incursione 
+en este escrito independientemente de su curiosidad teórica o 
+práctica.\break
+Análogamente dentro de la parte técnica los términos ``programa'', 
+``producto'' y ``producto de software'' se considerarán sinónimos, 
+ya que éstos describen a \textbf{M.O.E.A Software}.\medskip\break
+Recapitulando, la obra completa consta de los siguientes elementos:
+
+\begin{itemize}
+\item Trabajo Escrito.
+\item M.O.E.A. Software \textbf{(código fuente y ejecutables, para mayores detalles 
+véase la subsección \hyperref[sec:c1_2]{\textcolor{blue}{Características Técnicas}} 
+del Apéndice)}
+\item Manual Técnico de M.O.E.A. Software \textbf{(anexado en un documento aparte)}.
+\end{itemize}
+ 
+Cada uno de estos elementos funge como un complemento de los 
+demás para garantizar la dispersión adecuada de información 
+sin redundancias innecesarias, además en éstos se proporciona 
+terminología exclusiva que pudiera entorpecer la comprensión 
+del tema si se localizara en otras secciones.\medskip\break
+Es menester mencionar que, el Manual Técnico abarca única 
+y exclusivamente el contenido de M.O.E.A Software, indicando 
+al usuario los componentes, relaciones con los demás y el 
+detalle de sus funcionalidades.\medskip\break
+En lo concerniente al contenido de la parte escrita, el lector 
+notará la existencia de 4 capítulos adicionales, la Bibliografía 
+y el Apéndice.\break
+En el Capítulo 2 se muestran todos los fundamentos que dan pie 
+a los Algoritmos Evolutivos Multiobjectivo, es decir, los temas 
+que, combinados entre sí originan el tema de estudio principal 
+de este trabajo de tesis.\break
+Debido a que cada uno por sí mismo se considera un tema aparte 
+sólo se tratarán las características necesarias para poder 
+enlazar adecuadamente un tópico con los demás y así converger 
+apropiadamente al tema en cuestión.\medskip\break
+El Capítulo 3 es la sección dedicada enteramente al M.O.E.A., 
+en ésta se encuentran algunos elementos adicionales como 
+son ciertos criterios de selección específicos \textbf{(Shared Fitness ó Fitness Compartido)}, 
+evaluadores de desempeño, los algoritmos más representativos 
+mencionados con anterioridad, los conjuntos de pruebas 
+para determinar su desempeño \textbf{(M.O.P, Multi-Objective Problem ó Problema Multiobjetivo)}
+así como una introducción al uso del producto de software.\medskip\break
+El Capítulo 4 está dirigido hacia las pruebas y análisis de 
+los algoritmos con el uso del programa tomando como punto de 
+referencia las pautas de desempeño establecidos en el Capítulo 3.\medskip\break
+En el Capítulo 5 se localizan las conclusiones y manifiestos 
+del trabajo futuro no sólo con base en los resultados del 
+Capítulo 4, sino en general con los elementos de toda la obra.\medskip\break
+Con respecto de la Bibliografía es preciso detallar que también 
+contiene Mesografía ya que una considerable cantidad de las 
+fuentes utilizadas se obtuvo mediante medios electrónicos.\medskip\break
+Finalmente el Apéndice contiene las características técnicas 
+alusivas al producto de software, indicando los paquetes y 
+versiones empleadas para la construcción de dicho programa, 
+así como una ligera introducción al diseño del mismo; para 
+referencias técnicas más sucintas es recomendable que se 
+revise el Manual Técnico.\medskip\break
+En lo relativo a los conocimientos previos a este trabajo que 
+se deben adquirir, aún tomando en cuenta el hecho de que se 
+abordarán los conceptos necesarios con una explicación suficiente, 
+es recomendable que el lector indague un poco en tópicos 
+relativos a conjuntos, funciones y operaciones elementales con 
+vectores, lo anterior para poder comprender más a profundidad 
+las explicaciones propiciadas.\medskip\break
+En lo que concierne al producto de software sólo es necesario 
+un conocimiento básico en el lenguaje de programación Python 
+y por ende en las sentencias elementales de codificación; 
+lo anterior es relevante sólo si el usuario decide introducirse 
+en el código fuente proporcionado ya que de hecho se incluyen 
+programas ejecutables cuya función es la de otorgar un ambiente 
+de software totalmente separado de aspectos técnicos y de esta 
+manera el usuario únicamente se avoque a la parte analítica.
+
+%Termina el documento.
+\end{document}

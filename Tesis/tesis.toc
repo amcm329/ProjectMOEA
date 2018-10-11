@@ -17,19 +17,19 @@
 \contentsline {section}{\numberline {2.1}Algoritmos Evolutivos}{5}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Representaci\IeC {\'o}n Cromos\IeC {\'o}mica}{9}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Aptitud}{9}{subsection.2.1.2}
-\contentsline {subsubsection}{\numberline {2.1.2.1}Proporcional}{9}{subsubsection.2.1.2.1}
+\contentsline {subsubsection}{\numberline {2.1.2.1}Proporcional}{10}{subsubsection.2.1.2.1}
 \contentsline {subsubsection}{\numberline {2.1.2.2}Ranking Lineal}{10}{subsubsection.2.1.2.2}
 \contentsline {subsubsection}{\numberline {2.1.2.3}Rankeo No Lineal}{10}{subsubsection.2.1.2.3}
 \contentsline {subsection}{\numberline {2.1.3}Selecci\IeC {\'o}n}{11}{subsection.2.1.3}
 \contentsline {subsubsection}{\numberline {2.1.3.1}Ruleta}{11}{subsubsection.2.1.3.1}
-\contentsline {subsubsection}{\numberline {2.1.3.2}Torneo Probabil\IeC {\'\i }stico}{11}{subsubsection.2.1.3.2}
+\contentsline {subsubsection}{\numberline {2.1.3.2}Torneo Probabil\IeC {\'\i }stico}{12}{subsubsection.2.1.3.2}
 \contentsline {subsubsection}{\numberline {2.1.3.3}Muestreo Estoc\IeC {\'a}stico Universal}{12}{subsubsection.2.1.3.3}
 \contentsline {subsection}{\numberline {2.1.4}Cruza}{13}{subsection.2.1.4}
 \contentsline {subsubsection}{\numberline {2.1.4.1}N-Puntos}{13}{subsubsection.2.1.4.1}
-\contentsline {subsubsection}{\numberline {2.1.4.2}Uniforme}{13}{subsubsection.2.1.4.2}
+\contentsline {subsubsection}{\numberline {2.1.4.2}Uniforme}{14}{subsubsection.2.1.4.2}
 \contentsline {subsection}{\numberline {2.1.5}Mutaci\IeC {\'o}n}{14}{subsection.2.1.5}
 \contentsline {subsubsection}{\numberline {2.1.5.1}Binaria}{14}{subsubsection.2.1.5.1}
-\contentsline {subsubsection}{\numberline {2.1.5.2}Punto Flotante}{14}{subsubsection.2.1.5.2}
+\contentsline {subsubsection}{\numberline {2.1.5.2}Punto Flotante}{15}{subsubsection.2.1.5.2}
 \contentsline {section}{\numberline {2.2}Optimizaci\IeC {\'o}n Multiobjetivo}{15}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Optimalidad de Pareto}{16}{subsection.2.2.1}
 \contentsline {chapter}{\numberline {3}M.O.E.A.}{18}{chapter.3}

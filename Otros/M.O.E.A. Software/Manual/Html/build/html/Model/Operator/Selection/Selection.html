@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Selection (módulo) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Operator (módulo)" href="../Operator.html" />
+    <link rel="next" title="Roulette (script)" href="Roulette.html" />
+    <link rel="prev" title="Operator (módulo)" href="../Operator.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="selection-modulo">
+<h1>Selection (módulo)<a class="headerlink" href="#selection-modulo" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">En esta sección se encuentran implementadas todas las técnicas relacionadas con
+la selección de Individuos.</div>
+<div class="line">Como se ha mencionado antes, durante dicha operación la importancia de la elección
+radica en el Fitness de cada Individuo, además un Individuo puede ser seleccionado más de una vez
+si la causa lo amerita.</div>
+<div class="line">Así, se elegirán tantos Individuos como elementos haya en la Población.</div>
+<div class="line">El objetivo radica en mantener el equilibrio entre una &#8220;selección justa&#8221; y
+la oportunidad de permitir a los Individuos con una calidad media o baja la propagación de su carga genética.</div>
+<div class="line"><br /></div>
+<div class="line">Al final se busca que el usuario desarrolle sus propias técnicas de selección, por lo cual, además
+de añadir el método en el listado localizado en <strong>Controller/XML/Features.xml</strong>, deberá implementar la siguiente
+función:</div>
+</div>
+<dl class="function">
+<dt>
+<code class="descname">execute_selection_technique(population,selection_parameters):</code></dt>
+<dd><div class="line-block">
+<div class="line">Lleva a cabo la selección de Individuos de una Población. Es importante recalcar que, la función que
+más se ocupa es:</div>
+</div>
+<p class="centered">
+<strong><strong>get_fitness (Model/Community/Population/Individual.py)</strong></strong></p><div class="line-block">
+<div class="line">Aunque existen otras que pueden tener relevancia para el usuario <strong>(véase Model/Community/Population.py)</strong>.</div>
+<div class="line">Como medida adicional, para los eventos de Crossover <strong>(ó Cruza)</strong> y Mutation <strong>(ó Mutación)</strong> se recomienda
+ampliamente que este método regrese únicamente los cromosomas asociados a los Individuos, ya que ésto facilita sobremanera
+las operaciones mencionadas.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>population</strong> (<em>Instance</em>) &#8211; La Población sobre la cual se se seleccionarán los Individuos.</li>
+<li><strong>selection_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario que puede contener opciones adicionales para la
+selección de Individuos.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Una lista que contiene los cromosomas de los Individuos seleccionados.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>A continuación se vislumbran los elementos característicos de este módulo:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Roulette.html">Roulette (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProbabilisticTournament.html">ProbabilisticTournament (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="StochasticUniversalSampling.html">StochasticUniversalSampling (script)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../Model.html">Model (sección)</a><ul>
+  <li><a href="../Operator.html">Operator (módulo)</a><ul>
+      <li>Previous: <a href="../Operator.html" title="previous chapter">Operator (módulo)</a></li>
+      <li>Next: <a href="Roulette.html" title="next chapter">Roulette (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/Model/Operator/Selection/Selection.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/Model/Operator/Selection/Selection.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

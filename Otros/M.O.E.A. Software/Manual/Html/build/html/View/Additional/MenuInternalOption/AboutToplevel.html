@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AboutToplevel (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="MenuInternalOption (módulo)" href="MenuInternalOption.html" />
+    <link rel="next" title="ResultsGrapher (módulo)" href="../ResultsGrapher/ResultsGrapher.html" />
+    <link rel="prev" title="ExpressionFrame (clase)" href="InternalOptionTab/ExpressionFrame.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Additional.MenuInternalOption.AboutToplevel">
+<span id="abouttoplevel-clase"></span><h1>AboutToplevel (clase)<a class="headerlink" href="#module-View.Additional.MenuInternalOption.AboutToplevel" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Additional.MenuInternalOption.AboutToplevel.AboutToplevel">
+<em class="property">class </em><code class="descname">AboutToplevel</code><span class="sig-paren">(</span><em>parent</em>, <em>path_image_logo</em>, <em>custom_function</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.AboutToplevel.AboutToplevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Toplevel</span></code></p>
+<p>Esta ventana independiente <strong>(Toplevel)</strong> proporciona
+información básica del programa así como de sus 
+desarrolladores.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> (<em>Tkinter.Menu</em>) &#8211; El elemento Padre al que pertenece la actual
+ventana independiente <strong>(Toplevel)</strong>.</li>
+<li><strong>path_image_logo</strong> &#8211; La ruta al logotipo que se usa en esta ventana independiente.</li>
+<li><strong>custom_function</strong> &#8211; Una variable que contiene una función, la cual
+redefinirá más apropiadamente el comportamiento de
+la actual ventana principal con respecto de su Frame Padre.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>;type path_image_logo: String
+:type custom_function: Instance
+:returns: Tkinter.Toplevel
+:rtype: Instance</p>
+<dl class="method">
+<dt id="View.Additional.MenuInternalOption.AboutToplevel.AboutToplevel._AboutToplevel__center">
+<code class="descname">_AboutToplevel__center</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.AboutToplevel.AboutToplevel._AboutToplevel__center" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Centra la ventana independiente con respecto de la ventana principal.
+En otras palabras, la ventana independiente será colocada en el centro de la 
+ventana principal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.MenuInternalOption.AboutToplevel.AboutToplevel._AboutToplevel__close">
+<code class="descname">_AboutToplevel__close</code><span class="sig-paren">(</span><em>custom_function</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.AboutToplevel.AboutToplevel._AboutToplevel__close" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Cierra y elimina todo rastro de esta ventana independiente.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>custom_function</strong> (<em>Instance</em>) &#8211; Una variable que contiene una función que ha de 
+ejecutarse dentro de este método.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../View.html">View (sección)</a><ul>
+  <li><a href="../Additional.html">Additional (módulo)</a><ul>
+  <li><a href="MenuInternalOption.html">MenuInternalOption (módulo)</a><ul>
+      <li>Previous: <a href="InternalOptionTab/ExpressionFrame.html" title="previous chapter">ExpressionFrame (clase)</a></li>
+      <li>Next: <a href="../ResultsGrapher/ResultsGrapher.html" title="next chapter">ResultsGrapher (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/View/Additional/MenuInternalOption/AboutToplevel.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/View/Additional/MenuInternalOption/AboutToplevel.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

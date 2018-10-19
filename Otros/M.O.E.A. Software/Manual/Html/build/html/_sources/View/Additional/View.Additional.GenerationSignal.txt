@@ -1,0 +1,22 @@
+View.Additional.GenerationSignal package
+========================================
+
+Submodules
+----------
+
+View.Additional.GenerationSignal.GenerationSignalToplevel module
+----------------------------------------------------------------
+
+.. automodule:: View.Additional.GenerationSignal.GenerationSignalToplevel
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Additional.GenerationSignal
+    :members:
+    :undoc-members:
+    :show-inheritance:

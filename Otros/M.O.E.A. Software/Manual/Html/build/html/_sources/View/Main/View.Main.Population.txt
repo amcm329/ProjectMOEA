@@ -1,0 +1,41 @@
+**Population package**
+============================
+
+
+FitnessFrame module
+----------------------------------------
+
+.. automodule:: View.Main.Population.FitnessFrame
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:
+
+
+PopulaceFrame module
+-----------------------------------------
+
+.. automodule:: View.Main.Population.PopulaceFrame
+    :members:
+    :undoc-members:
+    :private-members: 
+    :show-inheritance:
+
+
+PopulationFrame module
+-------------------------------------------
+
+.. automodule:: View.Main.Population.PopulationFrame
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Main.Population
+    :members:
+    :undoc-members:
+    :show-inheritance:

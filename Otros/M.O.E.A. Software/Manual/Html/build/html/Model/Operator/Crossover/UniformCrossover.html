@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>UniformCrossover (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Crossover (módulo)" href="Crossover.html" />
+    <link rel="next" title="Mutation (módulo)" href="../Mutation/Mutation.html" />
+    <link rel="prev" title="NPointsCrossover (script)" href="NPointsCrossover.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uniformcrossover-script">
+<h1>UniformCrossover (script)<a class="headerlink" href="#uniformcrossover-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Se lleva a cabo la implementación de la técnica conocida como Uniform Crossover
+<strong>(ó Cruza Uniforme)</strong>.</div>
+<div class="line">Primero que nada esta operación está fabricada para usarse tanto con la Representación
+Cromosómica <strong>(véase Model/ChromosomalRepresentation)</strong>
+de tipo FloatPoint <strong>(ó Punto Flotante)</strong> como Binary <strong>(ó Binaria)</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">La característica de este procedimiento es crear nuevos Individuos intercambiando
+secuencialmente los genes de sus padres; visto de una manera más estructurada consiste en lo siguiente:</div>
+</div>
+<ul class="simple">
+<li>Tenemos a los cromosomas de los padres Padre A: <img class="math" src="../../../_images/math/df04bac42dffb0509528726341b9c04b47709594.png" alt="A_1A_2...A_n"/></li>
+</ul>
+<blockquote>
+<div>y Padre B: <img class="math" src="../../../_images/math/ed9676cfb320023377a486ccfc51738fa7c710df.png" alt="B_1B_2...B_n"/></div></blockquote>
+<ul class="simple">
+<li>Ahora, cada hijo será construido con genes de uno y sólo uno de los padres a menos que se indique lo contrario; este movimiento será posible con una variable denominada Pmask <strong>(Pm)</strong> que toma valores de 0 a 1 y una probabilidad de Pmask <strong>(Pp)</strong> que también toma valores de 0 a 1. Entonces lo anterior se puede declarar así:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Para el hijo <img class="math" src="../../../_images/math/bb83dfac06ea8ba6be41b347ff7c2b494e659542.png" alt="(H_1)"/> que tomará sus genes del padre A <strong>(PA)</strong>:</li>
+</ul>
+<blockquote>
+<div>Si <img class="math" src="../../../_images/math/e7a85ac3ca699e51ba5ea16ef78649ab4f2919ce.png" alt="Pm \leqslant Pp\ entonces\ H_1(i) = A_i,\ en\ otro\ caso\ H_1(i) = B_i; 1 \leqslant i \leqslant n"/></div></blockquote>
+<ul class="simple">
+<li>Para el hijo <img class="math" src="../../../_images/math/c5920080508a006998bfef653158fdeaf61d31e7.png" alt="(H_2)"/> que tomará sus genes del padre B <strong>(PB)</strong>:</li>
+</ul>
+<blockquote>
+<div>Si <img class="math" src="../../../_images/math/8d1d6e57f3a8bd6080dd15ebf1df29145c83f5be.png" alt="Pm \leqslant Pp\ entonces\ H_2(i) = B_i,\ en\ otro\ caso\ H_1(i) = A_i; 1 \leqslant i \leqslant n"/></div></blockquote>
+</div></blockquote>
+<span class="target" id="module-Model.Operator.Crossover.UniformCrossover"></span><dl class="function">
+<dt id="Model.Operator.Crossover.UniformCrossover.execute_crossover_technique">
+<code class="descname">execute_crossover_technique</code><span class="sig-paren">(</span><em>chromosome_a</em>, <em>chromosome_b</em>, <em>crossover_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Operator.Crossover.UniformCrossover.execute_crossover_technique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tomando en cuenta la información proporcionada con anterioridad, 
+se implementa el método conocido como Uniform Crossover <strong>(ó Cruza Uniforme)</strong>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../Model.html">Model (sección)</a><ul>
+  <li><a href="../Operator.html">Operator (módulo)</a><ul>
+  <li><a href="Crossover.html">Crossover (módulo)</a><ul>
+      <li>Previous: <a href="NPointsCrossover.html" title="previous chapter">NPointsCrossover (script)</a></li>
+      <li>Next: <a href="../Mutation/Mutation.html" title="next chapter">Mutation (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/Model/Operator/Crossover/UniformCrossover.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/Model/Operator/Crossover/UniformCrossover.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

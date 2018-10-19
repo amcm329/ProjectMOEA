@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Crossover (módulo) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Operator (módulo)" href="../Operator.html" />
+    <link rel="next" title="NPointsCrossover (script)" href="NPointsCrossover.html" />
+    <link rel="prev" title="StochasticUniversalSampling (script)" href="../Selection/StochasticUniversalSampling.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="crossover-modulo">
+<h1>Crossover (módulo)<a class="headerlink" href="#crossover-modulo" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Aquí se desarrollan las técnicas de Crossover <strong>(ó Cruza)</strong>.</div>
+<div class="line">Prosiguiendo con el ciclo de creación de una nueva Población, es en este apartado donde
+se lleva a cabo la concepción de nuevos Individuos.</div>
+<div class="line"><br /></div>
+<div class="line">Debido a esto se busca crear &#8220;hijos&#8221; más aptos que respondan mejor ante la problemática
+fundamentada, es decir, concebir soluciones que se adapten mejor a los criterios establecidos
+por el usuario desde un inicio basándose en las soluciones predecesoras.</div>
+<div class="line"><br /></div>
+<div class="line">Es menester mencionar que esta función es meramente binaria, lo cual significa que siempre
+deben haber dos padres, además se debe hacer hincapié en que la Cruza se ejecuta a nivel
+cromosómico <strong>(véase Model/ChromosomalRepresentation)</strong>,por lo que se debe tener mesura
+con el tratamiento de los métodos, dicho de otra manera, cada Representación Cromosómica debe ir
+acompañada de al menos una función de Cruza.</div>
+<div class="line"><br /></div>
+<div class="line">Como dato para posteriores referencias, un gen hace referencia a una casilla del cromosoma,
+mientras que un alelo es el valor que puede existir en un gen.</div>
+<div class="line"><br /></div>
+<div class="line">Entonces se persigue que el usuario construya sus propias funciones de Cruza, para lo cual,
+además de añadir el método en el listado localizado en <strong>Controller/XML/Features.xml</strong>, deberá
+implementar la siguiente función:</div>
+</div>
+<dl class="function">
+<dt>
+<code class="descname">execute_crossover_technique(chromosome_a,chromosome_b,crossover_parameters):</code></dt>
+<dd><div class="line-block">
+<div class="line">Lleva a cabo la cruza de dos Individuos a nivel cromosómico.</div>
+<div class="line">Además esta función debe retornar siempre dos hijos los cuales serán la cruza de A con B y
+la cruza de B con A, esto nos indica que, con el objetivo de incrementar la calidad de los Individuos
+sin perder la carga genética ganada o introducir elementos riesgosos, la cruza consiste en generar un
+nuevo Individuo y su recíproco; así se garantiza una adecuada y controlada descendencia.</div>
+<div class="line">Finalmente, esta función debe contar con la probabilidad de Cruza, la cual indica si se debe o
+no hacer la operación cromosómica; en caso de ser la respuesta negativa los hijos resultan en copias
+idénticas de los padres.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>chromosome_a</strong> (<em>List</em>) &#8211; El cromosoma del Individuo A.</li>
+<li><strong>chromosome_b</strong> (<em>List</em>) &#8211; El cromosoma del Individuo B.</li>
+<li><strong>crossover_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario que puede contener opciones adicionales para la
+cruza de Individuos.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un arreglo con dos cromososomas, el primero es la cruza de A con B, mientras que el segundo
+es la cruza de B con A.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Se colocan los elementos alusivos a este módulo:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="NPointsCrossover.html">NPointsCrossover (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UniformCrossover.html">UniformCrossover (script)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../Model.html">Model (sección)</a><ul>
+  <li><a href="../Operator.html">Operator (módulo)</a><ul>
+      <li>Previous: <a href="../Selection/StochasticUniversalSampling.html" title="previous chapter">StochasticUniversalSampling (script)</a></li>
+      <li>Next: <a href="NPointsCrossover.html" title="next chapter">NPointsCrossover (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/Model/Operator/Crossover/Crossover.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/Model/Operator/Crossover/Crossover.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

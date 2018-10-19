@@ -1,0 +1,18 @@
+Model.SharingFunction package
+=============================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    Model.SharingFunction.GenotypicSimilarity
+    Model.SharingFunction.PhenotypicSimilarity
+
+Module contents
+---------------
+
+.. automodule:: Model.SharingFunction
+    :members:
+    :undoc-members:
+    :show-inheritance:

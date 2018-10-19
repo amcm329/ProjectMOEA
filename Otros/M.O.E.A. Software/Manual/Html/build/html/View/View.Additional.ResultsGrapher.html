@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>View.Additional.ResultsGrapher package &mdash; M.O.E.A. Grapher 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Grapher 1.0 documentation" href="../index.html" />
+    <link rel="up" title="View.Additional package" href="View.Additional.html" />
+    <link rel="next" title="View.Main package" href="View.Main.html" />
+    <link rel="prev" title="View.Additional.MenuInternalOption.InternalOptionTab package" href="View.Additional.MenuInternalOption.InternalOptionTab.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="view-additional-resultsgrapher-package">
+<h1>View.Additional.ResultsGrapher package<a class="headerlink" href="#view-additional-resultsgrapher-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher.ContentFrame">
+<span id="view-additional-resultsgrapher-contentframe-module"></span><h2>View.Additional.ResultsGrapher.ContentFrame module<a class="headerlink" href="#module-View.Additional.ResultsGrapher.ContentFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.ContentFrame.ContentFrame">
+<em class="property">class </em><code class="descclassname">View.Additional.ResultsGrapher.ContentFrame.</code><code class="descname">ContentFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>renamed_objective_functions</em>, <em>renamed_decision_variables</em>, <em>gathered_information</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.ContentFrame.ContentFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher.GraphFrame">
+<span id="view-additional-resultsgrapher-graphframe-module"></span><h2>View.Additional.ResultsGrapher.GraphFrame module<a class="headerlink" href="#module-View.Additional.ResultsGrapher.GraphFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame">
+<em class="property">class </em><code class="descclassname">View.Additional.ResultsGrapher.GraphFrame.</code><code class="descname">GraphFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>objective_functions</em>, <em>decision_variables</em>, <em>final_results</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="view-additional-resultsgrapher-resultsgraphertoplevel-module">
+<h2>View.Additional.ResultsGrapher.ResultsGrapherToplevel module<a class="headerlink" href="#view-additional-resultsgrapher-resultsgraphertoplevel-module" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Variables&#8221;, horizontalalignment = &#8220;right&#8221;, size = 16.9, rotation = 90) </dt>
+<dd><p class="first">plt.grid(True)</p>
+<dl class="docutils">
+<dt>for legend_object in legend.legendHandles:</dt>
+<dd>legend_object.set_linewidth(8.0)</dd>
+<dt>for element in decision_variables_plot_list:</dt>
+<dd>element.remove()</dd>
+</dl>
+<p>objective_functions_plot_list = []
+objective_functions_legend = final_figure.add_axes([0.132, 0.45, 0.775, 0.08], frameon = True)
+objective_functions_graph = final_figure.add_axes([0.132, 0.1, 0.775, 0.30], frameon = True)             
+for objective_function in objective_functions:</p>
+<blockquote>
+<div>aleatorio_color = (aleatorio.aleatorio(),aleatorio.aleatorio(),aleatorio.aleatorio())
+results_function = final_result[objective_function]   
+objective_functions_graph.plot(results_function, color = aleatorio_color, label = objective_function, mew = 3.5)
+current_plot = objective_functions_legend.plot(results_function, color = aleatorio_color, label = objective_function)
+objective_functions_plot_list.append(current_plot[0])</div></blockquote>
+<p class="last">objective_functions_legend.set_axis_off()
+legend = objective_functions_legend.legend(loc=&#8221;center&#8221;, bbox_to_anchor=(0.5, -0.05),fancybox=True, shadow=True, ncol=100)
+plt.ylabel(&#8220;Objective</p>
+</dd>
+<dt>Functions&#8221;,  horizontalalignment = &#8220;right&#8221;, size = 16.9, rotation = 90)</dt>
+<dd><p class="first">plt.xlabel(&#8220;Generations&#8221;,  horizontalalignment = &#8220;center&#8221;, size = 21, rotation = 0)
+plt.grid(True)</p>
+<dl class="docutils">
+<dt>for legend_object in legend.legendHandles:</dt>
+<dd>legend_object.set_linewidth(8.0)</dd>
+<dt>for element in objective_functions_plot_list:</dt>
+<dd>element.remove()</dd>
+</dl>
+<p class="last">plt.show()</p>
+</dd>
+</dl>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel">
+<em class="property">class </em><code class="descclassname">View.Additional.ResultsGrapher.ResultsGrapherToplevel.</code><code class="descname">ResultsGrapherToplevel</code><span class="sig-paren">(</span><em>parent</em>, <em>execution_task_count</em>, <em>gathered_information</em>, <em>final_results</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Toplevel</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher.SummaryFrame">
+<span id="view-additional-resultsgrapher-summaryframe-module"></span><h2>View.Additional.ResultsGrapher.SummaryFrame module<a class="headerlink" href="#module-View.Additional.ResultsGrapher.SummaryFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.SummaryFrame.SummaryFrame">
+<em class="property">class </em><code class="descclassname">View.Additional.ResultsGrapher.SummaryFrame.</code><code class="descname">SummaryFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>renamed_objective_functions</em>, <em>renamed_decision_variables</em>, <em>gathered_information</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.SummaryFrame.SummaryFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-View.Additional.ResultsGrapher" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">View.Additional.ResultsGrapher package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher.ContentFrame">View.Additional.ResultsGrapher.ContentFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher.GraphFrame">View.Additional.ResultsGrapher.GraphFrame module</a></li>
+<li><a class="reference internal" href="#view-additional-resultsgrapher-resultsgraphertoplevel-module">View.Additional.ResultsGrapher.ResultsGrapherToplevel module</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher.SummaryFrame">View.Additional.ResultsGrapher.SummaryFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="View.html">View package</a><ul>
+  <li><a href="View.Additional.html">View.Additional package</a><ul>
+      <li>Previous: <a href="View.Additional.MenuInternalOption.InternalOptionTab.html" title="previous chapter">View.Additional.MenuInternalOption.InternalOptionTab package</a></li>
+      <li>Next: <a href="View.Main.html" title="next chapter">View.Main package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/View/View.Additional.ResultsGrapher.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/View/View.Additional.ResultsGrapher.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

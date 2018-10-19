@@ -1,0 +1,722 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo contiene información relacionada con la capa Controlador
+%(ó Controller), la cual representa tanto física como lógicamente a uno 
+%de los componentes que conforman el producto de software y por tanto al 
+%Manual Técnico. 
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se cargan los paquetes relacionados con los subapéndices (elementos que
+%conforman el Apéndice en su totalidad).
+\usepackage{packages_used_section}
+
+%Comienza el documento.
+\begin{document}
+
+\section{Controller (sección)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_4).
+\label{sec:a_4}
+Su función principal es la de establecer medidas de comunicación entre 
+la Vista \textbf{(ó View)} y el Modelo \textbf{(ó Model)} de tal manera 
+que el Controller \textbf{(ó Controlador)} recibe los datos recabados en la Vista 
+y los transfiere al Modelo para que se puedan llevar a cabo las operaciones pertinentes 
+y una vez concluidas dichas labores los resultados pasan por éste para llegar a la 
+Vista y desde ahí graficarse apropiadamente.\break
+De manera secundaria el Controlador ofrece métodos de saneamiento de los datos 
+recabados en la Vista, con la finalidad de evitar al máximo disturbios indeseables 
+en la sección Modelo y que éste opere con total eficiencia, además de alimentar a la 
+Vista con las técnicas \textbf{(y sus respectivos parámetros)} disponibles en la 
+sección Modelo para así permitirle al usuario operar con éstas de manera expedita.\break
+Dicho almacén se encuentra en la sección \textbf{Controller/XML}, donde se deduce 
+que las técnicas y características secundarias se encuentran plasmadas en archivos 
+.xml.\medskip\break
+El proyecto contempla métodos para operar con dichos archivos y el usuario entonces 
+sólo tendrá que preocuparse por dar de alta la técnica pertinente en el archivo .xml 
+adecuado \textbf{(además de implementarla en Modelo)} para que ésta sea reconocida en 
+la sección Vista y se pueda hacer uso de ella.\medskip\break
+A continuación se muestran los componentes principales de la sección Controller:
+
+%******* Empieza clase *******
+\subsection{Controller (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_4_1).
+\label{sec:a_4_1}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Proporciona la infraestructura adecuada para poder comunicar la 
+sección Vista \textbf{(ó View)} con la sección Modelo \textbf{(ó Model)}, 
+apoyándose de las clases XMLParser y Verifier.\medskip\break
+El ciclo normal consiste en otorgar a la capa Vista \textbf{(ó View)} la 
+información recabada en los archivos .xml con ayuda de la clase XMLParser 
+con la  finalidad de notificar al usuario de todas las técnicas 
+disponibles.\break
+Una vez ejecutada la opción de iniciar un proceso genético por el 
+usuario, se recaban los datos ingresados por el usuario, los cuales 
+pasan por un proceso de verificación y transformación empleando para ello 
+los métodos de la clase Verifier.\break
+En caso de haber al menos una falla en alguno de los procedimientos mencionados 
+anteriormente se regresa un mensaje de error, en otro caso se pasa la información 
+respectiva a la capa Model para que pueda operar con ésta.\medskip\break
+En cualquiera de los dos casos anteriores se regresa la información resultante a 
+la Vista.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Controller.Controller
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{execute\_procedure}}{\emph{execution\_task\_count}, \emph{generations\_queue}, \emph{sanitized\_information}}{}
+Realiza la ejecución de algún algoritmo M.O.E.A. \textbf{(Multi-Objective Evolutionary Algorithm)} 
+y se encarga de obtener los resultados apropiadamente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{execution\_task\_count}} (\emph{\texttt{Integer}}) -- Una característica numérica que identifica inequívocamente a esta función que será ejecutada de las demás, ya que el objetivo del proyecto es poder ejecutar varios de estos métodos de manera concurrente \textbf{(véase View/Additional/}\break\textbf{ResultsGrapher/ResultsGrapherToplevel.py)}.
+\item \textbf{\texttt{generations\_queue}} (\emph{\texttt{Instance}}) -- Una instancia a una cola \textbf{(Queue)}, la cual servirá para escribir a esa estructura el número actual de generación por el que cursa el algoritmo. Esta acción es para fines de  concurrencia \textbf{(véase View/MainWindow.py)}.
+\item \textbf{\texttt{sanitized\_information}} (\emph{\texttt{Dictionary}}) -- Los parámetros que ingresó el usuario debidamente verificados y saneados.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un diccionario con información de los resultados de haber ejecutado el M.O.E.A. seleccionado por el usuario, la estructura del mismo puede verse en \textbf{Model/Community/}\break\textbf{Community.py}.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_features}}{}{}
+Regresa los datos correspondientes \textbf{(debidamente verificados)}
+a las \break técnicas disponibles para el usuario, los cuales se mostrarán en \break 
+\textbf{View/MainWindow.py} \textbf{(véase View/Additional/MenuInternalOption/}\break
+\textbf{InternalOptionTab/FeatureFrame.py)}.\break
+Esta técnica tiene como base los símiles que se encuentran en 
+\textbf{Controller/}\break\textbf{XMLParser.py} y \textbf{Controller/Verifier.py}.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Una estructura con los métodos disponibles para el usuario.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_mop\_examples}}{}{}
+Obtiene los datos correspondientes \textbf{(previamente verificados)}
+a los M.O.P.'s \textbf{(Multi-Objective Problems)} que se utilizan en 
+\textbf{View/}\break\textbf{MainWindow.py} \textbf{(véase View/Additional/MenuInternalOption/}\break
+\textbf{InternalOptionTab/MOPExampleFrame.py)}.\break
+Esta técnica tiene como base las análogas que se encuentran en 
+\textbf{Controller/XMLParser.py} y \textbf{Controller/Verifier.py}.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Una estructura con los M.O.P.'s disponibles para el usuario.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_python\_expressions}}{}{}
+Obtiene los datos correspondientes \textbf{(previamente verificados)}
+a las expresiones de Python, las cuales se usan para evaluar 
+funciones objetivo más eficientemente \textbf{(véase View/Additional/MenuInternalOption/}\break
+\textbf{InternalOptionTab/PythonExpressionFrame.py)}.\break
+Esta función se apoya de las homónimas localizadas en \break
+\textbf{Controller/XMLParser.py} y \textbf{Controller/Verifier.py}.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Una estructura con las expresiones de Python disponibles.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{sanitize\_settings}}{\emph{general\_information}, \emph{features}}{}
+Lleva a cabo la verificación y saneamiento de todos los datos
+que ha ingresado el usuario en la sección View \textbf{(véase View/MainWindow)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{general\_information}} (\emph{\texttt{Dictionary}}) -- El conjunto de datos que el usuario ha ingresado o seleccionado.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Una colección de todos los elementos con sus características disponibles para el usuario.
+\end{itemize}
+\item[{Returns}] \leavevmode
+El diccionario que contiene todos los datos debidamente saneados.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{save\_python\_expressions}}{\emph{data}}{}
+Inserta las expresiones de Python que ha ingresado
+el usuario en el archivo .xml correspondiente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{data}} (\emph{\texttt{List}}) -- Un conjunto de las expresiones que ha ingresado el usuario. Cada elemento es a su vez una lista con dos elementos, el primero es la expresión original \textbf{(la que es comprensible por el usuario)}, mientras que la segunda es la expresión equivalente en Python.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Mensaje ``OK'' si la inserción ha sido exitosa, mientras que en caso de que haya habido un error entonces el mensaje es ``ERROR''.
+\item[{Return type}] \leavevmode
+String
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subsection{XMLParser (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_4_2).
+\label{sec:a_4_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Permite leer y escribir a archivos .xml 
+\textbf{(los que se localizan en Controller/XML)}, los cuales tienen 
+almacenados: 
+
+\begin{itemize}
+\item Los nombres de las técnicas con sus parámetros que se encuentran 
+disponibles en la sección Model \textbf{(Features.xml)}.
+\item La colección de palabras reservadas para poder emplear funciones y 
+constantes auxiliares en las funciones objetivo \break\textbf{(PythonExpressions.xml)}.
+\item El conjunto de M.O.P.'s \textbf{(Multi-Objective Problems, localizados en MOPExamples.xml)}.
+\end{itemize}
+
+Dichos archivos proporcionan la información necesaria a la interfaz 
+gráfica \textbf{(véase View/MainWindow.py)}.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Controller.XMLParser
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{indent}}{\emph{element}, \emph{level=0}}{}
+Indenta \textbf{(coloca espacios)} apropiadamente
+en un documento .xml para poder distinguir más
+rápidamente los distintos niveles que existen en éste.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{element}} (\emph{\texttt{String}}) -- Una línea del archivo .xml
+\item \textbf{\texttt{level}} (\emph{\texttt{Integer}}) -- El nivel en el que se está haciendo el proceso de identado.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_xml\_features}}{\emph{features\_filename}}{}
+Realiza la lectura del archivo que contenga el listado de técnicas 
+y sus parámetros disponibles \textbf{(véase Model)} y 
+carga todos los elementos que se encuentran en éste.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{features\_filename}} (\emph{\texttt{String}}) -- Nombre del archivo en cuestión.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un diccionario que contiene todos los elementos del archivo.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_xml\_mop\_examples}}{\emph{features\_filename}}{}
+Lleva a cabo la lectura del archivo que contenga el listado de M.O.P.'s 
+\textbf{(Multi-Objective Problems)} y carga todos los elementos 
+que se encuentran en éste.\break
+Un M.O.P es una mezcla de variables de decisión y funciones 
+objetivo ya estudiadas, se utilizan para reproducir su comportamiento 
+y así garantizar, además de un correcto funcionamiento del programa, 
+una opción rápida para probar las técnicas que se ofrecen.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{features\_filename}} (\emph{\texttt{String}}) -- Nombre del archivo en cuestión.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un diccionario que contiene todos los elementos del archivo.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_xml\_python\_expressions}}{\emph{features\_filename}}{}
+Realiza la lectura del archivo que contenga el listado de 
+expresiones en Python y carga todos los elementos que se 
+encuentran en éste.\break
+La idea detrás de esto es que, al momento de crear y/o evaluar
+funciones objetivo existen algunas palabras reservadas que no pueden 
+ser usadas directamente como son las funciones trigonométricas, por eso
+es que estas expresiones sirven como intermediarias entre el usuario y
+el intérprete de Python.\break
+En ocasiones a este tipo de expresiones, no sólo en el ámbito actual
+sino en general, se les conoce como azúcar sintáctica.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{features\_filename}} (\emph{\texttt{String}}) -- Nombre del archivo en cuestión.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un diccionario que contiene todos los elementos del archivo.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{write\_xml\_python\_expressions}}{\emph{features\_filename}, \emph{features}}{}
+Sobreescribe el archivo donde se encuentra el listado de expresiones
+en Python.\break
+El objetivo es que, una vez ejecutándose el programa y a través del menú
+pertinente \textbf{(véase View/Additional/MenuInternalOption/}\break
+\textbf{InternalOptionTab/PythonExpressionFrame.py)}, el usuario pueda 
+añadir o eliminar las expresiones de Python que desee.\break
+En ocasiones a este tipo de expresiones, no sólo en el ámbito actual 
+sino en general, se les conoce como azúcar sintáctica.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{features\_filename}} (\emph{\texttt{String}}) -- Nombre del archivo en cuestión.
+\item \textbf{\texttt{features}} (\emph{\texttt{List}}) -- La estructura que contiene las expresiones para ser guardadas
+en el archivo .xml.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subsection{Verifier (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_4_3).
+\label{sec:a_4_3}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Realiza principalmente la verificación y transformación adecuada 
+de los datos que el usuario introduce en \textbf{View/MainWindow.py} para 
+alimentar a los algoritmos que se encuentran en la sección Model 
+\textbf{(más en concreto Model/MOEA)}.\break
+En caso de haber algún error regresa los mensajes de error adecuados para 
+que puedan ser interpretados por la capa Vista y precisar al usuario el 
+acontecimiento ocurrido.\break
+Por otra parte si se ha llevado a cabo la verificación correctamente se 
+obtiene la información transformada apropiadamente.\medskip\break
+De manera secundaria también ofrece métodos de verificación para la 
+extracción y colocación de datos en los archivos .xml 
+\textbf{(véase XMLParser y el directorio Controller/XML)}.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Controller.Verifier
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{cast\_parameter}}{\emph{parameter\_value}, \emph{parameter\_settings}}{}
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Verifica un parámetro asociado a alguna técnica.
+Primero asegura que el parámetro se pueda evaluar correctamente,
+posteriormente convierte apropiadamente el tipo de dato pasando 
+de String a Boolean, Integer ó Float según corresponda.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parameter\_value}} (\emph{\texttt{Float}}) -- El valor actual del parámetro.
+\item \textbf{\texttt{parameter\_settings}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene el tipo del parámetro \textbf{(bool, integer ó float)} y el rango que debe tomar tanto inferior como superior.
+\end{itemize}
+\item[{Returns}] \leavevmode
+El valor saneado del parámetro si no hay fallas, pero si se encuentra algún desperfecto entonces se regresa un diccionario con la información detallada del desperfecto.
+\item[{Return type}] \leavevmode
+(Boolean, Integer, Float)/Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{verify\_instance}}{\emph{name\_class}}{}
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Devuelve una instancia del nombre de la clase que se le pase
+como parámetro.\break
+Esta funcionalidad es útil sobre todo para la sección Model ya que
+uno de los objetivos es proporcionar al usuario de una infraestructura 
+rápida con técnicas fácilmente intercambiables sin necesidad de estar
+importando explícitamente cada una de éstas.\break
+De esta forma con base en una instancia se puede ejecutar 
+cualquier método de manera dinámica.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{name\_class}} (\emph{\texttt{String}}) -- el nombre de la clase \textbf{(con su ruta)} de la cual se desea obtener una instancia.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Una instancia de la clase solicitada si el proceso es exitoso, en otro caso se obtiene un diccionario con los detalles de la falla.
+\item[{Return type}] \leavevmode
+Instance/Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_dynamic\_function}}{\emph{complete\_function}}{}
+Obtiene una instancia de una función en un String 
+de la forma \textbf{biblioteca.función}.
+Este método se usa para convertir las expresiones de Python
+en instancias que serán utilizadas al momento de evaluar  
+funciones objetivo \textbf{(véase View/}\break
+\textbf{Additional/MenuInternalOption/InternalOptionTab/}\break\textbf{PythonExpressionFrame.py, Controller/XML/PythonExpressions.xml)}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{complete\_function}} (\emph{\texttt{String}}) -- un String preferentemente de la forma \textbf{biblioteca.función} \textbf{(el punto debe ir incluido)}.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Una instancia de la función asociada a la biblioteca.
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{sanitize\_decision\_variables}}{\emph{vector\_variables}}{}
+Verifica el conjunto de elementos de la categoría ``Decision Variables''
+\textbf{(véase View/Main/DecisionVariable/DecisionVariableFrame.py)}, 
+los cuales son precisamente las variables de decisión.\break
+Primero se asegura que cada variable de decisión se pueda evaluar
+correctamente, posteriormente convierte apropiadamente el tipo
+de dato de sus respectivos rangos, pasando de String a Float.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{Dictionary}}) -- El vector que contiene las variables de decisión con sus correspondientes rangos.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un diccionario con las variables de decisión y sus rangos debidamente saneados.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{sanitize\_genetic\_operators\_settings}}{\emph{genetic\_operators\_settings},\emph{features}, \emph{vector\_variables}, \emph{number\_of\_decimals}}{}
+Revisa la integridad y sanea los datos que ingresó el usuario 
+concernientes a la sección ``Genetic Operators Settings''
+\textbf{(véase View/Main}\break\textbf{/GeneticOperator/GeneticOperatorFrame.py)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{genetic\_operators\_settings}} (\emph{\texttt{Dictionary}}) -- El listado de técnicas y sus parámetros que el usuario
+eligió en la sección correspondiente.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- El conjunto de las opciones disponibles para esta sección, así como sus características.
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{List}}) -- El vector de variables de decisión.
+\item \textbf{\texttt{number\_of\_decimals}} (\emph{\texttt{Integer}}) -- El número de decimales que llevará cada solución en Population.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Un diccionario que, dependiendo de los resultados, puede contener
+o información del error encontrado durante el procedimiento o 
+todos los datos debidamente verificados y transformados.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{sanitize\_moeas\_settings}}{\emph{moeas\_settings}, \emph{features}}{}
+Verifica integridad y lleva a cabo el saneamiento de 
+los datos que ingresó el usuario concernientes a la 
+sección ``MOEAs Settings'' \textbf{(véase View/Main/}\break\textbf{MOEA/MOEAFrame.py)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{moeas\_settings}} (\emph{\texttt{Dictionary}}) -- El listado de técnicas y sus parámetros que el usuario eligió en la sección correspondiente.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- El conjunto de las opciones disponibles para esta sección, así como sus características.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Un diccionario que, dependiendo de los resultados, puede contener
+o información del error encontrado durante el procedimiento o 
+todos los datos debidamente verificados y transformados.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{sanitize\_objective\_functions}}{\emph{vector\_variables},\emph{available\_expressions}, \emph{vector\_functions}}{}
+Lleva a cabo el saneamiento de los elementos correspondientes a la categoría
+``Objective Functions'' \textbf{(véase View/Main/ObjectiveFuncion/}\break
+\textbf{ObjectiveFunctionFrame.py)}, los cuales son de hecho sólo 
+las funciones objetivo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{Dictionary}}) -- El vector de variables de decisión que el usuario ha ingresado.
+\item \textbf{\texttt{available\_expressions}} (\emph{\texttt{Dictionary}}) -- Un listado con las expresiones de Python disponibles \textbf{(véase Controller/XML/PythonExpressions.xml,
+View/Additional/MenuInternalOption/}\break\textbf{InternalOptionTab/PythonExpressionFrame.py)}.
+\item \textbf{\texttt{vector\_functions}} (\emph{\texttt{Dictionary}}) -- El vector de funciones objetivo ingresados por el usuario.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Si el proceso fue exitoso, se obtiene el mismo vector\_functions,
+en otro caso se regresa un diccionario con información detallada
+sobre el errror encontrado.
+\item[{Return type}] \leavevmode
+List/Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{sanitize\_population\_settings}}{\emph{population\_settings}, \emph{features}}{}
+Verifica la consistencia y realiza el saneamiento de los datos
+que ingresó el usuario concernientes a la sección ``Population Settings''
+\textbf{(véase View/Main/}\break\textbf{Population/PopulationFrame.py)}.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population\_settings}} (\emph{\texttt{Dictionary}}) -- El listado de técnicas y sus parámetros que el usuario eligió en la sección correspondiente.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- El conjunto de las opciones disponibles para esta sección, así como sus características.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Un diccionario que, dependiendo de los resultados, puede contener
+o información del error encontrado durante el procedimiento o 
+todos los datos debidamente verificados y transformados.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{sanitize\_techniques}}{\emph{general\_information}, \emph{features}}{}
+Realiza una verificación adicional concerniente al tipo \break
+de representación de todas las técnicas seleccionadas.\break
+Lo anterior significa que, usando la Representación Cromosómica \break
+\textbf{(ó Chromosomal Representation, véase Model/}\break
+\textbf{ChromosomalRepresentation, View/Main/Population/}\break
+\textbf{PopulationFrame.py)}, todas las técnicas deben concordar 
+con el mismo tipo de representación cromosómica que se haya 
+seleccionado.\break
+Para esta versión sólo están disponibles las representaciones binaria 
+y de punto flotante.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{general\_information}} (\emph{\texttt{Dictionary}}) -- El listado de características disponibles \textbf{(véase XMLParser.py)}.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- La colección de datos que seleccionó el usuario en la sección View.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Un diccionario el cual, si la verificación es exitosa, es el mismo general\_informacion,
+si por el contrario falla, entonces es un diccionario que contiene detalles del error.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{verify\_load\_xml\_features}}{\emph{data}}{}
+Verifica que los datos obtenidos de las técnicas disponibles que alimentan 
+a la Ventana Principal \textbf{(véase View/MainWindow.py)} no tengan defectos.
+Este método se apoya de \textbf{load\_xml\_features} localizado en 
+\textbf{Controller/}\break\textbf{XMLParser.py}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{data}} (\emph{\texttt{Dictionary}}) -- Los datos que son leídos por el método \textbf{load\_xml\_features} mencionado previamente.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Si los datos contienen algún error, un diccionario con las características de la falla, en otro caso los datos mismos.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{verify\_load\_xml\_mop\_examples}}{\emph{data}}{}
+Revisa que los M.O.P.'s \textbf{(Multi-Objective Problems)}
+que se muestran en \textbf{View/MainWindow.py} a través de
+\textbf{View/Additional/MenuInternalOption/}\break\textbf{InternalOptionTab/MOPExampleFrame.py} 
+estén libres de errores.\break
+Este método se apoya de \textbf{load\_mop\_examples} localizado en 
+\textbf{Controller/}\break\textbf{XMLParser.py}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{data}} (\emph{\texttt{Dictionary}}) -- Los datos que son leídos por el método \textbf{load\_mop\_examples} mencionado previamente.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Si los datos contienen algún error, un diccionario con las características de la falla, en otro caso los datos mismos.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{verify\_load\_xml\_python\_expressions}}{\emph{data}}{}
+Revisa que las expresiones de Python estén libres de errores.\break
+Este método se apoya de \textbf{load\_python\_expressions} localizado en 
+\textbf{Controller/XMLParser.py}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{data}} (\emph{\texttt{Dictionary}}) -- Los datos que son leídos por el método \textbf{load\_python\_expressions} mencionado previamente.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Si los datos contienen algún error, un diccionario con las características de la falla, en otro caso los datos mismos.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{verify\_write\_xml\_python\_expressions}}{\emph{data}}{}
+Verifica la consistencia de los datos relativos a las
+expresiones de Python antes de ser escritos en el 
+archivo .xml correspondiente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{data}} (\emph{\texttt{List}}) -- El conjunto de expresiones que serán almacenadas.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un mensaje ``OK'' si la verificación fue satisfactoria, y ``ERROR'' en caso de aparecer alguna falla.
+\item[{Return type}] \leavevmode
+String
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%Termina el documento
+\end{document}

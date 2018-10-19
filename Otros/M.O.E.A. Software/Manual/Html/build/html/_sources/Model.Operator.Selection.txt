@@ -1,0 +1,38 @@
+Model.Operator.Selection package
+================================
+
+Submodules
+----------
+
+Model.Operator.Selection.ProbabilisticTournament module
+-------------------------------------------------------
+
+.. automodule:: Model.Operator.Selection.ProbabilisticTournament
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Operator.Selection.Roulette module
+----------------------------------------
+
+.. automodule:: Model.Operator.Selection.Roulette
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Operator.Selection.StochasticUniversalSampling module
+-----------------------------------------------------------
+
+.. automodule:: Model.Operator.Selection.StochasticUniversalSampling
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Operator.Selection
+    :members:
+    :undoc-members:
+    :show-inheritance:

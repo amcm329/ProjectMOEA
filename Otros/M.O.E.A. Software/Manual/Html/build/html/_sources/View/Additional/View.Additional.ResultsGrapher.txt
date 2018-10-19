@@ -1,0 +1,46 @@
+ResultsGrapher (módulo)
+=======================
+
+Submodules
+----------
+
+View.Additional.ResultsGrapher.ContentFrame module
+--------------------------------------------------
+
+.. automodule:: View.Additional.ResultsGrapher.ContentFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Additional.ResultsGrapher.GraphFrame module
+------------------------------------------------
+
+.. automodule:: View.Additional.ResultsGrapher.GraphFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Additional.ResultsGrapher.ResultsGrapherToplevel module
+------------------------------------------------------------
+
+.. automodule:: View.Additional.ResultsGrapher.ResultsGrapherToplevel
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Additional.ResultsGrapher.SummaryFrame module
+--------------------------------------------------
+
+.. automodule:: View.Additional.ResultsGrapher.SummaryFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Additional.ResultsGrapher
+    :members:
+    :undoc-members:
+    :show-inheritance:

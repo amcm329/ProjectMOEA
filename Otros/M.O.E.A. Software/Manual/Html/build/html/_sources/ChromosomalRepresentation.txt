@@ -1,0 +1,21 @@
+ChromosomalRepresentation package
+=======================================
+
+Submodules
+----------
+
+BinaryRepresentation module
+-----------------------------------------------------------
+
+.. automodule:: Model.ChromosomalRepresentation.BinaryRepresentation
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+FloatPointRepresentation module
+---------------------------------------------------------------
+
+.. automodule:: Model.ChromosomalRepresentation.FloatPointRepresentation
+    :members:
+    :undoc-members:
+    :show-inheritance:

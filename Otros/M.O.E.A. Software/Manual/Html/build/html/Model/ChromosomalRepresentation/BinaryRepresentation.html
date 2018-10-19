@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BinaryRepresentation (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="ChromosomalRepresentation (módulo)" href="ChromosomalRepresentation.html" />
+    <link rel="next" title="FloatPointRepresentation (script)" href="FloatPointRepresentation.html" />
+    <link rel="prev" title="ChromosomalRepresentation (módulo)" href="ChromosomalRepresentation.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="binaryrepresentation-script">
+<h1>BinaryRepresentation (script)<a class="headerlink" href="#binaryrepresentation-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Contiene todas las funcionalidades requeridas para que se pueda hacer uso de una
+codificación de tipo Binary <strong>(ó Binaria)</strong>; ésto significa que los alelos que
+conforman al cromosoma serán exclusivamente 0 ó 1.</div>
+</div>
+<span class="target" id="module-Model.ChromosomalRepresentation.BinaryRepresentation"></span><dl class="function">
+<dt id="Model.ChromosomalRepresentation.BinaryRepresentation.binary_to_decimal">
+<code class="descname">binary_to_decimal</code><span class="sig-paren">(</span><em>chromosome</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.ChromosomalRepresentation.BinaryRepresentation.binary_to_decimal" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Método que convierte un número binario a decimal.</div>
+<div class="line">Este es un ejemplo de método que se puede agregar
+adicionalmente siempre y cuando se implementen las 
+funciones que se han mencionado ya.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>chromosome</strong> (<em>List</em>) &#8211; El cromosoma sobre el cual se hará
+la evaluación.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">La representación en decimal del número binario.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Integer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.ChromosomalRepresentation.BinaryRepresentation.calculate_length_subchromosomes">
+<code class="descname">calculate_length_subchromosomes</code><span class="sig-paren">(</span><em>vector_variables</em>, <em>number_of_decimals</em>, <em>representation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.ChromosomalRepresentation.BinaryRepresentation.calculate_length_subchromosomes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Esta es la implementación del método para la codificación en binario.
+A grandes rasgos primero se determina el número de bits que se deben tomar en cuenta
+para representar la magnitud de una determinada variable de decisión.</div>
+<div class="line">Haciendo esto para todas las variables de decisión se obtienen las longitudes
+de todos los subcromosomas. </div>
+<div class="line">Esta función se implementa obligatoriamente.</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.ChromosomalRepresentation.BinaryRepresentation.create_chromosome">
+<code class="descname">create_chromosome</code><span class="sig-paren">(</span><em>length_subchromosomes</em>, <em>vector_variables</em>, <em>number_of_decimals</em>, <em>representation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.ChromosomalRepresentation.BinaryRepresentation.create_chromosome" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Crea un cromosoma binario completo con base en las longitudes de los subcromosmas.</div>
+<div class="line">Este método debe implementarse obligatoriamente.</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.ChromosomalRepresentation.BinaryRepresentation.evaluate_subchromosomes">
+<code class="descname">evaluate_subchromosomes</code><span class="sig-paren">(</span><em>complete_chromosome</em>, <em>length_subchromosomes</em>, <em>vector_variables</em>, <em>number_of_decimals</em>, <em>representation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.ChromosomalRepresentation.BinaryRepresentation.evaluate_subchromosomes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Realiza una evaluación de los subcromosomas para la codificación binaria <strong>(ó Binary)</strong>.</div>
+<div class="line">En términos generales se toma cada porción del subcrosomoma <strong>(tomando en 
+cuenta que previamente se calcularon sus longitudes)</strong> y así se convierte a 
+decimal, considerando la expansión numérica.</div>
+<div class="line">Posteriormente para obtener el número final se hace lo siguiente:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/f53b0709be4b35233522d0b06b88a35916f173d6.png" alt="Conversi\acute{o}n(subcromosoma) = A + DN(subcromosoma) \cdot \frac{B - A}{2^M - 1}"/></strong></p><div class="line-block">
+<div class="line">Donde:</div>
+<div class="line-block">
+<div class="line"><strong>A</strong> es el límite inferior que toma la variable de decisión.</div>
+<div class="line"><strong>B</strong> es el límite superior que toma la variable de decisión.</div>
+<div class="line"><strong>M</strong> es la longitud del subcromosoma asociado a la variable de decisión.</div>
+<div class="line"><strong>DN (Decimal number)</strong> es el número en decimal del subcromosoma asociado a la variable de decisión.</div>
+</div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="ChromosomalRepresentation.html">ChromosomalRepresentation (módulo)</a><ul>
+      <li>Previous: <a href="ChromosomalRepresentation.html" title="previous chapter">ChromosomalRepresentation (módulo)</a></li>
+      <li>Next: <a href="FloatPointRepresentation.html" title="next chapter">FloatPointRepresentation (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/ChromosomalRepresentation/BinaryRepresentation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/ChromosomalRepresentation/BinaryRepresentation.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

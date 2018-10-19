@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Individual (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="Population (clase)" href="../Population.html" />
+    <link rel="next" title="Fitness (módulo)" href="../../../Fitness/Fitness.html" />
+    <link rel="prev" title="Population (clase)" href="../Population.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Model.Community.Population.Individual.Individual">
+<span id="individual-clase"></span><h1>Individual (clase)<a class="headerlink" href="#module-Model.Community.Population.Individual.Individual" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Model.Community.Population.Individual.Individual.Individual">
+<em class="property">class </em><code class="descname">Individual</code><span class="sig-paren">(</span><em>complete_chromosome</em>, <em>vector_functions</em>, <em>available_expressions</em>, <em>number_of_decimals</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">La base de toda operación lógica.</div>
+<div class="line">Consiste en una abstracción de un elemento simple en función de un ecosistema.
+Si bien la parte esencial es el cromosoma, en esta implementación se añaden algunos elementos extra
+con la finalidad de facilitar ciertas operaciones.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>complete_chromosome</strong> (<em>Array</em>) &#8211; El cromosoma que conformará al Individuo.</li>
+<li><strong>vector_functions</strong> (<em>List</em>) &#8211; Lista que contiene a las funciones objetivo.</li>
+<li><strong>available_expressions</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene algunas funciones escritas como azúcar sintáctica
+para que puedan ser utilizadas más fácilmente por el usuario y evaluadas
+más ŕapidamente en el programa <strong>(véase Controller/XML/PythonExpressions.xml)</strong>.</li>
+<li><strong>number_of_decimals</strong> (<em>Integer</em>) &#8211; El número de decimales que deberá tener cada solución, influye en el
+comportamiento del cromosoma.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Model.Community.Population.Individual</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual._Individual__evaluate_single_function">
+<code class="descname">_Individual__evaluate_single_function</code><span class="sig-paren">(</span><em>function</em>, <em>expressions</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual._Individual__evaluate_single_function" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Evalúa una función objetivo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>function</strong> (<em>String</em>) &#8211; La función que será evaluada.</li>
+<li><strong>expressions</strong> (<em>Dictionary</em>) &#8211; El diccionario que ayuda a evaluar la función.
+Expressions = variables + constantes + funciones built-in.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">La función evaluada.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.evaluate_functions">
+<code class="descname">evaluate_functions</code><span class="sig-paren">(</span><em>decision_variables</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.evaluate_functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evalúa todas las funciones objetivo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>decision_variables</strong> (<em>List</em>) &#8211; El vector de variables de decisión.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_complete_chromosome">
+<code class="descname">get_complete_chromosome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_complete_chromosome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el cromosoma del Individuo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El cromosoma.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_decision_variables">
+<code class="descname">get_decision_variables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_decision_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Da el vector de variables de decisión.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El vector de variables de decisión.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_evaluated_functions">
+<code class="descname">get_evaluated_functions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_evaluated_functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa las funciones objetivo evaluadas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Las funciones objetivo evaluadas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_expected_value">
+<code class="descname">get_expected_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_expected_value" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Se obtiene el valor esperado del Individuo.</div>
+<div class="line">Por definición, el valor esperado es el número de posibles
+hijos que puede tener un Individuo. Mientras más apto, más 
+hijos.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El valor esperado.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_fitness">
+<code class="descname">get_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el Fitness del Individuo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El Fitness.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_niche_count">
+<code class="descname">get_niche_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_niche_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el valor niche para el Individuo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El tamaño niche.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_pareto_dominated">
+<code class="descname">get_pareto_dominated</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_pareto_dominated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el número de soluciones que dominan al 
+Individuo actual.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El número de soluciones que dominan a la actual.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Integer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_pareto_dominates">
+<code class="descname">get_pareto_dominates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_pareto_dominates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el número de soluciones que son dominadas por 
+el actual Individuo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El número de soluciones dominadas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Integer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_rank">
+<code class="descname">get_rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa la puntuación <strong>(rank)</strong> que se le designó al Individuo
+<strong>(véase Model/Community/Community.py)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El rango.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.get_vector_functions">
+<code class="descname">get_vector_functions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.get_vector_functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el vector de funciones objetivo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El vector de funciones objetivo.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.print_info">
+<code class="descname">print_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.print_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imprime las características básicas del Individuo <strong>(en consola)</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.set_expected_value">
+<code class="descname">set_expected_value</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.set_expected_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el valor esperado del Individuo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>Float</em>) &#8211; El valor a actualizar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.set_fitness">
+<code class="descname">set_fitness</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.set_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el valor del Fitness.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>Float</em>) &#8211; El valor a actualizar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.set_niche_count">
+<code class="descname">set_niche_count</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.set_niche_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el valor niche.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>Float</em>) &#8211; El valor a actualizar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.set_pareto_dominated">
+<code class="descname">set_pareto_dominated</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.set_pareto_dominated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el número de soluciones que dominan a la
+solución actual.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>Integer</em>) &#8211; El valor a actualizar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.set_pareto_dominates">
+<code class="descname">set_pareto_dominates</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.set_pareto_dominates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el número de soluciones dominadas por el
+Individuo actual.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>Integer</em>) &#8211; El valor a actualizar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Individual.Individual.Individual.set_rank">
+<code class="descname">set_rank</code><span class="sig-paren">(</span><em>rank</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Individual.Individual.Individual.set_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el rango del Individuo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rank</strong> (<em>Float</em>) &#8211; El valor a actualizar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../Model.html">Model (sección)</a><ul>
+  <li><a href="../../Community.html">Community (clase)</a><ul>
+  <li><a href="../Population.html">Population (clase)</a><ul>
+      <li>Previous: <a href="../Population.html" title="previous chapter">Population (clase)</a></li>
+      <li>Next: <a href="../../../Fitness/Fitness.html" title="next chapter">Fitness (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/Model/Community/Population/Individual/Individual.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../../_sources/Model/Community/Population/Individual/Individual.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

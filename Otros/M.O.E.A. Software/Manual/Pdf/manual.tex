@@ -1,0 +1,435 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez.
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%En este archivo se conjuntan las partes que conforman el manual 
+%técnico para el programa M.O.E.A. Software, además se introducen 
+%algunas directivas para personalizar el comportamiento del trabajo 
+%para determinadas secciones.
+
+
+%Aquí se indica que la tesis consta de un artículo a dos páginas con
+%letra de tamaño 12.
+%Se decidió emplear un artículo en vez de un reporte porque en el 
+%primero se tiene la posibilidad de adjuntar título, autor y páginas
+%junto a la parte escrita sin dejar espacios, mientras que en la 
+%segunda opción se hubieran tenido que modificar varias directivas.
+\documentclass[12pt,twoside]{article}
+
+%Este paquete permite la carga adecuada de subarchivos .tex, respetando
+%(con ayuda de la opción subpreambles=true) los paquetes cargados en cada
+%subarchivo.
+\usepackage[subpreambles=true]{standalone}
+
+%Se lleva a cabo la carga de paquetes específicamente seleccionados
+%para este archivo.
+\usepackage{packages_used_general}
+
+%Para ajustar los colores de los hipervínculos.
+\hypersetup{
+            colorlinks = true,
+            linkcolor = black,
+            filecolor = magenta,      
+            urlcolor = cyan
+           }
+ 
+%Aquí se indica la ruta de las imágenes que se utilizarán en la tesis.
+\graphicspath{ 
+              {images/}
+             }
+
+%El número de subsecciones máximo en el texto es de 4 para iniciar, 
+%por ello es que con esta directiva se incrementa dicha cantidad.
+%No confundir con el número máximo de niveles de anidamiento en
+%un listado.
+\setcounter{secnumdepth}{6}
+
+%A continuacipón se contemplan las características que tendrá
+%el pie de las páginas.
+%Con esta línea se coloca un margen en la parte inferior para
+%identificar al pie de página.
+\renewcommand{\footrulewidth}{0.4pt}% default es 0pt
+
+%En la parte izquierda del pie de página (sin importar si es par 
+%o impar) se pondrá la palabra "UNAM".
+\lfoot{UNAM}
+
+%En la parte derecha del pie de página (sin importar si es par 
+%o impar) se pone la palabra "Facultad de Ciencias".
+\rfoot{Facultad de Ciencias}
+
+%Enla parte centro del pie de página (sin importar si es par 
+%o impar) se coloca un espacio vacío.
+\cfoot{}
+
+%Se modifica el formato de todos los capítulos de la tesis.
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{11pt}{\Huge}
+
+%Las siguientes líneas corresponden a la información que se 
+%mostrará en el encabezado de las páginas.
+%A la izquierda de cada página par se mostrará el texto 
+%"No. Página - Capítulo No. X"
+%Para la bibliografía y el apéndice en el encabezado izquiero de páginas pares
+%sólo se mostrarán las palabras "Bibliografía" y "Apéndice" respectivamente.        
+\fancyhead[LE]{\textbf{\thepage}\ \ \ \ \ Manual Técnico}
+
+%A la derecha de cada página par no se mostrará nada.
+\fancyhead[RE]{}
+
+%A la izquierda de cada página impar no se mostrará nada.
+\fancyhead[LO]{}
+
+%A la derecha de cada página impar se muestra la información 
+%"Nombre del capítulo - No. Página"
+\fancyhead[RO]{Manual Técnico \ \ \ \ \ \textbf{\thepage}}
+
+%Con ayuda del paquete "titling" se pueden insertar elementos
+%previos al título, en este caso las imágenes correspondientes a
+%los escudos de la Universidad Nacional Autónoma de México y la 
+%Facultad de Ciencias respectivamente.
+\pretitle{%
+\begin{center}
+
+%Para indicar que el título tendrá un tamaño LARGE.
+\LARGE
+%Para dejar un párrafo antes de las imágenes.
+\par
+%Se inserta la imagen del escudo de la U.N.A.M.
+\raisebox{-.5\height}{\includegraphics[width=3.6cm]{escudo_unam.jpg}}%
+%Esta sentencia indica que la siguiente imagen se coloque
+%en la parte horizontal contraria a la imagen anterior.
+\hfill
+%A continuación se agrega la imagen relativa al escudo de la
+%Facultad de Ciencias.
+\raisebox{-.5\height}{\includegraphics[width=3.6cm]{escudo_ciencias.jpg}}%
+%Para dejar un párrafo después de las imágenes.
+\par
+}
+
+%La parte del postítulo sirve para cerrar adecuadamente la 
+%información precisada en el pretítulo.
+\posttitle{\end{center}}
+
+%Para eliminar espacio vertical entre la primera sección en blanco
+%y las imágenes de los escudos.
+\droptitle = -25mm
+
+%Se coloca el título del documento.
+%El código vspace se utiliza para añadir espacio adicional entre
+%las imágenes de los escudos y el título.
+\title{\vspace{+0.62cm}\textbf{Manual Técnico de M.O.E.A. Software}}
+
+%Se plasman autores con información correspondiente a sus correos
+%de contacto.
+\author{Dra. Katya Rodríguez Vázquez \\ \href{mailto:katya.rodriguez@iimas.unam.mx}{\textcolor{blue}{katya.rodriguez@iimas.unam.mx}} 
+   \and Aarón Martín Castillo Medina \\ \href{mailto:amcm329@hotmail.com}{\textcolor{blue}{amcm329@hotmail.com}}}
+
+%Se agrega la fecha del documento, aunque ésta está vacía es imperativo
+%colocarla para que no existan fallos en la compilación.
+\date{}	
+
+%Con esta instrucción se activan el formato personalizado para encabezado
+%y pie de página descrito anteriormente.
+\pagestyle{fancy}      
+
+%Comienza el documento.
+\begin{document}
+
+%Toda la información creada anteriormente con respecto del título, autores
+%y fecha se plasma en esta sección mediante la directiva \maketitle.
+\maketitle
+
+%Aquí se indica que se va a remover espacio vertical entre los autores
+%y el inicio del contenido.
+\vspace{-0.5cm}
+El presente manual contiene la información técnica relacionada con el 
+producto de software denominado \textbf{M.O.E.A. Software}, la cual consiste 
+en un compendio de las funcionalidades creadas.\break
+Este documento pretende ser una extensión especializada exclusivamente 
+en implementaciones algorítmicas del mencionado producto con la finalidad 
+de familiarizar al usuario con el contenido subyacente en el código fuente 
+para que pueda interaccionar con éste a su merced, pudiendo reproducirlo o 
+modificarlo según sea el caso.\medskip\break
+Es importante mencionar que al ser el producto de software mismo una fusión 
+entre la teoría comprendida en el trabajo escrito y sus correspondientes 
+implementaciones técnicas, el manual por ende también incluye referencias 
+que manifiestan la teoría detrás de cada una de las caracteríticas creadas.\break
+Para esto se ofrece al usuario una explicación precisa y concisa de los términos
+técnicos que se usarán a lo largo del manual.\medskip\break
+Comenzando por un breve señalamiento de la arquitectura de diseño, ésta se refiere 
+al esquema o plantilla que se suele usar para adecuar la organización del código 
+y así agruparlo en módulos con características similares con la finalidad de 
+optimizar tiempos de detección y corrección de errores, amén de la facilidad de 
+lectura del código gracias a la estructura del mismo.\break
+Entonces se hace notar el uso de la así denominada MVC \textbf{(Model-View-Controller 
+ó }\break\textbf{Modelo-Vista-Controlador)}.\break
+Siguiendo este tipo de organización, se colocan las funcionalidades en tres categorías 
+principales, que son:
+
+\begin{itemize}
+\item \textbf{Model (ó Modelo)}, se almacenan todos los elementos que realizan 
+el proceso analítico, en este caso todo lo relacionado con la ejecución de M.O.E.A.’s 
+y la recolección de resultados.
+\item \textbf{View (ó Vista)}, se coloca todo aquéllo asociado a la interfaz gráfica 
+del programa y en el caso del proyecto, la graficación apropiada de resultados.
+\item \textbf{Controller (ó Controlador)}, se guarda toda la parafernalia relativa 
+al control de las comunicaciones entre la Vista y el Modelo.\medskip\break
+\end{itemize}
+
+El proceso usual de interacción entre dichas categorías es el siguiente:
+
+\begin{enumerate}
+\item El usuario inserta las configuraciones pertinentes en la Vista, las cuales 
+permitirán obtener resultados detallados del M.O.E.A. que se fuera a ejecutar.
+\item El Controlador obtiene las configuraciones previamente insertadas por el 
+usuario; durante esta etapa se realiza una verificación y saneamiento de dichas 
+configuraciones. Si el proceso fue exitoso se procede ir al paso \textbf{(3)}, 
+en cualquier otro caso se retrocede al paso \textbf{(1)} con una notificación de error.
+\item El Modelo se encarga de ejecutar el algoritmo precisado por el usuario en 
+\textbf{(1)}, para ello se le proporcionan todas las configuraciones adjuntas. 
+Una vez concluido el proceso el Modelo le regresa los resultados al Controlador.
+\item El Controlador toma los resultados y a su vez los transfiere a la Vista, 
+la cual se encarga de mostrar al usuario los datos finales de manera gráfica.\medskip\break
+\end{enumerate}
+
+Ahora, haciendo énfasis en el contenido del programa, \textbf{M.O.E.A. Software} 
+consta de 60 archivos útiles con un promedio de 200 líneas de código por cada 
+uno aproximadamente sin considerar las líneas de comentarios.\break
+Se resalta la denominación \textit{útiles} porque el usuario encontrará archivos 
+adicionales cuyo único fin es el de proporcionar meta-información del programa 
+o habilitar detalles técnicos muy específicos que escapan al enfoque de 
+desarrollo.\medskip\break
+Dirigiendo la atención hacia el interior del código fuente el usuario notará 
+que todos los archivos están debidamente comentados, además se incluyen 
+explicaciones técnicas breves para que éste pueda familiarizarse no sólo con el 
+código sino con conceptos o elementos de programación utilizados en el 
+producto de software.\medskip\break
+Con respecto del formato de enunciamiento de comentarios se distingue una 
+sintaxis ligeramente diferente al lenguaje natural. Esto se debe a que se ha usado 
+la correspondiente a \break\textbf{Sphinx \href{http://www.sphinx-doc.org/en/stable/}{\textcolor{blue}{(http://www.sphinx-doc.org/en/stable/)}}}, 
+el cual es un programa que automatiza la creación visualmente apropiada de 
+documentación para productos de software.\break
+Aún teniendo esto en cuenta no se debe tener dificultad en la interpretación de 
+la información basada en los comentarios y en el caso de encontrarse con alguna 
+incomodidad el sitio de Sphinx ofrece referencias básicas de traducción entre 
+su sintaxis y el lenguaje cotidiano.\medskip\break
+En lo concerniente a los tipos de archivos creados, se muestran las siguientes 
+clasificaciones \textbf{(de menor a mayor jerarquía)}:
+
+\begin{itemize}
+\item \textbf{Script}, el archivo básico de implementación, por lo general en 
+éste se describe infraestructura simple como métodos o variables; su creación 
+se atribuye a concebir el uso de técnicas disponibles para el usuario de una 
+manera más eficiente y menos burocrática.\break
+Por lo general, este tipo de archivos se encuentran en el Modelo ya que su uso 
+alude a entornos más dinámicos que requieran de una rápida respuesta.
+\item \textbf{Clase}, similar a los Scripts con la salvedad de que las Clases 
+contienen una estructura más robusta pero también más estática. Su uso se 
+limita en este proyecto a la generación de la interfaz gráfica \textbf{(en la Vista)} 
+y en el Controlador ya que, por regla general éstos deben estar predispuestos 
+a las necesidades del usuario, ante lo cual se tiene el menester de destinar 
+mayores recursos.
+\item \textbf{Módulo}, corresponde principalmente a una agrupación de Clases 
+y/o Scripts con características en común.
+\item \textbf{Sección}, mantiene relación directa con las categorías mencionadas 
+en la arquitectura MVC. Contiene a todos los elementos anteriores.\medskip\break
+\end{itemize}
+
+Conviene mencionar que en algunas partes del manual se establecen sugerencias 
+de referencias anteponiendo la palabra \textit{véase} como identificador; en este 
+caso se aclara que se trata de rutas relacionadas con el código fuente por lo que 
+el usuario debe localizarlas en las secciones pertinentes \textbf{(usando el archivo 
+Begin.py como punto de referencia)} para poder acceder al contenido y entonces 
+asociar el código entre distintos archivos.\medskip\break
+A continuación de muestra el diagrama del contenido del producto de software, 
+donde se ven desplegadas tanto la jerarquía de los elementos como las 
+relaciones entre éstos:
+
+%Latex por defecto maneja niveles de anidamiento de listas de 5, para un número
+%mayor se utilizan paquetes especiales como enumitem, sin embargo este paquete
+%causa conflicto con las secciones y en particular con el paquete sphinx.sty 
+%usado en dichas secciones.
+%La solución para ello fue alternar el uso de itemize y enumerate para listas
+%anidadas ya que de esta manera el "contador" se reinicia y por ende nunca se
+%pasa del límite establecido.
+%No se debe confuncir el número máximo de niveles de anidamiento con el número
+%máximo de subsecciones permitidas en el documento.
+\begin{itemize}
+\item[$\blacksquare$] \hyperref[sec:a_1]{\textbf{\textcolor{blue}{\large Begin (script)}}} 
+\item[$\blacksquare$] \hyperref[sec:a_2]{\textbf{\textcolor{blue}{\large Model (sección)}}} 
+      \begin{enumerate}[$\square$]
+      \item \hyperref[sec:a_2_1]{\textcolor{blue}{ChromosomalRepresentation (módulo)}} 
+            \begin{itemize}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_1_1]{\textcolor{blue}{BinaryRepresentation (script)}} 
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_1_2]{\textcolor{blue}{FloatPointRepresentation (script)}}
+            \end{itemize}
+      \item \hyperref[sec:a_2_2]{\textcolor{blue}{Community (clase)}}
+            \begin{itemize}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_2_1]{\textcolor{blue}{Population (clase)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_2_2_1_1]{\textcolor{blue}{Individual (clase)}}
+                  \end{enumerate}
+            \end{itemize}
+      \item \hyperref[sec:a_2_3]{\textcolor{blue}{Fitness (módulo)}}
+            \begin{itemize}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_3_1]{\textcolor{blue}{LinearRankingFitness (script)}}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_3_2]{\textcolor{blue}{NonLinearRankingFitness (script)}}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_3_3]{\textcolor{blue}{ProportionalFitness (script)}}
+            \end{itemize}
+      \item \hyperref[sec:a_2_4]{\textcolor{blue}{Operator (módulo)}}
+            \begin{itemize}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_4_1]{\textcolor{blue}{Selection (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_2_4_1_1]{\textcolor{blue}{Roulette (script)}}
+                  \item \hyperref[sec:a_2_4_1_2]{\textcolor{blue}{ProbabilisticTournament (script)}}
+                  \item \hyperref[sec:a_2_4_1_3]{\textcolor{blue}{StochasticUniversalSampling (script)}}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_4_2]{\textcolor{blue}{Crossover (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_2_4_2_1]{\textcolor{blue}{NPointsCrossover (script)}}
+                  \item \hyperref[sec:a_2_4_2_2]{\textcolor{blue}{UniformCrossover (script)}}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_4_3]{\textcolor{blue}{Mutation (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_2_4_3_1]{\textcolor{blue}{BinaryMutation (script)}}
+                  \item \hyperref[sec:a_2_4_3_2]{\textcolor{blue}{FloatPointMutation (script)}}
+                  \end{enumerate}
+            \end{itemize}
+      \item \hyperref[sec:a_2_5]{\textcolor{blue}{SharingFunction (módulo)}}
+            \begin{itemize}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_5_1]{\textcolor{blue}{GenotypicSimilarity (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_2_5_1_1]{\textcolor{blue}{HammingDistance (script)}}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_5_2]{\textcolor{blue}{PhenotypicSimilarity (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_2_5_2_1]{\textcolor{blue}{EuclideanDistance (script)}}
+                  \end{enumerate}
+            \end{itemize}
+      \item \hyperref[sec:a_2_6]{\textcolor{blue}{MOEA (módulo)}} 
+            \begin{itemize}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_6_1]{\textcolor{blue}{VEGA (script)}}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_6_2]{\textcolor{blue}{SPEAII (script)}}
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_6_3]{\textcolor{blue}{MOGA (script)}} 
+            \item[$\blacktriangleright$] \hyperref[sec:a_2_6_4]{\textcolor{blue}{NSGAII (script)}}
+            \end{itemize}
+      \end{enumerate}
+\item[$\blacksquare$] \hyperref[sec:a_3]{\textbf{\textcolor{blue}{\large View (sección)}}}     
+      \begin{enumerate}[$\square$]
+      \item \hyperref[sec:a_3_1]{\textcolor{blue}{MainWindow (clase)}}  
+      \item \hyperref[sec:a_3_2]{\textcolor{blue}{Main (módulo)}}
+            \begin{itemize} 
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_2_1]{\textcolor{blue}{Home (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_3_2_1_1]{\textcolor{blue}{HomeFrame (clase)}}
+                        \begin{itemize}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_1_1_1]{\textcolor{blue}{IntroductionFrame (clase)}}
+                        \end{itemize}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_2_2]{\textcolor{blue}{DecisionVariable (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_3_2_2_1]{\textcolor{blue}{DecisionVariableFrame (clase)}}
+                        \begin{itemize}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_2_1_1]{\textcolor{blue}{VariableFrame (clase)}}
+                        \end{itemize}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_2_3]{\textcolor{blue}{ObjectiveFunction (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_3_2_3_1]{\textcolor{blue}{ObjectiveFunctionFrame (clase)}}
+                        \begin{itemize}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_3_1_1]{\textcolor{blue}{FunctionFrame (clase)}}
+                        \end{itemize}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_2_4]{\textcolor{blue}{Population (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_3_2_4_1]{\textcolor{blue}{PopulationFrame (clase)}}
+                  \item \hyperref[sec:a_3_2_4_2]{\textcolor{blue}{TemplatePopulationFrame (clase)}}
+                        \begin{itemize}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_4_2_1]{\textcolor{blue}{PopulaceFrame (clase)}}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_4_2_2]{\textcolor{blue}{FitnessFrame (clase)}}
+                        \end{itemize}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_2_5]{\textcolor{blue}{GeneticOperator (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_3_2_5_1]{\textcolor{blue}{GeneticOperatorFrame (clase)}}
+                  \item \hyperref[sec:a_3_2_5_2]{\textcolor{blue}{TemplateGeneticOperatorFrame (clase)}}
+                        \begin{itemize}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_5_2_1]{\textcolor{blue}{SelectionFrame (clase)}}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_5_2_2]{\textcolor{blue}{CrossoverFrame (clase)}}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_5_2_3]{\textcolor{blue}{MutationFrame (clase)}}
+                        \end{itemize}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_2_6]{\textcolor{blue}{MOEA (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_3_2_6_1]{\textcolor{blue}{MOEAFrame (clase)}}
+                        \begin{itemize}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_6_1_1]{\textcolor{blue}{AlgorithmFrame (clase)}}
+                        \item[$\bullet$] \hyperref[sec:a_3_2_6_1_2]{\textcolor{blue}{SharingFunctionFrame (clase)}}
+                        \end{itemize}
+                  \end{enumerate}
+            \end{itemize} 
+      \item \hyperref[sec:a_3_3]{\textcolor{blue}{Additional (módulo)}}
+            \begin{itemize}
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_3_1]{\textcolor{blue}{GenerationSignalToplevel (clase)}}
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_3_2]{\textcolor{blue}{MenuInternalOption (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_3_3_2_1]{\textcolor{blue}{MenuInternalOption (clase)}}
+                  \item \hyperref[sec:a_3_3_2_2]{\textcolor{blue}{InternalOptionToplevel (clase)}}
+                  \item \hyperref[sec:a_3_3_2_3]{\textcolor{blue}{InternalOptionTab (módulo)}}
+                        \begin{itemize}
+                        \item[$\bullet$] \hyperref[sec:a_3_3_2_3_1]{\textcolor{blue}{MOPExampleFrame (clase)}}
+                              \begin{enumerate}[$\circ$]
+                              \item \hyperref[sec:a_3_3_2_3_1_1]{\textcolor{blue}{MOPFrame (clase)}}
+                              \end{enumerate}
+                        \item[$\bullet$] \hyperref[sec:a_3_3_2_3_2]{\textcolor{blue}{FeatureFrame (clase)}}
+                              \begin{enumerate}[$\circ$]
+                              \item \hyperref[sec:a_3_3_2_3_2_1]{\textcolor{blue}{CharacteristicFrame (clase)}}
+                              \end{enumerate}
+                        \item[$\bullet$] \hyperref[sec:a_3_3_2_3_3]{\textcolor{blue}{PythonExpressionFrame (clase)}}
+                              \begin{enumerate}[$\circ$]
+                              \item \hyperref[sec:a_3_3_2_3_3_1]{\textcolor{blue}{ExpressionFrame (clase)}}
+                              \end{enumerate}
+                        \end{itemize}
+                  \item \hyperref[sec:a_3_3_2_4]{\textcolor{blue}{AboutToplevel (clase)}}
+                  \end{enumerate}
+            \item[$\blacktriangleright$] \hyperref[sec:a_3_3_3]{\textcolor{blue}{ResultsGrapher (módulo)}}
+                  \begin{enumerate}[$\triangleright$]
+                  \item \hyperref[sec:a_3_3_3_1]{\textcolor{blue}{ResultsGrapherToplevel (clase)}}
+                        \begin{itemize}
+                        \item[$\bullet$] \hyperref[sec:a_3_3_3_1_1]{\textcolor{blue}{GraphFrame (clase)}}
+                              \begin{enumerate}[$\circ$]
+                              \item \hyperref[sec:a_3_3_3_1_1_1]{\textcolor{blue}{CustomNavigationToolbar2TkAgg (clase)}}
+                              \end{enumerate}
+                        \item[$\bullet$] \hyperref[sec:a_3_3_3_1_2]{\textcolor{blue}{SummaryFrame (clase)}}
+                              \begin{enumerate}[$\circ$]
+                              \item \hyperref[sec:a_3_3_3_1_2_1]{\textcolor{blue}{ContentFrame (clase)}}
+                              \end{enumerate}
+                        \item[$\bullet$] \hyperref[sec:a_3_3_3_1_3]{\textcolor{blue}{ErrorFrame (clase)}}
+                        \end{itemize}
+                  \end{enumerate}
+            \end{itemize}
+      \end{enumerate} 
+\item[$\blacksquare$] \hyperref[sec:a_4]{\textbf{\textcolor{blue}{\large Controller (sección)}}}     
+      \begin{enumerate}[$\square$] 
+      \item \hyperref[sec:a_4_1]{\textcolor{blue}{Controller (clase)}}
+      \item \hyperref[sec:a_4_2]{\textcolor{blue}{XMLParser (clase)}}
+      \item \hyperref[sec:a_4_3]{\textcolor{blue}{Verifier (clase)}}
+      \end{enumerate}
+\end{itemize}
+%Termina el listado.
+
+\section{Begin (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_1).
+\label{sec:a_1}
+Este archivo funge como un launcher \textbf{(disparador)} el cual simplemente 
+crea y muestra la ventana principal \textbf{(véase la sección View)}.
+
+%A continuación se incluyen los subarchivos relacionados con la
+%documentación, divididos en Modelo (ó Model), Vista (ó View) y
+%Controlador (ó Controller), respectivamente.
+\input{sections/model}
+\input{sections/view}
+\input{sections/controller}
+
+%Termina el documento.
+\end{document}

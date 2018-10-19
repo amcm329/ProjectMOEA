@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MainWindow (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../index.html" />
+    <link rel="up" title="View (sección)" href="View.html" />
+    <link rel="next" title="Main (módulo)" href="Main/Main.html" />
+    <link rel="prev" title="View (sección)" href="View.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.MainWindow">
+<span id="mainwindow-clase"></span><h1>MainWindow (clase)<a class="headerlink" href="#module-View.MainWindow" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.MainWindow.MainWindow">
+<em class="property">class </em><code class="descname">MainWindow</code><a class="headerlink" href="#View.MainWindow.MainWindow" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Mezcla todas las estructuras gráficas que forman parte de la sección View <strong>(ó vista)</strong>.</div>
+<div class="line">Se trata de una Ventana que contendrá todas las opciones necesarias para que
+el usuario pueda ejecutar a voluntad M.O.E.A.&#8217;s <strong>(Multi Objective Evolutionary Algorithm
+ó Algoritmo Evolutivo Multi Objetivo)</strong></div>
+<div class="line"><br /></div>
+<div class="line">El flujo que se suele seguir es el siguiente:</div>
+</div>
+<ul class="simple">
+<li>El usuario ingresa las características que desea que contenga el M.O.E.A. que será ejecutado.</li>
+<li>Posteriormente el Controller <strong>(ó Controlador, véase Controller/Controller.py)</strong> verifica la consistencia de los datos anteriores para que no haya conflicto en el lado del Model <strong>(ó Modelo)</strong>.</li>
+<li>Si no existe problema alguno se prosigue con el proceso, en otro caso se arroja un mensaje de error.</li>
+<li>Siguiendo con el flujo normal se ejecutará una instancia del M.O.E.A. solicitado en la capa de Model <strong>(ó Modelo)</strong>, la cual tendrá una ventana asociada en View <strong>(ó Vista)</strong> que indicará el progreso del primero.</li>
+<li>Cuando una instancia termine de ejecutarse, la ventana del progreso desaparece y en su lugar se muestra otra conteniendo los resultados del M.O.E.A. <strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+</ul>
+<div class="line-block">
+<div class="line">Es importante mencionar que esta clase y el proyecto en general están diseñados para que 
+se puedan crear varias instancias simultáneamente, con ello se espera aprovechar al máximo los recursos
+computacionales en los que el proyecto fuera a ejecutarse.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Tkinter.Frame</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Instance</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__change_frame">
+<code class="descname">_MainWindow__change_frame</code><span class="sig-paren">(</span><em>current_frame_name</em><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__change_frame" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Hace el cambio en la Ventana Principal ocultando un Frame y
+mostrando otro.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>current_frame_name</strong> (<em>Tkinter.Frame</em>) &#8211; El Frame que se va a mostrar en 
+la Ventana Principal.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__check_queues">
+<code class="descname">_MainWindow__check_queues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__check_queues" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Una vez iniciado un proceso que ejecuta un M.O.E.A., este método
+revisa periódicamente las colas <strong>(Queues)</strong> sobre las cuales los procesos
+escribirán todo tipo de información pertinente.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__get_information">
+<code class="descname">_MainWindow__get_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__get_information" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Método que obtiene los datos ingresados por el usuario
+de cada uno de los Frames asociados a esta Ventana Principal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Un diccionario con toda las preferencias del usuario recolectadas
+para cada uno de los Frames disponibles.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__init_procedure">
+<code class="descname">_MainWindow__init_procedure</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__init_procedure" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<div class="line-block">
+<div class="line">Inicia el procedimiento para ejecutar un M.O.E.A.</div>
+<div class="line">Los pasos que se realizan son:</div>
+</div>
+<ul class="simple">
+<li>Recolecta las preferencias ingresadas por el usuario en los Frames que conforman la Ventana Principal.</li>
+<li>Se sanitizan dichos datos con ayuda del Controller.</li>
+<li>En caso de no haber problemas con la sanitización, se ejecuta el proceso alojándolo en un hilo <strong>(Thread)</strong> para que permita seguir teniendo acceso a la Ventana Principal; por el contrario si hubo alguna falla regresa un mensaje de error.</li>
+</ul>
+<div class="line-block">
+<div class="line">Gracias a este método el proyecto entero tiene la característica de ser Multi-Hilo <strong>(ó Multi-Threading)</strong>, es decir,
+se pueden ejecutar varios procedimientos de manera independiente.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; El evento del elemento gráfico que activa esta función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__initialize_frames">
+<code class="descname">_MainWindow__initialize_frames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__initialize_frames" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Método que inicializa los Frames que se 
+colocarán en la Ventana Principal como opciones.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__load_images">
+<code class="descname">_MainWindow__load_images</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__load_images" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Carga las imágenes que se encuentran en el 
+directorio View/Images para que puedan ser
+usadas por los Frames. Es importante recalcar que el método
+sólo carga imágenee .gif ya que son la extensión más estable
+para que se muestren las imágenes en la interfaz gráfica.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Un diccionario con todas las imágenes cargadas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__obtain_results">
+<code class="descname">_MainWindow__obtain_results</code><span class="sig-paren">(</span><em>execution_task_count</em>, <em>generations_queue</em>, <em>gathered_information</em>, <em>sanitized_information</em><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__obtain_results" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Ejecuta un M.O.E.A.. Esta es la función que se coloca en un hilo
+para ser llevada a cabo de manera independiente con la finalidad 
+de dejar libre la Ventana Principal y de manera secundaria ejecutar
+varios procedimientos simultáneamente.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>execution_task_count</strong> (<em>Integer</em>) &#8211; El número de proceso actual.</li>
+<li><strong>generations_queue</strong> (<em>Instance</em>) &#8211; Una referencia a una cola <strong>(Queue)</strong> donde los procesos escribirán su avance
+en cuanto a las generaciones transcurridas.</li>
+<li><strong>gathered_information</strong> (<em>Dictionary</em>) &#8211; La información que el usuario ingresó al momento de iniciar el proceso actual.</li>
+<li><strong>sanitized_information</strong> (<em>Dictionary</em>) &#8211; La información anterior sanitizada.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__restore_settings">
+<code class="descname">_MainWindow__restore_settings</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__restore_settings" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Limpia y deja por defecto los valores estándar del Frame
+mostrado actualmente en la Ventana Principal.
+El método no aplica para regresar a M.O.P.&#8217;s <strong>(Multi Objective Problems)</strong>
+cargados anteriormente.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; El evento del elemento gráfico que acciona esta función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow._MainWindow__update_frame">
+<code class="descname">_MainWindow__update_frame</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow._MainWindow__update_frame" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Muestra en la Ventana Principal el Frame actual.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; El evento del elemento gráfico que 
+activa la función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow.load_mop_example">
+<code class="descname">load_mop_example</code><span class="sig-paren">(</span><em>elements</em><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow.load_mop_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carga el M.O.P <strong>(Multi Objective Problem)</strong> seleccionado
+a los Frames correspondientes <strong>(Objective Functions y Decision Variables)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>elements</strong> (<em>Array</em>) &#8211; Un arreglo que contiene dos elementos, el primero son las
+funciones objetivo precargadas mientras que el segundo son las
+variables de decisión también precargadas. Ambas provienen del menú
+secundario <strong>(véase View/Additional/MenuInternalOption/InternalOptionTab/MOPExampleFrame.py,
+Controller/XML/MOPExamples.xml)</strong>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow.resource_path">
+<code class="descname">resource_path</code><span class="sig-paren">(</span><em>relative_path</em><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow.resource_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esta función se utiliza para poder crear ejecutables
+apropiadamente.
+A grandes rasgos el ejecutable se empaqueta en un directorio
+llamado _MEIPASS, entonces aquí se implementa la búsqueda
+de dicho archivo devolviendo un path <strong>(ruta)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">La ruta del directorio _MEIPASS.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.MainWindow.MainWindow.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.MainWindow.MainWindow.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lanza la Ventana Principal.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="View.html">View (sección)</a><ul>
+      <li>Previous: <a href="View.html" title="previous chapter">View (sección)</a></li>
+      <li>Next: <a href="Main/Main.html" title="next chapter">Main (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/View/MainWindow.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/View/MainWindow.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>LinearScalingFitness (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Fitness (módulo)" href="Fitness.html" />
+    <link rel="next" title="NonLinearRankingFitness (script)" href="NonLinearRankingFitness.html" />
+    <link rel="prev" title="LinearRankingFitness (script)" href="LinearRankingFitness.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="linearscalingfitness-script">
+<h1>LinearScalingFitness (script)<a class="headerlink" href="#linearscalingfitness-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Es creada la asignación de Fitness conocida como Linear Scaling <strong>(ó Escalamiento Lineal)</strong>.</div>
+<div class="line">Se le llama así porque el Fitness de los Individuos será regido por una función lineal.</div>
+<div class="line">Más en concreto, la función <strong>(también denominada fórmula)</strong> es:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/2990a09694f86396683471201cb9f1a460a2307d.png" alt="Fitness(Individuo) = \alpha \cdot F_0(Individuo) + \beta"/></strong></p><div class="line-block">
+<div class="line">Donde:</div>
+<div class="line-block">
+<div class="line"><img class="math" src="../../_images/math/877d234f4cec6974ce218fc2e975a486a7972dfd.png" alt="\alpha"/> toma los valores -1 y 1.</div>
+<div class="line"><img class="math" src="../../_images/math/410a9d0df9c135dd73b269cba7ef04dcfd932b1f.png" alt="\beta"/> es 0 ó un número positivo.</div>
+<div class="line"><img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> es conocido como el valor de la función objetivo del Individuo. Nótese</div>
+<div class="line">que <img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> debe ser directamente proporcional al Fitness del Individuo.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">Con respecto de <img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> es importante considerar lo siguiente: dado que se está manejando
+un sistema multiobjetivo puede haber más de un valor en existencia, por ello se necesita
+una cantidad que conjunte estas evaluaciones el cual es el rank, sin embargo el rank es inversamente
+proporcional a la calidad de un Individuo.</div>
+<div class="line">De esta manera se debe hacer una modificación para garantizar que exista un valor
+proporcional al Fitness del Individuo, por lo cual <img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> se reescribe así:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/11663bb6e22da39cddf394cc3e9b90e5452a2631.png" alt="F_0(Individuo) = tama\tilde{n}o\_poblaci\acute{o}n - rank(Individuo)"/></strong></p><div class="line-block">
+<div class="line">Reescribiendo la fórmula inicial se tiene lo siguiente:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/c0b58c239eddcb6d58aa4494ea58985945b38480.png" alt="Fitness(Individuo) = \alpha \cdot [tama\tilde{n}o\_poblaci\acute{o}n - rank(Individuo)] + \beta"/></strong></p><div class="line-block">
+<div class="line">Con esta actualización ya es posible obtener un Fitness acorde al rank del Individuo sin alterar
+la esencia de la técnica.</div>
+</div>
+<span class="target" id="module-Model.Fitness.LinearScalingFitness"></span><dl class="function">
+<dt id="Model.Fitness.LinearScalingFitness.assign_fitness">
+<code class="descname">assign_fitness</code><span class="sig-paren">(</span><em>population</em>, <em>fitness_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Fitness.LinearScalingFitness.assign_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Se construye la asignación del Fitness de tipo Linear Scaling <strong>(ó Escalamiento Lineal)</strong>
+tomando como referencia toda la información provista anteriormente.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="Fitness.html">Fitness (módulo)</a><ul>
+      <li>Previous: <a href="LinearRankingFitness.html" title="previous chapter">LinearRankingFitness (script)</a></li>
+      <li>Next: <a href="NonLinearRankingFitness.html" title="next chapter">NonLinearRankingFitness (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/Fitness/LinearScalingFitness.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/Fitness/LinearScalingFitness.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

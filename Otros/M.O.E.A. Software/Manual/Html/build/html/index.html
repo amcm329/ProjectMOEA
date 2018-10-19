@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Documentación de M.O.E.A. Software &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="#" />
+    <link rel="next" title="Begin (script)" href="Begin.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="figure align-left">
+<a class="reference internal image-reference" href="_images/unam_shield.png"><img alt="_images/unam_shield.png" src="_images/unam_shield.png" style="width: 155px; height: 155px;" /></a>
+</div>
+<div class="figure align-right">
+<a class="reference internal image-reference" href="_images/sciences_shield.png"><img alt="_images/sciences_shield.png" src="_images/sciences_shield.png" style="width: 155px; height: 155px;" /></a>
+</div>
+<div class="section" id="documentacion-de-m-o-e-a-software">
+<h1>Documentación de M.O.E.A. Software<a class="headerlink" href="#documentacion-de-m-o-e-a-software" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">La presente información corresponde a la documentación relacionada con el
+producto de software denominado <strong>M.O.E.A. Software</strong>, la cual, en conjunto con
+el programa antes mencionado y la obra escrita, constituyen el proyecto que el
+ciudadano <strong>Aarón Martín Castillo Medina</strong> presenta con la finalidad de obtener el
+título de <strong>Licenciado en Ciencias de la Computación</strong>.</div>
+</div>
+<div class="line-block">
+<div class="line">Como se ha mencionado previamente, este escrito recopila las características
+fundamentales del producto de software tales como las funcionalidades creadas, así
+como su organización y las relaciones existentes entre éstas.</div>
+<div class="line">No obstante al ser el producto de software mismo una fusión entre la teoría
+comprendida en el trabajo escrito y sus correspondientes implementaciones técnicas,
+la documentación por ende también incluye referencias que manifiestan la teoría
+detrás de cada una de las funcionalidades creadas.</div>
+</div>
+<div class="line-block">
+<div class="line">Con base en lo anterior, es preciso mencionar que en la documentación existe
+terminología meramente técnica que conviene explicar para garantizar
+una comprensión sólida del proyecto.</div>
+</div>
+<div class="line-block">
+<div class="line">Lo primero que se debe hacer notar es la arquitectura de diseño.</div>
+<div class="line">Este concepto corresponde al tipo de organización que se suele emplear para agrupar
+y comunicar apropiadamente cada uno de los componentes del producto de software
+con la finalidad de minimizar los tiempos de corrección y actualización del código, así
+como proporcionar una presentación digerible para cualquiera que desee familiarizarse con
+las partes codificadas.</div>
+<div class="line">Para este proyecto se ha elegido la arquitectura denominada MVC <strong>(Model-View-Controller ó Modelo-Vista-Controlador)</strong>.</div>
+<div class="line">Siguiendo este tipo de organización, se colocan las funcionalidades en tres
+categorías principales, que son:</div>
+</div>
+<ul class="simple">
+<li>Model <strong>(ó Modelo)</strong>, se almacenan todos los elementos que realizarán el proceso analítico, en este caso todo lo relacionado con la ejecución de M.O.E.A.&#8217;s y la recolección de resultados.</li>
+<li>View <strong>(ó Vista)</strong>, se coloca todo aquéllo asociado a la interfaz gráfica del programa y en el caso del proyecto, la graficación apropiada de resultados.</li>
+<li>Controller <strong>(ó Controlador)</strong>, se guarda toda la parafernalia relativa al control de las comunicaciones entre la Vista y el Modelo.</li>
+</ul>
+<p>El proceso usual de interacción entre dichas categorías es el siguiente:</p>
+<ol class="arabic simple">
+<li>El usuario inserta las configuraciones pertinentes en la Vista, las cuales permitirán obtener resultados detallados del M.O.E.A. que se fuera a ejecutar.</li>
+<li>El Controlador obtiene las configuraciones previamente insertadas por el usuario; durante esta etapa se realiza una verificación y saneamiento de dichas configuraciones. Si el proceso fue exitoso se procede ir al paso <strong>(3)</strong>, en cualquier otro caso se retrocede al paso <strong>(1)</strong> con una notificación de error.</li>
+<li>El Modelo se encarga de ejecutar el algoritmo precisado por el usuario en <strong>(1)</strong>, para ello se le proporcionan todas las configuraciones adjuntas. Una vez concluido el proceso el Modelo le regresa los resultados al Controlador.</li>
+<li>El Controlador toma los resultados y a su vez los transfiere a la Vista, quien se encarga de mostrar al usuario los datos finales de manera gráfica.</li>
+</ol>
+<p>En la documentación el usuario notará que las funcionalidades están colocadas siguiendo
+un esquema basado en la arquitectura antes mencionada. Esto permite vislumbrar de manera secundaria
+los elementos y sus relaciones.</p>
+<p>Con respecto de los tipos de funcionalidades creadas, en la documentación se muestran
+las siguientes clasificaciones <strong>(de menor a mayor jerarquía)</strong>:</p>
+<ul class="simple">
+<li><strong>Script</strong>, el archivo básico de implementación, por lo general en éste se describe infraestructura simple como métodos o variables; su creación se atribuye a concebir el uso de técnicas disponibles para el usuario de una manera más eficiente y menos burocrática. Por lo general, este tipo de archivos se encuentran en el Modelo ya que su uso alude a entornos más dinámicos que requieran de una rápida respuesta.</li>
+<li><strong>Clase</strong>, similar a los Scripts con la salvedad de que las Clases contienen una estructura más robusta pero también más estática. Su uso se limita en este proyecto a la generación de la interfaz gráfica <strong>(en la Vista)</strong> y en el Controlador ya que, por regla general, éstos deben estar predispuestos a las necesidades del usuario, ante lo cual se tiene la necesidad de destinar mayores recursos.</li>
+<li><strong>Módulo</strong>, corresponde principalmente a una agrupación de Clases y/o Scripts con características en común.</li>
+<li><strong>Sección</strong>, mantiene relación directa con las categorías mencionadas en la arquitectura MVC. Contiene a todos los elementos anteriores.</li>
+</ul>
+<div class="line-block">
+<div class="line">Habiendo proporcionado este preámbulo, la finalidad es, a grandes rasgos,
+otorgar una guía rápida y concisa al usuario en lo concerniente a las funcionalidades
+pertinentes del producto de software teniendo como apoyo el panorama teórico; la motivación
+detrás de ésto es facilitar la comprensión y posible modificación de componentes.</div>
+</div>
+<div class="line-block">
+<div class="line">Lo anterior deriva del hecho de que, desde el punto de vista del autor, el involucramiento del proyecto
+basándose en una perspectiva pragmática ha tenido un impacto mayor en los conocimientos adquiridos que
+si sólo se abordara un régimen estrictamente teórico.</div>
+<div class="line">De esta manera se comparte dicha filosofía con todos aquéllos que deseen adentrarse en este
+programa.</div>
+</div>
+<div class="line-block">
+<div class="line">Por consiguiente se refuerzan los puntos esenciales de motivación de la tesis:</div>
+</div>
+<ul class="simple">
+<li>La divulgación de las técnicas M.O.E.A.&#8217;s <strong>(Multi-Objective Evolutionary Algorithms ó Algoritmos Evolutivos Multi-objetivo)</strong> a través del producto de software.</li>
+<li>Comprobar la eficiencia de cada uno de estos M.O.E.A.&#8217;s tomando como fundamento el programa elaborado <strong>(lo cual se abordará en la parte escrita)</strong>.</li>
+</ul>
+<div class="line-block">
+<div class="line">Ahora se muestra un índice que permite localizar a los componentes del programa
+más rápidamente.</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<div class="line-block">
+<div class="line">A continuación de muestra el diagrama del contenido del producto de software, donde cada uno de
+los elementos redireccionará al usuario a su respectiva documentación.</div>
+</div>
+</div>
+<div class="section" id="contenido">
+<h2>Contenido:<a class="headerlink" href="#contenido" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Begin.html">Begin (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model/Model.html">Model (sección)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Model/ChromosomalRepresentation/ChromosomalRepresentation.html">ChromosomalRepresentation (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Model/ChromosomalRepresentation/BinaryRepresentation.html">BinaryRepresentation (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Model/ChromosomalRepresentation/FloatPointRepresentation.html">FloatPointRepresentation (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Model/Community/Community.html">Community (clase)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Model/Community/Population/Population.html">Population (clase)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Model/Community/Population/Individual/Individual.html">Individual (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Model/Fitness/Fitness.html">Fitness (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Model/Fitness/LinearRankingFitness.html">LinearRankingFitness (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Model/Fitness/NonLinearRankingFitness.html">NonLinearRankingFitness (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Model/Fitness/ProportionalFitness.html">ProportionalFitness (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Model/Operator/Operator.html">Operator (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Model/Operator/Selection/Selection.html">Selection (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Model/Operator/Selection/Roulette.html">Roulette (script)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Model/Operator/Selection/ProbabilisticTournament.html">ProbabilisticTournament (script)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Model/Operator/Selection/StochasticUniversalSampling.html">StochasticUniversalSampling (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Model/Operator/Crossover/Crossover.html">Crossover (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Model/Operator/Crossover/NPointsCrossover.html">NPointsCrossover (script)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Model/Operator/Crossover/UniformCrossover.html">UniformCrossover (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Model/Operator/Mutation/Mutation.html">Mutation (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Model/Operator/Mutation/BinaryMutation.html">BinaryMutation (script)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Model/Operator/Mutation/FloatPointMutation.html">FloatPointMutation (script)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Model/SharingFunction/SharingFunction.html">SharingFunction (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Model/SharingFunction/GenotypicSimilarity/GenotypicSimilarity.html">GenotypicSimilarity (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Model/SharingFunction/GenotypicSimilarity/HammingDistance.html">HammingDistance (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Model/SharingFunction/PhenotypicSimilarity/PhenotypicSimilarity.html">PhenotypicSimilarity (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Model/SharingFunction/PhenotypicSimilarity/EuclideanDistance.html">EuclideanDistance (script)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Model/MOEA/MOEA.html">MOEA (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Model/MOEA/VEGA.html">VEGA (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Model/MOEA/SPEAII.html">SPEAII (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Model/MOEA/MOGA.html">MOGA (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Model/MOEA/NSGAII.html">NSGAII (script)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="View/View.html">View (sección)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="View/MainWindow.html">MainWindow (clase)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="View/Main/Main.html">Main (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="View/Main/Home/Home.html">Home (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="View/Main/Home/HomeFrame.html">HomeFrame (clase)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/Home/IntroductionFrame.html">IntroductionFrame (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="View/Main/DecisionVariable/DecisionVariable.html">DecisionVariable (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="View/Main/DecisionVariable/DecisionVariableFrame.html">DecisionVariableFrame (clase)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/DecisionVariable/VariableFrame.html">VariableFrame (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="View/Main/ObjectiveFunction/ObjectiveFunction.html">ObjectiveFunction (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="View/Main/ObjectiveFunction/ObjectiveFunctionFrame.html">ObjectiveFunctionFrame (clase)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/ObjectiveFunction/FunctionFrame.html">FunctionFrame (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="View/Main/Population/Population.html">Population (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="View/Main/Population/PopulationFrame.html">PopulationFrame (clase)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="View/Main/Population/TemplatePopulation/TemplatePopulationFrame.html">TemplatePopulationFrame (clase)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/Population/TemplatePopulation/PopulaceFrame.html">PopulaceFrame (clase)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/Population/TemplatePopulation/FitnessFrame.html">FitnessFrame (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="View/Main/GeneticOperator/GeneticOperator.html">GeneticOperator (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="View/Main/GeneticOperator/GeneticOperatorFrame.html">GeneticOperatorFrame (clase)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="View/Main/GeneticOperator/TemplateGeneticOperator/TemplateGeneticOperatorFrame.html">TemplateGeneticOperatorFrame (clase)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/GeneticOperator/TemplateGeneticOperator/SelectionFrame.html">SelectionFrame (clase)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/GeneticOperator/TemplateGeneticOperator/CrossoverFrame.html">CrossoverFrame (clase)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/GeneticOperator/TemplateGeneticOperator/MutationFrame.html">MutationFrame (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="View/Main/MOEA/MOEA.html">MOEA (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="View/Main/MOEA/MOEAFrame.html">MOEAFrame (clase)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/MOEA/AlgorithmFrame.html">AlgorithmFrame (clase)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="View/Main/MOEA/SharingFunctionFrame.html">SharingFunctionFrame (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="View/Additional/Additional.html">Additional (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="View/Additional/GenerationSignal/GenerationSignal.html">GenerationSignalToplevel (clase)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="View/Additional/MenuInternalOption/MenuInternalOption.html">MenuInternalOption (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="View/Additional/MenuInternalOption/InternalOptionToplevel.html">InternalOptionToplevel (clase)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="View/Additional/MenuInternalOption/InternalOptionTab/InternalOptionTab.html">InternalOptionTab (módulo)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="View/Additional/MenuInternalOption/InternalOptionTab/MOPExampleFrame.html">MOPExampleFrame (clase)</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="View/Additional/MenuInternalOption/InternalOptionTab/MOPFrame.html">MOPFrame (clase)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="View/Additional/MenuInternalOption/InternalOptionTab/FeatureFrame.html">FeatureFrame (clase)</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="View/Additional/MenuInternalOption/InternalOptionTab/CharacteristicFrame.html">CharacteristicFrame (clase)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="View/Additional/MenuInternalOption/InternalOptionTab/PythonExpressionFrame.html">PythonExpressionFrame (clase)</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="View/Additional/MenuInternalOption/InternalOptionTab/ExpressionFrame.html">ExpressionFrame (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="View/Additional/MenuInternalOption/AboutToplevel.html">AboutToplevel (clase)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="View/Additional/ResultsGrapher/ResultsGrapher.html">ResultsGrapher (módulo)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="View/Additional/ResultsGrapher/ResultsGrapherToplevel.html">ResultsGrapherToplevel (clase)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="View/Additional/ResultsGrapher/GraphFrame.html">GraphFrame (clase)</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="View/Additional/ResultsGrapher/CustomNavigationToolbar2TkAgg.html">CustomNavigationToolbar2TkAgg (clase)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="View/Additional/ResultsGrapher/SummaryFrame.html">SummaryFrame (clase)</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="View/Additional/ResultsGrapher/ContentFrame.html">ContentFrame (clase)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="View/Additional/ResultsGrapher/ErrorFrame.html">ErrorFrame (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Controller/Controller.html">Controller (Sección)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Controller/ControllerClass.html">Controller (clase)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Controller/XMLParser.html">XMLParser (clase)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Controller/Verifier.html">Verifier (clase)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Documentación de M.O.E.A. Software</a><ul>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#contenido">Contenido:</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="Begin.html" title="next chapter">Begin (script)</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

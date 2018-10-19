@@ -1,0 +1,22 @@
+View.Main.Home package
+======================
+
+Submodules
+----------
+
+View.Main.Home.HomeFrame module
+-------------------------------
+
+.. automodule:: View.Main.Home.HomeFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Main.Home
+    :members:
+    :undoc-members:
+    :show-inheritance:

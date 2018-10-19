@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>View.Main.MOEA package &mdash; M.O.E.A. Grapher 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Grapher 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="View.Main package" href="Main.html" />
+    <link rel="next" title="View.Main.ObjectiveFunction package" href="View.Main.ObjectiveFunction.html" />
+    <link rel="prev" title="View.Main.Home package" href="View.Main.Home.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="view-main-moea-package">
+<h1>View.Main.MOEA package<a class="headerlink" href="#view-main-moea-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-View.Main.MOEA.AlgorithmFrame">
+<span id="view-main-moea-algorithmframe-module"></span><h2>View.Main.MOEA.AlgorithmFrame module<a class="headerlink" href="#module-View.Main.MOEA.AlgorithmFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Main.MOEA.AlgorithmFrame.AlgorithmFrame">
+<em class="property">class </em><code class="descclassname">View.Main.MOEA.AlgorithmFrame.</code><code class="descname">AlgorithmFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.AlgorithmFrame.AlgorithmFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<p>Esta clase proporciona una base gráfica para que el usuario pueda
+seleccionar técnicas con sus parámetros correspondientes (si es que tienen)
+referentes a los MOEAs (Multi Objective Evolutionary Algorithms).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>name</strong> (<em>String</em>) &#8211; Identificador (único) que tendrá el Frame.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Conjunto de técnicas con sus respectivos parámetros para que
+se puedan cargar automáticamente en este Frame <strong>(véase
+Controller/XMLParser.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Main.MOEA.AlgorithmFrame.AlgorithmFrame.get_information">
+<code class="descname">get_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.AlgorithmFrame.AlgorithmFrame.get_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recolecta la información que ha seleccionado e introducido el usuario,
+también la organiza para que se pueda utilizar apropiadamente.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><div class="line-block">
+<div class="line">Un diccionario que contiene:</div>
+<div class="line"><strong>Clase</strong>,</div>
+<div class="line"><strong>Técnica</strong>,</div>
+<div class="line"><strong>Parámetros</strong></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.MOEA.AlgorithmFrame.AlgorithmFrame.restore_settings">
+<code class="descname">restore_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.AlgorithmFrame.AlgorithmFrame.restore_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asigna los valores por defecto tanto de las técnicas como de sus 
+respectivos parámetros, también limpia aquéllos en donde se hayan 
+insertado valores.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Main.MOEA.MOEAFrame">
+<span id="view-main-moea-moeaframe-module"></span><h2>View.Main.MOEA.MOEAFrame module<a class="headerlink" href="#module-View.Main.MOEA.MOEAFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Main.MOEA.MOEAFrame.MOEAFrame">
+<em class="property">class </em><code class="descclassname">View.Main.MOEA.MOEAFrame.</code><code class="descname">MOEAFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.MOEAFrame.MOEAFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<p>Esta clase une los Frames AlgorithmFrame y SharingFunctionFrame, 
+la razón de ésto es para facilitar el acomodo de componentes de manera 
+individual, así garantizar un acceso asequible a la información.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Conjunto de técnicas con sus respectivos parámetros para que
+se puedan cargar automáticamente en este Frame <strong>(véase
+Controller/XMLParser.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Main.MOEA.MOEAFrame.MOEAFrame.get_information">
+<code class="descname">get_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.MOEAFrame.MOEAFrame.get_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toma la información solicitada en cada Frame y después
+la unifica para regresar un sólo conjunto de información.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Un diccionario con la información de AlgorithmFrame y SharingFunctionFrame.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.MOEA.MOEAFrame.MOEAFrame.restore_settings">
+<code class="descname">restore_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.MOEAFrame.MOEAFrame.restore_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restaura los valores por defecto en cada Frame.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Main.MOEA.SharingFunctionFrame">
+<span id="view-main-moea-sharingfunctionframe-module"></span><h2>View.Main.MOEA.SharingFunctionFrame module<a class="headerlink" href="#module-View.Main.MOEA.SharingFunctionFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Main.MOEA.SharingFunctionFrame.SharingFunctionFrame">
+<em class="property">class </em><code class="descclassname">View.Main.MOEA.SharingFunctionFrame.</code><code class="descname">SharingFunctionFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.SharingFunctionFrame.SharingFunctionFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<div class="line-block">
+<div class="line">Esta clase proporciona una base gráfica para que el usuario pueda
+seleccionar métosos con sus respectivos parámetros (si es que tienen)
+referentes a los métodos de Sharing Function.          </div>
+<div class="line">Un método de Sharing Function sirve para aplicar una selección más intensiva
+de individuos en caso de haber un &#8220;empate&#8221; entre éstos.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>name</strong> (<em>String</em>) &#8211; Identificador (único) que tendrá el Frame.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Conjunto de técnicas con sus respectivos parámetros para que
+se puedan cargar automáticamente en este Frame <strong>(véase
+Controller/XMLParser.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Main.MOEA.SharingFunctionFrame.SharingFunctionFrame.get_information">
+<code class="descname">get_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.SharingFunctionFrame.SharingFunctionFrame.get_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recolecta la información que ha seleccionado e introducido el usuario,
+también la organiza para que se pueda utilizar apropiadamente.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><div class="line-block">
+<div class="line">Un diccionario que contiene:</div>
+<div class="line"><strong>Clase</strong>,</div>
+<div class="line"><strong>Técnica</strong>,</div>
+<div class="line"><strong>Parámetros</strong></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.MOEA.SharingFunctionFrame.SharingFunctionFrame.restore_settings">
+<code class="descname">restore_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.MOEA.SharingFunctionFrame.SharingFunctionFrame.restore_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asigna los valores por defecto tanto de las técnicas como de sus 
+respectivos parámetros, también limpia aquéllos en donde se hayan 
+insertado valores.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Main.MOEA">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-View.Main.MOEA" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">View.Main.MOEA package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-View.Main.MOEA.AlgorithmFrame">View.Main.MOEA.AlgorithmFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Main.MOEA.MOEAFrame">View.Main.MOEA.MOEAFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Main.MOEA.SharingFunctionFrame">View.Main.MOEA.SharingFunctionFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Main.MOEA">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../View.html">View package</a><ul>
+  <li><a href="Main.html">View.Main package</a><ul>
+      <li>Previous: <a href="View.Main.Home.html" title="previous chapter">View.Main.Home package</a></li>
+      <li>Next: <a href="View.Main.ObjectiveFunction.html" title="next chapter">View.Main.ObjectiveFunction package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/View/Main/View.Main.MOEA.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/View/Main/View.Main.MOEA.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

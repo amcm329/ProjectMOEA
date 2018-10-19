@@ -1,0 +1,2708 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo contiene información relacionada con la capa Modelo
+%(ó Model), la cual representa tanto física como lógicamente a uno de 
+%los componentes que conforman el producto de software y por tanto al 
+%Manual Técnico.
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se cargan los paquetes relacionados con los subapéndices (elementos que
+%conforman el Apéndice en su totalidad).
+\usepackage{packages_used_section}
+
+%Comienza el documento.
+\begin{document}
+
+\section{Model (sección)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2).
+\label{sec:a_2}
+La sección Model \textbf{(ó Modelo)} contiene toda la base lógica del 
+programa, más en específico, todas las características para poder ejecutar 
+MOEA's apropiadamente alimentados con los datos obtenidos por la sección 
+View \textbf{(ó Vista)} usando la sección Controller \textbf{(ó Controlador)} 
+como intermediaria.\break
+Una vez que se obtenga algún resultado, éste será transmitido a la sección View 
+a través del Controller.\medskip\break
+A continuación se observan las subcategorías que conforman a la sección 
+en cuestión:
+
+%******* Empieza módulo *******
+\subsection{ChromosomalRepresentation (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_1).
+\label{sec:a_2_1}
+Ofrece elementos para elaborar una codificación adecuada.\break
+Entiéndase por codificación a la forma de determinar el 
+cromosoma y sus propiedades; cabe mencionar que el cromosoma será portado 
+por los Individuals \textbf{(ó Individuos)}.\medskip\break
+Es importante mencionar que cualquier codificación implementada debe ser 
+sustentada en los métodos correspondientes al Crossover \textbf{(ó Cruza)} y 
+Mutation \textbf{(ó Mutación)}, ésto porque dichas operaciones funcionan con 
+cromosomas.\medskip\break
+De esta manera, la idea es que el usuario pueda crear sus propias codificaciones,
+por lo que, además de agregar la descripción de la codificación a 
+Controller/XML/Features.xml \textbf{(véase el archivo mencionado en la sección de código)}, 
+deberá implementar por lo menos las siguientes funciones:
+
+%******* Empieza función *******
+\begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{calculate\_length\_subchromosomes}}{\emph{vector\_variables}, \emph{number\_of\_decimals}, \emph{representation\_parameters}}{}~
+\vspace{-0.1cm}
+
+Por cada variable de decisión se crea una porción del cromosoma, 
+entonces en esta función se calcula el tamaño de cada porción 
+\textbf{(ó subcromosoma)}, ya que al final las operaciones de cruza 
+y mutación se realizarán sobre el súper crosomoma, el cual es la 
+concatenacion de todos los subcromosomas.\break
+Por eso es importante identificar el tamaño de cada subcromosoma, 
+así como sus límites dentro del súper cromosoma.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{List}}) -- El vector de variables de decisión, donde cada variable trae consigo sus límites inferior
+y superior.
+\item \textbf{\texttt{number\_of\_decimals}} (\emph{\texttt{Integer}}) -- El número de decimales que deberá traer cada variable de decisión.
+\item \textbf{\texttt{representation\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene todas las opciones adicionales para cada tipo de codificación.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Una lista que contiene el tamaño del cromosoma por cada variable de 
+decisión. Dado que el orden de las variables de decisión es inmutable, 
+se preserva el mismo y por ello la lista contiene sólo los tamaños.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{create\_chromosome}}{\emph{length\_subchromosomes}, \emph{vector\_variables}, \emph{number\_of\_decimals}, \emph{representation\_parameters}}{}~
+\vspace{-0.1cm}
+
+Función que crea el cromosoma. Se usa la como apoyo el método \break
+\textbf{calculate\_length\_subchromosomes} descrito con anterioridad.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{length\_subchromosomes}} (\emph{\texttt{List}}) -- La lista que contiene los tamaños de cada variable de decisión.
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{List}}) -- La lista que contiene las variables de decisión, así como sus rangos.
+\item \textbf{\texttt{number\_of\_decimals}} (\emph{\texttt{Integer}}) -- El número de decimales que traerá cada variable de decisión.
+\item \textbf{\texttt{representation\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene todas las opciones adicionales para cada tipo de codificación.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+El cromosoma devuelto en forma de lista.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{evaluate\_subchromosomes}}{\emph{complete\_chromosome}, \emph{length\_subchromosomes}, \emph{vector\_variables,number\_of\_decimals}, \emph{representation\_parameters}}{}~
+\vspace{-0.1cm}
+
+Tomando en cuenta que el cromosoma ya ha sido creado usando 
+los tamaños de los subcromosomas, en esta función se procede 
+a evaluar el súper cromosoma partiéndolo en los subcromosomas 
+pertinentes y evaluando individualmente cada uno de éstos.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{complete\_chromosome}} (\emph{\texttt{List}}) -- El súper cromosoma a ser evaluado.
+\item \textbf{\texttt{length\_subchromosomes}} (\emph{\texttt{List}}) -- La lista que contiene los tamaños de cada variable de decisión.
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{List}}) -- La lista que contiene las variables de decisión, así como sus rangos.
+\item \textbf{\texttt{number\_of\_decimals}} (\emph{\texttt{Integer}}) -- El número de decimales que traerá cada variable de decisión.
+\item \textbf{\texttt{representation\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene todas las opciones adicionales para cada tipo de codificación.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Un diccionario que contiene como llave la variable de decisión 
+y como valor la evaluación del subcromosoma correspondiente.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+Sólo concierne añadir un detalle adicional; se asume por defecto que las
+funciones antes mencionadas se encuentran implementadas en cada uno de los
+elementos de este módulo, por ello es que primordialmente se mostrarán 
+aquéllas que no se contemplen en el esquema original, es decir, funciones 
+auxiliares.\break
+En el caso muy específico en el que alguna de las funciones obligatorias 
+contenga información importante también se adjuntarán en el documento.\medskip\break  
+A continuación se develan los elementos que constituyen a 
+este módulo:
+%******* Termina función *******
+
+%******* Empieza script *******
+\subsubsection{BinaryRepresentation (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_1_1).
+\label{sec:a_2_1_1}
+Contiene todas las funcionalidades requeridas para que se pueda hacer 
+uso de una codificación de tipo Binary \textbf{(ó Binaria)}; ésto 
+significa que los alelos que conforman al cromosoma serán exclusivamente 
+0 ó 1.
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{binary\_to\_decimal}}{\emph{chromosome}}{}
+Método que convierte un número binario a decimal.\break
+Este es un ejemplo de método que se puede agregar
+adicionalmente siempre y cuando se implementen las 
+funciones que se han mencionado ya.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{chromosome}} (\emph{\texttt{List}}) -- El cromosoma sobre el cual se hará
+la evaluación.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+La representación en decimal del número binario.
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{evaluate\_subchromosomes}}{\emph{complete\_chromosome}, \emph{length\_subchromosomes}, \emph{vector\_variables}, \emph{number\_of\_decimals}, \emph{representation\_parameters}}{}
+Realiza una evaluación de los subcromosomas para la codificación 
+binaria \textbf{(ó Binary)}.\break
+En términos generales se toma cada porción del subcrosomoma 
+\textbf{(tomando en cuenta que previamente se calcularon sus longitudes)} 
+y así se convierte a decimal, considerando la expansión numérica.\break
+Posteriormente para obtener el número final se hace lo siguiente:
+
+\begin{center}\(Conversi\acute{o}n(subcromosoma) = A + DN(subcromosoma) \cdot \frac{B - A}{2^M - 1}\)
+\end{center}
+
+Donde:
+
+\begin{itemize}
+\item \textbf{A} es el límite inferior que toma la variable de 
+decisión.
+\item \textbf{B} es el límite superior que toma la variable de 
+decisión.
+\item \textbf{M} es la longitud del subcromosoma asociado a la 
+variable de decisión.
+\item \textbf{DN (Decimal number)} es el número en decimal del 
+subcromosoma asociado a la variable de decisión.
+\end{itemize}
+
+\end{fulllineitems}
+%******* Termina función *******
+%******* Termina script *******
+
+%******* Empieza script *******
+\subsubsection{FloatPointRepresentation (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_1_2).
+\label{sec:a_2_1_2}
+Este script contiene todas las funcionalidades requeridas para 
+que se pueda hacer uso de una codificación de tipo Float Point 
+\textbf{(ó Punto Flotante)}; ésto significa que los alelos que 
+conforman al cromosoma serán números de punto flotante.\break
+Un número de punto flotante es aquél que tiene una parte entera 
+y una decimal; cabe mencionar que si el número en cuestión no 
+tiene expansión decimal, se le considera un número de representación 
+Integer \textbf{(ó Entera)}; ésto porque en algunas fuentes se 
+manejan la representación de Punto Flotante y Entera por separado.
+%******* Termina script *******
+%******* Termina módulo *******
+
+%******* Empieza clase *******
+\subsection{Community (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_2).
+\label{sec:a_2_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Proporciona toda la infraestructura lógica para poder construir 
+poblaciones y operar con éstas, además de transacciones relacionadas 
+con sus elementos de manera individual.\break
+Se le llama Community porque aludiendo a su significado una Community 
+\textbf{(ó Comunidad)} consta de al menos una Population \textbf{(o Población)}. 
+De esta manera se deduce que en algún momento habrán métodos que 
+involucren a más de una Población.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{vector\_functions}} (\emph{\texttt{List}}) -- Lista que contiene las funciones objetivo previamente 
+saneadas por Controller/Controller.py.
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{List}}) -- Lista que contiene las variables de decisión previamente 
+saneadas por Controller/Controller.py.
+\item \textbf{\texttt{available\_expressions}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene algunas funciones escritas como azúcar sintáctica
+para que puedan ser utilizadas más fácilmente por el usuario y evaluadas
+más ŕapidamente en el programa \textbf{(véase Controller/XML/PythonExpressions.xml)}.
+\item \textbf{\texttt{number\_of\_decimals}} (\emph{\texttt{Integer}}) -- El número de decimales que tendrán las soluciones; con este número se determina
+en gran medida el tamaño del cromosoma.
+\item \textbf{\texttt{representation\_instance}} (\emph{\texttt{Instance}}) -- Instancia de la técnica de representación que eligió el usuario
+\textbf{(véase Controller/Verifier.py)}.
+\item \textbf{\texttt{representation\_parameters}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todos los parámetros adicionales a la técnica
+de representación considerada por el usuario.
+\item \textbf{\texttt{fitness\_instance}} (\emph{\texttt{Instance}}) -- Instancia de la técnica de Fitness que eligió el usuario
+\textbf{(véase Controller/Verifier.py)}.
+\item \textbf{\texttt{fitness\_parameters}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todos los parámetros adicionales a la técnica
+de Fitness seleccionada por el usuario.
+\item \textbf{\texttt{sharing\_function\_instance}} (\emph{\texttt{Instance}}) -- Instancia de la técnica de Sharing Function seleccionada por el usuario
+\textbf{(véase Controller/Verifier.py)}.
+\item \textbf{\texttt{sharing\_function\_parameters}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todos los parámetros adicionales a la técnica
+de Fitness seleccionada por el usuario.
+\item \textbf{\texttt{selection\_instance}} (\emph{\texttt{Instance}}) -- Instancia de la técnica de selección \textbf{(Selection)} elegida por el usuario
+\textbf{(véase Controller/Verifier.py)}.
+\item \textbf{\texttt{selection\_parameters}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todos los parámetros adicionales a la técnica
+de selección \textbf{(Selection)} usada por el usuario.
+\item \textbf{\texttt{crossover\_instance}} (\emph{\texttt{Instance}}) -- Instancia de la técnica de cruza \textbf{(Crossover)} tomada por el usuario
+\textbf{(véase Controller/Verifier.py)}.
+\item \textbf{\texttt{crossover\_parameters}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todos los parámetros adicionales a la técnica
+de cruza \textbf{(Crossover)} manejada por el usuario.
+\item \textbf{\texttt{mutation\_instance}} (\emph{\texttt{Instance}}) -- Instancia de la técnica de mutación \textbf{(Mutation)} tomada por el usuario
+\textbf{(véase Controller/Verifier.py)}.
+\item \textbf{\texttt{mutation\_parameters}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todos los parámetros adicionales a la técnica
+de mutación \textbf{(Mutation)} seleccionada por el usuario.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Model.Community.Community
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{compare\_dominance}}{\emph{current}, \emph{challenger}, \emph{allowed\_functions}}{}
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Permite realizar la comparación de las funciones objetivo 
+de los Individuos current y challenger tomadas una a una 
+para indicar así quién es el dominado y quién es el que domina. 
+Cabe mencionar que más apropiadamente se le conoce como dominancia 
+fuerte de Pareto.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{current}} (\emph{\texttt{Instance}}) -- El Individuo inicial para comprobar dominancia.
+\item \textbf{\texttt{challenger}} (\emph{\texttt{Instance}}) -- El Individuo que reta al inicial para comprobar dominancia.
+\item \textbf{\texttt{allowed\_functions}} (\emph{\texttt{List}}) -- Lista que indica cuáles son las funciones objetivo que deben 
+compararse.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+True si current domina a challenger, False en otro caso.
+\item[{Return type}] \leavevmode
+Boolean
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_best\_individual\_results}}{\emph{population}}{}
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Obtiene los valores de las variables de decisión y de las 
+funciones objetivo por cada Individuo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{List}}) -- Una lista que contiene los mejores Individuos por generación.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Una lista que contiene por un lado la tupla (generacion, funciones)
+y por otro la tupla (generación, variables). Esto por cada generación.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_pareto\_results}}{\emph{population}}{}
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Obtiene el frente de Pareto, el complemento del frente de Pareto y 
+el óptimo de Pareto.\break
+Para una mejor orientación léase la parte escrita del proyecto.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la cual se obtendrán estos elementos.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Una lista que contiene el frente de Pareto, su complemento y el óptimo de Pareto.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{using\_sharing\_function}}{\emph{individual\_i}, \emph{individual\_j}, \emph{alpha\_share}, \emph{sigma\_share}}{}
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Devuelve un valor que ayuda al cálculo del Sharing Function.\break
+A grandes rasgos el sharing function sirve para hacer una 
+selección más precisa de los mejores Individuos cuando se da el 
+caso de que tienen el mismo número de Individuos dominados.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{individual\_i}} (\emph{\texttt{Instance}}) -- Individuo sobre el que se hará la operación.
+\item \textbf{\texttt{individual\_j}} (\emph{\texttt{Instance}}) -- Individuo sobre el que se hará la operación.
+\item \textbf{\texttt{alpha\_share}} (\emph{\texttt{Float}}) -- El valor necesario para poder calcular la distancia entre Individuos.
+\item \textbf{\texttt{sigma\_share}} (\emph{\texttt{Float}}) -- El valor necesario para poder calcular la distancia entre Individuos.
+\end{itemize}
+\item[{Returns}] \leavevmode
+El resultado que contribuirá al sharing function.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{assign\_fonseca\_and\_flemming\_pareto\_rank}}{\emph{population}, \emph{allowed\_functions='All'}}{}
+Asigna una puntuación \textbf{(ó rank)} a cada uno de los 
+Individuos de una Población con base en su dominancia de Pareto.\break
+A grandes rasgos, el algoritmo asigna un rank que consiste en:
+
+\begin{center}\(rank(Individuo) = n\acute{u}mero\_soluciones\_que\_dominan(Individuo) + 1\)
+\end{center}
+
+Esta técnica es usada principalmente por M.O.G.A.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la que se hará la operación.
+\item \textbf{\texttt{allowed\_functions}} (\emph{\texttt{List}}) -- Lista que contiene las posiciones de las funciones que son admisibles 
+para hacer comparaciones. Por defecto tiene el valor ``All''.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{assign\_goldberg\_pareto\_rank}}{\emph{population}, \emph{additional\_info=False}, \emph{allowed\_functions='All'}}{}
+Asigna una puntuación \textbf{(ó rank)} a cada uno de los Individuos 
+de una Población con base en su dominancia de Pareto.\break
+En términos generales, el algoritmo trabaja con niveles, es decir, 
+primero toma los Individuos no dominados y les asigna un valor 0, 
+luego los elimina del conjunto y nuevamente aplica la operación sobre 
+los no dominados del nuevo conjunto, a los que les asigna el valor 1, 
+y así sucesivamente hasta no quedar Individuos.\break
+Esta técnica es usada principalmente por N.S.G.A. II.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la que se hará la operación.
+\item \textbf{\texttt{additional\_info}} (\emph{\texttt{Boolean}}) -- Un valor que le indica a la función que debe regresar información 
+adicional.
+\item \textbf{\texttt{allowed\_functions}} (\emph{\texttt{List}}) -- Lista que contiene las posiciones de las funciones que son admisibles 
+para hacer comparaciones. Por defecto tiene el valor ``All''.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Si additional\_info es True: un arreglo con dos elementos: en el 
+primero se almacena una lista con los niveles de dominancia disponibles 
+mientras que el segundo consta de una estructura que contiene todos 
+los posibles niveles y asociados a éstos, los cromosomas de los 
+Individuos que los conforman.\break
+Si additional\_info es False: el método es void \textbf{(no regresa nada)}.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{assign\_population\_fitness}}{\emph{population}}{}
+Aplica la asignación de Fitness para una Población dada 
+usando como base el Ranking de cada Individuo \textbf{(véase Model/Fitness)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la que se hará la operación.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{assign\_zitzler\_and\_thiele\_pareto\_rank}}{\emph{population}, \emph{allowed\_functions='All'}}{}
+Asigna una puntuación (rank) a cada uno de los Individuos 
+de una Población con base en su dominancia de Pareto.\break
+A manera de esbozo, el algoritmo asigna un rank que consiste 
+en una razón:
+
+\begin{center}\(rank(Individuo) = \frac{n\acute{u}mero\_soluciones\_dominadas(Individuo)}{tama\tilde{n}o\_poblaci\acute{o}n} + 1\)
+\end{center}
+
+Esta técnica es usada principalmente por S.P.E.A. II
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la que se hará la operación.
+\item \textbf{\texttt{allowed\_functions}} (\emph{\texttt{List}}) -- Lista que contiene las posiciones de las funciones que son admisibles 
+para hacer comparaciones. Por defecto tiene el valor ``All''.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{calculate\_population\_niche\_count}}{\emph{population}}{}
+Calcula el valor conocido como niche count que no es 
+mas que la suma de los sharing function de todos los 
+Individuos j con el Individuo i, con i != j.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- Conjunto sobre el que se hará la operación.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{calculate\_population\_pareto\_dominance}}{\emph{population}, \emph{allowed\_functions}}{}
+Realiza la comparación de dominancia entre todos los elementos 
+de la Población con base en la evaluación de sus funciones 
+objetivo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la que se hará la operación.
+\item \textbf{\texttt{allowed\_functions}} (\emph{\texttt{List}}) -- Lista que indica las funciones objetivo permitidas para hacer la 
+comparación.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{calculate\_population\_shared\_fitness}}{\emph{population}}{}
+Calcula el Shared Fitness \textbf{(ó Fitness Compartido)} 
+de cada uno de los Individuos de la Población.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- Conjunto sobre el que se hará la operación.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_population}}{\emph{set\_chromosomes}}{}~
+\vspace{-0.1cm}
+Crea una Población usando un conjunto de 
+cromosomas como base.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{set\_chromosomes}} (\emph{\texttt{List}}) -- Conjunto de cromosomas.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Model.Community.Population
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{evaluate\_population\_functions}}{\emph{population}}{}
+Evalúa cada uno de los subcromosomas de los Individuos de la 
+Población \textbf{(Population)}.\break
+De manera adicional obtiene el listado de los valores extremos 
+tanto de variables de decisión como de funciones objetivo para 
+el cálculo del sigma share \textbf{(véase el método using\_sharing\_function)}. 
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la que se hará la operación.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{execute\_crossover\_and\_mutation}}{\emph{selected\_parents\_chromosomes}}{}
+Realiza la cruza y mutación de los Individuos. Para el caso 
+de la cruza ésta se lleva a cabo siempre entre dos Individuos, 
+mientras que la mutación es unaria.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{selected\_parents\_chromosomes}} (\emph{\texttt{List}}) -- El conjunto de cromosomas sobre los cuales se aplicarán dichos operadores genéticos.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Una instancia del tipo Model.Community.Population.
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{execute\_selection}}{\emph{parents}}{}
+Realiza la ejecución de la técnica de selección por medio 
+de una instancia que se creó previamente \textbf{(véase Controller/Verifier.py)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parents}} (\emph{\texttt{Instance}}) -- El conjunto de Individuos sobre el cual se aplicará la técnica
+\end{itemize}
+\item[{Returns}] \leavevmode
+Una lista con los cromosomas de aquellos Individuos seleccionados.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_best\_individual}}{\emph{population}}{}
+Obtiene el mejor Individuo dentro de una Población. 
+Para estos fines el mejor Individuo es aquél que tenga 
+mejor dominancia.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la cual se hará la búsqueda.
+\end{itemize}
+\item[{Returns}] \leavevmode
+El Individuo que cumple con la característica de la mayor dominancia.
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_results}}{\emph{best\_individual\_along\_generations}, \emph{external\_set\_population}}{}
+Recolecta la información y la almacena en una estructura 
+que contiene dos categorías principales: funciones objetivo 
+y variables de decisión. Por cada una existen las subcategorías 
+Pareto y mejor Individuo, en referencia al óptimo o frente de 
+Pareto \textbf{(según corresponda)} y a los valores del mejor 
+Individuo por generación \textbf{(véase View/Additional/ResultsGrapher/GraphFrame.py)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{best\_individual\_along\_generations}} (\emph{\texttt{List}}) -- Una lista que contiene los mejores Individuos por generación.
+\item \textbf{\texttt{external\_set\_population}} (\emph{\texttt{Instance}}) -- La Población sobre la cual se efectuarán las operaciones.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un diccionario con los elementos mostrados en la descripción.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+\pysiglinewithargsret{\sphinxbfcode{init\_population}}{\emph{population\_size}}{}~
+\vspace{-0.1cm}
+Crea una Población de manera aleatoria.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population\_size}} (\emph{\texttt{Integer}}) -- El tamaño de la Población.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Model.Community.Community.Population
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+\end{fulllineitems}
+\end{fulllineitems}
+
+La clase en cuestión se apoya de los siguientes 
+elementos:
+%******* Termina función *******
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subsubsection{Population (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_2_1).
+\label{sec:a_2_2_1}
+
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Consiste en un conjunto de instancias de la clase Individual, 
+proporcionando además métodos y atributos que se manifiestan 
+tanto en grupo como de manera individual.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population\_size}} (\emph{\texttt{Integer}}) -- El tamaño de la Población.
+\item \textbf{\texttt{vector\_functions}} (\emph{\texttt{List}}) -- Lista con las funciones objetivo.
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{List}}) -- Lista con las variables de decisión y sus rangos.
+\item \textbf{\texttt{available\_expressions}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene algunas funciones escritas como azúcar sintáctica
+para que puedan ser utilizadas más fácilmente por el usuario y evaluadas más ŕapidamente en el programa \textbf{(véase Controller/XML/PythonExpressions.xml)}.
+\item \textbf{\texttt{number\_of\_decimals}} (\emph{\texttt{Integer}}) -- Número de decimales que tendrá cada solución \textbf{(tanto en variables de decisión como funciones objetivo)}.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Model.Community.Population
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{add\_individual}}{\emph{position}, \emph{complete\_chromosome}}{}
+Añade un Individuo a la Población.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{position}} (\emph{\texttt{Integer}}) -- La posición dentro del arreglo de Individuos 
+donde se colocará el nuevo elemento.
+\item \textbf{\texttt{complete\_chromosome}} (\emph{\texttt{Array}}) -- El cromosoma del Individuo.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{calculate\_population\_properties}}{}{}
+Calcula atributos individuales con base en los 
+valores de toda la Población.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_decision\_variables\_extreme\_values}}{}{}
+Regresa el listado de los valores máximo y mínimo de las 
+variables de decisión para el cálculo de sigma share.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Una colección con los valores máximo y mínimo para las
+variables de decisión.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_individuals}}{}{}
+Regresa los Individuos de la Población.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Estructura que contiene a los Individuos de la Población.
+\item[{Return type}] \leavevmode
+Array
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Empieza función *******
+
+%******* Termina función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_length\_vector\_functions}}{}{}
+Regresa el número de elementos del vector de funciones 
+objetivo.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Número de funciones objetivo.
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_objective\_functions\_extreme\_values}}{}{}
+Regresa el listado de los valores máximo y mínimo de las 
+funciones objetivo para el cálculo de sigma share.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El listado con los valores máximo y mínimo para las
+funciones objetivo.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_size}}{}{}
+Otorga el tamaño de la Población.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El tamaño de la Población.
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_total\_expected\_value}}{}{}
+Regresa el valor esperado de la Población.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El valor esperado.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_total\_fitness}}{}{}
+Captura el Fitness total de la Población.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El valor del Fitness poblacional.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_vector\_variables}}{}{}
+Regresa el vector de variables de decisión.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Conjunto que contiene las variables de decisión con sus rangos.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{print\_info}}{}{}
+Imprime en texto las características de los Individuos
+de la Población, tanto grupales como individuales 
+\textbf{(en consola)}.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_decision\_variables\_extreme\_values}}{\emph{decision\_variables\_extreme\_values}}{}
+Actualiza el listado de valores máximo y mínimo de las
+variables de decisión para el cálculo de sigma share.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{decision\_variables\_extreme\_values}} (\emph{\texttt{Dictionary}}) -- Un conjunto con los valores máximo y mínimo
+de cada una de las variables de decisión.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_objective\_functions\_extreme\_values}}{\emph{objective\_functions\_extreme\_values}}{}
+Actualiza el listado de valores máximo y mínimo de las
+funciones objetivo para el cálculo de sigma share.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{objective\_functions\_extreme\_values}} (\emph{\texttt{List}}) -- Una lista con los valores máximo y mínimo
+de cada una de las funciones objetivo.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_total\_fitness}}{\emph{value}}{}
+Actualiza el Fitness total de la Población.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{value}} (\emph{\texttt{Float}}) -- El valor a actualizar.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{shuffle\_individuals}}{}{}
+Desordena los elementos de la Población.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{sort\_individuals}}{\emph{method}, \emph{is\_descendent}}{}
+Ordena los Individuos de acuerdo a algún 
+criterio dado.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{method}} (\emph{\texttt{String}}) -- El método o atributo sobre el cual se hará la comparación.
+\item \textbf{\texttt{is\_descendent}} (\emph{\texttt{Boolean}}) -- Indica si el ordenamiento es ascendente o descendente.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\end{fulllineitems}
+
+La clase actual tiene como base el siguiente 
+elemento:
+%******* Termina función *******
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\paragraph{Individual (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_2_1_1).
+\label{sec:a_2_2_1_1}
+
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] La base de toda operación lógica.\break
+Consiste en una abstracción de un elemento simple en función
+de un ecosistema.\break
+Si bien la parte esencial es el cromosoma, en esta implementación 
+se añaden algunos elementos extra con la finalidad de facilitar 
+ciertas operaciones.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{complete\_chromosome}} (\emph{\texttt{Array}}) -- El cromosoma que conformará al Individuo.
+\item \textbf{\texttt{vector\_functions}} (\emph{\texttt{List}}) -- Lista que contiene a las funciones objetivo.
+\item \textbf{\texttt{available\_expressions}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene algunas funciones escritas como azúcar sintáctica
+para que puedan ser utilizadas más fácilmente por el usuario y evaluadas más ŕapidamente en el programa \textbf{(véase Controller/XML/PythonExpressions.xml)}.
+\item \textbf{\texttt{number\_of\_decimals}} (\emph{\texttt{Integer}}) -- El número de decimales que deberá tener cada solución, influye en el
+comportamiento del cromosoma.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Model.Community.Population.Individual
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{evaluate\_single\_function}}{\emph{function}, \emph{expressions}}{}
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Evalúa una función objetivo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{function}} (\emph{\texttt{String}}) -- La función que será evaluada.
+\item \textbf{\texttt{expressions}} (\emph{\texttt{Dictionary}}) -- El diccionario que ayuda a evaluar la función.
+Expressions = variables + constantes + funciones built-in.
+\end{itemize}
+\item[{Returns}] \leavevmode
+La función evaluada.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{evaluate\_functions}}{\emph{decision\_variables}}{}
+Evalúa todas las funciones objetivo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{decision\_variables}} (\emph{\texttt{List}}) -- El vector de variables de decisión.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_complete\_chromosome}}{}{}
+Regresa el cromosoma del Individuo.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El cromosoma.
+\item[{Return type}] \leavevmode
+Array
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_decision\_variables}}{}{}~
+\vspace{-0.2cm}
+
+Da el vector de variables de decisión.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El vector de variables de decisión.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_evaluated\_functions}}{}{}
+Regresa las funciones objetivo evaluadas.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Las funciones objetivo evaluadas.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_expected\_value}}{}{}~
+\vspace{-0.2cm}
+
+Se obtiene el valor esperado del Individuo.\break
+Por definición, el valor esperado es el número de posibles
+hijos que puede tener un Individuo. Mientras más apto, más 
+hijos.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El valor esperado.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_fitness}}{}{}
+Regresa el Fitness del Individuo.
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El Fitness.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_niche\_count}}{}{}
+Regresa el valor niche para el Individuo.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El tamaño niche.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_pareto\_dominated}}{}{}
+Regresa el número de soluciones que dominan al 
+Individuo actual.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El número de soluciones que dominan a la actual.
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_pareto\_dominates}}{}{}
+Regresa el número de soluciones que son dominadas por 
+el actual Individuo.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El número de soluciones dominadas.
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_rank}}{}{}
+Regresa la puntuación \textbf{(rank)} que se le 
+designó al Individuo \textbf{(véase Model/Community/Community.py)}.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El rango.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_vector\_functions}}{}{}
+Obtiene el vector de funciones objetivo.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+El vector de funciones objetivo.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{print\_info}}{}{}
+Imprime las características básicas del 
+Individuo \textbf{(en consola)}.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_expected\_value}}{\emph{value}}{}
+Actualiza el valor esperado del Individuo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{value}} (\emph{\texttt{Float}}) -- El valor a actualizar.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_fitness}}{\emph{value}}{}
+Actualiza el valor del Fitness.
+\begin{quote}\begin{description}
+
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{value}} (\emph{\texttt{Float}}) -- El valor a actualizar.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_niche\_count}}{\emph{value}}{}
+Actualiza el valor niche.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{value}} (\emph{\texttt{Float}}) -- El valor a actualizar.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_pareto\_dominated}}{\emph{value}}{}
+Actualiza el número de soluciones que dominan a 
+la solución actual.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{value}} (\emph{\texttt{Integer}}) -- El valor a actualizar.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_pareto\_dominates}}{\emph{value}}{}
+Actualiza el número de soluciones dominadas por el
+Individuo actual.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{value}} (\emph{\texttt{Integer}}) -- El valor a actualizar.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{set\_rank}}{\emph{rank}}{}
+Actualiza el rango del Individuo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{rank}} (\emph{\texttt{Float}}) -- El valor a actualizar.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\end{fulllineitems}
+%******* Termina función *******
+%******* Termina clase *******
+
+%******* Empieza módulo *******
+\subsection{Fitness (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_3).
+\label{sec:a_2_3}
+Este módulo provee técnicas que calculan el Fitness 
+\textbf{(ó Aptitud)} de los Individuals \textbf{(ó Individuos)} 
+de una Population \textbf{(ó Población)}.\medskip\break
+Se entiende por Fitness a un número que indica la calidad del
+Individuo \textbf{(en particular de sus variables de decisión)} 
+frente a las funciones objetivo al momento de ser evaluadas, esto 
+es, a mayor Fitness, mayor es la probalidad de que las variables 
+de decisión del Individuo sean la solución óptima para las funciones 
+objetivo.\medskip\break
+La asignación del Fitness depende en gran medida del ranking que 
+se les haya otorgado a los Individuos previamente 
+\textbf{(véase Model/Community/Community.py)}.\break
+Indirectamente, esto nos indica que un Individuo con un Fitness alto
+tiene más probabilidades de ser elegido en los métodos de Selection 
+\textbf{(ó Selección)} y propagar su carga genética; así en las 
+funciones de dicha sección \textbf{(Model/Operator/Selection)} el 
+criterio para escoger a un Individuo está basado comúnmente en su 
+Fitness.\medskip\break
+Al final la meta es que el usuario cree sus propias versiones de 
+asignación de Fitness, para lo cual es imperativo que, además de 
+agregar la descripción de la codificación a Controller/XML/Features.xml 
+\textbf{(véase el archivo mencionado en la sección de código)}, se 
+implemente la siguiente función:
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{assign\_fitness}}{\emph{population}, \emph{fitness\_parameters}}{}
+Realiza la asignación de Fitness de los Individuos.\break
+Dentro de esta se suelen usar métodos de la clase Population 
+\textbf{(véase Model/}\break\textbf{Community/Population/Population.py)} y de 
+la clase Individual \textbf{(véase Model/}\break\textbf{Community/Population/Individual/Individual.py)}, 
+por lo que es muy recomendable que el usuario verifique las 
+funciones disponibles. Algunas de las que se ocupan más 
+frecuentemente son:
+
+\begin{itemize}
+\item \textbf{get\_rank (Individual)}
+\item \textbf{set\_fitness (Individual).}
+\item \textbf{set\_total\_fitness (Population)}
+\item \textbf{calculate\_population\_properties (Population)}
+\end{itemize}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la cual se hará el cálculo de Fitness por cada Individuo.
+\item \textbf{\texttt{fitness\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que puede contener opciones adicionales para el cálculo
+de Fitness.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+Sólo concierne añadir un detalle adicional; se asume por defecto que las
+funciones antes mencionadas se encuentran implementadas en cada uno de los
+elementos de este módulo, por ello es que primordialmente se mostrarán 
+aquéllas que no se contemplen en el esquema original, es decir, funciones 
+auxiliares.\break
+En el caso muy específico en el que alguna de las funciones obligatorias 
+contenga información importante también se adjuntarán en el documento.\medskip\break  
+Ahora se muestran los elementos que conforman el 
+módulo actual:
+%******* Termina función *******
+
+%******* Empieza script *******
+\subsubsection{LinearRankingFitness (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_3_1).
+\label{sec:a_2_3_1}
+Se implementa la asignación de Fitness conocida como 
+Linear Ranking \textbf{(ó Ranking Lineal)}. Es denominada 
+así porque el Fitness se asigna con una función lineal que 
+tiene como fundamento la posición que ocupa el Individuo dentro 
+de la Población.\break
+El procedimiento es: tomando en cuenta el ranking asignado a 
+los Individuals \textbf{(ó Individuos)} por la clase Community 
+\textbf{(véase Model/Community/Community.py)} se ordenan de 
+acuerdo a este valor y entonces el Fitness se basa en la posición 
+que cada uno de los Individuos ocupa. Más en específico, el Fitness 
+está proporcionado por la siguiente fórmula:
+
+\begin{center}\(Fitness(Individuo) = 2 - SP + \frac{2 \cdot (SP - 1) \cdot posici\acute{o}n(Individuo)}{tama\tilde{n}o\_poblaci\acute{o}n - 1}\)
+\end{center}
+
+Donde:
+
+\begin{itemize}
+\item \textbf{SP (Selective Pressure ó Presión Selectiva)} es un valor que oscila entre 1 y 2.
+\item \textbf{Posición(Individuo)} es la que ocupa el Individuo de acuerdo al rank.
+\end{itemize}
+
+Haciendo un análisis somero en la fórmula, se puede apreciar que los
+Individuos con mejor Fitness serán aquéllos que se encuentren en las 
+últimas posiciones, sin embargo los rankings que se manejan en este 
+proyecto son inversamente proporcionales a la calidad de los Individuos 
+\textbf{(véase Model/Community/Community.py)}; por ello es importante 
+ordenar a los Individuos de manera descendente para que la operación 
+tenga sentido. La función encargada de esto se llama sort\_individuals 
+y está en \textbf{Model/Community/}\break\textbf{Population/Population.py}.
+%******* Termina script *******
+
+%******* Empieza script *******
+\subsubsection{NonLinearRankingFitness (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_3_2).
+\label{sec:a_2_3_2}
+Se implementa la asignación de Fitness conocida como Non-Linear Ranking
+\textbf{(ó Ranking No Lineal)} que, a diferencia de los demás métodos, 
+la aplica usando como base la posición del Individual \textbf{(ó Individuo)} 
+en la Population \textbf{(ó Población)} como resultado de las operaciones 
+de ranking \textbf{(véase Model/Community/Community.py)}.\break
+Posteriormente el Fitness se constituye tomando la posición del 
+Individuo y una función polinomial \textbf{(la cual es una función no lineal, de ahí el nombre)}.
+La fórmula es la siguiente:
+
+\begin{center}\(Fitness(Individuo) = \frac{TP \cdot X^{posici\acute{o}n(Individuo)}}{\sum_{i=1}^{TP}X^{i - 1}}\)
+\end{center}
+
+Donde:
+
+\begin{itemize}
+\item \textbf{TP} es el tamaño de la Población.
+\item \textbf{Posición(Individuo)} es la que ocupa éste de acuerdo al ranking previo.
+\item \textbf{X} es la solución al polinomio: \((SP - TP) \cdot X^{TP - 1} + SP \cdot X^{TP - 2} + ... + SP \cdot X + SP = 0\)
+\item \textbf{SP (Selective Pressure ó Presión Selectiva)} varía entre 1 y 2.
+\end{itemize}
+
+Haciendo un análisis somero en la fórmula, se puede apreciar que los
+Individuos con mejor Fitness serán aquéllos que se encuentren en las 
+últimas posiciones, sin embargo los rankings que se manejan en este 
+proyecto son inversamente proporcionales a la calidad de los Individuos 
+\textbf{(véase Model/Community/Community.py)}; por ello es importante 
+ordenar a los Individuos de manera descendente para que la operación 
+tenga sentido. La función encargada de esto se llama sort\_individuals 
+y está en \textbf{Model/Community/}\break\textbf{Population/Population.py}.
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{calculate\_root}}{\emph{polynome}, \emph{x\_0}, \emph{epsilon}}{}~\begin{description}
+\item[] Calcula la solución de un polinomio usando el método 
+Newton-Raphson.\break
+A grandes rasgos el funcionamiento es el siguiente:
+\end{description}
+
+Tomando como base el punto \(x_0\) se obtiene \(x_1\) así:
+
+\begin{center}\(x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}\)
+\end{center}
+
+Una vez obtenido \(x_1\) se calcula \(x_2\) de la misma manera:
+
+\begin{center}\(x_2 = x_1 - \frac{f(x_1)}{f'(x_1)}\)
+\end{center}
+
+El proceso se repite para `n' iteraciones hasta que 
+el valor alcance la precisión de epsilon ó el polinomio ya 
+no tenga más derivadas. Concretando lo anterior:
+
+\begin{center}\(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\)
+\end{center}
+
+Cuando \(x_{n+1}\) se acerque a epsilon ó cuando el
+polinomio no sea más derivable el método se detendrá.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{polynome}} (\emph{\texttt{List}}) -- El polinomio en el que se buscará la solución.
+\item \textbf{\texttt{x\_0}} (\emph{\texttt{Float}}) -- el punto sobre el que se hará la evaluación del polinomio.
+\item \textbf{\texttt{epsilon}} (\emph{\texttt{Float}}) -- La precisión decimal que se necesita para poder devolver
+el resultado.
+\end{itemize}
+\item[{Returns}] \leavevmode
+La solución al polinomio.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{derivate}}{\emph{polynome}}{}
+Método que calcula la derivada de un polinomio, 
+modificando directamente éste sin regresar nada.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{polynome}} (\emph{\texttt{List}}) -- El polinomio inicial.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{evaluate\_polynome}}{\emph{polynome}, \emph{x}}{}
+Evalúa un polinomio en un cierto valor.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{polynome}} (\emph{\texttt{List}}) -- El polinomio a evaluar.
+\item \textbf{\texttt{x}} (\emph{\texttt{Float}}) -- El valor sobre el que se evaluará el polinomio.
+\end{itemize}
+\item[{Returns}] \leavevmode
+La evaluación del polinomio.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+%******* Termina script *******
+
+%******* Empieza script *******
+\subsubsection{ProportionalFitness (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_3_3).
+\label{sec:a_2_3_3}
+Se desarrolla la asignación de Fitness conocida como 
+Proportional \textbf{(ó Proporcional)}.\break
+La función \textbf{(ó fórmula)} utilizada es la siguiente:
+
+\begin{center}\(Fitness(Individuo) = \frac{F_0(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}F_0(Individuo_i)}\)
+\end{center}
+
+Donde:
+
+\begin{itemize}
+\item \(F_0\) es conocido como el valor de la función objetivo del Individuo. Nótese que \(F_0\) debe ser proporcional al Fitness del Individuo.
+\end{itemize}
+
+De acuerdo a la información provista anteriormente, la asignación 
+es llamada así porque, como dice el nombre, el Fitness de un Individuo 
+corresponde a la parte proporcional de la cantidad total de \(F_0\) de 
+la Population \textbf{(ó Población)}.\break
+De esta manera es posible ajustar los valores para que no existan 
+Fitness dispares. Con respecto de \(F_0\) es importante considerar 
+que, dado que se está manejando un sistema multi objetivo puede haber 
+más de un valor en existencia,  por ello se necesita una cantidad que 
+conjunte estas evaluaciones el cual es el rank, sin embargo el rank 
+es inversamente proporcional a la calidad de un Individuo.\break
+Entonces se debe hacer una modificación para garantizar que exista un valor
+proporcional al Fitness del Individuo, por lo cual \(F_0\) se reescribe así:
+
+\begin{center}\(F_0(Individuo) = tama\tilde{n}o\_poblaci\acute{o}n - rank(Individuo)\)
+\end{center}
+
+Reescribiendo la fórmula inicial se tiene lo siguiente:
+
+\begin{center}\(Fitness(Individuo) = \frac{tama\tilde{n}o\_poblaci\acute{o}n - rank(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}[tama\tilde{n}o\_poblaci\acute{o}n - rank(Individuo_i)]}\)
+\end{center}
+
+Con esta actualización ya es posible obtener un Fitness acorde al 
+rank del Individuo sin alterar la esencia de la técnica.
+
+%******* Termina script *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsection{Operator (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4).
+\label{sec:a_2_4}
+En éste se encuentran implementadas todas aquellas funcionalidades 
+que intervengan en el proceso de la creación de una nueva Population 
+\textbf{(ó Población)} hija.\medskip\break
+La finalidad de ésto es propagar y realizar combinaciones de la 
+carga genética de los Individuals \textbf{(ó Individuos)} más aptos 
+mediante el cromosoma \textbf{(véase Model/}\break\textbf{ChromosomalRepresentation)} 
+para obtener soluciones con una mejor calidad que sus predecesoras.\medskip\break
+Para este punto es importante mencionar que la calidad de un Individuo 
+es directamente proporcional a su Fitness \textbf{(véase Model/Fitness)}.\medskip\break
+En términos generales, la manera de construir una Población hija es 
+la siguiente:
+
+\begin{itemize}
+\item De la Población actual y tomando como base el Fitness de cada Individuo se seleccionan aquéllos que serán los elegidos para reproducirse. Nótese que un Individuo puede ser tomado en cuenta más de una vez si se da el caso.
+\item Con base en los elegidos, se toman sus respectivos cromosomas y se realiza la operación de Crossover \textbf{(ó Cruza)}. Ésta es una simulación de una reproducción de tipo sexual donde se toman dos padres para ``procrear'' dos hijos. \break Las características de los hijos dependerán de las técnicas usadas \textbf{(véase Model/}\break\textbf{Operator/Crossover)}.
+\item Se toman los hijos y uno a uno se les aplica la operación de mutación.
+\end{itemize}
+
+Al final Población hija constará de los hijos ``mutados''.\medskip\break
+A continuación se muestran las siguientes subcategorías correspondientes 
+a los pasos descritos anteriormente, cada una con sus respectivas técnicas 
+desarrolladas:
+
+%******* Empieza módulo *******
+\subsubsection{Selection (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_1).
+\label{sec:a_2_4_1}
+En esta sección se encuentran implementadas todas las técnicas 
+relacionadas con la selección de Individuos.\break
+Como se ha mencionado antes, durante dicha operación la 
+importancia de la elección radica en el Fitness de cada Individuo, 
+además un Individuo puede ser seleccionado más de una vez si la 
+causa lo amerita.\break
+Así, se elegirán tantos Individuos como elementos haya en la Población.\medskip\break
+El objetivo radica en mantener el equilibrio entre una ``selección justa'' y
+la oportunidad de permitir a los Individuos con una calidad media o baja 
+la propagación de su carga genética.\medskip\break
+Al final se busca que el usuario desarrolle sus propias técnicas de 
+selección, por lo cual, además de añadir el método en el listado 
+localizado en \textbf{Controller/XML/Features.xml}, deberá implementar 
+la siguiente función:
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{execute\_selection\_technique}}{\emph{population}, \emph{selection\_parameters}}{}~
+\vspace{-0.1cm}
+
+Lleva a cabo la selección de Individuos de una Población. 
+Es importante recalcar que, la función que más se ocupa es:
+
+\begin{center}\textbf{get\_fitness (Model/Community/Population/Individual.py)}
+\end{center}
+
+Aunque existen otras que pueden tener relevancia para el usuario 
+\textbf{(véase Model/}\break\textbf{Community/Population.py)}.\medskip\break
+Como medida adicional, para los eventos de Crossover \textbf{(ó Cruza)} 
+y Mutation \textbf{(ó Mutación)} se recomienda ampliamente que este 
+método regrese únicamente los cromosomas asociados a los Individuos, 
+ya que ésto facilita sobremaneralas operaciones mencionadas.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la cual se se seleccionarán los Individuos.
+\item \textbf{\texttt{selection\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que puede contener opciones adicionales para la
+selección de Individuos.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Una lista que contiene los cromosomas de los Individuos seleccionados.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+Es conveniente mencionar que se asume por defecto que las funciones antes 
+mencionadas se encuentran implementadas en cada uno de los elementos de este 
+módulo, por ello es que primordialmente se mostrarán aquéllas que no se 
+contemplen en el esquema original, es decir, funciones auxiliares.\break
+En el caso muy específico en el que alguna de las funciones obligatorias 
+contenga información importante también se adjuntarán en el documento.\medskip\break  
+A continuación se vislumbran los elementos característicos 
+de este módulo:
+%******* Termina función *******
+
+%******* Empieza script *******
+\paragraph{Roulette (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_1_1).
+\label{sec:a_2_4_1_1}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se implementa el método de selección conocido como 
+Roulette \textbf{(ó Ruleta)}.\break
+También es llamado Proportional Selection \textbf{(ó Selección Proporcional)}.\break
+En la función se distinguen dos etapas principales: construir 
+la ruleta y ``ponerla a girar'' para que se elija al elemento.\medskip\break
+Para la primera etapa se toma como base el Valor Esperado 
+\textbf{(ó Expected Value)} de cada Individuo 
+\textbf{(véase Model/Community/Population/Individual.py)}.\medskip\break
+El Valor Esperado para fines de este proyecto es el número de 
+``hijos'' que un Individuo puede ofrecer. Éste se calcula de la 
+siguiente forma:
+
+\begin{center}\(Valor\_Esperado(Individuo) = \frac{tama\tilde{n}o\_poblaci\acute{o}n \cdot Fitness(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}Fitness(Individuo_i)}\)
+\end{center}
+
+Al final aquéllos con Valores Esperados altos tendrán lugar 
+a mayores espacios en la ruleta y por ende su probabilidad 
+de elección aumenta.\medskip\break
+Para recorrer la ruleta en realidad se toma un valor aleatorio 
+entre 0 y la suma de los Valores Esperados. Entonces se van 
+sumando los Valores Esperados de los Individuos hasta que se 
+exceda el valor aleatorio mencionado antes. Aquel elemento cuyo 
+Valor Esperado haya excedido la suma se considera el elegido y 
+es seleccionado para la etapa de cruza.\medskip\break
+Para la selección de Individuos se efectúa la segunda operación 
+tantas veces como el tamaño de la Población.\break
+Cabe mencionar que el Valor Esperado ya se calcula de manera 
+automática en este proyecto \textbf{(véase Model/Community/Population/Population.py)}.
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+
+%******* Empieza script *******
+\paragraph{ProbabilisticTournament (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_1_2).
+\label{sec:a_2_4_1_2}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se desarrolla la técnica conocida como Torneo 
+Probabilístico \textbf{(ó Probabilistic Tournament)}.\break
+Tal como lo sugiere el nombre, la selección será 
+llevada a cabo en forma de competencia directa 
+entre los Individuos.\break
+Tradicionalmente se comparan sus Fitness y de esta 
+manera el Individuo ganador es aquél con la cantidad 
+mayor de Fitness, pero dado que se maneja un esquema 
+probabilístico la decisión no depende totalmente del 
+factor antes mencionado.\medskip\break
+De esta manera se pueden recapitular los siguientes pasos:
+
+\begin{itemize}
+\item Tomar k \((2 \leqslant k \leqslant tama\tilde{n}o\_poblaci\acute{o}n)\) Individuos de la Población.
+\item Realizar el torneo de manera secuencial entre los elementos seleccionados anteriormente, esto es, tomar el elemento A y enfrentarlo con B, al resultado de la batalla anterior enfrentarlo con C y así sucesivamente.
+\end{itemize}
+
+Para ello por cada encuentro se crea un número aleatorio 
+entre 0 y 1, si el número es menor a 0.5 se toma al elemento 
+con menor Fitness, de lo contrario se elige al de mayor 
+Fitness.\break
+La operación se lleva a cabo hasta que se tenga un ganador 
+de los k Individuos.
+
+Los dos pasos anteriores se repiten hasta que se hayan obtenido 
+tantos Individuos como el tamaño de la Población.
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+
+%******* Empieza script *******
+\paragraph{StochasticUniversalSampling (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_1_3).
+\label{sec:a_2_4_1_3}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se determina la técnica conocida como Stochastic 
+Universal Sampling \textbf{(ó Muestreo Estocástico Universal)}.\break
+Primero que nada es menester mencionar que es necesario 
+el uso del Expected Value \textbf{(ó Valor Esperado)} 
+de cada Individuo.\medskip\break
+Para fines concernientes a este proyecto, se trata 
+del número de ``hijos'' que un Individuo puede 
+ofrecer. Éste se calcula de la siguiente forma:
+
+\begin{center}\(Valor\_Esperado(Individuo) = \frac{tama\tilde{n}o\_poblaci\acute{o}n \cdot Fitness(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}Fitness(Individuo_i)}\)
+\end{center}
+
+Con base a lo anterior, el método consiste en lo siguiente:
+
+\begin{itemize}
+\item Se selecciona un valor aleatorio entre 0 y 1, a éste se le llamará Pointer \textbf{(ó Puntero)}
+\item De manera secuencial se seleccionarán tantos Individuos como el tamaño de la Población, los cuales deben estar igualmente espaciados en su Valor Esperado tomando como referencia el valor de Pointer.
+\end{itemize}
+
+Es importante aclarar el segundo punto, así que se abordará 
+desde una perspectiva computacional:
+
+\begin{itemize}
+\item Se deben tener variables adicionales que indiquen la acumulación tanto del Pointer \textbf{(CP, Cumulative Pointers)} como de los Valores Esperados \textbf{(CEV, Cumulative Expected Value)} así como al Individuo actual que está siendo seleccionado \textbf{(I)}.
+\item Para averiguar si un Individuo está igualmente espaciado en su Valor Esperado con respecto de los demás basándose en Pointer, basta con corroborar que:
+
+\begin{center}\(CP + Pointer > CEV + EV\)
+\end{center}
+
+\item Si la condición descrita es verdadera los valores EV e I deben actualizarse \textbf{(I se ajusta al siguiente Individuo)} ya que esto indica que se buscará al siguiente Individuo espaciado equitativamente con el valor Pointer. No se hace nada si la condición es falsa.
+\item Independientemente del valor de la condición anterior, CP y CEV deben actualizarse durante todo el ciclo.
+\end{itemize}
+
+Cabe mencionar que si la lista de Individuos se agota, 
+se puede volver a iterar desde el inicio teniendo cautela en 
+conservar CEV y CP.
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{Crossover (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_2).
+\label{sec:a_2_4_2}
+Aquí se desarrollan las técnicas de Crossover 
+\textbf{(ó Cruza)}.\medskip\break
+Prosiguiendo con el ciclo de creación de una nueva Población, 
+es en este apartado donde se lleva a cabo la concepción de 
+nuevos Individuos.\break
+Debido a esto se busca crear ``hijos'' más aptos que respondan 
+mejor ante la problemática fundamentada, es decir, concebir 
+soluciones que se adapten mejor a los criterios establecidos
+por el usuario desde un inicio basándose en las soluciones 
+predecesoras.\medskip\break
+Es menester mencionar que esta función es meramente binaria, 
+lo cual significa que siempre deben haber dos padres, además 
+se debe hacer hincapié en que la Cruza se ejecuta a nivel cromosómico 
+\textbf{(véase Model/ChromosomalRepresentation)},por lo que se 
+debe tener mesura con el tratamiento de los métodos, dicho de otra 
+manera, cada Representación Cromosómica debe ir acompañada de al 
+menos una función de Cruza.\medskip\break
+Como dato para posteriores referencias, un gen hace referencia 
+a una casilla del cromosoma mientras que un alelo es el valor 
+que puede existir en un gen.\break
+Entonces se persigue que el usuario construya sus propias funciones 
+de Cruza, para lo cual, además de añadir el método en el listado 
+localizado en \textbf{Controller/XML/Features.xml}, deberá implementar 
+la siguiente función:
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{execute\_crossover\_technique}}{\emph{chromosome\_a}, \emph{chromosome\_b}, \emph{crossover\_parameters}}{}~
+\vspace{-0.1cm}
+
+Lleva a cabo la cruza de dos Individuos a nivel cromosómico.\break
+Además esta función debe retornar siempre dos hijos los cuales 
+serán la cruza de A con B y la cruza de B con A, esto nos indica que, 
+con el objetivo de incrementar la calidad de los Individuos sin perder 
+la carga genética ganada o introducir elementos riesgosos, la cruza 
+consiste en generar un nuevo Individuo y su recíproco; así se garantiza 
+una adecuada y controlada descendencia.\medskip\break
+Finalmente, esta función debe contar con la probabilidad de Cruza, la 
+cual indica si se debe o no hacer la operación cromosómica; en caso 
+de ser la respuesta negativa los hijos resultan en copias idénticas 
+de los padres.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{chromosome\_a}} (\emph{\texttt{List}}) -- El cromosoma del Individuo A.
+\item \textbf{\texttt{chromosome\_b}} (\emph{\texttt{List}}) -- El cromosoma del Individuo B.
+\item \textbf{\texttt{crossover\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que puede contener opciones adicionales para la
+cruza de Individuos.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un arreglo con dos cromososomas, el primero es la cruza de A con B, mientras que el segundo
+es la cruza de B con A.
+\item[{Return type}] \leavevmode
+Array
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+Es menester considerar que se asume por defecto que las funciones antes 
+mencionadas se encuentran implementadas en cada uno de los elementos de 
+este módulo, por ello es que primordialmente se mostrarán aquéllas que 
+no se contemplen en el esquema original, es decir, funciones auxiliares.\break
+En el caso muy específico en el que alguna de las funciones obligatorias 
+contenga información importante también se adjuntarán en el documento.\medskip\break  
+Se colocan los elementos alusivos a este módulo:
+%******* Termina función *******
+
+%******* Empieza script *******
+\paragraph{NPointsCrossover (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_2_1).
+\label{sec:a_2_4_2_1}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se implementa el método que lleva por nombre N-Points 
+Crossover \textbf{(ó Cruza en N-Puntos)}.\break
+Para comenzar, esta técnica está elaborada para usarse 
+tanto por Representación Cromosómica \textbf{(véase Model/ChromosomalRepresentation)} 
+de tipo FloatPoint \textbf{(ó de Punto Flotante)} como Binary \textbf{(ó Binaria)}.\medskip\break
+Su funcionamiento consiste en construir a los descendientes 
+usando sub-bloques de cromosomas de cada uno de los padres, 
+determinados éstos por una cierta cantidad de puntos de corte, 
+de ahí el nombre.\break
+Aterrizando lo anterior de una manera concisa se tiene lo siguiente:
+
+\begin{itemize}
+\item Consideremos a los cromosomas de los padres Padre I: \(I_1I_2...I_n\) y Padre J: \(J_1J_2...J_n\)
+\item Posteriormente se determinan aleatoriamente los puntos de corte, cabe mencionar que si los cromosomas son de tamaño n, pueden existir máximo n - 1 puntos. Supongamos que se crean k puntos \((1 \leqslant k \leqslant n - 1)\) y por lo tanto cada cromosoma queda separado en k + 1 bloques.\break
+De esta manera obtenemos:
+      \begin{itemize}
+      \item Padre I en bloques \textbf{(BI)}: \(BI_1BI_2...BI_{k + 1}\);
+      \item Padre J en bloques \textbf{(BJ)}: \(BJ_1BJ_2...BJ_{k + 1}\).
+      \end{itemize}
+\item Finalmente cada hijo constará de la alternancia de bloques de manera secuencial comenzando por el bloque inicial de un padre determinado, dicho de otra forma, los hijos estarán constituidos de la siguiente manera:
+      \begin{itemize}
+      \item Para el hijo \(H_1\): \(BI_1BJ_2...BI_{k + 1}\)
+      \item Para el hijo \(H_2\): \(BJ_1BI_2...BJ_{k + 1}\)
+      \end{itemize}
+\end{itemize}
+
+Sólo queda mencionar que hasta el cierre de este proyecto 
+no existe una manera transparente desde el View \textbf{(ó Vista)} 
+de conocer, dada una representación Binaria y un conjunto de variables 
+de decisión y funciones objetivo, el número máximo de puntos de 
+corte permitidos para este procedimiento, sin embargo, una manera 
+de mitigar esta situación fue contemplar algún posible caso de error 
+en esta sección y mandar un mensaje de error a la Vista por si 
+llegase a suceder algún desperfecto durante el proceso.
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+
+%******* Empieza script *******
+\paragraph{UniformCrossover (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_2_2).
+\label{sec:a_2_4_2_2}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se lleva a cabo la implementación de la técnica conocida 
+como Uniform Crossover \textbf{(ó Cruza Uniforme)}.\medskip\break
+Primero que nada esta operación está fabricada para usarse 
+tanto con la Representación Cromosómica \textbf{(véase Model/ChromosomalRepresentation)}
+de tipo FloatPoint \textbf{(ó Punto Flotante)} como Binary 
+\textbf{(ó Binaria)}.\break
+La característica de este procedimiento es crear nuevos Individuos 
+intercambiando secuencialmente los genes de sus padres; visto 
+de una manera más estructurada consiste en lo siguiente:
+
+\begin{itemize}
+\item Tenemos a los cromosomas de los padres Padre A: \(A_1A_2...A_n\) y Padre B: \(B_1B_2...B_n\)
+\item Ahora, cada hijo será construido con genes de uno y sólo uno de los padres a menos que se indique lo contrario; este movimiento será posible con una variable denominada Pmask \textbf{(Pm)} que toma valores de 0 a 1 y una probabilidad de Pmask \textbf{(Pp)} que también toma valores de 0 a 1. Entonces lo anterior se puede declarar así:
+\item Para el hijo \((H_1)\) que tomará sus genes del padre A \textbf{(PA)}:
+      \begin{itemize}
+      \item Si \(Pm \leqslant Pp\ entonces\ H_1(i) = A_i,\ en\ otro\ caso\ H_1(i) = B_i; 1 \leqslant i \leqslant n\)
+      \end{itemize}
+\item Para el hijo \((H_2)\) que tomará sus genes del padre B \textbf{(PB)}:
+      \begin{itemize}
+      \item Si \(Pm \leqslant Pp\ entonces\ H_2(i) = B_i,\ en\ otro\ caso\ H_1(i) = A_i; 1 \leqslant i \leqslant n\)
+      \end{itemize}
+\end{itemize}
+
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{Mutation (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_3).
+\label{sec:a_2_4_3}
+En esta parte se encuentran detalladas las técnicas 
+relacionadas con Mutation \textbf{(ó Mutación)}.\medskip\break
+Retomando el proceso de creación de una nueva Población, 
+es aquí donde una vez obtenidos los hijos, se modifican 
+pequeñas porciones \textbf{(genes)} de sus cromosomas 
+de manera individual.\break
+Con ésto se persigue principalmente que estas ínfimas 
+alteraciones permitan incrementar la exploración del 
+material genético y por ende otorgar Individuos aún más 
+aptos sin caer en el peligro de perder características 
+valiosas en la Población.\medskip\break
+Considerando lo anterior, lo primero que hay que tomar en 
+cuenta es que la operación de Mutación es unaria, esto 
+significa que sólo se puede mutar el cromosoma de un 
+Individuo a la vez.\break
+También y reiterando la información pasada, la Mutación 
+es una operación que se lleva a cabo a nivel cromosómico 
+\textbf{(véase Model/ChromosomalRepresentation)}, por lo 
+que se debe tener mesura con el tratamiento de los métodos, 
+dicho de otra manera, cada Representación Cromosómica debe 
+ir acompañada de al menos una función de Mutación.\medskip\break
+Como dato para posteriores referencias, un gen hace referencia 
+a una casilla del cromosoma, mientras que un alelo es el 
+valor que puede existir en un gen.\break
+Así, se invita a que el usuario construya sus propias 
+versiones de Mutación, por lo cual, además de añadir el 
+método en el listado localizado en \textbf{Controller/XML/Features.xml}, 
+deberá implementar la siguiente función:
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{execute\_mutation\_technique}}{\emph{chromosome}, \emph{mutation\_parameters}}{}~
+\vspace{-0.1cm}
+
+Lleva a cabo mutación del Individuo a nivel cromosómico.\break
+A grandes rasgos, modifica los alelos de los genes tomando 
+en cuenta la gama de valores a los que se pueden transformar 
+\textbf{(por ejemplo, una mutación de representación Binaria puede transformarse sólo en valores 0 ó 1)}.\medskip\break
+El método debe retornar siempre el cromosoma mutado.\break
+Finalmente, esta función debe contar con la probabilidad de Mutación,
+la cual indica si se debe o no hacer la operación cromosómica 
+por cada gen; en caso de ser la respuesta negativa el Individuo 
+no experimenta modificación alguna en el gen y se pasa al 
+siguiente y así sucesivamente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{chromosome}} (\emph{\texttt{List}}) -- El cromosoma para ser mutado.
+\item \textbf{\texttt{mutation\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que puede contener opciones adicionales para la
+mutación del cromosoma del Individuo.
+\end{itemize}
+\item[{Returns}] \leavevmode
+El cromosoma modificado.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+Se debe tomar en cuenta que se asume por defecto que las funciones antes 
+mencionadas se encuentran implementadas en cada uno de los elementos de 
+este módulo, por ello es que primordialmente se mostrarán aquéllas que 
+no se contemplen en el esquema original, es decir, funciones auxiliares.\break
+En el caso muy específico en el que alguna de las funciones obligatorias 
+contenga información importante también se adjuntarán en el documento.\medskip\break  
+A continuación se muestran los elementos concernientes a este módulo:
+%******* Termina función *******
+
+%******* Empieza script *******
+\paragraph{BinaryMutation (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_3_1).
+\label{sec:a_2_4_3_1}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se implementa el método conocido como Binary Mutation 
+\textbf{(ó Mutación Binaria)}.\break
+El procedimiento es el siguiente:
+
+\begin{itemize}
+\item Se trata cada gen individualmente y se modifica de acuerdo a una probabilidad de Mutación asignada, si ésta es suficiente se procede a hacer el cambio, en otro caso se deja el alelo asociado al gen intacto.
+\item Retomando el caso en que se puede modificar el alelo del gen se verifica su valor actual y ya que se maneja una representación Binaria su transformación es muy simple: si se encuentra un 0, el alelo toma el valor 1 y viceversa.
+\end{itemize}
+
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+
+%******* Empieza script *******
+\paragraph{FloatPointMutation (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_4_3_2).
+\label{sec:a_2_4_3_2}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se concreta el método conocido como Float Point 
+Mutation \textbf{(ó Mutación de Punto Flotante)}.\break
+El procedimiento es el siguiente:
+
+\begin{itemize}
+\item Se trata cada gen individualmente y se modifica de acuerdo a una probabilidad de Mutación asignada, si ésta es suficiente se procede a hacer el cambio, en otro caso se deja el alelo asociado al gen intacto.
+\item Retomando el caso en que se puede modificar el alelo del gen se verifica los límites de la variable de decisión que está ligada a éste, así como la precisión decimal. Entonces se crea el nuevo número con la precisión decimal requerida y se sustituye por el anterior.
+\end{itemize}
+
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsection{SharingFunction (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_5).
+\label{sec:a_2_5}
+En esta sección se almacenan las técnicas relativas 
+al Sharing Function \textbf{(ó Función de Compartición)}.\medskip\break
+El objetivo de estas técnicas se delega a un rol secundario pero 
+aún así muy importante y consiste en realizar un filtrado más 
+minucioso de los mejores Individuos y así tomar a los candidatos 
+elegidos para dejar descendencia.\break
+La operación es útil en casos en el que la calidad de los 
+Individuos es muy similar y entonces se desea seleccionar a 
+los que son superiores, sin embargo, es menester mencionar que, 
+en exceso, dicha selección parsimoniosa puede dar lugar a un efecto 
+negativo del Selective Pressure \textbf{(ó Presión Selectiva, véase Model/MOEA)}.\break
+Esto provoca que, lejos de dar una Población de elementos 
+óptimos, los Indviduos se queden estancados puesto que al tener 
+todos cargas genéticas muy similares, existe una pobre exploración 
+genética en sus cromosomas y entonces no se llegará a una optimización 
+de funciones objetivo adecuada.\medskip\break
+Es por ello que no todos los MOEAS \textbf{(véase Model/MOEA)} 
+lo utilizan, sin embargo se decidió implementar esta sección ya que 
+extrapolando las circunstancias, en cualquier momento se puede hacer 
+uso de técnicas de esta índole.\medskip\break
+Haciendo énfasis en la parte matemática, el Sharing Function funciona así:\medskip\break
+Cada Individual \textbf{(ó Individuo)} tendrá asociado un Shared Fitness 
+\textbf{(ó Fitness Compartido)} que fungirá como el Fitness original asignado 
+a cada Individo y el cual será obtenido de la siguiente manera:
+
+\begin{center}\(SharedFitness(Individuo) = \frac{Fitness(Individuo)}{NicheCount(Individuo)}\)
+\end{center}
+
+Para fines de implementación el Shared Fitness será colocado en 
+la misma variable utilizada para almacenar el Fitness original, 
+esto por cada Individuo.\medskip\break
+El Niche Count es un valor que indica qué tan cercano en calidad 
+se encuentra un Individuo con respecto de los demás. La forma de 
+calcularlo es la siguiente:
+
+\begin{center}\(NicheCount(Individuo) = \sum_{j=1}^{tama\tilde{n}o\_poblaci\acute{o}n}SF(D(Individuo,Individuo_j))\)
+\end{center}
+
+Donde \(D(Individuo_i,Individuo_j)\) es la distancia que existe 
+entre el Individuo i y el Individuo j; mientras que el SF es el 
+Sharing Function.\break
+Entonces el SF se define como:
+
+\begin{center}\(SF(D(Individuo_i,Individuo_j)) = \left\{ \begin{array}{lcc}
+              1 - (\frac{D(Individuo_i,Individuo_j)}{\sigma_{share}})^{\alpha},\ \ si\ \ D < \sigma_{share}. \\
+              \\ 0,\ \ en\ cualquier\ otro\ caso. \\
+         \end{array}
+\right.\)
+\end{center}
+
+Donde \(\alpha\) es una variable que casi siempre se asigna a 
+1 \textbf{(aunque en este proyecto se le da la libertad al usuario de seleccionar valores distintos)} y 
+\(\sigma_{share}\) marca el límite en el cual dos Individuos se 
+consideran cercanos en calidad, es decir, viven en el mismo Niche.\medskip\break
+Llegados a este punto, si bien la parte que se utilizará finalmente 
+es el Shared Fitness, sólo las técnicas concernientes a 
+\(D(Individuo_i,Individuo_j)\) serán las que se implementen en esta 
+sección, pues lo demás siempre se mantendrá estático.\break
+Siendo más específicos con base en lo anterior, existen dos 
+tipos de funciones de Distancia:
+
+\begin{itemize}
+\item De Similaridad Genotípica \textbf{(ó Genotypic Similarity)}.
+\item De Similaridad Fenotípica \textbf{(ó Phenotypic Similarity)}.
+\end{itemize}
+
+La primera indica en pocas palabras que la comparación se 
+hará usando únicamente características relacionadas con el 
+cromosoma, mientras que la segunda implicará la comparación 
+de características externas como las funciones objetivo evaluadas 
+con las variables de decisión de cada Individuo ó las variables de 
+decisión por sí solas.\medskip\break
+Eventualmente se desea que el usuario implemente sus propias funciones, 
+por ello es que, además de añadir el método en el listado localizado 
+en \textbf{Controller/XML/Features.xml}, deberá implementar las siguientes 
+funciones:
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{calculate\_sigma\_share}}{\emph{population}, \emph{sharing\_function\_parameters}}{}~
+\vspace{-0.1cm}
+
+Realiza el cálculo del factor \(\sigma_{share}\) sobre el cual se 
+hará el cuestionamiento de Individuos cercanos en calidad.\break
+Es importante mencionar que la función debe regresar un escalar 
+que representa el límite máximo para el cual dos Individuos se 
+consideran en el mismo Niche.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{population}} (\emph{\texttt{Instance}}) -- La Población sobre la cual se hará el cálculo correspondiente.
+\item \textbf{\texttt{sharing\_function\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que puede contener opciones adicionales para
+el cálculo de la distancia entre Individuos.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un valor escalar que representa el límite de cercanía para cualesquiera dos Individuos
+de una Población.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{calculate\_distance}}{\emph{individual\_i}, \emph{individual\_j}, \emph{sharing\_function\_parameters}}{}~
+\vspace{-0.1cm}
+
+Calcula la distancia de calidad que existe entre dos Individuos 
+cualesquiera.\break
+Dada la simpleza del método, se puede usar independientemente 
+de las categorías antes especificadas.\break
+Es importante resaltar que la función debe regresar un escalar 
+que aluda a la distancia entre los Individuos.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{individual\_i}} (\emph{\texttt{Instance}}) -- El Individuo para calcular distancia.
+\item \textbf{\texttt{individual\_j}} (\emph{\texttt{Instance}}) -- El Individuo para calcular distancia.
+\item \textbf{\texttt{sharing\_function\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario que puede contener opciones adicionales para
+el cálculo de la distancia entre Individuos.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Un valor escalar que indica la distancia entre los Individuos.
+\item[{Return type}] \leavevmode
+Float
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+A continuación se muestran las subcategorías 
+correspondientes:
+%******* Termina función *******
+
+%******* Empieza módulo *******
+\subsubsection{GenotypicSimilarity (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_5_1).
+\label{sec:a_2_5_1}
+La similaridad Genotípica \textbf{(ó Genotypic Similarity)}, 
+es una subcategoría que calcula las distancias entre dos 
+Individuos cualesquiera usando para ello características 
+Genotípicas de éstos, lo cual quiere decir que se emplearán 
+rasgos meramente internos endémicos de los Individuos.\medskip\break
+Para fines del proyecto típicamente se utiliza el cromosoma 
+y/o sus características asociadas, no obstante siendo sensatos 
+con el término, el cromosoma no es la única herramienta que 
+se puede usar sino cualquier rasgo interno.\medskip\break
+Es necesario considerar que, por defecto las funciones antes 
+mencionadas se encuentran implementadas en cada uno de los elementos de 
+este módulo, por ello es que primordialmente se mostrarán aquéllas que 
+no se contemplen en el esquema original, es decir, funciones auxiliares.\break
+En el caso muy específico en el que alguna de las funciones obligatorias 
+contenga información importante también se adjuntarán en el documento.\break  
+Ahora se muestran los elementos implementados para esta subcategoría:
+
+%******* Empieza script *******
+\paragraph{HammingDistance (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_5_1_1).
+\label{sec:a_2_5_1_1}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] La Distancia de Hamming \textbf{(ó Hamming Distance)} es una 
+implementación perteneciente a la subcategoría Genotypic 
+Similarity \textbf{(ó Similaridad Genotípica)}.
+Esta consiste en comparar los alelos entre los cromosomas 
+de los Individuos y devolver un valor numérico que indica en 
+cuántos alelos los cromosomas de los Individuos resultaron 
+tener valores diferentes.\break
+Como consecuencia lógica, la magnitud de la Distancia de 
+Hamming es inversamente proporcional a la calidad de los 
+Individuos.\break
+Es ampliamente usada para la Representación Cromosómica 
+\textbf{(véase Model/}\break\textbf{ChromosomalRepresentation)} de tipo 
+Binario \textbf{(ó Binary)}, aunque su uso no se limita 
+sólo a esta codificación.\medskip\break
+Con respecto del cálculo del \(\sigma_{share}\), éste se hace 
+tomando en cuenta el número máximo permitido de genes 
+diferentes entre dos cromosomas cualesquiera.\break
+Dicha cantidad es deducida solicitándole al usuario únicamente 
+el porcentaje máximo permitido, con base en éste se determina 
+entonces el número en concreto.
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{PhenotypicSimilarity (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_5_2).
+\label{sec:a_2_5_2}
+La Similaridad Fenotípica \textbf{(ó Phenotypic Similarity)} 
+es una subcategoría que calcula las distancias entre cualesquiera 
+dos Individuos usando características concernientes al Fenotipo, 
+es decir, rasgos exteriores de los Individuos.\medskip\break
+Para fines relativos al proyecto, dichos atributos tradicionalmente 
+no son otra cosa que las funciones objetivo evaluadas de cada 
+Individuo, usando para ello las variables de decisión que cada uno 
+lleva consigo.\break
+Aún considerando lo anterior, siendo más generales, cualquier 
+característica externa que se relacione con el Individuo puede 
+ser utilizada.\medskip\break
+Se hace mención en el hecho de que por defecto las funciones antes 
+mencionadas se encuentran implementadas en cada uno de los elementos de 
+este módulo, por ello es que primordialmente se mostrarán aquéllas que 
+no se contemplen en el esquema original, es decir, funciones auxiliares.\break
+En el caso muy específico en el que alguna de las funciones obligatorias 
+contenga información importante también se adjuntarán en el documento.\medskip\break  
+El presente módulo consta de los siguientes scripts:
+
+%******* Empieza script *******
+\paragraph{EuclideanDistance (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_5_2_1).
+\label{sec:a_2_5_2_1}
+
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] La Distancia Euclidiana \textbf{(ó Euclidean Distance)} es una 
+implementación de cálculo de distancia entre dos Individuos 
+que pertenece a la subcategoría Phenotypic Similarity \textbf{(ó Similaridad Fenotípica)}.\break
+Esta versión está dirigida para las Funciones Objetivo 
+\textbf{(ó Objective Functions)} que poseen cada uno de los 
+Individuos \textbf{(ó Individuals)} de una Población \textbf{(ó Population)}.\medskip\break
+Primero que nada para obtener el cálculo de \(\sigma_{share}\) 
+la operación está regida por la siguiente fórmula:
+
+\begin{center}\(\sigma_{share} = \frac{\sum_{j=1}^{n\acute{u}m\_funciones\_objetivo}(max(F_j) - min(F_j))}{tama\tilde{n}o\_poblaci\acute{o}n - 1}\)
+\end{center}
+
+Lo anterior significa que se van a obtener los valores máximo y 
+mínimo de cada función objetivo, se restan entre sí y al resultado 
+anterior se le divide entre el tamaño de la Población menos uno; 
+esto por cada generación.\break
+La forma de hacer el cálculo de la distancia es la siguiente:\break
+Supongamos que tenemos los vectores \(U = (u_1,u_2,...,u_n)\) y \(V = (v_1,v_2,...,v_n)\). 
+Entonces la Distancia Euclidiana se define como:
+
+\begin{center}\(d_E(U,V) = \sqrt{(v_1 - u_1)^2 + (v_2 - u_2)^2 + ... + (v_n - u_n)^2}\)
+\end{center}
+
+Para los fines que nos conciernen, los vectores \(U\ y\ V\) serán las 
+evaluaciones en las funciones objetivos de cada Individuo participante.\break
+Finalmente es menester mencionar que, aunque tradicionalmente esta 
+técnica se usa para Representaciones Cromosómicas \textbf{(véase Model/ChromosomalRepresentation)} 
+de tipo FloatPoint \textbf{(ó Punto Flotante)}, en sentido estricto no 
+se encuentra limitada sólo a este tipo de codificación.
+\end{DUlineblock}
+
+\end{fulllineitems}
+%******* Termina script *******
+%******* Termina módulo *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsection{MOEA (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_6).
+\label{sec:a_2_6}
+En esta parte se encuentran desarrolladas todas las 
+técnicas concernientes al uso de M.O.E.A.'s \textbf{(Multi-Objective Evolutionary Algorithms
+ó Algoritmos Evolutivos Multiobjetivo)}.\medskip\break
+Un M.O.E.A. es la convergencia y culminación de todas las 
+técnicas que se han implementado en la sección Model 
+\textbf{(ó Modelo)} con la finalidad de ofrecer una 
+solución óptima ante un problema multiobjetivo mediante el 
+uso de Algoritmos Evolutivos.\medskip\break
+Primero, solucionar un problema multiobjetivo aterrizado en 
+un lenguaje matemático consiste en lo siguiente:\break
+Tenemos un vector de funciones objetivo:
+
+\begin{center}\(F(\vec{x}) = [f_1(\vec{x}),f_2(\vec{x}),...,f_n(\vec{x})]^T;\ con\ n \geqslant 1.\)
+\end{center}
+
+Donde:
+
+\begin{center}\(\vec{x} = [x_1,x_2,...,x_k]^T;\ k \geqslant 1.\)
+\end{center}
+
+Representa al vector de variables de decisión que ``alimenta'' a 
+cada función objetivo.\break
+La meta es encontrar un vector especial 
+de variables de decisión, denominado:
+
+\begin{center}\(\vec{x*} = [x_1*,x_2*,...,x_k*]^T;\ k \geqslant 1.\)
+\end{center}
+
+Tal que:
+
+\begin{center}\(f_i(\vec{x*}) \leqslant f_i(\vec{x});\ 1 \leqslant i \leqslant n;\ \forall f \in F\).
+\end{center}
+
+Dicho de otra forma, se debe encontrar el vector de variables 
+de decisión que minimize todas y cada una de las funciones 
+objetivo en existencia.\break
+Adicionalmente, todo vector de variables de decisión debe estar 
+sujeto a las restricciones:
+
+\begin{center}\(h_i(\vec{x}) = 0;\ 1 \leqslant i \leqslant p\ \ (restricciones\ de\ igualdad).\)
+\end{center}
+\begin{center}\(g_i(\vec{x}) \leqslant 0;\ 1 \leqslant i \leqslant m\ \ (restricciones\ de\ desigualdad).\)
+\end{center}
+
+Las cuales para fines de este proyecto son aquéllas a las que 
+se encuentran afianzadas las variables de decisión 
+\textbf{(véase View/Main/DecisionVariable/VariableFrame.py)}.\medskip\break
+Una definición adicional que sin lugar a dudas se verá utilizada 
+es la de \emph{dominancia} entre vectores de variables de decisión,
+para ello tomemos dos vectores \(U = (u_1,u_2,...,u_k)\) y \(V = (v_1,v_2,...,v_k)\), 
+se dice que \textbf{U domina a V ó V es dominada por U} si:
+
+\begin{center}\(\forall i \in \{1,...,k\}\ \ u_i \leqslant v_i \land \exists i \in \{1,...,k\}; \ \ u_i < v_i\).
+\end{center}
+
+Lo anterior significa que \(U\) debe ser mejor que \(V\) en 
+cada uno de sus componentes para garantizar la dominancia.\break
+La simbología que se suele usar para identificar este hecho es \(u \succ v\).\medskip\break 
+Algo importante a mencionar es que en las definiciones se trata 
+únicamente la minimización de funciones objetivo porque, en caso 
+de querer la maximización, simplemente se realiza la sustitución:
+
+\begin{center}\(f'_i(\vec{x}) = -f_i(\vec{x});\ 1 \leqslant i \leqslant n,\ para\ alguna\ f \in F.\)
+\end{center}
+
+Es decir, minimizando la función negativa se obtiene el máximo.\break 
+El proyecto ya contempla este tipo de casos \textbf{(véase View/Main/ObjectiveFunction/}\break\textbf{FunctionFrame)}.\break
+Como dato adicional, es menester añadir que, en un escenario 
+típico muchas de las funciones objetivo entrarán en conflicto, 
+esto quiere decir que en algunas se buscará el mínimo mientras 
+que en otras, el máximo.\medskip\break
+Con base en lo anterior, el funcionamiento de un M.O.E.A. 
+\textbf{(resolver un problema de optimización multiobjetivo usando algoritmos genéticos)} 
+generalmente se lleva a cabo de la siguiente manera:\break
+
+\begin{enumerate} 
+\item Usando una Representación Cromosómica \textbf{(véase Model/ChromosomalRepresentation)}, crear la Población Padre y evaluar cada uno de los Individuos respecto a las funciones objetivo.
+\item Asignar un Ranking a los Individuos de la Población Padre \textbf{(véase Model/}\break\textbf{Community/Community.py)}.
+\item Con base en el Ranking, asignar el Fitness a cada uno de los Individuos \textbf{(véase Model/Fitness)}.
+\item Tomando en cuenta el Fitness, aplicar las operaciones de Selección, Cruza y Mutación con la finalidad de crear una Población Hija \textbf{(véase Model/GeneticOperator)}. Todos los métodos empleados en este punto deben funcionar acorde a la Representación Cromosómica del punto 1.
+\item \textbf{(Opcional)} Utilizar el Fitness Compartido para aplicar una elección más minuciosa de los mejores Individuos en la Población Hija \textbf{(véase Model/SharingFunction)}.
+\item Designar a la Población Hija como la nueva Población Padre.
+\item Repetir los pasos 2 a 6 hasta haber alcanzado un número límite de generaciones \textbf{(iteraciones)}.
+\end{enumerate}
+
+A grandes rasgos la diferencia entre un M.O.E.A. y otro es la Presión 
+Selectiva \textbf{(ó Selective Pressure)} que se aplica durante 
+el procedimiento, para fines de este proyecto se trata de la 
+tolerancia para seleccionar a los Individuos de calidad media o 
+baja frente a los mejores.\break 
+Una baja Presión Selectiva permite elegir Individuos no tan 
+aptos; el caso es análogo para una alta Presión Selectiva.\medskip\break
+Es por eso que se han tomado los M.O.E.A.'s más representativos, 
+pues se desea ilustrar la consistencia y eficacia de dichos métodos 
+en general a través de variadas circunstancias.\break
+Tomando en cuenta lo anterior, la finalidad es que el usuario desarrolle
+sus propios M.O.E.A.'s, por ello es que, además de añadir el método 
+en el listado localizado en \textbf{Controller/}\break\textbf{XML/Features.xml}, deberá 
+implementar la siguiente función:
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{execute\_moea}}{\emph{execution\_task\_count}, \emph{generations\_queue}, \emph{generations}, \emph{population\_size}, \emph{vector\_functions}, \emph{vector\_variables}, \emph{available\_expressions}, \emph{number\_of\_decimals}, \emph{community\_instance}, \emph{algorithm\_parameters}, \emph{representation\_instance}, \emph{representation\_parameters}, \emph{fitness\_instance}, \emph{fitness\_parameters}, \emph{sharing\_function\_instance}, \emph{sharing\_function\_parameters}, \emph{selection\_instance}, \emph{selection\_parameters}, \emph{crossover\_instance}, \emph{crossover\_parameters}, \emph{mutation\_instance},\emph{mutation\_parameters}}{}~
+\vspace{-0.1cm}
+
+Devuelve la solución óptima para un conjunto de funciones objetivo 
+\textbf{vector\_functions} ligadas a un conjunto de restricciones 
+\textbf{vector\_variables} tomando como fundamento el uso de 
+algoritmos genéticos.\break
+El método se apoya de las características subyacentes; en lo 
+concerniente a la devolución de resultados se recomienda ver el 
+método \textbf{get\_results} localizado en \textbf{Model/Community/Community.py}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{execute\_task\_count}} (\emph{\texttt{Integer}}) -- El identificador que se utiliza para orquestar el orden en que el método será ejecutado con respecto de los demás \textbf{(véase View/Additional/}\break\textbf{ResultsGrapher/ResultsGrapherTopLevel.py)}.
+\item \textbf{\texttt{generations\_queue}} (\emph{\texttt{Instance}}) -- Una estructura auxiliar \textbf{(Queue o Cola)} que es necesaria para indicar a la interfaz gráfica el progreso del método \textbf{(véase Controller/Controller.py, View/MainWindow.py, View/Additional/}\break\textbf{ResultsGrapher/ResultsGrapherTopLevel.py)} .
+\item \textbf{\texttt{generations}} (\emph{\texttt{Integer}}) -- El número de generaciones \textbf{(iteraciones)} que se emplearán para la ejecución del método.
+\item \textbf{\texttt{population\_size}} (\emph{\texttt{Integer}}) -- El tamaño de la Población \textbf{(número de Individuos)}.
+\item \textbf{\texttt{vector\_functions}} (\emph{\texttt{List}}) -- El vector con las funciones objetivo insertadas por el usuario.
+\item \textbf{\texttt{vector\_variables}} (\emph{\texttt{List}}) -- El vector con las variables de decisión ingresadas por el usuario.
+\item \textbf{\texttt{available\_expressions}} (\emph{\texttt{Dictionary}}) -- Un diccionario con expresiones creadas para que la evaluación de funciones objetivo sea mucho más sencilla \textbf{(véase Controller/Verifier.py, Controller/XML/PythonExpressions.xml, View/Additional/MenuInternalOption/InternalOptionTab/}\break\textbf{PythonExpressionFrame.py)}.
+\item \textbf{\texttt{number\_of\_decimals}} (\emph{\texttt{Integer}}) -- La precisión decimal \textbf{(número de decimales)} que tendrán las soluciones inherentes a los Individuos.
+\item \textbf{\texttt{community\_instance}} (\emph{\texttt{Instance}}) -- Una instancia de la clase Community \textbf{(véase Controller/Verifier.py, Model/Community/Community.py)}.
+\item \textbf{\texttt{algorithm\_parameters}} (\emph{\texttt{Instance}}) -- Un diccionario para añadir opciones adicionales para los M.O.E.A.'s.
+\item \textbf{\texttt{representation\_instance}} (\emph{\texttt{Instance}}) -- Una instancia de la técnica de Representación Cromosómica \textbf{(ó Chromosomal Representation)} usada por el usuario \textbf{(véase Controller/Verifier.py, Model/}\break\textbf{ChromosomalRepresentation)}.
+\item \textbf{\texttt{representation\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario con opciones adicionales a la técnica de Representación Cromosómica usada.
+\item \textbf{\texttt{fitness\_instance}} (\emph{\texttt{Instance}}) -- Una instancia de la técnica de Fitness seleccionada por el usuario \textbf{(véase Controller/Verifier.py, Model/Fitness)}.
+\item \textbf{\texttt{fitness\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario con parámetros adicionales para la técnica de Fitness utilizada.
+\item \textbf{\texttt{sharing\_function\_instance}} (\emph{\texttt{Instance}}) -- Una instancia de la técnica de Sharing Function \textbf{(ó Función de Compartición)} usada por el usuario \textbf{(véase Controller/Verifier.py, Model/SharingFunction)}.
+\item \textbf{\texttt{sharing\_function\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario con opciones adicionales para la técnica de Sharing Function seleccionada.
+\item \textbf{\texttt{selection\_instance}} (\emph{\texttt{Instance}}) -- Una instancia de la técnica de Selection \textbf{(ó Selección)} seleccionada por el usuario \textbf{(véase Controller/Verifier.py, Model/Operator/}\break\textbf{Selection)}.
+\item \textbf{\texttt{selection\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario con opciones adicionales para la técnica de Selection empleada.
+\item \textbf{\texttt{crossover\_instance}} (\emph{\texttt{Instance}}) -- Una instancia de la técnica de Crossover \textbf{(ó Cruza)} seleccionada por el usuario \textbf{(véase Controller/Verifier.py, Model/Operator/}\break\textbf{Crossover)}.
+\item \textbf{\texttt{crossover\_parameters}} (\emph{\texttt{Dictionary}}) -- Un diccionario con parámetros adicionales para la técnica de Cruza solicitada.
+\item \textbf{\texttt{mutation\_instance}} (\emph{\texttt{Instance}}) -- Una instancia de la técnica de Mutation \textbf{(ó Mutación)} empleada por el usuario \textbf{(véase Controller/Verifier.py, Model/Operator/}\break\textbf{Mutation)}.
+\item \textbf{\texttt{mutation\_parameters}} -- Un diccionario con parámetros adicionales para la técnica de Mutación usada.
+\end{itemize}
+\item[{Returns}] \leavevmode
+El diccionario que resulta de aplicar el método \textbf{get\_results} que se encuentra en \textbf{Model/Community/Community.py}.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+Se debe tomar en consideración que por defecto las funciones antes 
+mencionadas se encuentran implementadas en cada uno de los elementos de 
+este módulo, por ello es que primordialmente se mostrarán aquéllas que 
+no se contemplen en el esquema original, es decir, funciones auxiliares.\break
+En el caso muy específico en el que alguna de las funciones obligatorias 
+contenga información importante también se adjuntarán en el documento.\medskip\break  
+A continuación se muestra la lista de los M.O.E.A.'s 
+implementados:
+%******* Termina función *******
+
+%******* Empieza script *******
+\subsubsection{VEGA (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_6_1).
+\label{sec:a_2_6_1}
+Se implementa la técnica M.O.E.A conocida como 
+V.E.G.A. \textbf{(Vector Evaluated Genetic Algorithm ó Algoritmo Genético de Vectores Evaluados)}.\break
+La forma de proceder del algoritmo es la siguiente:
+
+\begin{enumerate} 
+\item Se crea la Población Padre (de tamaño \(n\)).
+\item Tomando en cuenta las \(k\) funciones objetivo y la Población Padre, se crean \(k\) subpoblaciones de tamaño \(n/k\) cada una, si este número llega a ser irracional se pueden hacer ajustes con respecto de la distribución de los Individuos.
+\item Por cada subpoblación, se aplica la técnica de Selección y obtienen los \(n/k\) Individuos, terminado esto se deben unificar todos los seleccionados de nuevo en una súper Población.
+\item Con la súper Población del paso 3, se crea a la Población Hija, la cual pasará a convertirse en la la nueva Población Padre.
+\item Se repiten los pasos 2 a 4 hasta haber alcanzado el número de generaciones \textbf{(iteraciones)} límite.
+\end{enumerate}
+
+Como se puede apreciar es una implementación muy sencilla 
+de optimización multiobjetivo, sin embargo el inconveniente 
+que tiene es la fácil pérdida de material genético valioso.\break
+Lo anterior significa que un Individuo que en una generación 
+previa era el mejor para una función objetivo \(i\) al momento 
+de ser separado y seleccionado en una subpoblación \(j\) \textbf{(y por ende analizado bajo la función objetivo \(j\))} 
+puede ser muy malo en calidad y por tanto no ser seleccionado;
+perdiéndose la ganancia genética hasta el momento obtenida para la función 
+objetivo $i$, donde $i \ne j$.\\ Por ello es que se puede decir 
+que V.E.G.A. genera soluciones promedio que destacan con una 
+calidad media para todas las funciones objetivo.\medskip\break
+Finalmente hay que comentar que para este algoritmo no se requiere 
+aplicar un Ranking específico, no obstante se ha decidido utilizar 
+el de Fonseca \& Flemming \textbf{(véase Model/Community/Community.py)} 
+pues es el más sencillo de implementar.
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_subpopulations}}{\emph{comunidad}, \emph{main\_population}}{}
+Método que divide a la Población principal en 
+subpoblaciones de acuerdo al número de funciones 
+objetivo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{comunidad}} (\emph{\texttt{Instance}}) -- Una instancia de Community para poder crear
+poblaciones..
+\item \textbf{\texttt{main\_population}} (\emph{\texttt{Instance}}) -- La Población que será dividida.
+\end{itemize}
+\item[{Returns}] \leavevmode
+Una lista con las subpoblaciones \textbf{(de tipo Population)}.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+%******* Termina script *******
+
+%******* Empieza script *******
+\subsubsection{SPEAII (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_6_2).
+\label{sec:a_2_6_2}
+Se desarrolla la implementación de la técnica M.O.E.A. 
+conocida como S.P.E.A. II \textbf{(Strength Pareto Evolutionary Algorithm ó Algoritmo Evolutivo de Fuerza de Pareto)}.\break
+El funcionamiento del algoritmo es el siguiente:
+
+\begin{enumerate}
+\item Se inicializa una Población llamada \emph{P} y un conjunto inicialmente vacío llamado \emph{E} \textbf{(E albergará Individuos también)}; ambos son de tamaño n.
+\item Se asigna el Fitness a los Individuos de \emph{P} y \emph{E} \textbf{(para ello se evalúan las funciones objetivo de los Individuos de ambos conjuntos y se asigna el Ranking Zitzler \& Thiele)}.
+\item A continuación se funden \emph{P} y \emph{E} en una súper Población \textbf{(denominado S también señalado en el algoritmo como Mating Pool, de tamaño n)}.Para ello primero se añaden los Individuos \emph{NO DOMINADOS} de \emph{P} en \emph{S} y posteriormente los \emph{NO DOMINADOS} de \emph{E} en \emph{S}.\break 
+Aquí se distinguen dos casos:
+      \begin{enumerate}
+      \item Si llegasen a faltar Individuos se añaden al azar Individuos \emph{DOMINADOS} de \emph{P} en \emph{S} hasta completar la demanda.
+      \item Si después de la fusión el número de Individuos supera a n, entonces se hace un truncamiento en \emph{S} hasta ajustar su tamaño a n.
+      \end{enumerate}
+\item \emph{S} será la nueva \emph{E}, además se crea la Población Hija de la recién creada \emph{E} \textbf{(E-Child)}.
+\item E-Child será la nueva P.
+\item Se repiten los pasos 2 a 5 hasta que se haya alcanzado el límite de generaciones \textbf{(iteraciones)}.
+\end{enumerate}
+
+Finalmente lo que se regresa es \emph{E}, ya que ahí es 
+donde se han almacenado los mejores Individuos de todas 
+las generaciones.\medskip\break
+La característica de este algoritmo es que tiene una 
+Presión Selectiva alta ya que se da prioridad a los 
+Individuos no dominados \textbf{(de ahí el nombre de Fuerza de Pareto ó los más fuertes con respecto al principio de Pareto)},
+y el hecho de mezclar a \emph{E} y \emph{P} en una 
+súper Población garantiza la conservación de los mejores 
+Individuos sin importar el transcurso de las generaciones \textbf{(a eso se le conoce como Elitismo)}, 
+pero también da una tolerancia, aunque mínima, a los Individuos 
+de menor calidad como en el punto 3.\break
+Además al momento de actualizar \emph{S} a \emph{E} y 
+E-Child a \emph{P} se tiene una especie de seguro de vida, 
+es decir, si en algún momento la Población E-Child llegara a
+tener una calidad baja se tiene el respaldo de \emph{E} 
+para una generación posterior para formar \emph{S}.\medskip\break
+Se debe tener en cuenta que el algoritmo originalmente no 
+contempla ni una súper Población \emph{S} ni E-Child 
+sino que en los pasos 3 y 4 se utiliza solamente \emph{E} 
+para referirse tanto a E-child como a \emph{S}, sin embargo 
+para no confundir al usuario en la funcionalidad del método 
+se decidió colocar contenedores extra para poder diferenciar 
+más precisamente a los elementos involucrados.\medskip\break
+Algo muy importante a mencionar es que en el paso 1 y al momento 
+de crear la Población E-Child es necesario evaluar las funciones 
+objetivo, asignar un Ranking y posteriormente un Fitness para 
+que se puedan aplicar los operadores geneticos \textbf{(véase Model/GeneticOperator)}, 
+para este caso el Ranking es estrictamente el de Zitzler \& Thiele; 
+la descripción completa de éste se encuentra en 
+\textbf{Model/Community/Community.py}.
+%******* Termina script *******
+
+%******* Empieza script *******
+\subsubsection{MOGA (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_6_3).
+\label{sec:a_2_6_3}
+Se desarrolla la técnica M.O.E.A. que lleva por 
+nombre M.O.G.A. \textbf{(Multi Objective Genetic Algorithm ó Algoritmo Genético Multi Objetivo)}.\break
+Su funcionamiento es el siguiente:
+
+\begin{enumerate} 
+\item Se crea la Población Padre, se evalúan las funciones objetivo de sus correspondientes Individuos.
+\item Se asigna a los Individuos un Ranking \textbf{(Fonseca \& Flemming)} y posteriormente se calcula el Niche Count de la Población Padre.
+\item Tomando en cuenta los valores del punto 2 se obtiene el Fitness para cada Individuo y posteriormente su Shared Fitness.
+\item Se aplica el operador de selección sobre la Población Padre para determinar los elegidos para dejar descendencia.
+\item Se crea la Población Hija, se evalúan las funciones objetivo de sus correspondientes Individuos.
+\item Se asigna a los Individuos un Ranking \textbf{(Fonseca \& Flemming)} y posteriormente se calcula el Niche Count de la Población Hija.
+\item Tomando en cuenta los valores del punto 6 se obtiene el Fitness para cada Individuo y posteriormente su Shared Fitness.
+\item La Población Hija pasará a ser la nueva Población Padre.
+\item Se repiten los pasos 4 a 8 hasta que se haya alcanzado el número límite de generaciones \textbf{(iteraciones)}.
+\end{enumerate}
+
+Como se puede apreciar, la implementación de este algoritmo es 
+muy sencilla, además se rige casi en su totalidad por el 
+Shared Fitness \textbf{(ó Fitness Compartido)}, por lo que 
+la Presión Selectiva \textbf{(ó Selective Pressure)} incluida 
+dependerá en gran medida de la función de Distancia que se utilice, 
+así como de la magnitud indicada por el usuario.\medskip\break
+Finalmente es menester mencionar que para esta implementación el 
+Ranking utilizado debe ser estrictamente el de Fonseca \& Flemming 
+\textbf{(véase Model/Community/Community.py)}.
+%******* Termina script *******
+
+%******* Empieza script *******
+\subsubsection{NSGAII (script)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_2_6_4).
+\label{sec:a_2_6_4}
+En esta parte se lleva a cabo la implementación del M.O.E.A. 
+denominado N.S.G.A. II \textbf{(Non-dominated Sorting Genetic Algorithm ó Algoritmo Genético de Ordenamiento No Dominado)}.\break
+La forma de proceder del método es la siguiente:
+
+\begin{enumerate}
+\item Se crea una Población Padre \textbf{(de tamaño n)}, a la cual se le evalúan las funciones objetivo de sus Individuos, se les asigna un Ranking \textbf{(Goldberg)} y posteriormente se les otorga un Fitness.
+\item Con base en la Población Padre se aplica el operador de Selección para elegir a los Individuos que serán aptos para reproducirse.
+\item Usando a los elementos del punto 2, se crea una Población Hija \textbf{(de tamaño n)}.
+\item Se crea una súper Población \textbf{(denominado S, de tamaño 2n)} que albergará todos los Individuos tanto de la Población Padre como Hija; a \emph{S} se le evalúan las funciones objetivo de sus Individuos, se les asigna un Ranking \textbf{(Goldberg)} y posteriormente se les otorga un Fitness.
+\item La súper Población \emph{S} se divide en subcategorías de acuerdo a los niveles de dominancia que existan, es decir, existirá la categoría de dominancia 0, la cual almacena Individuos que tengan una dominancia de 0 Individuos \textbf{(ningún Individuo los domina)}, existirá la categoría de dominancia 1 con el significado análogo y así sucesivamente hasta haber cubierto todos los niveles de dominancia existentes.
+\item Se construye la nueva Población Padre, pare ello constará de los Individuos de \emph{S} donde la prioridad será el nivel de dominancia, es decir, primero se añaden los elementos del nivel 0,luego los del nivel 1 y así en lo sucesivo hasta haber adquirido n elementos.
+Se debe aclarar que la adquisición de Individuos por nivel debe ser total, esto significa que no se pueden dejar Individuos sueltos para el mismo nivel de dominancia.\break
+Supongamos que a un nivel k existen tantos Individuos que su presunta adquisición supera el tamaño n, en este caso se debe hacer lo siguiente:
+      \begin{enumerate}
+      \item Se crea una Población provisional \textbf{(Prov)} con los Individuos del nivel k, se evalúan las funciones objetivo a cada uno de sus Individuos, se les asigna un Ranking \textbf{(Goldberg)} y posteriormente se les asigna el Fitness.\break
+            Con los valores anteriores se calcula el Niche Count \textbf{(véase Model/}\break\textbf{SharingFunction)} de los Individuos; una vez hecho ésto se seleccionan desde Prov los Individuos faltantes con los mayores Niche Count, esto hasta completar el tamaño n de la nueva Población Padre.
+      \end{enumerate}
+\item Al haber conformado la nueva Población Padre, se evalúan las funciones objetivo de sus Individuos, se les asigna el Ranking correspondiente \textbf{(Goldberg)} y se les atribuye su Fitness.
+\item Se repiten los pasos 2 a 7 hasta haber alcanzado el límite de generaciones \textbf{(iteraciones)}.
+\end{enumerate}
+
+Como su nombre lo indica, la característica de este algoritmo es 
+la clasificación de los Individuos en niveles para su posterior 
+selección.\break
+Esto al principio propicia una Presión Selectiva moderada por 
+la ausencia de elementos con dominancia baja que suele existir 
+en las primeras generaciones, sin embargo en iteraciones posteriores 
+se agudiza la Presión Selectiva ya que eventualmente la mayoría de 
+los Individuos serán alojados en las primeras categorías de dominancia, 
+cubriendo casi instantáneamente la demanda de Individuos necesaria en 
+el paso 6, por lo que las categorías posteriores serán cada vez 
+menos necesarias con el paso de los ciclos.\medskip\break
+Por otra parte la fusión de las Poblaciones en \emph{S} garantiza 
+que siempre se conserven a los mejores Individuos independientemente 
+de la generación transcurrida, a eso se le llama Elitismo.\break
+Por cierto que en el algoritmo original no existe un nombre oficial 
+para \emph{S} sino más bien se señala como una estructura genérica, 
+sin embargo se le ha formalizado con un identificador para guiar 
+apropiadamente al usuario en el flujo del algoritmo.\medskip\break
+Para finalizar se señala que el uso del ranking de Goldberg 
+\textbf{(véase Model/Community/}\break\textbf{Community.py)} es indispensable.
+%******* Termina script *******
+%******* Termina módulo *******
+
+%Termina el documento.
+\end{document}

@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model (sección) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../index.html" />
+    <link rel="next" title="ChromosomalRepresentation (módulo)" href="ChromosomalRepresentation/ChromosomalRepresentation.html" />
+    <link rel="prev" title="Begin (script)" href="../Begin.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="model-seccion">
+<h1>Model (sección)<a class="headerlink" href="#model-seccion" title="Permalink to this headline">¶</a></h1>
+<p>La sección Model <strong>(ó Modelo)</strong> contiene toda la base lógica del programa, más en específico, todas las
+características para poder ejecutar MOEA&#8217;s apropiadamente alimentados con los datos obtenidos por
+la sección View <strong>(ó Vista)</strong> usando la sección Controller <strong>(ó Controlador)</strong> como intermediaria.
+Una vez que se obtenga algún resultado, éste será transmitido a la sección View a través del Controller.</p>
+<p>A continuación se observan las subcategorías que conforman a la sección en cuestión:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ChromosomalRepresentation/ChromosomalRepresentation.html">ChromosomalRepresentation (módulo)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ChromosomalRepresentation/BinaryRepresentation.html">BinaryRepresentation (script)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ChromosomalRepresentation/FloatPointRepresentation.html">FloatPointRepresentation (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Community/Community.html">Community (clase)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Community/Population/Population.html">Population (clase)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Community/Population/Individual/Individual.html">Individual (clase)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Fitness/Fitness.html">Fitness (módulo)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Fitness/LinearRankingFitness.html">LinearRankingFitness (script)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fitness/NonLinearRankingFitness.html">NonLinearRankingFitness (script)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Fitness/ProportionalFitness.html">ProportionalFitness (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Operator/Operator.html">Operator (módulo)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Operator/Selection/Selection.html">Selection (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Operator/Selection/Roulette.html">Roulette (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operator/Selection/ProbabilisticTournament.html">ProbabilisticTournament (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operator/Selection/StochasticUniversalSampling.html">StochasticUniversalSampling (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Operator/Crossover/Crossover.html">Crossover (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Operator/Crossover/NPointsCrossover.html">NPointsCrossover (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operator/Crossover/UniformCrossover.html">UniformCrossover (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Operator/Mutation/Mutation.html">Mutation (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Operator/Mutation/BinaryMutation.html">BinaryMutation (script)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Operator/Mutation/FloatPointMutation.html">FloatPointMutation (script)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SharingFunction/SharingFunction.html">SharingFunction (módulo)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SharingFunction/GenotypicSimilarity/GenotypicSimilarity.html">GenotypicSimilarity (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SharingFunction/GenotypicSimilarity/HammingDistance.html">HammingDistance (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SharingFunction/PhenotypicSimilarity/PhenotypicSimilarity.html">PhenotypicSimilarity (módulo)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SharingFunction/PhenotypicSimilarity/EuclideanDistance.html">EuclideanDistance (script)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MOEA/MOEA.html">MOEA (módulo)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MOEA/VEGA.html">VEGA (script)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MOEA/SPEAII.html">SPEAII (script)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MOEA/MOGA.html">MOGA (script)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MOEA/NSGAII.html">NSGAII (script)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../Begin.html" title="previous chapter">Begin (script)</a></li>
+      <li>Next: <a href="ChromosomalRepresentation/ChromosomalRepresentation.html" title="next chapter">ChromosomalRepresentation (módulo)</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Model/Model.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/Model/Model.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,22 @@
+Model.SharingFunction.PhenotypicSimilarity package
+==================================================
+
+Submodules
+----------
+
+Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance module
+-------------------------------------------------------------------
+
+.. automodule:: Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.SharingFunction.PhenotypicSimilarity
+    :members:
+    :undoc-members:
+    :show-inheritance:

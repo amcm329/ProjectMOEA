@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SummaryFrame (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="ResultsGrapherToplevel (clase)" href="ResultsGrapherToplevel.html" />
+    <link rel="next" title="ContentFrame (clase)" href="ContentFrame.html" />
+    <link rel="prev" title="CustomNavigationToolbar2TkAgg (clase)" href="CustomNavigationToolbar2TkAgg.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Additional.ResultsGrapher.SummaryFrame">
+<span id="summaryframe-clase"></span><h1>SummaryFrame (clase)<a class="headerlink" href="#module-View.Additional.ResultsGrapher.SummaryFrame" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.SummaryFrame.SummaryFrame">
+<em class="property">class </em><code class="descname">SummaryFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>renamed_objective_functions</em>, <em>renamed_decision_variables</em>, <em>main_features</em>, <em>gathered_information</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.SummaryFrame.SummaryFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<div class="line-block">
+<div class="line">Unifica dos elementos: Canvas y ContentFrame. La razón de esto es que, en promedio la
+información mostrada por ContentFrame rebasará el tamaño de la ventana de la información 
+final <strong>(véase View/Additional/ResultsGrapher/ResultsGrapherTopLevel.py)</strong>, es entonces 
+que se deben agregar barras de desplazamiento para poder acceder al contenido que quedaría oculto.</div>
+<div class="line">Uno de los elementos en Tkinter más sencillos que cumplen con este cometido es un
+Canvas. Luego entonces esa es la razón de tal fusión.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>renamed_objective_functions</strong> &#8211; Diccionario de funciones objetivo renombradas 
+<strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+<li><strong>renamed_decision_variables</strong> (<em>Dictionary</em>) &#8211; Diccionario de variables de decisión renombradas  
+<strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+<li><strong>main_features</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene, entre otras cosas, los nombres de los
+parámetros asociados a cada técnica.</li>
+<li><strong>gathered_information</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todas las configuraciones 
+recabadas ingresadas por el usuario <strong>(véase View/Main/MainWindow.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.SummaryFrame.SummaryFrame._SummaryFrame__update_scrollbar">
+<code class="descname">_SummaryFrame__update_scrollbar</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.SummaryFrame.SummaryFrame._SummaryFrame__update_scrollbar" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Actualiza la barra de desplazamiento de acuerdo al número de elementos
+existentes en el Frame, esto para poder hacer un recorrido apropiado de 
+la barra.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; Elemento que ejecutó esta función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<p>La clase actual toma como base el siguiente elemento:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ContentFrame.html">ContentFrame (clase)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../View.html">View (sección)</a><ul>
+  <li><a href="../Additional.html">Additional (módulo)</a><ul>
+  <li><a href="ResultsGrapher.html">ResultsGrapher (módulo)</a><ul>
+  <li><a href="ResultsGrapherToplevel.html">ResultsGrapherToplevel (clase)</a><ul>
+      <li>Previous: <a href="CustomNavigationToolbar2TkAgg.html" title="previous chapter">CustomNavigationToolbar2TkAgg (clase)</a></li>
+      <li>Next: <a href="ContentFrame.html" title="next chapter">ContentFrame (clase)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/View/Additional/ResultsGrapher/SummaryFrame.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/View/Additional/ResultsGrapher/SummaryFrame.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

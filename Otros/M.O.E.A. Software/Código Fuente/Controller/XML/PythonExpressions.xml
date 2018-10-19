@@ -1,0 +1,7 @@
+<Functions>
+      <Function name="cos" value="math.cos" />
+      <Function name="e" value="math.e" />
+      <Function name="tan" value="math.tan" />
+      <Function name="pi" value="math.pi" />
+      <Function name="sin" value="math.sin" />
+</Functions>

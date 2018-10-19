@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ExpressionFrame (clase) &mdash; M.O.E.A. Grapher 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Grapher 1.0 documentation" href="../../../../index.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame">
+<span id="expressionframe-clase"></span><h1>ExpressionFrame (clase)<a class="headerlink" href="#module-View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame">
+<em class="property">class </em><code class="descclassname">View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.</code><code class="descname">ExpressionFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<div class="line-block">
+<div class="line">Al momento de crear y evaluar funciones objetivo hay algunas
+palabras reservadas que no pueden ser usadas en Python directamente
+si no se hace un renombramiento apropiado.</div>
+<div class="line">En este Frame se ofrecen opciones simples para mostrar y añadir expresiones
+de Python. </div>
+<div class="line">Dicha información se encuentra en Controller/XML/PythonExpressions.xml</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Toplevel</em>) &#8211; El elemento Padre al que pertenece el actual
+Frame.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Un diccionario que contiene las características necesarias
+que serán mostradas en este Frame.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">El Frame que contiene la información señalada.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Tkinter.Frame</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__add_expression">
+<code class="descname">_ExpressionFrame__add_expression</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__add_expression" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Inserta una casilla que conforma una expresión
+dentro del Frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; Identificador del elemento gráfico que activó la función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__delete_single_expression">
+<code class="descname">_ExpressionFrame__delete_single_expression</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__delete_single_expression" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Elimina una expresión y todos los elementos gráficos que la acompañan.
+También elimina todo rastro que se encuentre en las estructuras lógicas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; Identificador del elemento gráfico que activó la función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__insert_expression">
+<code class="descname">_ExpressionFrame__insert_expression</code><span class="sig-paren">(</span><em>expression=None</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__insert_expression" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<div class="line-block">
+<div class="line">Coloca en el Frame una colección de elementos:</div>
+<div class="line">[etiqueta para expresión normal, expresión normal, etiqueta para expresión de Pyrhon, expresión de Python, botón para eliminar]</div>
+<div class="line">Si el parámetro expression es <strong>None</strong>, se añade la casilla vacía, de lo contrario se 
+agrega ésta con la información pertinente.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>expression</strong> (<em>Array</em>) &#8211; Un arreglo con dos elementos, el primero contiene la expresión normal
+mientras que el segundo maneja la información de la expresión equivalente
+en Python.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__load_expressions">
+<code class="descname">_ExpressionFrame__load_expressions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__load_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<div class="line-block">
+<div class="line">Carga las expresiones a manera de contenido gráfico
+en el Frame.</div>
+<div class="line">Dichas expresiones son tomadas del archivo 
+Controller/XML/PythonExpressions.xml.</div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__save_changes">
+<code class="descname">_ExpressionFrame__save_changes</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame._ExpressionFrame__save_changes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Toma la información existente en las casillas y procede a sobreescribir
+el archivo Controller/XML/PythonExpressions.xml con la información
+recién recabada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; Identificador del elemento gráfico que activó la función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame.get_current_elements">
+<code class="descname">get_current_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame.ExpressionFrame.get_current_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el número actual de casillas en el Frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Cantidad de elementos en la estructura rows, donde se guardan las casillas (Entry&#8217;s).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/View/Additional/MenuInternalOption/InternalOptionTab/ExpressionFrame .txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../../_sources/View/Additional/MenuInternalOption/InternalOptionTab/ExpressionFrame .txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,41 @@
+Crossover package
+================================
+
+Este es un modulo muy guapo
+===========================
+
+Submodules
+----------
+
+FloatPointCrossover module
+---------------------------------------------------
+
+.. automodule:: Model.Operator.Crossover.FloatPointCrossover
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+NPointsCrossover module
+------------------------------------------------
+
+.. automodule:: Model.Operator.Crossover.NPointsCrossover
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+UniformCrossover module
+------------------------------------------------
+
+.. automodule:: Model.Operator.Crossover.UniformCrossover
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Operator.Crossover
+    :members:
+    :undoc-members:
+    :show-inheritance:

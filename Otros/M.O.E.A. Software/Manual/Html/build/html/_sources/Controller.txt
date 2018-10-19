@@ -1,0 +1,38 @@
+Controller package
+==================
+
+Submodules
+----------
+
+Controller.Controller module
+----------------------------
+
+.. automodule:: Controller.Controller
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Controller.Verifier module
+--------------------------
+
+.. automodule:: Controller.Verifier
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Controller.XMLParser module
+---------------------------
+
+.. automodule:: Controller.XMLParser
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Controller
+    :members:
+    :undoc-members:
+    :show-inheritance:

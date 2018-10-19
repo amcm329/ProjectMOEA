@@ -1,0 +1,29 @@
+Model.Community package
+=======================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    Model.Community.Population
+
+Submodules
+----------
+
+Model.Community.Community module
+--------------------------------
+
+.. automodule:: Model.Community.Community
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Community
+    :members:
+    :undoc-members:
+    :show-inheritance:

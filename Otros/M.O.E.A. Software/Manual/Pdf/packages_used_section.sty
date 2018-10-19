@@ -1,0 +1,116 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo contiene todos los paquetes que se cargarán en cada uno de los
+%archivos que componen el Manual Técnico de M.O.E.A. Software. 
+%La diferencia con "packages_used_general" es que el archivo que cargue dicho 
+%paquete será considerado el archivo principal y los que carguen este archivo 
+%serán los subarchivos.
+%También se modifican algunas directivas para personalizar el comportamiento
+%estático del contenido.
+%La finalidad de esto es mantener un orden y aislar los componentes de tal manera
+%que en cada uno de los elementos que componen el trabajo escrito se coloque
+%solamente lo necesario.
+
+
+%Las siguientes líneas declaran un elemento de tipo .sty (que sirve para cargar
+%paquetes personalizados). El nombre que lleva el archivo es "packages_used_section".
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages_used_section}
+
+%Para cuidar el manejo de versiones en el archivo
+%custom_sty/sphinx.sty.
+\newif\ifsphinxKeepOldNames \sphinxKeepOldNamestrue
+
+%Para lograr que el contenido de pdf pueda ser copiado y transferido a cualquier
+%otro formato.
+\usepackage{cmap}
+
+%Para utilizar el paquete localizado en /custom_sty (véase la descripción del
+%paquete.
+\usepackage{iftex}
+
+%Para mantener compatibilidad entre los símbolos matemáticos y la tipografía
+%Times New Roman empleada en la sección del Apéndice.
+\usepackage{times}
+
+%Para símbolos matemáticos.
+\usepackage{amsmath}
+
+%Para símbolos matemáticos adicionales.
+\usepackage{amssymb}
+
+%Para colocar texto con símbolos matemáticos incluídos.
+\usepackage{amstext}
+
+%Para añadir comentarios de más de una línea.
+\usepackage{comment}
+
+%Para colocar imágenes apropiadamente dentro del texto.
+\usepackage{eso-pic}
+
+%Para garantizar que los párrafos tengan el mismo espacio horizontal
+%y no se vea tan desproporcionada la colocación del texto.
+\usepackage{eqparbox}
+
+%Para poner encabezados y pie de paginas automatizados.
+\usepackage{fancyhdr}
+
+%Para poder incluir imágenes.
+\usepackage{graphicx}
+
+%Para poder añadir enlaces (tanto internos como externos)
+\usepackage{hyperref}
+
+%PAra agregar tablas con múltiples renglones.
+\usepackage{multirow}
+
+%Para poder modificar los títulos de Capítulos y Secciones.
+\usepackage{titlesec}
+
+%Para agregar páginas en blanco.
+\usepackage{afterpage}
+
+%Para colocar las enumeraciones (puntos y listados).
+\usepackage{enumerate}
+
+%Para imprimir apropiadamente tablas que se traslapan entre las páginas.
+\usepackage{longtable}
+
+%Para poner imágenes de fondo tenues (principalmente en el título).
+\usepackage{transparent}
+
+%Para poder usar las plantillas en el idioma español.
+\usepackage[spanish]{babel}
+
+%Para usar la codificación utf-8 y con esto incluir acentos.
+\usepackage[utf8]{inputenc}
+
+%Para justificar a la izquierda todo el documento.
+\usepackage[document]{ragged2e}
+
+%Para desplegar adecuadamente toda la documentación elaborada
+%para el producto de software.
+\usepackage{./custom_sty/sphinx}
+
+%Para el twoside, más en específico, para garantizar que exista
+%el mismo espacio entre los flancos izquierdo y derecho en cualquier
+%página.
+\usepackage[margin=3.2cm]{geometry}
+
+%Para ajustar los colores de los hipervínculos.
+\hypersetup{
+            colorlinks = true,
+            linkcolor = black,
+            filecolor = magenta,      
+            urlcolor = cyan
+           }
+ 
+%Aquí se indica la ruta de las imágenes que se utilizarán en la tesis.
+\graphicspath{ 
+              {images/}
+             }
+
+%Termina la construcción del paquete.
+\endinput

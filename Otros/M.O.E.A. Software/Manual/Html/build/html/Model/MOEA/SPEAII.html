@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SPEAII (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="MOEA (módulo)" href="MOEA.html" />
+    <link rel="next" title="MOGA (script)" href="MOGA.html" />
+    <link rel="prev" title="VEGA (script)" href="VEGA.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="speaii-script">
+<h1>SPEAII (script)<a class="headerlink" href="#speaii-script" title="Permalink to this headline">¶</a></h1>
+<p>Se desarrolla la implementación de la técnica M.O.E.A. conocida como S.P.E.A. II
+<strong>(Strength Pareto Evolutionary Algorithm ó Algoritmo Evolutivo de Fuerza de Pareto)</strong>.</p>
+<p>El funcionamiento del algoritmo es el siguiente:</p>
+<div class="line-block">
+<div class="line">1.- Se inicializa una población llamada <em>P</em> y un conjunto inicialmente vacío llamado <em>E</em> <strong>(E albergará Individuos también)</strong>; ambos son de tamaño n.</div>
+</div>
+<div class="line-block">
+<div class="line">2.- Se asigna el Fitness a los Individuos de <em>P</em> y <em>E</em> <strong>(para ello se evalúan las funciones objetivo de los Individuos de ambos conjuntos y se asigna el Ranking Zitzler &amp; Thiele)</strong>.</div>
+</div>
+<div class="line-block">
+<div class="line">3.- A continuación se funden <em>P</em> y <em>E</em> en una súper Población <strong>(llamémosle S también señalado en el algoritmo como Mating Pool, de tamaño n)</strong>.Para ello primero se añaden los Individuos <em>NO DOMINADOS</em> de <em>P</em> en <em>S</em> y posteriormente los <em>NO DOMINADOS</em> de <em>E</em> en <em>S</em>.</div>
+<div class="line">Aquí se distinguen dos casos:</div>
+</div>
+<ul class="simple">
+<li>Si llegasen a faltar Individuos se añaden al azar Individuos <em>DOMINADOS</em> de <em>P</em> en <em>S</em> hasta completar la demanda.</li>
+<li>Si después de la fusión el número de Individuos supera a n, entonces se hace un truncamiento en <em>S</em> hasta ajustar su tamaño a n.</li>
+</ul>
+<div class="line-block">
+<div class="line">4.- <em>S</em> será la nueva <em>E</em>, además se crea la población Hija de la recién creada <em>E</em> <strong>(E-Child)</strong>.</div>
+</div>
+<div class="line-block">
+<div class="line">5.- E-Child será la nueva P.</div>
+</div>
+<div class="line-block">
+<div class="line">6.- Se repiten los pasos 2 a 5 hasta que se haya alcanzado el límite de generaciones <strong>(iteraciones)</strong>.</div>
+</div>
+<div class="line-block">
+<div class="line">Finalmente lo que se regresa es <em>E</em>, ya que ahí es donde se han
+almacenado los mejores Individuos de todas las generaciones.</div>
+<div class="line"><br /></div>
+<div class="line">La característica de este algoritmo es que tiene una Presión Selectiva alta ya que
+se da prioridad a los Individuos no dominados <strong>(de ahí el nombre de
+Fuerza de Pareto ó los más fuertes con respecto al principio de Pareto)</strong>,
+y el hecho de mezclar a <em>E</em> y <em>P</em> en una súper Población garantiza la conservación
+de los mejores Individuos sin importar el transcurso de las generaciones
+<strong>(a eso se le conoce como Elitismo)</strong>, pero también da una tolerancia, aunque mínima, a los
+Individuos de menor calidad como en el punto 3.</div>
+<div class="line">Además al momento de actualizar <em>S</em> a <em>E</em> y E-Child a <em>P</em> se tiene una especie de
+seguro de vida, es decir, si en algún momento la población E-Child llegara a
+tener una calidad baja se tiene el respaldo de <em>E</em> para una generación posterior
+para formar <em>S</em>.</div>
+<div class="line"><br /></div>
+<div class="line">Se debe tener en cuenta que el algoritmo originalmente no contempla ni una súper
+Población <em>S</em> ni E-Child sino que en los pasos 3 y 4 se utiliza solamente <em>E</em> para referirse tanto a E-child como a <em>S</em>,
+sin embargo para no confundir al usuario en la funcionalidad del método se decidió colocar contenedores
+extra para poder diferenciar más precisamente a los elementos involucrados.</div>
+<div class="line"><br /></div>
+<div class="line">Algo muy importante a mencionar es que en el paso 1 y al momento de crear la población E-Child
+es necesario evaluar las funciones objetivo, asignar un Ranking y posteriormente un Fitness
+para que se puedan aplicar los operadores geneticos <strong>(véase Model/GeneticOperator)</strong>, para este caso
+el Ranking es estrictamente el de Zitzler &amp; Thiele; la descripción completa de éste se
+encuentra en <strong>Model/Community/Community.py</strong>.</div>
+</div>
+<span class="target" id="module-Model.MOEA.SPEAII"></span><dl class="function">
+<dt id="Model.MOEA.SPEAII.execute_moea">
+<code class="descname">execute_moea</code><span class="sig-paren">(</span><em>execution_task_count</em>, <em>generations_queue</em>, <em>generations</em>, <em>population_size</em>, <em>vector_functions</em>, <em>vector_variables</em>, <em>available_expressions</em>, <em>number_of_decimals</em>, <em>community_instance</em>, <em>algorithm_parameters</em>, <em>representation_instance</em>, <em>representation_parameters</em>, <em>fitness_instance</em>, <em>fitness_parameters</em>, <em>sharing_function_instance</em>, <em>sharing_function_parameters</em>, <em>selection_instance</em>, <em>selection_parameters</em>, <em>crossover_instance</em>, <em>crossover_parameters</em>, <em>mutation_instance</em>, <em>mutation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.MOEA.SPEAII.execute_moea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Con base en la información señalada se lleva a cabo la implementación del
+M.O.E.A. conocido como S.P.E.A. II <strong>(Strength Pareto Evolutionary Algorithm ó
+Algoritmo Evolutivo de Fuerza de Pareto)</strong>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="MOEA.html">MOEA (módulo)</a><ul>
+      <li>Previous: <a href="VEGA.html" title="previous chapter">VEGA (script)</a></li>
+      <li>Next: <a href="MOGA.html" title="next chapter">MOGA (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/MOEA/SPEAII.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/MOEA/SPEAII.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,86 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Contenido:}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Begin (script)}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Model (secci\IeC {\'o}n)}{3}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}ChromosomalRepresentation (m\IeC {\'o}dulo)}{3}{subsection.1.2.1}
+\contentsline {subsubsection}{BinaryRepresentation (script)}{5}{subsubsection*.4}
+\contentsline {subsubsection}{FloatPointRepresentation (script)}{5}{subsubsection*.10}
+\contentsline {subsection}{\numberline {1.2.2}Community (clase)}{6}{subsection.1.2.2}
+\contentsline {subsubsection}{Population (clase)}{11}{subsubsection*.34}
+\contentsline {paragraph}{Individual (clase)}{13}{paragraph*.52}
+\contentsline {subsection}{\numberline {1.2.3}Fitness (m\IeC {\'o}dulo)}{16}{subsection.1.2.3}
+\contentsline {subsubsection}{LinearRankingFitness (script)}{17}{subsubsection*.73}
+\contentsline {subsubsection}{NonLinearRankingFitness (script)}{17}{subsubsection*.76}
+\contentsline {subsubsection}{ProportionalFitness (script)}{19}{subsubsection*.82}
+\contentsline {subsection}{\numberline {1.2.4}Operator (m\IeC {\'o}dulo)}{19}{subsection.1.2.4}
+\contentsline {subsubsection}{Selection (m\IeC {\'o}dulo)}{20}{subsubsection*.85}
+\contentsline {paragraph}{Roulette (script)}{21}{paragraph*.86}
+\contentsline {paragraph}{ProbabilisticTournament (script)}{21}{paragraph*.89}
+\contentsline {paragraph}{StochasticUniversalSampling (script)}{22}{paragraph*.92}
+\contentsline {subsubsection}{Crossover (m\IeC {\'o}dulo)}{23}{subsubsection*.95}
+\contentsline {paragraph}{NPointsCrossover (script)}{23}{paragraph*.96}
+\contentsline {paragraph}{UniformCrossover (script)}{24}{paragraph*.99}
+\contentsline {subsubsection}{Mutation (m\IeC {\'o}dulo)}{25}{subsubsection*.102}
+\contentsline {paragraph}{BinaryMutation (script)}{26}{paragraph*.103}
+\contentsline {paragraph}{FloatPointMutation (script)}{26}{paragraph*.106}
+\contentsline {subsection}{\numberline {1.2.5}SharingFunction (m\IeC {\'o}dulo)}{26}{subsection.1.2.5}
+\contentsline {subsubsection}{GenotypicSimilarity (m\IeC {\'o}dulo)}{28}{subsubsection*.109}
+\contentsline {paragraph}{HammingDistance (script)}{28}{paragraph*.110}
+\contentsline {subsubsection}{PhenotypicSimilarity (m\IeC {\'o}dulo)}{29}{subsubsection*.114}
+\contentsline {paragraph}{EuclideanDistance (script)}{29}{paragraph*.115}
+\contentsline {subsection}{\numberline {1.2.6}MOEA (m\IeC {\'o}dulo)}{30}{subsection.1.2.6}
+\contentsline {subsubsection}{VEGA (script)}{34}{subsubsection*.119}
+\contentsline {subsubsection}{SPEAII (script)}{35}{subsubsection*.123}
+\contentsline {subsubsection}{MOGA (script)}{36}{subsubsection*.126}
+\contentsline {subsubsection}{NSGAII (script)}{37}{subsubsection*.129}
+\contentsline {section}{\numberline {1.3}View (secci\IeC {\'o}n)}{38}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}MainWindow (clase)}{39}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Main (m\IeC {\'o}dulo)}{42}{subsection.1.3.2}
+\contentsline {subsubsection}{Home (m\IeC {\'o}dulo)}{42}{subsubsection*.145}
+\contentsline {paragraph}{HomeFrame (clase)}{42}{paragraph*.146}
+\contentsline {subparagraph}{IntroductionFrame (clase)}{43}{subparagraph*.151}
+\contentsline {subsubsection}{DecisionVariable (m\IeC {\'o}dulo)}{43}{subsubsection*.154}
+\contentsline {paragraph}{DecisionVariableFrame (clase)}{44}{paragraph*.155}
+\contentsline {subparagraph}{VariableFrame (clase)}{45}{subparagraph*.162}
+\contentsline {subsubsection}{ObjectiveFunction (m\IeC {\'o}dulo)}{46}{subsubsection*.172}
+\contentsline {paragraph}{ObjectiveFunctionFrame (clase)}{46}{paragraph*.173}
+\contentsline {subparagraph}{FunctionFrame (clase)}{48}{subparagraph*.180}
+\contentsline {subsubsection}{Population (m\IeC {\'o}dulo)}{49}{subsubsection*.190}
+\contentsline {paragraph}{PopulationFrame (clase)}{49}{paragraph*.191}
+\contentsline {paragraph}{TemplatePopulationFrame (clase)}{50}{paragraph*.195}
+\contentsline {subparagraph}{PopulaceFrame (clase)}{51}{subparagraph*.202}
+\contentsline {subparagraph}{FitnessFrame (clase)}{52}{subparagraph*.206}
+\contentsline {subsubsection}{GeneticOperator (m\IeC {\'o}dulo)}{53}{subsubsection*.210}
+\contentsline {paragraph}{GeneticOperatorFrame (clase)}{53}{paragraph*.211}
+\contentsline {paragraph}{TemplateGeneticOperatorFrame (clase)}{53}{paragraph*.215}
+\contentsline {subparagraph}{SelectionFrame (clase)}{55}{subparagraph*.222}
+\contentsline {subparagraph}{CrossoverFrame (clase)}{55}{subparagraph*.226}
+\contentsline {subparagraph}{MutationFrame (clase)}{56}{subparagraph*.230}
+\contentsline {subsubsection}{MOEA (m\IeC {\'o}dulo)}{57}{subsubsection*.234}
+\contentsline {paragraph}{MOEAFrame (clase)}{57}{paragraph*.235}
+\contentsline {subparagraph}{AlgorithmFrame (clase)}{57}{subparagraph*.239}
+\contentsline {subparagraph}{SharingFunctionFrame (clase)}{59}{subparagraph*.246}
+\contentsline {subsection}{\numberline {1.3.3}Additional (m\IeC {\'o}dulo)}{60}{subsection.1.3.3}
+\contentsline {subsubsection}{GenerationSignalToplevel (clase)}{60}{subsubsection*.253}
+\contentsline {subsubsection}{MenuInternalOption (m\IeC {\'o}dulo)}{61}{subsubsection*.262}
+\contentsline {paragraph}{InternalOptionToplevel (clase)}{62}{paragraph*.269}
+\contentsline {paragraph}{InternalOptionTab (m\IeC {\'o}dulo)}{63}{paragraph*.273}
+\contentsline {subparagraph}{MOPExampleFrame (clase)}{63}{subparagraph*.274}
+\contentsline {subparagraph}{MOPFrame (clase)}{64}{subparagraph*.277}
+\contentsline {subparagraph}{FeatureFrame (clase)}{65}{subparagraph*.281}
+\contentsline {subparagraph}{CharacteristicFrame (clase)}{65}{subparagraph*.284}
+\contentsline {subparagraph}{PythonExpressionFrame (clase)}{66}{subparagraph*.286}
+\contentsline {subparagraph}{ExpressionFrame (clase)}{67}{subparagraph*.290}
+\contentsline {paragraph}{AboutToplevel (clase)}{69}{paragraph*.299}
+\contentsline {subsubsection}{ResultsGrapher (m\IeC {\'o}dulo)}{69}{subsubsection*.303}
+\contentsline {paragraph}{ResultsGrapherToplevel (clase)}{69}{paragraph*.304}
+\contentsline {subparagraph}{GraphFrame (clase)}{71}{subparagraph*.308}
+\contentsline {subparagraph}{CustomNavigationToolbar2TkAgg (clase)}{73}{subparagraph*.316}
+\contentsline {subparagraph}{SummaryFrame (clase)}{74}{subparagraph*.319}
+\contentsline {subparagraph}{ContentFrame (clase)}{75}{subparagraph*.322}
+\contentsline {subparagraph}{ErrorFrame (clase)}{76}{subparagraph*.324}
+\contentsline {section}{\numberline {1.4}Controller (Secci\IeC {\'o}n)}{76}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Controller (clase)}{76}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}XMLParser (clase)}{78}{subsection.1.4.2}
+\contentsline {subsection}{\numberline {1.4.3}Verifier (clase)}{80}{subsection.1.4.3}
+\contentsline {chapter}{Python Module Index}{85}{section*.353}

@@ -1,0 +1,19 @@
+Model.Operator package
+======================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    Model.Operator.Crossover
+    Model.Operator.Mutation
+    Model.Operator.Selection
+
+Module contents
+---------------
+
+.. automodule:: Model.Operator
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ProportionalFitness (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Fitness (módulo)" href="Fitness.html" />
+    <link rel="next" title="Operator (módulo)" href="../Operator/Operator.html" />
+    <link rel="prev" title="NonLinearRankingFitness (script)" href="NonLinearRankingFitness.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="proportionalfitness-script">
+<h1>ProportionalFitness (script)<a class="headerlink" href="#proportionalfitness-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Se desarrolla la asignación de Fitness conocida como Proportional <strong>(ó Proporcional)</strong>.</div>
+<div class="line">La función <strong>(ó fórmula)</strong> utilizada es la siguiente:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/2f5a9b71e633ba8f8b9889f72d8f68fd4d082adb.png" alt="Fitness(Individuo) = \frac{F_0(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}F_0(Individuo_i)}"/></strong></p><div class="line-block">
+<div class="line">Donde:</div>
+<div class="line-block">
+<div class="line"><img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> es conocido como el valor de la función objetivo del Individuo. Nótese</div>
+<div class="line">que <img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> debe ser proporcional al Fitness del Individuo.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">De acuerdo a la información provista anteriormente, la asignación es llamada así porque,
+como dice el nombre, el Fitness de un Individuo corresponde a la parte proporcional
+de la cantidad total de <img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> de la Population <strong>(ó Población)</strong>.</div>
+<div class="line">De esta manera es posible ajustar los valores para que no existan Fitness dispares.</div>
+<div class="line">Con respecto de <img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> es importante considerar que, dado que se está manejando
+un sistema multi objetivo puede haber más de un valor en existencia,  por ello se necesita
+una cantidad que conjunte estas evaluaciones el cual es el rank, sin embargo el rank es inversamente
+proporcional a la calidad de un Individuo.</div>
+<div class="line">Entonces se debe hacer una modificación para garantizar que exista un valor
+proporcional al Fitness del Individuo, por lo cual <img class="math" src="../../_images/math/f2ed7f4c92d79a0eaf6f2b0c517eedd610224ba1.png" alt="F_0"/> se reescribe así:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/11663bb6e22da39cddf394cc3e9b90e5452a2631.png" alt="F_0(Individuo) = tama\tilde{n}o\_poblaci\acute{o}n - rank(Individuo)"/></strong></p><div class="line-block">
+<div class="line">Reescribiendo la fórmula inicial se tiene lo siguiente:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/702f9958b0f40dfe2ccd7fc7aa8f058341c70f64.png" alt="Fitness(Individuo) = \frac{tama\tilde{n}o\_poblaci\acute{o}n - rank(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}[tama\tilde{n}o\_poblaci\acute{o}n - rank(Individuo_i)]}"/></strong></p><div class="line-block">
+<div class="line">Con esta actualización ya es posible obtener un Fitness acorde al rank del Individuo sin alterar
+la esencia de la técnica.</div>
+</div>
+<span class="target" id="module-Model.Fitness.ProportionalFitness"></span><dl class="function">
+<dt id="Model.Fitness.ProportionalFitness.assign_fitness">
+<code class="descname">assign_fitness</code><span class="sig-paren">(</span><em>population</em>, <em>fitness_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Fitness.ProportionalFitness.assign_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Se implementa la asignación de Proportional Fitness <strong>(ó Fitness Proporcional)</strong>
+con base en la información especificada con anterioridad.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="Fitness.html">Fitness (módulo)</a><ul>
+      <li>Previous: <a href="NonLinearRankingFitness.html" title="previous chapter">NonLinearRankingFitness (script)</a></li>
+      <li>Next: <a href="../Operator/Operator.html" title="next chapter">Operator (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/Fitness/ProportionalFitness.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/Fitness/ProportionalFitness.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

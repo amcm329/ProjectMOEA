@@ -1,0 +1,9 @@
+FitnessFrame (clase)
+====================
+
+
+.. automodule:: View.Main.Population.FitnessFrame
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:

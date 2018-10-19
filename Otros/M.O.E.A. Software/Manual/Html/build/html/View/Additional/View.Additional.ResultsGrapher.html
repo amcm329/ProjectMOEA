@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ResultsGrapher (módulo) &mdash; M.O.E.A. Grapher 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Grapher 1.0 documentation" href="../../index.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="resultsgrapher-modulo">
+<h1>ResultsGrapher (módulo)<a class="headerlink" href="#resultsgrapher-modulo" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher.ContentFrame">
+<span id="view-additional-resultsgrapher-contentframe-module"></span><h2>View.Additional.ResultsGrapher.ContentFrame module<a class="headerlink" href="#module-View.Additional.ResultsGrapher.ContentFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.ContentFrame.ContentFrame">
+<em class="property">class </em><code class="descclassname">View.Additional.ResultsGrapher.ContentFrame.</code><code class="descname">ContentFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>renamed_objective_functions</em>, <em>renamed_decision_variables</em>, <em>main_features</em>, <em>gathered_information</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.ContentFrame.ContentFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<p>Recaba el contenido de todas las funciones objetivo, variables de decisión y demás parámetros que 
+el usuario ingresó para poder ejecutar un Task determinado. Es entonces que plasma toda esta
+información en un Frame para que el usuario pueda cotejar los datos ingresados con los resultados
+obtenidos <strong>(véase View/Additional/ResultsGrapher/GraphFrame.py)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>renamed_objective_functions</strong> &#8211; Diccionario de funciones objetivo renombradas 
+<strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+<li><strong>renamed_decision_variables</strong> (<em>Dictionary</em>) &#8211; Diccionario de variables de decisión renombradas  
+<strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+<li><strong>main_features</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene, entre otras cosas, los nombres de los
+parámetros asociados a cada técnica.</li>
+<li><strong>gathered_information</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todas las configuraciones 
+recabadas ingresadas por el usuario <strong>(véase View/Main/MainWindow.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher.GraphFrame">
+<span id="view-additional-resultsgrapher-graphframe-module"></span><h2>View.Additional.ResultsGrapher.GraphFrame module<a class="headerlink" href="#module-View.Additional.ResultsGrapher.GraphFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame">
+<em class="property">class </em><code class="descclassname">View.Additional.ResultsGrapher.GraphFrame.</code><code class="descname">GraphFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>execution_task_count</em>, <em>objective_functions</em>, <em>decision_variables</em>, <em>final_results</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<p>Proporciona un Frame que contiene gráficas alimentadas por los resultados obtenidos
+al ejecutar algún MOEA, el cual ha sido refinado por las configuraciones
+recabadas de la ventana principal <strong>(véase Model/MOEA)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>execution_task_count</strong> (<em>Integer</em>) &#8211; Número que indica el actual Task en ejecución.</li>
+<li><strong>objective_functions</strong> (<em>List</em>) &#8211; Lista que contiene las funciones objetivo renombradas.</li>
+<li><strong>decision_variables</strong> (<em>List</em>) &#8211; Lista que contiene las variables de decisión renombradas.</li>
+<li><strong>final_results</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene la información para graficar. Se divide en dos categorías principales:
+Frente de Pareto y Mejor Individuo por Generación.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher.ResultsGrapherToplevel">
+<span id="view-additional-resultsgrapher-resultsgraphertoplevel-module"></span><h2>View.Additional.ResultsGrapher.ResultsGrapherToplevel module<a class="headerlink" href="#module-View.Additional.ResultsGrapher.ResultsGrapherToplevel" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel">
+<em class="property">class </em><code class="descclassname">View.Additional.ResultsGrapher.ResultsGrapherToplevel.</code><code class="descname">ResultsGrapherToplevel</code><span class="sig-paren">(</span><em>parent</em>, <em>execution_task_count</em>, <em>main_features</em>, <em>gathered_information</em>, <em>final_results</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Toplevel</span></code></p>
+<div class="line-block">
+<div class="line">Esta clase arroja una ventana independiente que muestra los resultados arrojados por una configuración
+previa del usuario.</div>
+<div class="line">Primero que nada es menester mencionar que una ventana independiente es un Toplevel en Tkinter,
+la cual es casi ajena a la ventana principal <strong>(véase View/Main/MainWindow.py)</strong>, pero si ésta última es
+cerrada, se eliminarán también las ventanas independientes creadas.</div>
+<div class="line">Cada ventana independiente mostrará el número de Task, es decir, el orden en el que fue procesada la información
+con respecto de otros Tasks.</div>
+<div class="line">Entiéndase por Task a una ejecución de algún algoritmo MOEA bajo un cierto conjunto de configuraciones iniciales.
+Así, los Tasks serán mostrados en una ventana independiente. La numeración de los Tasks irá siempre en orden progresivo,
+ lo que significa que el número será reinicializado sólamente volviendo a ejecutar el programa principal.</div>
+<div class="line">De esta manera es posible tener varias ventanas independientes abiertas y en cuestiones más generales, es posible
+ejecutar varios Tasks simultáneamente, ya que el programa es multi-threading en ese sentido.</div>
+<div class="line">Finalmente, la información será mostrada en dos pestañas: en una <strong>(SummaryFrame)</strong> se otorga un resumen de todas
+las funciones objetivo, variables de decisión, MOEA usado y configuraciones adicionales en el Task.</div>
+<div class="line">En la otra <strong>(GraphFrame)</strong> se colocan todas las gráficas pertinentes producto de la ejecución del MOEA con las
+funciones objectivo, variables de decisión y configuraciones ingresadas <strong>(véase Model/Community/Community.py)</strong>
+<strong>(véase View/Additional/ResultsGrapher/GraphFrame.py)</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>execution_task_count</strong> (<em>Integer</em>) &#8211; Número que indica el actual Task en ejecución.</li>
+<li><strong>main_features</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene, entre otras cosas, los nombres de los
+parámetros asociados a cada técnica.</li>
+<li><strong>gathered_information</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todas las configuraciones 
+recabadas ingresadas por el usuario <strong>(véase View/Main/MainWindow.py)</strong>.</li>
+<li><strong>final_results</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene la información procesada lista para graficar
+<strong>(véase View/Additional/ResultsGrapher/GraphFrame.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Toplevel</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher.SummaryFrame">
+<span id="view-additional-resultsgrapher-summaryframe-module"></span><h2>View.Additional.ResultsGrapher.SummaryFrame module<a class="headerlink" href="#module-View.Additional.ResultsGrapher.SummaryFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.SummaryFrame.SummaryFrame">
+<em class="property">class </em><code class="descclassname">View.Additional.ResultsGrapher.SummaryFrame.</code><code class="descname">SummaryFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>renamed_objective_functions</em>, <em>renamed_decision_variables</em>, <em>main_features</em>, <em>gathered_information</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.SummaryFrame.SummaryFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<div class="line-block">
+<div class="line">Unifica dos elementos: Canvas y ContentFrame. La razón de esto es que, en promedio la
+información mostrada por ContentFrame rebasará el tamaño de la ventana de la información 
+final <strong>(véase View/Additional/ResultsGrapher/ResultsGrapherTopLevel.py)</strong>, es entonces 
+que se deben agregar barras de desplazamiento para poder acceder al contenido que quedaría oculto.</div>
+<div class="line">Uno de los elementos en Tkinter más sencillos que cumplen con este cometido es un
+Canvas. Luego entonces esa es la razón de tal fusión.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>renamed_objective_functions</strong> &#8211; Diccionario de funciones objetivo renombradas 
+<strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+<li><strong>renamed_decision_variables</strong> (<em>Dictionary</em>) &#8211; Diccionario de variables de decisión renombradas  
+<strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+<li><strong>main_features</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene, entre otras cosas, los nombres de los
+parámetros asociados a cada técnica.</li>
+<li><strong>gathered_information</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todas las configuraciones 
+recabadas ingresadas por el usuario <strong>(véase View/Main/MainWindow.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Additional.ResultsGrapher">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-View.Additional.ResultsGrapher" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ResultsGrapher (módulo)</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher.ContentFrame">View.Additional.ResultsGrapher.ContentFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher.GraphFrame">View.Additional.ResultsGrapher.GraphFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher.ResultsGrapherToplevel">View.Additional.ResultsGrapher.ResultsGrapherToplevel module</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher.SummaryFrame">View.Additional.ResultsGrapher.SummaryFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Additional.ResultsGrapher">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/View/Additional/View.Additional.ResultsGrapher.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/View/Additional/View.Additional.ResultsGrapher.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

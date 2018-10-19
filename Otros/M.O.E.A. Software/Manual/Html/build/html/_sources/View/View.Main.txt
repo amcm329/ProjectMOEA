@@ -1,0 +1,22 @@
+View.Main package
+=================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    View.Main.DecisionVariable
+    View.Main.GeneticOperator
+    View.Main.Home
+    View.Main.MOEA
+    View.Main.ObjectiveFunction
+    View.Main.Population
+
+Module contents
+---------------
+
+.. automodule:: View.Main
+    :members:
+    :undoc-members:
+    :show-inheritance:

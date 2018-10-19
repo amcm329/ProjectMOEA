@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MOGA (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="MOEA (módulo)" href="MOEA.html" />
+    <link rel="next" title="NSGAII (script)" href="NSGAII.html" />
+    <link rel="prev" title="SPEAII (script)" href="SPEAII.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="moga-script">
+<h1>MOGA (script)<a class="headerlink" href="#moga-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Se desarrolla la técnica M.O.E.A. que lleva por nombre M.O.G.A.
+<strong>(Multi Objective Genetic Algorithm ó Algoritmo Genético Multi Objetivo)</strong>.</div>
+<div class="line">Su funcionamiento es el siguiente:</div>
+<div class="line"><br /></div>
+<div class="line">1.- Se crea la Población Padre, se evalúan las funciones objetivo de sus correspondientes Individuos.</div>
+</div>
+<div class="line-block">
+<div class="line">2.- Se asigna a los Individuos un Ranking <strong>(Fonseca &amp; Flemming)</strong> y posteriormente se calcula el Niche Count de la Población Padre.</div>
+</div>
+<div class="line-block">
+<div class="line">3.- Tomando en cuenta los valores del punto 2 se obtiene el Fitness para cada Individuo y posteriormente su Shared Fitness.</div>
+</div>
+<div class="line-block">
+<div class="line">4.- Se aplica el operador de selección sobre la Población Padre para determinar los elegidos para dejar descendencia.</div>
+</div>
+<div class="line-block">
+<div class="line">5.- Se crea la Población Hija, se evalúan las funciones objetivo de sus correspondientes Individuos.</div>
+</div>
+<div class="line-block">
+<div class="line">6.- Se asigna a los Individuos un Ranking <strong>(Fonseca &amp; Flemming)</strong> y posteriormente se calcula el Niche Count de la Población Hija.</div>
+</div>
+<div class="line-block">
+<div class="line">7.- Tomando en cuenta los valores del punto 6 se obtiene el Fitness para cada Individuo y posteriormente su Shared Fitness.</div>
+</div>
+<div class="line-block">
+<div class="line">8.- La Población Hija pasará a ser la nueva Población Padre.</div>
+</div>
+<div class="line-block">
+<div class="line">9.- Se repiten los pasos 4 a 8 hasta que se haya alcanzado el número límite de generaciones <strong>(iteraciones)</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">Como se puede apreciar, la implementación de este algoritmo es muy sencilla, además
+se rige casi en su totalidad por el Shared Fitness <strong>(ó Fitness Compartido)</strong>, por lo
+que la Presión Selectiva <strong>(ó Selective Pressure)</strong> incluida dependerá en gran medida
+de la función de Distancia que se utilice, así como de la magnitud indicada por
+el usuario.</div>
+<div class="line"><br /></div>
+<div class="line">Finalmente es menester mencionar que para esta implementación el Ranking utilizado debe ser
+estrictamente el de Fonseca &amp; Flemming <strong>(véase Model/Community/Community.py)</strong>.</div>
+</div>
+<span class="target" id="module-Model.MOEA.MOGA"></span><dl class="function">
+<dt id="Model.MOEA.MOGA.execute_moea">
+<code class="descname">execute_moea</code><span class="sig-paren">(</span><em>execution_task_count</em>, <em>generations_queue</em>, <em>generations</em>, <em>population_size</em>, <em>vector_functions</em>, <em>vector_variables</em>, <em>available_expressions</em>, <em>number_of_decimals</em>, <em>community_instance</em>, <em>algorithm_parameters</em>, <em>representation_instance</em>, <em>representation_parameters</em>, <em>fitness_instance</em>, <em>fitness_parameters</em>, <em>sharing_function_instance</em>, <em>sharing_function_parameters</em>, <em>selection_instance</em>, <em>selection_parameters</em>, <em>crossover_instance</em>, <em>crossover_parameters</em>, <em>mutation_instance</em>, <em>mutation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.MOEA.MOGA.execute_moea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tomando como referencia el pseudocódigo antes citado, se elabora la implementación
+de M.O.G.A. <strong>(Multi Objective Genetic Algorithm ó Algoritmo Genético Multi Objetivo)</strong>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="MOEA.html">MOEA (módulo)</a><ul>
+      <li>Previous: <a href="SPEAII.html" title="previous chapter">SPEAII (script)</a></li>
+      <li>Next: <a href="NSGAII.html" title="next chapter">NSGAII (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/MOEA/MOGA.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/MOEA/MOGA.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

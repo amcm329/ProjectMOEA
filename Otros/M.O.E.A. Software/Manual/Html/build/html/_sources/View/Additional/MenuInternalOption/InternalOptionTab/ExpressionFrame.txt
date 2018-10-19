@@ -1,0 +1,9 @@
+ExpressionFrame (clase)
+=======================
+
+
+.. automodule:: View.Additional.MenuInternalOption.InternalOptionTab.ExpressionFrame
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:

@@ -1,0 +1,10 @@
+AboutFrame (clase)
+==================
+
+
+.. automodule:: View.Additional.MenuInternalOption.AboutFrame
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FloatPointRepresentation (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="ChromosomalRepresentation (módulo)" href="ChromosomalRepresentation.html" />
+    <link rel="next" title="Community (clase)" href="../Community/Community.html" />
+    <link rel="prev" title="BinaryRepresentation (script)" href="BinaryRepresentation.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="floatpointrepresentation-script">
+<h1>FloatPointRepresentation (script)<a class="headerlink" href="#floatpointrepresentation-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Este script contiene todas las funcionalidades requeridas para que se pueda hacer uso de una
+codificación de tipo Float Point <strong>(ó Punto Flotante)</strong>; ésto significa que los alelos que
+conforman al cromosoma serán números de punto flotante.</div>
+<div class="line">Un número de punto flotante es aquél que tiene una parte entera y una decimal; cabe mencionar que
+si el número en cuestión no tiene expansión decimal, se le considera un número de representación Integer
+<strong>(ó Entera)</strong>; ésto porque en algunas fuentes se manejan la representación de Punto Flotante y
+Entera por separado.</div>
+</div>
+<span class="target" id="module-Model.ChromosomalRepresentation.FloatPointRepresentation"></span><dl class="function">
+<dt id="Model.ChromosomalRepresentation.FloatPointRepresentation.calculate_length_subchromosomes">
+<code class="descname">calculate_length_subchromosomes</code><span class="sig-paren">(</span><em>vector_variables</em>, <em>number_of_decimals</em>, <em>representation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.ChromosomalRepresentation.FloatPointRepresentation.calculate_length_subchromosomes" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Realiza el cálculo de subcromosomas de acuerdo a la representación Float Point <strong>(ó Punto Flotante)</strong>.</div>
+<div class="line">Esta función es de aquéllas que se tienen que implementar obligatoriamente.</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.ChromosomalRepresentation.FloatPointRepresentation.create_chromosome">
+<code class="descname">create_chromosome</code><span class="sig-paren">(</span><em>length_subchromosomes</em>, <em>vector_variables</em>, <em>number_of_decimals</em>, <em>representation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.ChromosomalRepresentation.FloatPointRepresentation.create_chromosome" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Crea un cromosoma con contenido de punto flotante.</div>
+<div class="line">Esta función es de aquéllas que se tienen que implementar obligatoriamente.</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.ChromosomalRepresentation.FloatPointRepresentation.evaluate_subchromosomes">
+<code class="descname">evaluate_subchromosomes</code><span class="sig-paren">(</span><em>complete_chromosome</em>, <em>length_subchromosomes</em>, <em>vector_variables</em>, <em>number_of_decimals</em>, <em>representation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.ChromosomalRepresentation.FloatPointRepresentation.evaluate_subchromosomes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toma cada porción de cromosoma y la evalúa para luego ser asignada
+a la variable de decisión correspondiente. Este método es de los que se
+debe de implementar obligatoriamente.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="ChromosomalRepresentation.html">ChromosomalRepresentation (módulo)</a><ul>
+      <li>Previous: <a href="BinaryRepresentation.html" title="previous chapter">BinaryRepresentation (script)</a></li>
+      <li>Next: <a href="../Community/Community.html" title="next chapter">Community (clase)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/ChromosomalRepresentation/FloatPointRepresentation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/ChromosomalRepresentation/FloatPointRepresentation.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

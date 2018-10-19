@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SharingFunction (módulo) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Model (sección)" href="../Model.html" />
+    <link rel="next" title="GenotypicSimilarity (módulo)" href="GenotypicSimilarity/GenotypicSimilarity.html" />
+    <link rel="prev" title="FloatPointMutation (script)" href="../Operator/Mutation/FloatPointMutation.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sharingfunction-modulo">
+<h1>SharingFunction (módulo)<a class="headerlink" href="#sharingfunction-modulo" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">En esta sección se almacenan las técnicas relativas al Sharing Function
+<strong>(ó Función de Compartición)</strong>.</div>
+<div class="line">El objetivo de estas técnicas se delega a un rol secundario pero aún así
+muy importante y consiste en realizar un filtrado más minucioso de los mejores Individuos
+y así tomar a los candidatos elegidos para dejar descendencia.</div>
+</div>
+<div class="line-block">
+<div class="line">La operación es útil en casos en el que la calidad de los Individuos es muy similar y entonces
+se desea seleccionar a los que son superiores, sin embargo, es menester mencionar que, en exceso, dicha selección
+parsimoniosa puede dar lugar a un efecto negativo del Selective Pressure <strong>(ó Presión Selectiva, véase Model/MOEA)</strong>.</div>
+<div class="line">Esto provoca que, lejos de dar una Población de elementos óptimos, los Indviduos se queden estancados
+puesto que al tener todos cargas genéticas muy similares, existe una pobre exploración genética en
+sus cromosomas y entonces no se llegará a una optimización de funciones objetivo adecuada.</div>
+</div>
+<div class="line-block">
+<div class="line">Es por ello que no todos los MOEAS <strong>(véase Model/MOEA)</strong> lo utilizan, sin embargo se decidió implementar
+esta sección ya que extrapolando las circunstancias, en cualquier momento se puede hacer uso de técnicas
+de esta índole.</div>
+</div>
+<div class="line-block">
+<div class="line">Haciendo énfasis en la parte matemática, el Sharing Function funciona así:</div>
+</div>
+<div class="line-block">
+<div class="line">Cada Individual <strong>(ó Individuo)</strong> tendrá asociado un Shared Fitness <strong>(ó Fitness Compartido)</strong> que fungirá como el
+Fitness original asignado a cada Individo y el cual será obtenido de la siguiente manera:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/4d0c02f21bdf2c04ea7f7ac5da7be7c1f1306f5b.png" alt="SharedFitness(Individuo) = \frac{Fitness(Individuo)}{NicheCount(Individuo)}"/></strong></p><div class="line-block">
+<div class="line">Para fines de implementación el Shared Fitness será colocado en la misma variable utilizada para almacenar el Fitness
+original, esto por cada Individuo.</div>
+<div class="line">El Niche Count es un valor que indica qué tan cercano en calidad se encuentra un Individuo con respecto de los demás.
+La forma de calcularlo es la siguiente:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/bf0cb67281b41d04c075d4e5411770a45c734c30.png" alt="NicheCount(Individuo) = \sum_{j=1}^{tama\tilde{n}o\_poblaci\acute{o}n}SF(D(Individuo,Individuo_j))"/></strong></p><div class="line-block">
+<div class="line">Donde <img class="math" src="../../_images/math/3cd8f0f57abfbfe2d16e6e8682f8c3ccd7a4f344.png" alt="D(Individuo_i,Individuo_j)"/> es la distancia que existe entre el Individuo i y el Individuo j;
+mientras que el SF es el Sharing Function.</div>
+<div class="line">Entonces el SF se define como:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/b4c376792d7e255860d2478abb31ef31f34ab0bf.png" alt="SF(D(Individuo_i,Individuo_j)) = \left\{ \begin{array}{lcc}
+              1 - (\frac{D(Individuo_i,Individuo_j)}{\sigma_{share}})^{\alpha},\ \ si\ \ D &lt; \sigma_{share}. \\
+              \\ 0,\ \ en\ cualquier\ otro\ caso. \\
+         \end{array}
+\right."/></strong></p><div class="line-block">
+<div class="line">Donde <img class="math" src="../../_images/math/877d234f4cec6974ce218fc2e975a486a7972dfd.png" alt="\alpha"/> es una variable que casi siempre se asigna a 1 <strong>(aunque en este proyecto se le
+da la libertad al usuario de seleccionar valores distintos)</strong> y <img class="math" src="../../_images/math/4f1470cf5bba5802d4292d7512c650bda0590344.png" alt="\sigma_{share}"/> marca el límite en el
+cual dos Individuos se consideran cercanos en calidad, es decir, viven en el mismo Niche.</div>
+<div class="line"><br /></div>
+<div class="line">Llegados a este punto, si bien la parte que se utilizará finalmente es el Shared Fitness,
+sólo las técnicas concernientes a <img class="math" src="../../_images/math/3cd8f0f57abfbfe2d16e6e8682f8c3ccd7a4f344.png" alt="D(Individuo_i,Individuo_j)"/>
+serán las que se implementen en esta sección, pues lo demás siempre se mantendrá estático.</div>
+<div class="line"><br /></div>
+<div class="line">Siendo más específicos con base en lo anterior, existen dos tipos de funciones de Distancia:</div>
+</div>
+<ul class="simple">
+<li>De Similaridad Genotípica <strong>(ó Genotypic Similarity)</strong>.</li>
+<li>De Similaridad Fenotípica <strong>(ó Phenotypic Similarity)</strong>.</li>
+</ul>
+<div class="line-block">
+<div class="line">La primera indica en pocas palabras que la comparación se hará usando únicamente características relacionadas
+con el cromosoma, mientras que la segunda implicará la comparación de características externas como las funciones objetivo
+evaluadas con las variables de decisión de cada Individuo ó las variables de decisión por sí solas.</div>
+<div class="line"><br /></div>
+<div class="line">Eventualmente se desea que el usuario implemente sus propias funciones, por ello es que, además de añadir
+el método en el listado localizado en <strong>Controller/XML/Features.xml</strong>, deberá implementar las siguiente funciones:</div>
+</div>
+<dl class="function">
+<dt>
+<code class="descname">calculate_sigma_share(population,sharing_function_parameters):</code></dt>
+<dd><div class="line-block">
+<div class="line">Realiza el cálculo del factor <img class="math" src="../../_images/math/4f1470cf5bba5802d4292d7512c650bda0590344.png" alt="\sigma_{share}"/> sobre el cual se hará el cuestionamiento
+de Individuos cercanos en calidad.</div>
+<div class="line">Es importante mencionar que la función debe regresar un escalar que representa el límite
+máximo para el cual dos Individuos se consideran en el mismo Niche.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>population</strong> (<em>Instance</em>) &#8211; La Población sobre la cual se hará el cálculo correspondiente.</li>
+<li><strong>sharing_function_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario que puede contener opciones adicionales para
+el cálculo de la distancia entre Individuos.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un valor escalar que representa el límite de cercanía para cualesquiera dos Individuos
+de una Población.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">calculate_distance(individual_i,individual_j,sharing_function_parameters):</code></dt>
+<dd><div class="line-block">
+<div class="line">Calcula la distancia de calidad que existe entre dos Individuos cualesquiera.</div>
+<div class="line">Dada la simpleza del método, se puede usar independientemente de las categorías
+antes especificadas.</div>
+<div class="line">Es importante resaltar que la función debe regresar un escalar que aluda a la distancia
+entre los Individuos.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>individual_i</strong> (<em>Instance</em>) &#8211; El Individuo para calcular distancia.</li>
+<li><strong>individual_j</strong> (<em>Instance</em>) &#8211; El Individuo para calcular distancia.</li>
+<li><strong>sharing_function_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario que puede contener opciones adicionales para
+el cálculo de la distancia entre Individuos.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un valor escalar que indica la distancia entre los Individuos.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>A continuación se muestran las subcategorías correspondientes:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="GenotypicSimilarity/GenotypicSimilarity.html">GenotypicSimilarity (módulo)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="GenotypicSimilarity/HammingDistance.html">HammingDistance (script)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PhenotypicSimilarity/PhenotypicSimilarity.html">PhenotypicSimilarity (módulo)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PhenotypicSimilarity/EuclideanDistance.html">EuclideanDistance (script)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+      <li>Previous: <a href="../Operator/Mutation/FloatPointMutation.html" title="previous chapter">FloatPointMutation (script)</a></li>
+      <li>Next: <a href="GenotypicSimilarity/GenotypicSimilarity.html" title="next chapter">GenotypicSimilarity (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/SharingFunction/SharingFunction.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/SharingFunction/SharingFunction.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

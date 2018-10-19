@@ -1,0 +1,30 @@
+View.Main.ObjectiveFunction package
+===================================
+
+Submodules
+----------
+
+View.Main.ObjectiveFunction.FunctionFrame module
+------------------------------------------------
+
+.. automodule:: View.Main.ObjectiveFunction.FunctionFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Main.ObjectiveFunction.ObjectiveFunctionFrame module
+---------------------------------------------------------
+
+.. automodule:: View.Main.ObjectiveFunction.ObjectiveFunctionFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Main.ObjectiveFunction
+    :members:
+    :undoc-members:
+    :show-inheritance:

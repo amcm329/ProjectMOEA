@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ResultsGrapherToplevel (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="ResultsGrapher (módulo)" href="ResultsGrapher.html" />
+    <link rel="next" title="GraphFrame (clase)" href="GraphFrame.html" />
+    <link rel="prev" title="ResultsGrapher (módulo)" href="ResultsGrapher.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Additional.ResultsGrapher.ResultsGrapherToplevel">
+<span id="resultsgraphertoplevel-clase"></span><h1>ResultsGrapherToplevel (clase)<a class="headerlink" href="#module-View.Additional.ResultsGrapher.ResultsGrapherToplevel" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel">
+<em class="property">class </em><code class="descname">ResultsGrapherToplevel</code><span class="sig-paren">(</span><em>parent</em>, <em>path_image_logo</em>, <em>execution_task_count</em>, <em>main_features</em>, <em>gathered_information</em>, <em>final_results</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Toplevel</span></code></p>
+<div class="line-block">
+<div class="line">Esta clase lanza una ventana independiente que muestra los resultados arrojados por una configuración
+previa del usuario.</div>
+<div class="line"><br /></div>
+<div class="line">Primero que nada es menester mencionar que una ventana independiente es un Toplevel en Tkinter,
+la cual es casi ajena a la Ventana Principal <strong>(véase View/Main/MainWindow.py)</strong>, pero si ésta última es
+cerrada, se eliminarán también las ventanas independientes creadas.</div>
+<div class="line"><br /></div>
+<div class="line">Cada ventana independiente mostrará el número de Task, es decir, el orden en el que fue procesada la información
+con respecto de otros Tasks.</div>
+<div class="line"><br /></div>
+<div class="line">Entiéndase por Task a una ejecución de algún algoritmo MOEA bajo un cierto conjunto de configuraciones iniciales.
+Así, los Tasks serán mostrados en una ventana independiente. La numeración de los Tasks irá siempre en orden progresivo,
+lo que significa que el número será reinicializado sólamente volviendo a ejecutar el programa principal.</div>
+<div class="line">De esta manera es posible tener varias ventanas independientes abiertas y en cuestiones más generales, es posible
+ejecutar varios Tasks simultáneamente, ya que el programa es multi-threading en ese sentido.</div>
+<div class="line"><br /></div>
+<div class="line">Finalmente, la información será mostrada en dos pestañas: en una <strong>(SummaryFrame)</strong> se otorga un resumen de todas
+las funciones objetivo, variables de decisión, MOEA usado y configuraciones adicionales en el Task.</div>
+<div class="line">En la otra <strong>(GraphFrame)</strong> se colocan todas las gráficas pertinentes producto de la ejecución del MOEA con las
+funciones objectivo, variables de decisión y configuraciones ingresadas <strong>(véase Model/Community/Community.py)</strong>
+<strong>(véase View/Additional/ResultsGrapher/GraphFrame.py)</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">Si por cualquier circunstancia llega a haber una falla interna durante la ejecución del proceso, ninguna de las dos
+pestañas será mostrada y en su lugar aparecerá una de error <strong>(ErrorFrame)</strong>, especificando además el tipo de error
+y en qué parte de Model <strong>(ó Modelo)</strong> ocurrió.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>path_image_logo</strong> &#8211; La ruta al logotipo que se usa en esta ventana independiente.</li>
+<li><strong>execution_task_count</strong> &#8211; Número que indica el actual Task en ejecución.</li>
+<li><strong>main_features</strong> &#8211; Diccionario que contiene, entre otras cosas, los nombres de los
+parámetros asociados a cada técnica.</li>
+<li><strong>gathered_information</strong> &#8211; Diccionario que contiene todas las configuraciones 
+recabadas ingresadas por el usuario <strong>(véase View/Main/MainWindow.py)</strong>.</li>
+<li><strong>final_results</strong> &#8211; Diccionario que contiene la información procesada lista para graficar
+<strong>(véase View/Additional/ResultsGrapher/GraphFrame.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>;type path_image_logo: String
+:type execution_task_count: Integer
+:type main_features: Dictionary
+:type gathered_information: Dictionary
+:type final_results: Dictionary
+:returns: Tkinter.Toplevel
+:rtype: Instance</p>
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel._ResultsGrapherToplevel__center">
+<code class="descname">_ResultsGrapherToplevel__center</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel._ResultsGrapherToplevel__center" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Centra la ventana independiente con respecto de la ventana principal.
+En otras palabras, la ventana independiente será colocada en el centro de la 
+ventana principal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel._ResultsGrapherToplevel__create_renamed_settings">
+<code class="descname">_ResultsGrapherToplevel__create_renamed_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.ResultsGrapherToplevel.ResultsGrapherToplevel._ResultsGrapherToplevel__create_renamed_settings" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<div class="line-block">
+<div class="line">Tal como su nombre lo dice, renombra las funciones objetivo y variables de decisión
+para posteriormente almacenarlas en una estructura por cada tipo.</div>
+<div class="line">Renombrar una función o variable de decisión es hacer un mapeo que consista en:</div>
+<div class="line">Elemento_renombrado -&gt; elemento original.</div>
+<div class="line">Para el caso de la función objetivo, el renombramiento se da anteponiendo la letra <strong>F</strong>
+seguido de la posición en la que fue insertada originalmente por el usuario.</div>
+<div class="line">El caso es análogo para la variable de decisión, sólo que la letra es <strong>V</strong>.</div>
+<div class="line">La idea de renombrar las funciones y variables surge como alternativa al momento de graficar los datos
+<strong>(véase View/Additional/ResultsGrapher/GraphFrame.py)</strong>, ya que el usuario puede ingresar
+funciones muy largas o variables con identificadores muy complejos y esto en la parte gráfica 
+se vería muy amontonado; por ello fue preferible mostrar la parte renombrada en la sección de 
+GraphFrame y colocar la muestra original en el SummaryFrame.         </div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<p>La clase actual consta de los siguientes elementos:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="GraphFrame.html">GraphFrame (clase)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CustomNavigationToolbar2TkAgg.html">CustomNavigationToolbar2TkAgg (clase)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SummaryFrame.html">SummaryFrame (clase)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ContentFrame.html">ContentFrame (clase)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ErrorFrame.html">ErrorFrame (clase)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../View.html">View (sección)</a><ul>
+  <li><a href="../Additional.html">Additional (módulo)</a><ul>
+  <li><a href="ResultsGrapher.html">ResultsGrapher (módulo)</a><ul>
+      <li>Previous: <a href="ResultsGrapher.html" title="previous chapter">ResultsGrapher (módulo)</a></li>
+      <li>Next: <a href="GraphFrame.html" title="next chapter">GraphFrame (clase)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/View/Additional/ResultsGrapher/ResultsGrapherToplevel.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/View/Additional/ResultsGrapher/ResultsGrapherToplevel.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

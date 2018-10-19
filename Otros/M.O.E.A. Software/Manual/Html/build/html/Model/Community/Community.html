@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Community (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Model (sección)" href="../Model.html" />
+    <link rel="next" title="Population (clase)" href="Population/Population.html" />
+    <link rel="prev" title="FloatPointRepresentation (script)" href="../ChromosomalRepresentation/FloatPointRepresentation.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Model.Community.Community">
+<span id="community-clase"></span><h1>Community (clase)<a class="headerlink" href="#module-Model.Community.Community" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Model.Community.Community.Community">
+<em class="property">class </em><code class="descname">Community</code><span class="sig-paren">(</span><em>vector_functions</em>, <em>vector_variables</em>, <em>available_expressions</em>, <em>number_of_decimals</em>, <em>representation_instance</em>, <em>representation_parameters</em>, <em>fitness_instance</em>, <em>fitness_parameters</em>, <em>sharing_function_instance</em>, <em>sharing_function_parameters</em>, <em>selection_instance</em>, <em>selection_parameters</em>, <em>crossover_instance</em>, <em>crossover_parameters</em>, <em>mutation_instance</em>, <em>mutation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Proporciona toda la infraestructura lógica para poder construir poblaciones y operar con éstas,
+además de transacciones relacionadas con sus elementos de manera individual.</div>
+<div class="line">Se le llama Community porque aludiendo a su significado una Community <strong>(ó Comunidad)</strong>
+consta de al menos una Population <strong>(o Población)</strong>. De esta manera se deduce que en algún momento
+habrán métodos que involucren a más de una población.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>vector_functions</strong> (<em>List</em>) &#8211; Lista que contiene las funciones objetivo previamente 
+saneadas por Controller/Controller.py.</li>
+<li><strong>vector_variables</strong> (<em>List</em>) &#8211; Lista que contiene las variables de decisión previamente 
+saneadas por Controller/Controller.py.</li>
+<li><strong>available_expressions</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene algunas funciones escritas como azúcar sintáctica
+para que puedan ser utilizadas más fácilmente por el usuario y evaluadas
+más ŕapidamente en el programa <strong>(véase Controller/XML/PythonExpressions.xml)</strong>.</li>
+<li><strong>number_of_decimals</strong> (<em>Integer</em>) &#8211; El número de decimales que tendrán las soluciones; con este número se determina
+en gran medida el tamaño del cromosoma.</li>
+<li><strong>representation_instance</strong> (<em>Instance</em>) &#8211; Instancia de la técnica de representación que eligió el usuario
+<strong>(véase Controller/Verifier.py)</strong>.</li>
+<li><strong>representation_parameters</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todos los parámetros adicionales a la técnica
+de representación considerada por el usuario.</li>
+<li><strong>fitness_instance</strong> (<em>Instance</em>) &#8211; Instancia de la técnica de Fitness que eligió el usuario
+<strong>(véase Controller/Verifier.py)</strong>.</li>
+<li><strong>fitness_parameters</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todos los parámetros adicionales a la técnica
+de Fitness seleccionada por el usuario.</li>
+<li><strong>sharing_function_instance</strong> (<em>Instance</em>) &#8211; Instancia de la técnica de Sharing Function seleccionada por el usuario
+<strong>(véase Controller/Verifier.py)</strong>.</li>
+<li><strong>sharing_function_parameters</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todos los parámetros adicionales a la técnica
+de Fitness seleccionada por el usuario.</li>
+<li><strong>selection_instance</strong> (<em>Instance</em>) &#8211; Instancia de la técnica de selección <strong>(Selection)</strong> elegida por el usuario
+<strong>(véase Controller/Verifier.py)</strong>.</li>
+<li><strong>selection_parameters</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todos los parámetros adicionales a la técnica
+de selección <strong>(Selection)</strong> usada por el usuario.</li>
+<li><strong>crossover_instance</strong> (<em>Instance</em>) &#8211; Instancia de la técnica de cruza <strong>(Crossover)</strong> tomada por el usuario
+<strong>(véase Controller/Verifier.py)</strong>.</li>
+<li><strong>crossover_parameters</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todos los parámetros adicionales a la técnica
+de cruza <strong>(Crossover)</strong> manejada por el usuario.</li>
+<li><strong>mutation_instance</strong> (<em>Instance</em>) &#8211; Instancia de la técnica de mutación <strong>(Mutation)</strong> tomada por el usuario
+<strong>(véase Controller/Verifier.py)</strong>.</li>
+<li><strong>mutation_parameters</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene todos los parámetros adicionales a la técnica
+de mutación <strong>(Mutation)</strong> seleccionada por el usuario.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Model.Community.Community</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Community.Community.Community._Community__compare_dominance">
+<code class="descname">_Community__compare_dominance</code><span class="sig-paren">(</span><em>current</em>, <em>challenger</em>, <em>allowed_functions</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community._Community__compare_dominance" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Permite realizar la comparación de las funciones objetivo de los 
+individuos current y challenger tomadas una a una para indicar así quién es el dominado y quién
+es el que domina. Cabe mencionar que más apropiadamente se le conoce como dominancia
+fuerte de Pareto.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>current</strong> (<em>Instance</em>) &#8211; El Individuo inicial para comprobar dominancia.</li>
+<li><strong>challenger</strong> (<em>Instance</em>) &#8211; El Individuo que reta al inicial para comprobar dominancia.</li>
+<li><strong>allowed_functions</strong> (<em>List</em>) &#8211; Lista que indica cuáles son las funciones objetivo que deben 
+compararse.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True si current domina a challenger, False en otro caso.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community._Community__get_best_individual_results">
+<code class="descname">_Community__get_best_individual_results</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community._Community__get_best_individual_results" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Obtiene los valores de las variables de decisión y de las funciones objetivo
+por cada individuo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> (<em>List</em>) &#8211; Una lista que contiene los mejores individuos por generación.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Una lista que contiene por un lado la tupla (generacion, funciones)
+y por otro la tupla (generación, variables). Esto por cada generación.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community._Community__get_pareto_results">
+<code class="descname">_Community__get_pareto_results</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community._Community__get_pareto_results" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<div class="line-block">
+<div class="line">Obtiene el frente de Pareto, el complemento del frente de Pareto y el óptimo de Pareto.</div>
+<div class="line">Para una mejor orientación léase la parte escrita del proyecto.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> (<em>Instance</em>) &#8211; La población sobre la cual se obtendrán estos elementos.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Una lista que contiene el frente de Pareto, su complemento y el óptimo de Pareto.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community._Community__using_sharing_function">
+<code class="descname">_Community__using_sharing_function</code><span class="sig-paren">(</span><em>individual_i</em>, <em>individual_j</em>, <em>alpha_share</em>, <em>sigma_share</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community._Community__using_sharing_function" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<div class="line-block">
+<div class="line">Devuelve un valor que ayuda al cálculo del Sharing Function.</div>
+<div class="line">A grandes rasgos el sharing function sirve para hacer una selección más precisa de los
+mejores Individuos cuando se da el caso de que tienen el mismo número de Individuos dominados.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>individual_i</strong> (<em>Instance</em>) &#8211; Individuo sobre el que se hará la operación.</li>
+<li><strong>individual_j</strong> (<em>Instance</em>) &#8211; Individuo sobre el que se hará la operación.</li>
+<li><strong>alpha_share</strong> (<em>Float</em>) &#8211; El valor necesario para poder calcular la distancia entre Individuos.</li>
+<li><strong>sigma_share</strong> (<em>Float</em>) &#8211; El valor necesario para poder calcular la distancia entre Individuos.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">El resultado que contribuirá al sharing function.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.assign_fonseca_and_flemming_pareto_rank">
+<code class="descname">assign_fonseca_and_flemming_pareto_rank</code><span class="sig-paren">(</span><em>population</em>, <em>allowed_functions='All'</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.assign_fonseca_and_flemming_pareto_rank" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Asigna una puntuación <strong>(ó rank)</strong> a cada uno de los Individuos de una Población 
+con base en su dominancia de Pareto.</div>
+<div class="line">A grandes rasgos, el algoritmo asigna un rank que consiste en:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/fddb38229ca8b598aa8a39c03f9ae62bf0f91656.png" alt="rank(Individuo) = n\acute{u}mero\_soluciones\_que\_dominan(Individuo) + 1"/></strong></p><div class="line-block">
+<div class="line">Esta técnica es usada principalmente por M.O.G.A.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>population</strong> (<em>Instance</em>) &#8211; La Población sobre la que se hará la operación.</li>
+<li><strong>allowed_functions</strong> (<em>List</em>) &#8211; Lista que contiene las posiciones de las funciones que son admisibles 
+para hacer comparaciones. Por defecto tiene el valor &#8220;All&#8221;.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.assign_goldberg_pareto_rank">
+<code class="descname">assign_goldberg_pareto_rank</code><span class="sig-paren">(</span><em>population</em>, <em>additional_info=False</em>, <em>allowed_functions='All'</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.assign_goldberg_pareto_rank" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Asigna una puntuación <strong>(ó rank)</strong> a cada uno de los Individuos de una Población con base en su dominancia
+de Pareto.</div>
+<div class="line">En términos generales, el algoritmo trabaja con niveles, es decir, primero toma los Individuos no
+dominados y les asigna un valor 0, luego los elimina del conjunto y nuevamente aplica la 
+operación sobre los no dominados del nuevo conjunto, a los que les asigna el valor 1, y así
+sucesivamente hasta no quedar Individuos.</div>
+<div class="line">Esta técnica es usada principalmente por N.S.G.A. II.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>population</strong> (<em>Instance</em>) &#8211; La Población sobre la que se hará la operación.</li>
+<li><strong>additional_info</strong> (<em>Boolean</em>) &#8211; Un valor que le indica a la función que debe regresar información 
+adicional.</li>
+<li><strong>allowed_functions</strong> (<em>List</em>) &#8211; Lista que contiene las posiciones de las funciones que son admisibles 
+para hacer comparaciones. Por defecto tiene el valor &#8220;All&#8221;.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Si additional_info es True: un arreglo con dos elementos: en el primero 
+se almacena una lista con los niveles de dominancia disponibles, mientras que el 
+segundo consta de una estructura que contiene todos los posibles niveles y asociados 
+a éstos, los cromosomas de los Individuos que los conforman.
+Si additional_info es False: el método es void <strong>(no regresa nada)</strong>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.assign_population_fitness">
+<code class="descname">assign_population_fitness</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.assign_population_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aplica la asignación de Fitness para una Población dada usando como
+base el Ranking de cada Individuo <strong>(véase Model/Fitness)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> (<em>Instance</em>) &#8211; La población sobre la que se hará la operación.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.assign_zitzler_and_thiele_pareto_rank">
+<code class="descname">assign_zitzler_and_thiele_pareto_rank</code><span class="sig-paren">(</span><em>population</em>, <em>allowed_functions='All'</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.assign_zitzler_and_thiele_pareto_rank" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Asigna una puntuación (rank) a cada uno de los Individuos de una Población con 
+base en su dominancia de Pareto.</div>
+<div class="line">A manera de esbozo, el algoritmo asigna un rank que consiste en una razón:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/088f3d58eed9999562ba6f6e977c6a870806470e.png" alt="rank(Individuo) = \frac{n\acute{u}mero\_soluciones\_dominadas(Individuo)}{tama\tilde{n}o\_poblaci\acute{o}n} + 1"/></strong></p><div class="line-block">
+<div class="line">Esta técnica es usada principalmente por S.P.E.A. II</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>population</strong> (<em>Instance</em>) &#8211; La población sobre la que se hará la operación.</li>
+<li><strong>allowed_functions</strong> (<em>List</em>) &#8211; Lista que contiene las posiciones de las funciones que son admisibles 
+para hacer comparaciones. Por defecto tiene el valor &#8220;All&#8221;.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.calculate_population_niche_count">
+<code class="descname">calculate_population_niche_count</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.calculate_population_niche_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcula el valor conocido como niche count que no es mas que la suma de los sharing function
+de todos los individuos j con el individuo i, con i != j.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> (<em>Instance</em>) &#8211; Conjunto sobre el que se hará la operación.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.calculate_population_pareto_dominance">
+<code class="descname">calculate_population_pareto_dominance</code><span class="sig-paren">(</span><em>population</em>, <em>allowed_functions</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.calculate_population_pareto_dominance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Realiza la comparación de dominancia entre todos los elementos de la Población con base
+en la evaluación de sus funciones objetivo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>population</strong> (<em>Instance</em>) &#8211; La Población sobre la que se hará la operación.</li>
+<li><strong>allowed_functions</strong> (<em>List</em>) &#8211; Lista que indica las funciones objetivo permitidas para hacer la 
+comparación.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.calculate_population_shared_fitness">
+<code class="descname">calculate_population_shared_fitness</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.calculate_population_shared_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcula el Shared Fitness <strong>(ó Fitness Compartido)</strong> de cada uno
+de los Individuos de la Población.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> (<em>Instance</em>) &#8211; Conjunto sobre el que se hará la operación.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.create_population">
+<code class="descname">create_population</code><span class="sig-paren">(</span><em>set_chromosomes</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.create_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crea una población usando un conjunto de cromosomas como base.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>set_chromosomes</strong> (<em>List</em>) &#8211; Conjunto de cromosomas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Model.Community.Population</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.evaluate_population_functions">
+<code class="descname">evaluate_population_functions</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.evaluate_population_functions" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Evalúa cada uno de los subcromosomas de los individuos de la 
+población <strong>(Population)</strong>.</div>
+<div class="line">De manera adicional obtiene el listado de los valores extremos tanto
+de variables de decisión como de funciones objetivo para el 
+cálculo del sigma share <strong>(véase el método __using_sharing_function)</strong>. </div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> (<em>Instance</em>) &#8211; La población sobre la que se hará la operación.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.execute_crossover_and_mutation">
+<code class="descname">execute_crossover_and_mutation</code><span class="sig-paren">(</span><em>selected_parents_chromosomes</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.execute_crossover_and_mutation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Realiza la cruza y mutación de los individuos. Para el caso de la cruza ésta se lleva a cabo siempre
+entre dos individuos, mientras que la mutación es unaria.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>selected_parents_chromosomes</strong> (<em>List</em>) &#8211; El conjunto de cromosomas sobre los cuales se aplicarán dichos operadores genéticos.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Una instancia del tipo Model.Community.Population.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.execute_selection">
+<code class="descname">execute_selection</code><span class="sig-paren">(</span><em>parents</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.execute_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Realiza la ejecución de la técnica de selección por medio de una instancia que
+se creó previamente <strong>(véase Controller/Verifier.py)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>parents</strong> (<em>Instance</em>) &#8211; El conjunto de individuos sobre el cual se aplicará la técnica</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Una lista con los cromosomas de aquellos individuos seleccionados.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.get_best_individual">
+<code class="descname">get_best_individual</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.get_best_individual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene el mejor individuo dentro de una población. Para estos fines el mejor individuo es aquél que
+tenga mejor dominancia.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> (<em>Instance</em>) &#8211; La población sobre la cual se hará la búsqueda.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">El individuo que cumple con la característica de la mayor dominancia.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.get_results">
+<code class="descname">get_results</code><span class="sig-paren">(</span><em>best_individual_along_generations</em>, <em>external_set_population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.get_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recolecta la información y la almacena en una estructura que contiene dos categorías principales: 
+funciones objetivo y variables de decisión. Por cada una existen las subcategorías Pareto y mejor 
+individuo, en referencia al óptimo o frente de Pareto <strong>(según corresponda)</strong> y a los valores del mejor 
+individuo por generación <strong>(véase View/Additional/ResultsGrapher/GraphFrame.py)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>best_individual_along_generations</strong> (<em>List</em>) &#8211; Una lista que contiene los mejores individuos por generación.</li>
+<li><strong>external_set_population</strong> (<em>Instance</em>) &#8211; La población sobre la cual se efectuarán las operaciones.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un diccionario con los elementos mostrados en la descripción.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Community.Community.init_population">
+<code class="descname">init_population</code><span class="sig-paren">(</span><em>population_size</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Community.Community.init_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crea una población de manera aleatoria.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population_size</strong> (<em>Integer</em>) &#8211; El tamaño de la población.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Model.Community.Community.Population</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<p>La clase en cuestión se apoya de los siguientes elementos:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Population/Population.html">Population (clase)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Population/Individual/Individual.html">Individual (clase)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+      <li>Previous: <a href="../ChromosomalRepresentation/FloatPointRepresentation.html" title="previous chapter">FloatPointRepresentation (script)</a></li>
+      <li>Next: <a href="Population/Population.html" title="next chapter">Population (clase)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/Community/Community.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/Community/Community.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Controller (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Controller (Sección)" href="Controller.html" />
+    <link rel="next" title="XMLParser (clase)" href="XMLParser.html" />
+    <link rel="prev" title="Controller (Sección)" href="Controller.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Controller.Controller">
+<span id="controller-clase"></span><h1>Controller (clase)<a class="headerlink" href="#module-Controller.Controller" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Controller.Controller.Controller">
+<em class="property">class </em><code class="descname">Controller</code><a class="headerlink" href="#Controller.Controller.Controller" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Proporciona la infraestructura adecuada para poder comunicar la sección Vista
+<strong>(ó View)</strong> con la sección Modelo <strong>(ó Model)</strong>, apoyándose de las clases XMLParser y Verifier.</div>
+<div class="line"><br /></div>
+<div class="line">El ciclo normal consiste en proporcionar a la capa Vista <strong>(ó View)</strong> la información
+recabada en los archivos .xml con ayuda de la clase XMLParser con la finalidad de notificar
+al usuario de todas las técnicas disponibles.</div>
+<div class="line"><br /></div>
+<div class="line">Una vez ejecutada la opción de iniciar un proceso genético por el usuario, se recaban los
+datos ingresados por el usuario, los cuales pasan por un proceso de verificación y transformación
+empleando para ello los métodos de la clase Verifier. </div>
+<div class="line"><br /></div>
+<div class="line">En caso de haber al menos una falla en alguno de los procedimientos mencionados anteriormente
+se regresa un mensaje de error, en otro caso se pasa la información respectiva a la
+capa Model para que pueda operar con ésta.</div>
+<div class="line"><br /></div>
+<div class="line">En cualquiera de los dos casos anteriores se regresa la información resultante a la Vista.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Controller.Controller</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Instance</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Controller.Controller.Controller.execute_procedure">
+<code class="descname">execute_procedure</code><span class="sig-paren">(</span><em>execution_task_count</em>, <em>generations_queue</em>, <em>sanitized_information</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Controller.Controller.execute_procedure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Realiza la ejecución de algún algoritmo M.O.E.A.
+<strong>(Multi-Objective Evolutionary Algorithm)</strong> y se encarga
+de obtener los resultados apropiadamente.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>execution_task_count</strong> (<em>Integer</em>) &#8211; Una característica numérica que identifica inequívocamente
+a esta función que será ejecutada de las demás, ya que el objetivo
+del proyecto es poder ejecutar varios de estos métodos de manera
+concurrente <strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+<li><strong>generations_queue</strong> (<em>Instance</em>) &#8211; Una instancia a una cola <strong>(Queue)</strong>, la cual servirá para
+escribir a esa estructura el número actual de generación
+por el que cursa el algoritmo. Esta acción es para fines de 
+concurrencia <strong>(véase View/MainWindow.py)</strong>.</li>
+<li><strong>sanitized_information</strong> (<em>Dictionary</em>) &#8211; Los parámetros que ingresó el usuario
+debidamente verificados y saneados.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un diccionario con información de los resultados de haber
+ejecutado el M.O.E.A. seleccionado por el usuario, la
+estructura del mismo puede verse en <strong>Model/Community/Community.py</strong>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Controller.Controller.load_features">
+<code class="descname">load_features</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Controller.Controller.load_features" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Regresa los datos correspondientes <strong>(debidamente verificados)</strong>
+a las técnicas disponibles para el usuario, los cuales se mostrarán
+en <strong>View/MainWindow.py</strong>.</div>
+<div class="line"><strong>(véase View/Additional/MenuInternalOption/InternalOptionTab/FeatureFrame.py)</strong>.</div>
+<div class="line">Esta técnica tiene como base los símiles que se encuentran en 
+<strong>Controller/XMLParser.py</strong> y <strong>Controller/Verifier.py</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Una estructura con los métodos disponibles para el usuario.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Controller.Controller.load_mop_examples">
+<code class="descname">load_mop_examples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Controller.Controller.load_mop_examples" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Obtiene los datos correspondietes <strong>(previamente verificados)</strong>
+a los M.O.P.&#8217;s <strong>(Multi-Objective Problems)</strong> que se utilizan en
+en <strong>View/MainWindow.py</strong></div>
+<div class="line"><strong>(véase View/Additional/MenuInternalOption/InternalOptionTab/MOPExampleFrame.py)</strong>.</div>
+<div class="line">Esta técnica tiene como base las análogas que se encuentran en 
+<strong>Controller/XMLParser.py</strong> y <strong>Controller/Verifier.py</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Una estructura con los M.O.P.&#8217;s disponibles para el usuario.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Controller.Controller.load_python_expressions">
+<code class="descname">load_python_expressions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Controller.Controller.load_python_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Obtiene los datos correspondietes <strong>(previamente verificados)</strong>
+a las expresiones de Python, las cuales se usan para evaluar 
+funciones objetivo más eficientemente</div>
+<div class="line"><strong>(véase View/Additional/MenuInternalOption/InternalOptionTab/PythonExpressionFrame.py)</strong>.</div>
+<div class="line">Esta función se apoya de las homónimas localizadas en 
+<strong>Controller/XMLParser.py</strong> y <strong>Controller/Verifier.py</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Una estructura con las expresiones de Python disponibles.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Controller.Controller.sanitize_settings">
+<code class="descname">sanitize_settings</code><span class="sig-paren">(</span><em>general_information</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Controller.Controller.sanitize_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lleva a cabo la verificación y saneamiento de todos los datos
+que ha ingresado el usuario en la sección View <strong>(véase View/MainWindow)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>general_information</strong> (<em>Dictionary</em>) &#8211; El conjunto de datos que el usuario ha ingresado o
+seleccionado.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Una colección de todos los elementos con sus características
+disponibles para el usuario.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Controller.Controller.save_python_expressions">
+<code class="descname">save_python_expressions</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Controller.Controller.save_python_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inserta las expresiones de Python que ha ingresado
+el usuario en el archivo .xml correspondiente.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>List</em>) &#8211; Un conjunto de las expresiones que ha ingresado el usuario.
+cada elemento es a su vez una lista con dos elementos, el primero
+es la expresión original <strong>(la que es comprensible por el 
+usuario)</strong>, mientras que la segunda es la expresión equivalente
+en Python.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Mensaje &#8220;OK&#8221; si la inserción ha sido exitosa, mientras que en caso
+de que haya habido un error entonces el mensaje es &#8220;ERROR&#8221;.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="Controller.html">Controller (Sección)</a><ul>
+      <li>Previous: <a href="Controller.html" title="previous chapter">Controller (Sección)</a></li>
+      <li>Next: <a href="XMLParser.html" title="next chapter">XMLParser (clase)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Controller/ControllerClass.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/Controller/ControllerClass.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

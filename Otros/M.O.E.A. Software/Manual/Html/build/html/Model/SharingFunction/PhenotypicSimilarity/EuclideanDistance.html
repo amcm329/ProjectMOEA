@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>EuclideanDistance (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="PhenotypicSimilarity (módulo)" href="PhenotypicSimilarity.html" />
+    <link rel="next" title="MOEA (módulo)" href="../../MOEA/MOEA.html" />
+    <link rel="prev" title="PhenotypicSimilarity (módulo)" href="PhenotypicSimilarity.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="euclideandistance-script">
+<h1>EuclideanDistance (script)<a class="headerlink" href="#euclideandistance-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">La Distancia Euclidiana <strong>(ó Euclidean Distance)</strong> es una implementación
+de cálculo de distancia entre dos Individuos que pertenece a la subcategoría
+Phenotypic Similarity <strong>(ó Similaridad Fenotípica)</strong>.</div>
+<div class="line">Esta versión está dirigida para las Funciones Objetivo <strong>(ó Objective Functions)</strong>
+que poseen cada uno de los Individuos <strong>(ó Individuals)</strong> de una Población <strong>(ó Population)</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">Primero que nada para obtener el cálculo de <img class="math" src="../../../_images/math/4f1470cf5bba5802d4292d7512c650bda0590344.png" alt="\sigma_{share}"/> la operación está regida por la siguiente
+fórmula:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../../_images/math/761120cd03d49b0f3893be6e339fda2b8b3d1a2c.png" alt="\sigma_{share} = \frac{\sum_{j=1}^{n\acute{u}m\_funciones\_objetivo}(max(F_j) - min(F_j))}{tama\tilde{n}o\_poblaci\acute{o}n - 1}"/></strong></p><div class="line-block">
+<div class="line">Lo anterior significa que se van a obtener los valores máximo y mínimo de cada función objetivo,
+se restan entre sí y al resultado anterior se le divide entre el tamaño de la población menos uno; esto por cada generación.</div>
+<div class="line"><br /></div>
+<div class="line">La forma de hacer el cálculo de la distancia es la siguiente:</div>
+<div class="line">Supongamos que tenemos los vectores <img class="math" src="../../../_images/math/02a9dbebdb08a1f25f5fd37c10119ce3ef6dcd7a.png" alt="U = (u_1,u_2,...,u_n)"/> y <img class="math" src="../../../_images/math/84795c41600f26ed26af6e0c8071ddbff2d87dcc.png" alt="V = (v_1,v_2,...,v_n)"/>. Entonces la Distancia Euclidiana se define como:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../../_images/math/ceae2216146eee598a3740f8ccf982da9c1a7340.png" alt="d_E(U,V) = \sqrt{(v_1 - u_1)^2 + (v_2 - u_2)^2 + ... + (v_n - u_n)^2}"/></strong></p><div class="line-block">
+<div class="line">Para los fines que nos conciernen, los vectores <img class="math" src="../../../_images/math/ab818461597a2ad515bc54fe4579525facd2d43b.png" alt="U\ y\ V"/> serán las evaluaciones en las funciones objetivos
+de cada Individuo participante.</div>
+<div class="line"><br /></div>
+<div class="line">Finalmente es menester mencionar que, aunque tradicionalmente esta técnica se usa para Representaciones Cromosómicas
+<strong>(véase Model/ChromosomalRepresentation)</strong> de tipo FloatPoint <strong>(ó Punto Flotante)</strong>, en sentido estricto no se encuentra
+limitada sólo a este tipo de codificación.</div>
+</div>
+<span class="target" id="module-Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance"></span><dl class="function">
+<dt id="Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance.calculate_distance">
+<code class="descname">calculate_distance</code><span class="sig-paren">(</span><em>individual_i</em>, <em>individual_j</em>, <em>sharing_function_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance.calculate_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apoyándose de la técnica conocida como Distancia Euclidiana 
+<strong>(ó Euclidean Distance)</strong> se implementa el cálculo de la distancia 
+para dos Individuos cualesquiera.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance.calculate_sigma_share">
+<code class="descname">calculate_sigma_share</code><span class="sig-paren">(</span><em>population</em>, <em>sharing_function_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.SharingFunction.PhenotypicSimilarity.EuclideanDistance.calculate_sigma_share" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tomando como referencia la información antes mencionada para el cálculo del 
+Sigma Share, se realiza la implementación correspondiente.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../Model.html">Model (sección)</a><ul>
+  <li><a href="../SharingFunction.html">SharingFunction (módulo)</a><ul>
+  <li><a href="PhenotypicSimilarity.html">PhenotypicSimilarity (módulo)</a><ul>
+      <li>Previous: <a href="PhenotypicSimilarity.html" title="previous chapter">PhenotypicSimilarity (módulo)</a></li>
+      <li>Next: <a href="../../MOEA/MOEA.html" title="next chapter">MOEA (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/Model/SharingFunction/PhenotypicSimilarity/EuclideanDistance.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/Model/SharingFunction/PhenotypicSimilarity/EuclideanDistance.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

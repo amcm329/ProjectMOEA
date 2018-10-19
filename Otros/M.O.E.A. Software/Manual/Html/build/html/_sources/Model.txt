@@ -1,0 +1,22 @@
+Model package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+
+    ChromosomalRepresentation
+    Community
+    Model.Fitness
+    Model.MOEA
+    Model.Operator
+    Model.SharingFunction
+
+Module contents
+---------------
+
+.. automodule:: Model
+    :members:
+    :undoc-members:
+    :show-inheritance:

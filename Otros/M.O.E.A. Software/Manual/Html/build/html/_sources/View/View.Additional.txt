@@ -1,0 +1,19 @@
+View.Additional package
+=======================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    View.Additional.GenerationSignal
+    View.Additional.MenuInternalOption
+    View.Additional.ResultsGrapher
+
+Module contents
+---------------
+
+.. automodule:: View.Additional
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Fitness (módulo) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Model (sección)" href="../Model.html" />
+    <link rel="next" title="LinearRankingFitness (script)" href="LinearRankingFitness.html" />
+    <link rel="prev" title="Individual (clase)" href="../Community/Population/Individual/Individual.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fitness-modulo">
+<h1>Fitness (módulo)<a class="headerlink" href="#fitness-modulo" title="Permalink to this headline">¶</a></h1>
+<p>Este módulo provee técnicas que calculan el Fitness <strong>(ó Aptitud)</strong> de los
+Individuals <strong>(ó Individuos)</strong> de una Population <strong>(ó Población)</strong>.</p>
+<p>Se entiende por Fitness a un número que indica la calidad del
+Individuo <strong>(en particular de sus variables de decisión)</strong> frente a
+las funciones objetivo al momento de ser evaluadas, esto es, a mayor Fitness, mayor
+es la probalidad de que las variables de decisión del Individuo sean la solución óptima
+para las funciones objetivo.</p>
+<p>La asignación del Fitness depende en gran medida del ranking que se les haya
+otorgado a los Individuos previamente <strong>(véase Model/Community/Community.py)</strong>.</p>
+<p>Indirectamente, esto nos indica que un Individuo con un Fitness alto
+tiene más probabilidades de ser elegido en los métodos de Selection <strong>(ó Selección)</strong>
+y propagar su carga genética; así en las funciones de dicha sección <strong>(Model/Operator/Selection)</strong>
+el criterio para escoger a un Individuo está basado comúnmente en su Fitness.</p>
+<p>Al final la meta es que el usuario cree sus propias versiones de asignación
+de Fitness, para lo cual es imperativo que, además de agregar la descripción de
+la codificación a Controller/XML/Features.xml <strong>(véase el archivo mencionado en la sección de código)</strong>,
+se implemente la siguiente función:</p>
+<dl class="function">
+<dt>
+<code class="descname">assign_fitness(population,fitness_parameters):</code></dt>
+<dd><div class="line-block">
+<div class="line">Realiza la asignación de Fitness de los individuos.</div>
+<div class="line">Dentro de esta se suelen usar métodos de la clase Population <strong>(véase Model/Community/Population/Population.py)</strong>
+y de la clase Individual <strong>(véase Model/Community/Population/Individual/Individual.py)</strong>, por lo que es
+muy recomendable que el usuario verifique las funciones disponibles. Algunas de las que se ocupan
+más frecuentemente son:</div>
+<div class="line-block">
+<div class="line"><strong>get_rank (Individual)</strong></div>
+<div class="line"><strong>set_fitness (Individual).</strong></div>
+<div class="line"><strong>set_total_fitness (Population)</strong></div>
+<div class="line"><strong>calculate_population_properties (Population)</strong></div>
+</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>population</strong> (<em>Instance</em>) &#8211; La Población sobre la cual se hará el cálculo de Fitness por cada Individuo.</li>
+<li><strong>fitness_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario que puede contener opciones adicionales para el cálculo
+de Fitness.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Ahora se muestran los elementos que conforman el módulo actual:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="LinearRankingFitness.html">LinearRankingFitness (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NonLinearRankingFitness.html">NonLinearRankingFitness (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProportionalFitness.html">ProportionalFitness (script)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+      <li>Previous: <a href="../Community/Population/Individual/Individual.html" title="previous chapter">Individual (clase)</a></li>
+      <li>Next: <a href="LinearRankingFitness.html" title="next chapter">LinearRankingFitness (script)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/Fitness/Fitness.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/Fitness/Fitness.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

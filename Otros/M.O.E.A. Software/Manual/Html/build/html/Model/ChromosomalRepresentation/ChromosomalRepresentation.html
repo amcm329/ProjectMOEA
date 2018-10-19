@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ChromosomalRepresentation (módulo) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Model (sección)" href="../Model.html" />
+    <link rel="next" title="BinaryRepresentation (script)" href="BinaryRepresentation.html" />
+    <link rel="prev" title="Model (sección)" href="../Model.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="chromosomalrepresentation-modulo">
+<h1>ChromosomalRepresentation (módulo)<a class="headerlink" href="#chromosomalrepresentation-modulo" title="Permalink to this headline">¶</a></h1>
+<p>Ofrece elementos para elaborar una codificación adecuada.</p>
+<p>Entiéndase por codificación a la forma de determinar el cromosoma y sus propiedades;
+cabe mencionar que el cromosoma será portado por los Individuals <strong>(ó Individuos)</strong>.</p>
+<p>Es importante mencionar que cualquier codificación implementada debe ser sustentada
+en los métodos correspondientes al Crossover <strong>(ó Cruza)</strong> y Mutation <strong>(ó Mutación)</strong>,
+ésto porque dichas operaciones funcionan con cromosomas.</p>
+<p>De esta manera, la idea es que el usuario pueda crear sus propias codificaciones,
+por lo que, además de agregar la descripción de la codificación a Controller/XML/Features.xml
+<strong>(véase el archivo mencionado en la sección de código)</strong>, deberá implementar por
+lo menos las siguientes funciones:</p>
+<dl class="function">
+<dt>
+<code class="descname">calculate_length_subchromosomes(vector_variables,number_of_decimals,representation_parameters):</code></dt>
+<dd><p>Por cada variable de decisión se crea una porción del cromosoma, entonces en esta función se calcula
+el tamaño de cada porción <strong>(ó subcromosoma)</strong>, ya que al final las operaciones de cruza y mutación se realizarán
+sobre el súper crosomoma, el cual es la concatenacion de todos los subcromosomas. Por eso es importante identificar
+el tamaño de cada subcromosoma, así como sus límites dentro del súper cromosoma.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>vector_variables</strong> (<em>List</em>) &#8211; El vector de variables de decisión, donde cada variable trae consigo sus límites inferior
+y superior.</li>
+<li><strong>number_of_decimals</strong> (<em>Integer</em>) &#8211; El número de decimales que deberá traer cada variable de decisión.</li>
+<li><strong>representation_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario que contiene todas las opciones adicionales para cada tipo de
+codificación.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Una lista que contiene el tamaño del cromosoma por cada variable de decisión. Dado que el orden de las
+variables de decisión es inmutable, se preserva el mismo y por ello la lista contiene sólo los tamaños.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">create_chromosome(length_subchromosomes,vector_variables,number_of_decimals,representation_parameters):</code></dt>
+<dd><p>Función que crea el cromosoma. Se usa la como apoyo el método <strong>calculate_length_subchromosomes</strong> descrito con
+anterioridad.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>length_subchromosomes</strong> (<em>List</em>) &#8211; La lista que contiene los tamaños de cada variable de decisión.</li>
+<li><strong>vector_variables</strong> (<em>List</em>) &#8211; La lista que contiene las variables de decisión, así como sus rangos.</li>
+<li><strong>number_of_decimals</strong> (<em>Integer</em>) &#8211; El número de decimales que traerá cada variable de decisión.</li>
+<li><strong>representation_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario que contiene todas las opciones adicionales para cada tipo de
+codificación.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">El cromosoma devuelto en forma de lista.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">evaluate_subchromosomes(complete_chromosome,length_subchromosomes,vector_variables,number_of_decimals,representation_parameters):</code></dt>
+<dd><p>Tomando en cuenta que el cromosoma ya ha sido creado usando los tamaños de los subcromosomas,
+en esta función se procede a evaluar el súper cromosoma partiéndolo en los subcromosomas pertinentes y evaluando
+individualmente cada uno de éstos.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>complete_chromosome</strong> (<em>List</em>) &#8211; El súper cromosoma a ser evaluado.</li>
+<li><strong>length_subchromosomes</strong> (<em>List</em>) &#8211; La lista que contiene los tamaños de cada variable de decisión.</li>
+<li><strong>vector_variables</strong> (<em>List</em>) &#8211; La lista que contiene las variables de decisión, así como sus rangos.</li>
+<li><strong>number_of_decimals</strong> (<em>Integer</em>) &#8211; El número de decimales que traerá cada variable de decisión.</li>
+<li><strong>representation_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario que contiene todas las opciones adicionales para cada tipo de
+codificación.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un diccionario que contiene como llave la variable de decisión y como valor la evaluación del
+subcromosoma correspondiente.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>A continuación se develan los elementos que constituyen a este módulo:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="BinaryRepresentation.html">BinaryRepresentation (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FloatPointRepresentation.html">FloatPointRepresentation (script)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+      <li>Previous: <a href="../Model.html" title="previous chapter">Model (sección)</a></li>
+      <li>Next: <a href="BinaryRepresentation.html" title="next chapter">BinaryRepresentation (script)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/ChromosomalRepresentation/ChromosomalRepresentation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/ChromosomalRepresentation/ChromosomalRepresentation.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

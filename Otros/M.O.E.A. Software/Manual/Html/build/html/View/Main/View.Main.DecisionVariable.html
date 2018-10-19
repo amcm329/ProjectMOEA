@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>View.Main.DecisionVariable package &mdash; M.O.E.A. Grapher 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Grapher 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="View.Main package" href="Main.html" />
+    <link rel="next" title="View.Main.GeneticOperator package" href="View.Main.GeneticOperator.html" />
+    <link rel="prev" title="View.Main package" href="Main.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="view-main-decisionvariable-package">
+<h1>View.Main.DecisionVariable package<a class="headerlink" href="#view-main-decisionvariable-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-View.Main.DecisionVariable.DecisionVariableFrame">
+<span id="view-main-decisionvariable-decisionvariableframe-module"></span><h2>View.Main.DecisionVariable.DecisionVariableFrame module<a class="headerlink" href="#module-View.Main.DecisionVariable.DecisionVariableFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Main.DecisionVariable.DecisionVariableFrame.DecisionVariableFrame">
+<em class="property">class </em><code class="descclassname">View.Main.DecisionVariable.DecisionVariableFrame.</code><code class="descname">DecisionVariableFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.DecisionVariableFrame.DecisionVariableFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<div class="line-block">
+<div class="line">Realiza la fusión de un Canvas y VariableFrame, debido a que, cuando se agregan 
+numerosas variables al VariableFrame, se debe insertar una barra de desplazamiento
+para poder acceder a aquéllos que se encuentren hasta abajo. Dentro del ambiente
+de Tkinter, el elemento más sencillo para lograr este efecto es un Canvas, por ello 
+se anida el VariableFrame al Canvas.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Conjunto de técnicas con sus respectivos parámetros para que
+se puedan cargar automáticamente en este Frame <strong>(véase
+Controller/XMLParser.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Main.DecisionVariable.DecisionVariableFrame.DecisionVariableFrame.get_information">
+<code class="descname">get_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.DecisionVariableFrame.DecisionVariableFrame.get_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa la información recabada en el Frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Un diccionario que contiene una lista con las variables ingresadas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.DecisionVariable.DecisionVariableFrame.DecisionVariableFrame.insert_mop_example">
+<code class="descname">insert_mop_example</code><span class="sig-paren">(</span><em>variables</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.DecisionVariableFrame.DecisionVariableFrame.insert_mop_example" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Inserta un M.O.P (Multi Objective Problem).</div>
+<div class="line">En este caso significa que se insertarán las variables con 
+sus respectivos rangos en el Frame para poder hacer pruebas rápidas en el programa, habiendo
+antes limpiado por completo el contenido del Frame.</div>
+<div class="line"><strong>(véase Controller/XML/MOPExample.xml)</strong></div>
+<div class="line"><strong>(véase View/Additional/MenuInternalOption/InternalOptionFrame.py)</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>functions</strong> (<em>List</em>) &#8211; Lista de variables para ser insertadas en el Frame.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.DecisionVariable.DecisionVariableFrame.DecisionVariableFrame.restore_settings">
+<code class="descname">restore_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.DecisionVariableFrame.DecisionVariableFrame.restore_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restaura el contenido del Frame, en este caso significa que se eliminará
+todo lo que esté en éste y se dejará una casilla vacía libre.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Main.DecisionVariable.VariableFrame">
+<span id="view-main-decisionvariable-variableframe-module"></span><h2>View.Main.DecisionVariable.VariableFrame module<a class="headerlink" href="#module-View.Main.DecisionVariable.VariableFrame" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="View.Main.DecisionVariable.VariableFrame.VariableFrame">
+<em class="property">class </em><code class="descclassname">View.Main.DecisionVariable.VariableFrame.</code><code class="descname">VariableFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.VariableFrame.VariableFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<div class="line-block">
+<div class="line">Proporciona bases gráficas para que el usuario pueda insertar
+variables de decisión, así como información relativa a éstas.</div>
+<div class="line">En términos generales, el usuario insertará casillas para ingresar variables
+de decisión, indicando también el valor mínimo y máximo que podrán tener.</div>
+<div class="line">Es importante comentar que todas las variables de decisión deben contener
+rangos finitos, es decir, no se contemplan valores infinitos, aunque algunos
+M.O.P.s (Multi Objective Problems) manejan este tipo de rangos.         </div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Conjunto de técnicas con sus respectivos parámetros para que
+se puedan cargar automáticamente en este Frame <strong>(véase
+Controller/XMLParser.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Main.DecisionVariable.VariableFrame.VariableFrame.get_current_elements">
+<code class="descname">get_current_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.VariableFrame.VariableFrame.get_current_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el número actual de casillas en el Frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Cantidad de elementos en la estructura rows, donde se guardan las casillas (Entries).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.DecisionVariable.VariableFrame.VariableFrame.get_information">
+<code class="descname">get_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.VariableFrame.VariableFrame.get_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toma la información del Frame y regresa las variables con sus rangos que 
+el usuario ingresó.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Un diccionario que contiene una lista con las variables (y rangos) escritas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.DecisionVariable.VariableFrame.VariableFrame.insert_mop_example">
+<code class="descname">insert_mop_example</code><span class="sig-paren">(</span><em>variables</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.VariableFrame.VariableFrame.insert_mop_example" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Inserta un M.O.P (Multi Objective Problem) que no es más que un conjunto de 
+variables con sus rangos para que se pueda hacer más rápidamente una prueba.</div>
+<div class="line">Previo a ésto se limpia el Frame para insertar únicamente el M.O.P.</div>
+<div class="line"><strong>(véase Controller/XML/MOPExample.xml)</strong></div>
+<div class="line"><strong>(véase View/Additional/MenuInternalOption/InternalOptionFrame.py)</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>functions</strong> (<em>List</em>) &#8211; Conjunto de variables para insertar en el Frame.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.DecisionVariable.VariableFrame.VariableFrame.restore_settings">
+<code class="descname">restore_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.DecisionVariable.VariableFrame.VariableFrame.restore_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restaura el contenido del Frame a sus valores por defecto.
+Esto significa que borrará cualquier contenido que se encuentre en existencia y 
+dejará una casilla vacía.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-View.Main.DecisionVariable">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-View.Main.DecisionVariable" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">View.Main.DecisionVariable package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-View.Main.DecisionVariable.DecisionVariableFrame">View.Main.DecisionVariable.DecisionVariableFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Main.DecisionVariable.VariableFrame">View.Main.DecisionVariable.VariableFrame module</a></li>
+<li><a class="reference internal" href="#module-View.Main.DecisionVariable">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../View.html">View package</a><ul>
+  <li><a href="Main.html">View.Main package</a><ul>
+      <li>Previous: <a href="Main.html" title="previous chapter">View.Main package</a></li>
+      <li>Next: <a href="View.Main.GeneticOperator.html" title="next chapter">View.Main.GeneticOperator package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/View/Main/View.Main.DecisionVariable.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/View/Main/View.Main.DecisionVariable.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

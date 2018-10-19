@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>FunctionFrame (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="ObjectiveFunctionFrame (clase)" href="ObjectiveFunctionFrame.html" />
+    <link rel="next" title="Population (módulo)" href="../Population/Population.html" />
+    <link rel="prev" title="ObjectiveFunctionFrame (clase)" href="ObjectiveFunctionFrame.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Main.ObjectiveFunction.FunctionFrame">
+<span id="functionframe-clase"></span><h1>FunctionFrame (clase)<a class="headerlink" href="#module-View.Main.ObjectiveFunction.FunctionFrame" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame">
+<em class="property">class </em><code class="descname">FunctionFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<div class="line-block">
+<div class="line">Esta clase proporciona una base gráfica para que el usuario pueda
+agregar tantas functiones objetivo como desee.</div>
+<div class="line">A grandes rasgos el usuario podrá agregar casillas donde se colocarán las funciones
+objetivo, esto utilizando un botón. De igual manera, las casillas pueden ser eliminadas
+usando un ícono que estará cerca de cada una de éstas.</div>
+<div class="line">Importante es mencionar que las funciones deben estar escritas en sintaxis de Python.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Conjunto de técnicas con sus respectivos parámetros para que
+se puedan cargar automáticamente en este Frame <strong>(véase
+Controller/XMLParser.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame._FunctionFrame__add_function">
+<code class="descname">_FunctionFrame__add_function</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame._FunctionFrame__add_function" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Agrega una casilla al Frame. Esta función se usa si 
+fue ejecutada por un evento.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; Identificador del elemento gráfico que activó la función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame._FunctionFrame__delete_single_function">
+<code class="descname">_FunctionFrame__delete_single_function</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame._FunctionFrame__delete_single_function" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Elimina una casilla y todos los elementos gráficos que la acompañan.
+También elimina todo rastro que se encuentre en las estructuras lógicas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; Identificador del elemento gráfico que activó la función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame._FunctionFrame__grid_widgets">
+<code class="descname">_FunctionFrame__grid_widgets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame._FunctionFrame__grid_widgets" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Coloca elementos en el Frame.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.get_current_elements">
+<code class="descname">get_current_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.get_current_elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el número actual de casillas en el Frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Cantidad de elementos en la estructura rows, donde se guardan las casillas (Entries).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.get_information">
+<code class="descname">get_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.get_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toma la información del Frame y regresa las funciones objectivo que 
+el usuario insertó.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Un diccionario que contiene una lista con las funciones escritas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.insert_function">
+<code class="descname">insert_function</code><span class="sig-paren">(</span><em>function=None</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.insert_function" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Coloca en el Frame una colección de elementos:</div>
+<div class="line">[casilla para insertar funcion, opción de maximizar, opción de minimizar, botón para eliminar]</div>
+<div class="line">Si el parámetro function es <strong>None</strong>, se agrega la casilla vacía, de lo contrario se 
+añade ésta con la función.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>function</strong> (<em>String</em>) &#8211; Una función para ser insertada en el primer elemento de la colección.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.insert_mop_example">
+<code class="descname">insert_mop_example</code><span class="sig-paren">(</span><em>functions</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.insert_mop_example" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Inserta un M.O.P (Multi Objective Problem) que no es más que un conjunto de 
+funciones para que se pueda hacer más rápidamente una prueba.</div>
+<div class="line">Previo a ésto se limpia el Frame para insertar únicamente el M.O.P.</div>
+<div class="line"><strong>(véase Controller/XML/MOPExample.xml)</strong></div>
+<div class="line"><strong>(véase View/Additional/MenuInternalOption/InternalOptionFrame.py)</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>functions</strong> (<em>List</em>) &#8211; Conjunto de funciones para insertar en el Frame.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.restore_settings">
+<code class="descname">restore_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.ObjectiveFunction.FunctionFrame.FunctionFrame.restore_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restaura el contenido del Frame a sus valores por defecto.
+Esto significa que borrará cualquier contenido que se encuentre en existencia y 
+dejará una casilla vacía.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../View.html">View (sección)</a><ul>
+  <li><a href="../Main.html">Main (módulo)</a><ul>
+  <li><a href="ObjectiveFunction.html">ObjectiveFunction (módulo)</a><ul>
+  <li><a href="ObjectiveFunctionFrame.html">ObjectiveFunctionFrame (clase)</a><ul>
+      <li>Previous: <a href="ObjectiveFunctionFrame.html" title="previous chapter">ObjectiveFunctionFrame (clase)</a></li>
+      <li>Next: <a href="../Population/Population.html" title="next chapter">Population (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/View/Main/ObjectiveFunction/FunctionFrame.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/View/Main/ObjectiveFunction/FunctionFrame.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

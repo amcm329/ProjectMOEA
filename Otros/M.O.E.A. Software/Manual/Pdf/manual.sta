@@ -1,0 +1,11 @@
+\standalonepreambles
+\subpreamble{sections/model.tex}
+\usepackage {packages_used_section}
+\endsubpreamble
+\subpreamble{sections/view.tex}
+\usepackage {packages_used_section}
+\endsubpreamble
+\subpreamble{sections/controller.tex}
+\usepackage {packages_used_section}
+\endsubpreamble
+\endstandalonepreambles

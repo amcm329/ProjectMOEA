@@ -1,0 +1,36 @@
+EuclideanDistanceVariables (script)
+===================================
+
+
+| La Distancia Euclidiana **(ó Euclidean Distance)** es una implementación 
+ de cálculo de distancia entre dos Individuos que pertenece a la subcategoría 
+ Phenotypic Similarity **(ó Similaridad Fenotípica)**.
+| En este caso se enfoca hacia las Variables de Decisión **(ó Decision Variables)**
+ que poseen cada uno de los Individuos (ó Individuals) de una Población **(ó Population)**.
+|
+| Para obtener el :math:`\sigma_{share}` se utiliza la siguiente fórmula:
+.. centered:: :math:`\sigma_{share} = \frac{\sqrt{\sum{i=1}^{p}[max(V_j) - min(V_j)]^2}}{\sqrt[p]{2 \cdot q}}`
+| Donde:
+|       :math:`p` es el número de variables de decisión.
+|       :math:`q` es el número de "picos" que el algoritmo debe encontrar. Este valor se deja a elección del usuario.
+|        
+| Además en un inicio dentro de la raíz cuadrada del numerador se realiza la resta entre los valores máximo y mínimo para
+ cada variable de decisión elevada al cuadrado; esto por cada generación.
+|
+| Para el cálculo de la distancia se utiliza el siguiente método:
+| Supongamos que tenemos los vectores :math:`U = (u_1,u_2,...,u_n)` y :math:`V = (v_1,v_2,...,v_n)`. Entonces la Distancia Euclidiana se define como:
+.. centered:: :math:`d_E(U,V) = \sqrt{(v_1 - u_1)^2 + (v_2 - u_2)^2 + ... + (v_n - u_n)^2}`
+| Para los fines que nos conciernen, los vectores :math:`U\ y\ V` serán los valores de las variables de decisión 
+ de cada Individuo participante.
+|
+| Finalmente es menester mencionar que, aunque tradicionalmente esta técnica se usa para Representaciones Cromosómicas
+ **(véase Model/ChromosomalRepresentation)** de tipo FloatPoint **(ó Punto Flotante)**, en sentido estricto no se encuentra
+ limitada sólo a este tipo de codificación.
+
+
+.. automodule:: Model.SharingFunction.PhenotypicSimilarity.EuclideanDistanceVariables
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:
+

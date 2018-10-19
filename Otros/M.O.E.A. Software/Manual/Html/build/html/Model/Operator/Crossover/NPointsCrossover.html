@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NPointsCrossover (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Crossover (módulo)" href="Crossover.html" />
+    <link rel="next" title="UniformCrossover (script)" href="UniformCrossover.html" />
+    <link rel="prev" title="Crossover (módulo)" href="Crossover.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="npointscrossover-script">
+<h1>NPointsCrossover (script)<a class="headerlink" href="#npointscrossover-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Se implementa el método que lleva por nombre N-Points Crossover <strong>(ó Cruza en N-Puntos)</strong>.
+Para comenzar, esta técnica está elaborada para usarse tanto por Representación Cromosómica
+<strong>(véase Model/ChromosomalRepresentation)</strong> de tipo FloatPoint <strong>(ó de Punto Flotante)</strong> como
+Binary <strong>(ó Binaria)</strong>.</div>
+<div class="line">Su funcionamiento consiste en construir a los descendientes usando sub-bloques de cromosomas de cada
+uno de los padres, determinados éstos por una cierta cantidad de puntos de corte, de ahí el nombre.</div>
+<div class="line">Aterrizando lo anterior de una manera concisa se tiene lo siguiente:</div>
+</div>
+<ul class="simple">
+<li>Consideremos a los cromosomas de los padres Padre I: <img class="math" src="../../../_images/math/62616b0fc8731cd69046b734339fb77fecaaa0fc.png" alt="I_1I_2...I_n"/></li>
+</ul>
+<blockquote>
+<div>y Padre J: <img class="math" src="../../../_images/math/38ff8bf3a52954f24888ca21614347cf65af0089.png" alt="J_1J_2...J_n"/></div></blockquote>
+<ul class="simple">
+<li>Posteriormente se determinan aleatoriamente los puntos de corte, cabe mencionar que si los cromosomas son de tamaño n, pueden existir máximo n - 1 puntos. Supongamos que se crean k puntos <img class="math" src="../../../_images/math/f8c3f02b9e99a2f700ef2c91d864bb8a6f909243.png" alt="(1 \leqslant k \leqslant n - 1)"/> y por lo tanto cada cromosoma queda separado en k + 1 bloques.</li>
+</ul>
+<blockquote>
+<div>De esta manera obtenemos:
+Padre I en bloques <strong>(BI)</strong>: <img class="math" src="../../../_images/math/5a449ff83ef57eeea2740b620425f91a5b7adf1f.png" alt="BI_1BI_2...BI_{k + 1}"/>;
+Padre J en bloques <strong>(BJ)</strong>: <img class="math" src="../../../_images/math/63b59c4cb57b3e09b34395479e16fdd281d53a1b.png" alt="BJ_1BJ_2...BJ_{k + 1}"/>.</div></blockquote>
+<ul class="simple">
+<li>Finalmente cada hijo constará de la alternancia de bloques de manera secuencial comenzando por el bloque inicial de un padre determinado, dicho de otra forma, los hijos estarán constituidos de la siguiente manera:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Para el hijo <img class="math" src="../../../_images/math/1e428b09ff639573e581d71a1f22dbfa32af784c.png" alt="H_1"/>: <img class="math" src="../../../_images/math/e585daf271b5dcb1d06f26d1152ecc924a6db56c.png" alt="BI_1BJ_2...BI_{k + 1}"/></li>
+<li>Para el hijo <img class="math" src="../../../_images/math/e64b565383bcd6a067d3cf6b8bf5f4744598a9cc.png" alt="H_2"/>: <img class="math" src="../../../_images/math/b46739825106c19f7f52d77c2145b475e72eeea8.png" alt="BJ_1BI_2...BJ_{k + 1}"/></li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line">Sólo queda mencionar que hasta el cierre de este proyecto no existe una manera
+transparente desde el View <strong>(ó Vista)</strong> de conocer, dada una representación Binaria
+y un conjunto de variables de decisión y funciones objetivo, el número máximo de puntos
+de corte permitidos para este procedimiento, sin embargo, una manera de mitigar esta situación
+fue contemplar algún posible caso de error en esta sección y mandar un mensaje de error a la Vista
+por si llegase a suceder algún desperfecto durante el proceso.</div>
+</div>
+<span class="target" id="module-Model.Operator.Crossover.NPointsCrossover"></span><dl class="function">
+<dt id="Model.Operator.Crossover.NPointsCrossover.execute_crossover_technique">
+<code class="descname">execute_crossover_technique</code><span class="sig-paren">(</span><em>chromosome_a</em>, <em>chromosome_b</em>, <em>crossover_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Operator.Crossover.NPointsCrossover.execute_crossover_technique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Usando como base la información proporcionada anteriormente, se implementa
+el método conocido como N-Points Crossover <strong>(ó Cruza en &#8216;N&#8217; Puntos)</strong>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../Model.html">Model (sección)</a><ul>
+  <li><a href="../Operator.html">Operator (módulo)</a><ul>
+  <li><a href="Crossover.html">Crossover (módulo)</a><ul>
+      <li>Previous: <a href="Crossover.html" title="previous chapter">Crossover (módulo)</a></li>
+      <li>Next: <a href="UniformCrossover.html" title="next chapter">UniformCrossover (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/Model/Operator/Crossover/NPointsCrossover.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/Model/Operator/Crossover/NPointsCrossover.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

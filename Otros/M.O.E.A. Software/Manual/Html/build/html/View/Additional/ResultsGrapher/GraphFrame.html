@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GraphFrame (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="ResultsGrapherToplevel (clase)" href="ResultsGrapherToplevel.html" />
+    <link rel="next" title="CustomNavigationToolbar2TkAgg (clase)" href="CustomNavigationToolbar2TkAgg.html" />
+    <link rel="prev" title="ResultsGrapherToplevel (clase)" href="ResultsGrapherToplevel.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Additional.ResultsGrapher.GraphFrame">
+<span id="graphframe-clase"></span><h1>GraphFrame (clase)<a class="headerlink" href="#module-View.Additional.ResultsGrapher.GraphFrame" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame">
+<em class="property">class </em><code class="descname">GraphFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>execution_task_count</em>, <em>objective_functions</em>, <em>decision_variables</em>, <em>final_results</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Frame</span></code></p>
+<p>Proporciona un Frame que contiene gráficas alimentadas por los resultados obtenidos
+al ejecutar algún MOEA, el cual ha sido refinado por las configuraciones
+recabadas de la Ventana Principal <strong>(véase Model/MOEA)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>execution_task_count</strong> (<em>Integer</em>) &#8211; Número que indica el actual Task en ejecución.</li>
+<li><strong>objective_functions</strong> (<em>List</em>) &#8211; Lista que contiene las funciones objetivo renombradas.</li>
+<li><strong>decision_variables</strong> (<em>List</em>) &#8211; Lista que contiene las variables de decisión renombradas.</li>
+<li><strong>final_results</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene la información para graficar. Se divide en dos categorías principales:
+Frente de Pareto y Mejor Individuo por Generación.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__change_canvas_category">
+<code class="descname">_GraphFrame__change_canvas_category</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__change_canvas_category" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Realiza el cambio de Canvas de la categoría de funciones objetivo 
+a la de variables y decision y viceversa, tomando en cuenta factores como por
+ejemplo si alguna de las dos categorías tiene un OptionMenu asociado <strong>(para entonces
+colocarlo apropiadamente)</strong> e identificando siempre el último Canvas seleccionado de 
+la categoría anterior para que cuando sea oportuno se vuelva a colocar.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__change_inner_canvas">
+<code class="descname">_GraphFrame__change_inner_canvas</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__change_inner_canvas" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Realiza el cambio de Canvas dentro de una misma categoría, esto
+en caso en que los datos hayan arrojado más de una gráfica. El cambio
+se hace con ayuda de su OptionMenu asociado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>event</strong> (<em>String</em>) &#8211; Elemento que ejecutó esta función.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__create_2d_canvas">
+<code class="descname">_GraphFrame__create_2d_canvas</code><span class="sig-paren">(</span><em>x_label</em>, <em>x_index</em>, <em>y_label</em>, <em>y_index</em>, <em>collection_points</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__create_2d_canvas" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Crea una gráfica en 2 dimensiones que es envuelta en un Canvas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x_label</strong> (<em>String</em>) &#8211; Nombre para el eje X de la gráfica.</li>
+<li><strong>x_index</strong> (<em>Integer</em>) &#8211; Posición dentro de collection_points para los datos del eje X.</li>
+<li><strong>y_label</strong> (<em>String</em>) &#8211; Nombre para el eje Y de la gráfica.</li>
+<li><strong>y_index</strong> (<em>Integer</em>) &#8211; Posición dentro de collection_points para los datos del eje Y.</li>
+<li><strong>collection_points</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene los puntos a graficar.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Canvas</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">matplotlib.backends.backend_tkagg.FigureCanvasTkAgg</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__create_3d_canvas">
+<code class="descname">_GraphFrame__create_3d_canvas</code><span class="sig-paren">(</span><em>x_label</em>, <em>x_index</em>, <em>y_label</em>, <em>y_index</em>, <em>z_label</em>, <em>z_index</em>, <em>collection_points</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__create_3d_canvas" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Crea una gráfica en 3 dimensiones que es envuelta en un Canvas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x_label</strong> (<em>String</em>) &#8211; Nombre para el eje X de la gráfica.</li>
+<li><strong>x_index</strong> (<em>Integer</em>) &#8211; Posición dentro de collection_points para los datos del eje X.</li>
+<li><strong>y_label</strong> (<em>String</em>) &#8211; Nombre para el eje Y de la gráfica.</li>
+<li><strong>y_index</strong> (<em>Integer</em>) &#8211; Posición dentro de collection_points para los datos del eje Y.</li>
+<li><strong>z_label</strong> (<em>String</em>) &#8211; Nombre para el eje Z de la gráfica.</li>
+<li><strong>z_index</strong> (<em>Integer</em>) &#8211; Posición dentro de collection_points para los datos del eje Z.</li>
+<li><strong>collection_points</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene los puntos a graficar.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Canvas</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">matplotlib.backends.backend_tkagg.FigureCanvasTkAgg</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__create_decision_variables_canvas">
+<code class="descname">_GraphFrame__create_decision_variables_canvas</code><span class="sig-paren">(</span><em>decision_variables</em>, <em>collection_points</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__create_decision_variables_canvas" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado</p>
+</div>
+<p>Crea los Canvas para las variables de decisión.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>decision_variables</strong> (<em>List</em>) &#8211; Lista que contiene las variables de decisión renombradas.</li>
+<li><strong>collection_points</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene los valores de las funciones objetivo
+de todos los Individuos en la Población final.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__create_objective_functions_canvas">
+<code class="descname">_GraphFrame__create_objective_functions_canvas</code><span class="sig-paren">(</span><em>objective_functions</em>, <em>collection_points</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.GraphFrame.GraphFrame._GraphFrame__create_objective_functions_canvas" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Crea los Canvas para las funciones objetivo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>objective_functions</strong> (<em>List</em>) &#8211; Lista que contiene las funciones objetivo renombradas.</li>
+<li><strong>collection_points</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene los valores de las funciones objetivo
+de todos los Individuos en la Población final.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<p>La clase actual toma como referencia el siguiente elemento:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CustomNavigationToolbar2TkAgg.html">CustomNavigationToolbar2TkAgg (clase)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../View.html">View (sección)</a><ul>
+  <li><a href="../Additional.html">Additional (módulo)</a><ul>
+  <li><a href="ResultsGrapher.html">ResultsGrapher (módulo)</a><ul>
+  <li><a href="ResultsGrapherToplevel.html">ResultsGrapherToplevel (clase)</a><ul>
+      <li>Previous: <a href="ResultsGrapherToplevel.html" title="previous chapter">ResultsGrapherToplevel (clase)</a></li>
+      <li>Next: <a href="CustomNavigationToolbar2TkAgg.html" title="next chapter">CustomNavigationToolbar2TkAgg (clase)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/View/Additional/ResultsGrapher/GraphFrame.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/View/Additional/ResultsGrapher/GraphFrame.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

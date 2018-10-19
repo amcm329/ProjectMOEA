@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SelectionFrame (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="TemplateGeneticOperatorFrame (clase)" href="TemplateGeneticOperatorFrame.html" />
+    <link rel="next" title="CrossoverFrame (clase)" href="CrossoverFrame.html" />
+    <link rel="prev" title="TemplateGeneticOperatorFrame (clase)" href="TemplateGeneticOperatorFrame.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Main.GeneticOperator.SelectionFrame">
+<span id="selectionframe-clase"></span><h1>SelectionFrame (clase)<a class="headerlink" href="#module-View.Main.GeneticOperator.SelectionFrame" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Main.GeneticOperator.SelectionFrame.SelectionFrame">
+<em class="property">class </em><code class="descname">SelectionFrame</code><span class="sig-paren">(</span><em>parent</em>, <em>name</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.GeneticOperator.SelectionFrame.SelectionFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TemplateGeneticOperatorFrame.html#View.Main.GeneticOperator.TemplateGeneticOperator.TemplateGeneticOperatorFrame.TemplateGeneticOperatorFrame" title="View.Main.GeneticOperator.TemplateGeneticOperator.TemplateGeneticOperatorFrame.TemplateGeneticOperatorFrame"><code class="xref py py-class docutils literal"><span class="pre">View.Main.GeneticOperator.TemplateGeneticOperator.TemplateGeneticOperatorFrame.TemplateGeneticOperatorFrame</span></code></a></p>
+<div class="line-block">
+<div class="line">Esta clase proporciona la infraestructura gráfica para que el usuario pueda 
+elegir métodos y características relacionadas con la selección de Individuos.</div>
+<div class="line">También hereda atributos de la clase TemplateGeneticOperatorFrame para facilitar
+la carga de elementos en el Frame y su correspondiente recolección de información.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>name</strong> (<em>String</em>) &#8211; Identificador <strong>(único)</strong> que tendrá el Frame.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; Conjunto de técnicas con sus respectivos parámetros para que
+se puedan cargar automáticamente en este Frame <strong>(véase
+Controller/XMLParser.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tkinter.Frame</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Main.GeneticOperator.SelectionFrame.SelectionFrame.get_information">
+<code class="descname">get_information</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.GeneticOperator.SelectionFrame.SelectionFrame.get_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recolecta la información relativa a esta clase haciendo uso del método
+de la clase Padre.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Diccionario con información de los métodos genéricos.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Main.GeneticOperator.SelectionFrame.SelectionFrame.restore_settings">
+<code class="descname">restore_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Main.GeneticOperator.SelectionFrame.SelectionFrame.restore_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ejecuta el método de la clase Padre, el cual restaura los valores por 
+defecto de los elementos dinámicos y estáticos del Frame.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../View.html">View (sección)</a><ul>
+  <li><a href="../../Main.html">Main (módulo)</a><ul>
+  <li><a href="../GeneticOperator.html">GeneticOperator (módulo)</a><ul>
+  <li><a href="TemplateGeneticOperatorFrame.html">TemplateGeneticOperatorFrame (clase)</a><ul>
+      <li>Previous: <a href="TemplateGeneticOperatorFrame.html" title="previous chapter">TemplateGeneticOperatorFrame (clase)</a></li>
+      <li>Next: <a href="CrossoverFrame.html" title="next chapter">CrossoverFrame (clase)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/View/Main/GeneticOperator/TemplateGeneticOperator/SelectionFrame.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../../_sources/View/Main/GeneticOperator/TemplateGeneticOperator/SelectionFrame.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

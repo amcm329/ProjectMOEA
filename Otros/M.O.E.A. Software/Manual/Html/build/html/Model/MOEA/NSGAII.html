@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NSGAII (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="MOEA (módulo)" href="MOEA.html" />
+    <link rel="next" title="View (sección)" href="../../View/View.html" />
+    <link rel="prev" title="MOGA (script)" href="MOGA.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nsgaii-script">
+<h1>NSGAII (script)<a class="headerlink" href="#nsgaii-script" title="Permalink to this headline">¶</a></h1>
+<p>En esta parte se lleva a cabo la implementación del M.O.E.A. denominado
+N.S.G.A. II <strong>(Non-dominated Sorting Genetic Algorithm ó Algoritmo Genético
+de Ordenamiento No Dominado)</strong>.</p>
+<p>La forma de proceder del método es la siguiente:</p>
+<p>1.- Se crea una Población Padre <strong>(de tamaño n)</strong>, a la cual se le evalúan las funciones objetivo de sus Individuos, se les asigna un Ranking <strong>(Goldberg)</strong>
+y posteriormente se les otorga un Fitness.</p>
+<p>2.- Con base en la Población Padre se aplica el operador de Selección para elegir a los Individuos que serán aptos para reproducirse.</p>
+<p>3.- Usando a los elementos del punto 2, se crea una Población Hija <strong>(de tamaño n)</strong>.</p>
+<p>4.- Se crea una súper Población <strong>(llamémosle S, de tamaño 2n)</strong> que albergará todos los Individuos tanto de la Población Padre como Hija; a <em>S</em> se le evalúan las funciones objetivo de sus Individuos, se les asigna un Ranking <strong>(Goldberg)</strong> y posteriormente se les otorga un Fitness.</p>
+<p>5.- La súper Población <em>S</em> se divide en subcategorías de acuerdo a los niveles de dominancia que existan, es decir, existirá la categoría de dominancia 0, la cual almacena Individuos que tengan una dominancia de 0 Individuos <strong>(ningún Individuo los domina)</strong>, existirá la categoría de dominancia 1 con el significado análogo y así sucesivamente hasta haber cubierto todos los niveles de dominancia existentes.</p>
+<p>6.- Se construye la nueva Población Padre, pare ello constará de los Individuos de <em>S</em> donde la prioridad será el nivel de dominancia, es decir, primero se añaden los elementos del nivel 0,luego los del nivel 1 y así en lo sucesivo hasta haber adquirido n elementos.
+Se debe aclarar que la adquisición de Individuos por nivel debe ser total, esto significa que no se pueden dejar Individuos sueltos para el mismo nivel de dominancia.</p>
+<p>Supongamos que a un nivel k existen tantos Individuos que su presunta adquisición supera el tamaño n, en este caso se debe hacer lo siguiente:</p>
+<blockquote>
+<div><p>6.1.- Se crea una Población provisional <strong>(Prov)</strong> con los Individuos del nivel k, se evalúan las funciones objetivo a cada uno de sus Individuos, se les asigna un Ranking <strong>(Goldberg)</strong> y posteriormente se les asigna el Fitness.</p>
+<p>Con los valores anteriores se calcula el Niche Count <strong>(véase Model/SharingFunction)</strong> de los Individuos; una vez hecho ésto se seleccionan desde Prov los Individuos faltantes con los mayores Niche Count, esto hasta completar el tamaño n de la nueva Población Padre.</p>
+</div></blockquote>
+<p>7.- Al haber conformado la nueva Población Padre, se evalúan las funciones objetivo de sus Individuos, se les asigna el Ranking correspondiente <strong>(Goldberg)</strong> y se les atribuye su Fitness.</p>
+<p>8.- Se repiten los pasos 2 a 7 hasta haber alcanzado el límite de generaciones <strong>(iteraciones)</strong>.</p>
+<div class="line-block">
+<div class="line">Como su nombre lo indica, la característica de este algoritmo es la clasificación
+de los Individuos en niveles para su posterior selección.</div>
+</div>
+<div class="line-block">
+<div class="line">Esto al principio propicia una Presión Selectiva moderada por la ausencia de elementos
+con dominancia baja que suele existir en las primeras generaciones, sin embargo en iteraciones
+posteriores se agudiza la Presión Selectiva ya que eventualmente la mayoría de los Individuos
+serán alojados en las primeras categorías de dominancia, cubriendo casi instantáneamente
+la demanda de Individuos necesaria en el paso 6, por lo que las categorías posteriores serán
+cada vez menos necesarias con el paso de los ciclos.</div>
+</div>
+<div class="line-block">
+<div class="line">Por otra parte la fusión de las Poblaciones en <em>S</em> garantiza que siempre se conserven a
+los mejores Individuos independientemente de la generación transcurrida, a eso se le llama Elitismo.</div>
+<div class="line">Por cierto que en el algoritmo original no existe un nombre oficial para <em>S</em> sino más bien se señala como
+una estructura genérica, sin embargo se le ha formalizado con un identificador para guiar apropiadamente al
+usuario en el flujo del algoritmo.</div>
+</div>
+<div class="line-block">
+<div class="line">Para finalizar se señala que el uso del ranking de Goldberg <strong>(véase Model/Community/Community.py)</strong>
+es indispensable.</div>
+</div>
+<span class="target" id="module-Model.MOEA.NSGAII"></span><dl class="function">
+<dt id="Model.MOEA.NSGAII.execute_moea">
+<code class="descname">execute_moea</code><span class="sig-paren">(</span><em>execution_task_count</em>, <em>generations_queue</em>, <em>generations</em>, <em>population_size</em>, <em>vector_functions</em>, <em>vector_variables</em>, <em>available_expressions</em>, <em>number_of_decimals</em>, <em>community_instance</em>, <em>algorithm_parameters</em>, <em>representation_instance</em>, <em>representation_parameters</em>, <em>fitness_instance</em>, <em>fitness_parameters</em>, <em>sharing_function_instance</em>, <em>sharing_function_parameters</em>, <em>selection_instance</em>, <em>selection_parameters</em>, <em>crossover_instance</em>, <em>crossover_parameters</em>, <em>mutation_instance</em>, <em>mutation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.MOEA.NSGAII.execute_moea" title="Permalink to this definition">¶</a></dt>
+<dd><p>Con base en los datos recabados se desarrolla la técnica M.O.E.A.
+que lleva por nombre N.S.G.A. II <strong>(Non-dominated Sorting Genetic Algorithm ó
+Algoritmo Genético de Ordenamiento No Dominado)</strong>-</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="MOEA.html">MOEA (módulo)</a><ul>
+      <li>Previous: <a href="MOGA.html" title="previous chapter">MOGA (script)</a></li>
+      <li>Next: <a href="../../View/View.html" title="next chapter">View (sección)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/MOEA/NSGAII.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/MOEA/NSGAII.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

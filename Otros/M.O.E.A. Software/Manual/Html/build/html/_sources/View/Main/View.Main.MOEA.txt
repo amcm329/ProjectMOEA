@@ -1,0 +1,38 @@
+View.Main.MOEA package
+======================
+
+Submodules
+----------
+
+View.Main.MOEA.AlgorithmFrame module
+------------------------------------
+
+.. automodule:: View.Main.MOEA.AlgorithmFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Main.MOEA.MOEAFrame module
+-------------------------------
+
+.. automodule:: View.Main.MOEA.MOEAFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Main.MOEA.SharingFunctionFrame module
+------------------------------------------
+
+.. automodule:: View.Main.MOEA.SharingFunctionFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Main.MOEA
+    :members:
+    :undoc-members:
+    :show-inheritance:

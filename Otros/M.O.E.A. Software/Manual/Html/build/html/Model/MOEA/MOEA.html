@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MOEA (módulo) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Model (sección)" href="../Model.html" />
+    <link rel="next" title="VEGA (script)" href="VEGA.html" />
+    <link rel="prev" title="EuclideanDistance (script)" href="../SharingFunction/PhenotypicSimilarity/EuclideanDistance.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="moea-modulo">
+<h1>MOEA (módulo)<a class="headerlink" href="#moea-modulo" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">En esta parte se encuentran desarrolladas todas las técnicas
+concernientes al uso de M.O.E.A.&#8217;s <strong>(Multi-Objective Evolutionary Algorithms
+ó Algoritmos Evolutivos Multiobjetivo)</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">Un M.O.E.A. es la convergencia y culminación de todas las técnicas que se
+han implementado en la sección Model <strong>(ó Modelo)</strong> con la finalidad de
+ofrecer una solución óptima ante un problema multiobjetivo mediante el
+uso de Algoritmos Evolutivos.</div>
+<div class="line"><br /></div>
+<div class="line">Primero, solucionar un problema multiobjetivo aterrizado en un lenguaje matemático consiste en lo siguiente:</div>
+<div class="line">Tenemos un vector de funciones objetivo:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/481c16636243235abd6d2692e2f67df46d5c69f4.png" alt="F(\vec{x}) = [f_1(\vec{x}),f_2(\vec{x}),...,f_n(\vec{x})]^T;\ con\ n \geqslant 1."/></strong></p><div class="line-block">
+<div class="line">Donde:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/9b5a84c16e8ee1eb467c266e27fa162b8202b3bd.png" alt="\vec{x} = [x_1,x_2,...,x_k]^T;\ k \geqslant 1."/></strong></p><div class="line-block">
+<div class="line">Representa al vector de variables de decisión que &#8220;alimenta&#8221; a cada función objetivo.</div>
+<div class="line">La meta es encontrar un vector especial de variables de decisión, llamémosle:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/677443288c09ad67bc33e15f8ce35c5b88911d21.png" alt="\vec{x*} = [x_1*,x_2*,...,x_k*]^T;\ k \geqslant 1."/></strong></p><div class="line-block">
+<div class="line">Tal que:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/92682624df0327cb9ab83c72f0dd41bce1b06c4b.png" alt="f_i(\vec{x*}) \leqslant f_i(\vec{x});\ 1 \leqslant i \leqslant n;\ \forall f \in F"/>.</strong></p><div class="line-block">
+<div class="line">Dicho de otra forma, se debe encontrar el vector de variables de decisión que minimize todas y cada una de las
+funciones objetivo en existencia.</div>
+<div class="line">Adicionalmente, todo vector de variables de decisión debe estar sujeto a las restricciones:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/7037e0d81be02444307333c79c9b6db7a4540502.png" alt="h_i(\vec{x}) = 0;\ 1 \leqslant i \leqslant p\ \ (restricciones\ de\ igualdad)."/></strong></p><p class="centered">
+<strong><img class="math" src="../../_images/math/c0d6336eb5a62bbab1d142111851f7523d10e735.png" alt="g_i(\vec{x}) \leqslant 0;\ 1 \leqslant i \leqslant m\ \ (restricciones\ de\ desigualdad)."/></strong></p><div class="line-block">
+<div class="line">Las cuales para fines de este proyecto son aquéllas a las que se encuentran afianzadas
+las variables de decisión <strong>(véase View/Main/DecisionVariable/VariableFrame.py)</strong></div>
+<div class="line"><br /></div>
+<div class="line">Una definición adicional que sin lugar a dudas se verá utilizada es la de <em>dominancia</em> entre vectores de variables de decisión,
+para ello tomemos dos vectores <img class="math" src="../../_images/math/7a29f048d3c73d6b396410c479644ff3a8522211.png" alt="U = (u_1,u_2,...,u_k)"/> y <img class="math" src="../../_images/math/8bef745662f821378fac8455434961d429dc0b66.png" alt="V = (v_1,v_2,...,v_k)"/>, se dice
+que <strong>U domina a V ó V es dominada por U</strong> si:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/3062d3b3e68f27e8c8e75c736447a90da0849a48.png" alt="\forall i \in \{1,...,k\}\ \ u_i \leqslant v_i \land \exists i \in \{1,...,k\}; \ \ u_i &lt; v_i"/>.</strong></p><div class="line-block">
+<div class="line">Lo anterior significa que <img class="math" src="../../_images/math/169c982b5e649cd1bd6445df5583affe427ea269.png" alt="U"/> debe ser mejor que <img class="math" src="../../_images/math/fae0e7a73748991e5540d874416000583f64f58e.png" alt="V"/> en cada uno de sus componentes para garantizar la dominancia.</div>
+<div class="line">La simbología que se suele usar para identificar este hecho es <img class="math" src="../../_images/math/25410097ac92b7b89226ce3b9dc81aef831bef47.png" alt="u \succ v"/>.</div>
+<div class="line"><br /></div>
+<div class="line">Algo importante a mencionar es que en las definiciones se trata únicamente la minimización
+de funciones objetivo porque, en caso de querer la maximización, simplemente se realiza la
+sustitución:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/daab32c4ddcbb243498cefe4455b4c8bdd28ba00.png" alt="f'_i(\vec{x}) = -f_i(\vec{x});\ 1 \leqslant i \leqslant n,\ para\ alguna\ f \in F."/></strong></p><div class="line-block">
+<div class="line">Es decir, minimizando la función negativa se obtiene el máximo. El proyecto ya contempla este tipo
+de casos <strong>(véase View/Main/ObjectiveFunction/FunctionFrame)</strong>.</div>
+<div class="line">Como dato adicional, es menester añadir que, en un escenario típico muchas de las funciones
+objetivo entrarán en conflicto, esto quiere decir que en algunas se buscará el mínimo mientras
+que en otras, el máximo.</div>
+<div class="line"><br /></div>
+<div class="line">Con base en lo anterior, el funcionamiento de un M.O.E.A. <strong>(resolver un problema de optimización
+multiobjetivo usando algoritmos genéticos)</strong> generalmente se lleva a cabo de la siguiente manera:</div>
+<div class="line"><br /></div>
+<div class="line">1.- Usando una Representación Cromosómica <strong>(véase Model/ChromosomalRepresentation)</strong>, crear la Población Padre y evaluar cada uno de los Individuos respecto a las funciones objetivo.</div>
+</div>
+<div class="line-block">
+<div class="line">2.- Asignar un Ranking a los Individuos de la Población Padre <strong>(véase Model/Community/Community.py)</strong>.</div>
+</div>
+<div class="line-block">
+<div class="line">3.- Con base en el Ranking, asignar el Fitness a cada uno de los Individuos <strong>(véase Model/Fitness)</strong>.</div>
+</div>
+<div class="line-block">
+<div class="line">4.- Tomando en cuenta el Fitness, aplicar las operaciones de Selección, Cruza y Mutación con la finalidad de crear una Población Hija <strong>(véase Model/GeneticOperator)</strong>. Todos los métodos empleados en este punto deben funcionar acorde a la Representación Cromosómica del punto 1.</div>
+</div>
+<div class="line-block">
+<div class="line">5- <strong>(Opcional)</strong> Utilizar el Fitness Compartido para aplicar una elección más minuciosa de los mejores Individuos en la Población Hija <strong>(véase Model/SharingFunction)</strong>.</div>
+</div>
+<div class="line-block">
+<div class="line">6.- Designar a la población Hija como la nueva población Padre.</div>
+</div>
+<div class="line-block">
+<div class="line">7.- Repetir los pasos 2 a 6 hasta haber alcanzado un número límite de generaciones <strong>(iteraciones)</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">A grandes rasgos la diferencia entre un M.O.E.A. y otro es la Presión Selectiva
+<strong>(ó Selective Pressure)</strong> que se aplica durante el procedimiento, para fines de este proyecto
+se trata de la tolerancia para seleccionar a los Individuos de calidad media o baja frente a los
+mejores. Una baja Presión Selectiva permite elegir Individuos no tan aptos; el caso es análogo para
+una alta Presión Selectiva.</div>
+<div class="line">Es por eso que se han tomado los M.O.E.A.&#8217;s más representativos, pues se desea ilustrar la
+consistencia y eficacia de dichos métodos en general a través de variadas circunstancias.</div>
+<div class="line"><br /></div>
+<div class="line">Tomando en cuenta lo anterior, la finalidad es que el usuario desarrolle
+sus propios M.O.E.A.&#8217;s, por ello es que, además de  además de añadir
+el método en el listado localizado en <strong>Controller/XML/Features.xml</strong>, deberá implementar la siguiente función:</div>
+</div>
+<dl class="function">
+<dt>
+<code class="descname">execute_moea(execution_task_count,generations_queue,generations,population_size,vector_functions,vector_variables,available_expressions,number_of_decimals,</code></dt>
+<dt>
+<code class="descname">community_instance,algorithm_parameters,representation_instance,representation_parameters,fitness_instance,fitness_parameters,</code></dt>
+<dt>
+<code class="descname">sharing_function_instance,sharing_function_parameters,selection_instance,selection_parameters,crossover_instance,crossover_parameters,</code></dt>
+<dt>
+<code class="descname">mutation_instance,mutation_parameters):</code></dt>
+<dd><div class="line-block">
+<div class="line">Devuelve la solución óptima para un conjunto de funciones objetivo <strong>vector_functions</strong> ligadas
+a un conjunto de restricciones <strong>vector_variables</strong> tomando como fundamento el uso de algoritmos genéticos.</div>
+<div class="line">El método se apoya de las características subyacentes; en lo concerniente a la devolución de resultados
+se recomienda ver el método <strong>get_results</strong> localizado en <strong>Model/Community/Community.py</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>execute_task_count</strong> (<em>Integer</em>) &#8211; El identificador que se utiliza para orquestar el orden en que el método será ejecutado
+con respecto de los demás <strong>(véase View/Additional/ResultsGrapher/ResultsGrapherTopLevel.py)</strong>.</li>
+<li><strong>generations_queue</strong> (<em>Instance</em>) &#8211; Una estructura auxiliar <strong>(Queue o Cola)</strong> que es necesaria para indicar a la interfaz gráfica el progreso del método
+<strong>(véase Controller/Controller.py, View/MainWindow.py, View/Additional/ResultsGrapher/ResultsGrapherTopLevel.py)</strong> .</li>
+<li><strong>generations</strong> (<em>Integer</em>) &#8211; El número de generaciones <strong>(iteraciones)</strong> que se emplearán para la ejecución del método.</li>
+<li><strong>population_size</strong> (<em>Integer</em>) &#8211; El tamaño de la Población <strong>(número de Individuos)</strong>.</li>
+<li><strong>vector_functions</strong> (<em>List</em>) &#8211; El vector con las funciones objetivo insertadas por el usuario.</li>
+<li><strong>vector_variables</strong> (<em>List</em>) &#8211; El vector con las variables de decisión ingresadas por el usuario.</li>
+<li><strong>available_expressions</strong> (<em>Dictionary</em>) &#8211; Un diccionario con expresiones creadas para que la evaluación de funciones objetivo sea mucho más sencilla
+<strong>(véase Controller/Verifier.py, Controller/XML/PythonExpressions.xml, View/Additional/MenuInternalOption/InternalOptionTab/PythonExpressionFrame.py)</strong>.</li>
+<li><strong>number_of_decimals</strong> (<em>Integer</em>) &#8211; La precisión decimal <strong>(número de decimales)</strong> que tendrán las soluciones inherentes a los Individuos.</li>
+<li><strong>community_instance</strong> (<em>Instance</em>) &#8211; Una instancia de la clase Community
+<strong>(véase Controller/Verifier.py, Model/Community/Community.py)</strong>.</li>
+<li><strong>algorithm_parameters</strong> (<em>Instance</em>) &#8211; Un diccionario para añadir opciones adicionales para los M.O.E.A.&#8217;s.</li>
+<li><strong>representation_instance</strong> (<em>Instance</em>) &#8211; Una instancia de la técnica de Representación Cromosómica <strong>(ó Chromosomal Representation)</strong> usada
+por el usuario <strong>(véase Controller/Verifier.py, Model/ChromosomalRepresentation)</strong>.</li>
+<li><strong>representation_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario con opciones adicionales a la técnica de Representación Cromosómica usada.</li>
+<li><strong>fitness_instance</strong> (<em>Instance</em>) &#8211; Una instancia de la técnica de Fitness seleccionada por el usuario
+<strong>(véase Controller/Verifier.py, Model/Fitness)</strong>.</li>
+<li><strong>fitness_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario con parámetros adicionales para la técnica de Fitness utilizada.</li>
+<li><strong>sharing_function_instance</strong> (<em>Instance</em>) &#8211; Una instancia de la técnica de Sharing Function <strong>(ó Función de Compartición)</strong> usada
+por el usuario <strong>(véase Controller/Verifier.py, Model/SharingFunction)</strong>.</li>
+<li><strong>sharing_function_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario con opciones adicionales para la técnica de Sharing Function seleccionada.</li>
+<li><strong>selection_instance</strong> (<em>Instance</em>) &#8211; Una instancia de la técnica de Selection <strong>(ó Selección)</strong> seleccionada por el usuario
+<strong>(véase Controller/Verifier.py, Model/Operator/Selection)</strong>.</li>
+<li><strong>selection_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario con opciones adicionales para la técnica de Selection empleada.</li>
+<li><strong>crossover_instance</strong> (<em>Instance</em>) &#8211; Una instancia de la técnica de Crossover <strong>(ó Cruza)</strong> seleccionada por el usuario
+<strong>(véase Controller/Verifier.py, Model/Operator/Crossover)</strong>.</li>
+<li><strong>crossover_parameters</strong> (<em>Dictionary</em>) &#8211; Un diccionario con parámetros adicionales para la técnica de Cruza solicitada.</li>
+<li><strong>mutation_instance</strong> (<em>Instance</em>) &#8211; Una instancia de la técnica de Mutation <strong>(ó Mutación)</strong> empleada por el usuario
+<strong>(véase Controller/Verifier.py, Model/Operator/Mutation)</strong>.</li>
+<li><strong>mutation_parameters</strong> &#8211; Un diccionario con parámetros adicionales para la técnica de Mutación usada.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">El diccionario que resulta de aplicar el método <strong>get_results</strong> que se encuentra en <strong>Model/Community/Community.py</strong>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>A continuación se muestra la lista de los M.O.E.A.&#8217;s implementados:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="VEGA.html">VEGA (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SPEAII.html">SPEAII (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MOGA.html">MOGA (script)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NSGAII.html">NSGAII (script)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+      <li>Previous: <a href="../SharingFunction/PhenotypicSimilarity/EuclideanDistance.html" title="previous chapter">EuclideanDistance (script)</a></li>
+      <li>Next: <a href="VEGA.html" title="next chapter">VEGA (script)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/MOEA/MOEA.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/MOEA/MOEA.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

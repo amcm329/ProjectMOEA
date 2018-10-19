@@ -1,0 +1,46 @@
+Model.MOEA package
+==================
+
+Submodules
+----------
+
+Model.MOEA.MOGA module
+----------------------
+
+.. automodule:: Model.MOEA.MOGA
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.MOEA.NSGAII module
+------------------------
+
+.. automodule:: Model.MOEA.NSGAII
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.MOEA.SPEAII module
+------------------------
+
+.. automodule:: Model.MOEA.SPEAII
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.MOEA.VEGA module
+----------------------
+
+.. automodule:: Model.MOEA.VEGA
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.MOEA
+    :members:
+    :undoc-members:
+    :show-inheritance:

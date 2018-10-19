@@ -1,0 +1,22 @@
+Model.Community.Population.Individual package
+=============================================
+
+Submodules
+----------
+
+Model.Community.Population.Individual.Individual module
+-------------------------------------------------------
+
+.. automodule:: Model.Community.Population.Individual.Individual
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Community.Population.Individual
+    :members:
+    :undoc-members:
+    :show-inheritance:

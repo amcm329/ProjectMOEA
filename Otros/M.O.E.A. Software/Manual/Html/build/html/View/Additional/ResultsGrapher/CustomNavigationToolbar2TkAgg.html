@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CustomNavigationToolbar2TkAgg (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="GraphFrame (clase)" href="GraphFrame.html" />
+    <link rel="next" title="SummaryFrame (clase)" href="SummaryFrame.html" />
+    <link rel="prev" title="GraphFrame (clase)" href="GraphFrame.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Additional.ResultsGrapher.CustomNavigationToolbar2TkAgg">
+<span id="customnavigationtoolbar2tkagg-clase"></span><h1>CustomNavigationToolbar2TkAgg (clase)<a class="headerlink" href="#module-View.Additional.ResultsGrapher.CustomNavigationToolbar2TkAgg" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Additional.ResultsGrapher.CustomNavigationToolbar2TkAgg.CustomNavigationToolbar2TkAgg">
+<em class="property">class </em><code class="descname">CustomNavigationToolbar2TkAgg</code><span class="sig-paren">(</span><em>canvas</em>, <em>window</em>, <em>parent_frame</em>, <em>execution_task_count</em>, <em>image_text</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.CustomNavigationToolbar2TkAgg.CustomNavigationToolbar2TkAgg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">matplotlib.backends.backend_tkagg.NavigationToolbar2TkAgg</span></code></p>
+<div class="line-block">
+<div class="line">Proporciona una Barra de Navegación <strong>(ó NavigationToolbar)</strong> que se anexa a cada
+una de las gráficas con el fin de facilitar la exploración y almacenamiento de los
+datos obtenidos.</div>
+<div class="line">Por defecto la barra de navegación original se encuentra obsoleta a las necesidades
+inherentes a este proyecto, por ello es que se crea una barra personalizada que
+responde a requerimientos tales como la obtención apropiada de imágenes relativas
+a las gráficas así como su correcto funcionamiento sin importar el sistema operativo
+empleado.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>canvas</strong> (<em>matplotlib.backends.backend_tkagg.FigureCanvasTkAgg</em>) &#8211; La estructura que contiene tanto a la gráfica como a la Barra de Navegación.</li>
+<li><strong>window</strong> (<em>Tkinter.Frame</em>) &#8211; El Frame que contiene a canvas.</li>
+<li><strong>parent_frame</strong> (<em>Tkinter.Frame</em>) &#8211; El Frame que contiene a window, en este caso ResultsGrapherToplevel.py.</li>
+<li><strong>execution_task_count</strong> (<em>Integer</em>) &#8211; Un identificador que precisa el número de tarea <strong>(Task)</strong> en ejecución
+<strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+<li><strong>image_text</strong> (<em>String</em>) &#8211; El nombre que tendrán por defecto las imágenes resultantes al guardarse en el equipo
+de cómputo.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">matplotlib.backends.backend_tkagg.NavigationToolbar2TkAgg</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rype:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="View.Additional.ResultsGrapher.CustomNavigationToolbar2TkAgg.CustomNavigationToolbar2TkAgg.save_figure">
+<code class="descname">save_figure</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.ResultsGrapher.CustomNavigationToolbar2TkAgg.CustomNavigationToolbar2TkAgg.save_figure" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método sobreescribe al original.</p>
+</div>
+<div class="line-block">
+<div class="line">Arroja una ventana emergente modificada para guardar archivos, en este caso
+las gráficas.</div>
+<div class="line">Las modificaciones con respecto de la función original consisten en agregar
+un título para tener conocimiento de las imágenes del Task que se van a guardar.</div>
+<div class="line">Además se modifica el comportamiento de la ventana para adherirlo a la ventana
+del Task y no a la Ventana Principal.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> (<em>Tuple</em>) &#8211; Un listado con parámetros que aunque no se ocupan en el método
+se coloca porque así lo estructuraron los desarrolladores originales
+de la biblioteca.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../View.html">View (sección)</a><ul>
+  <li><a href="../Additional.html">Additional (módulo)</a><ul>
+  <li><a href="ResultsGrapher.html">ResultsGrapher (módulo)</a><ul>
+  <li><a href="ResultsGrapherToplevel.html">ResultsGrapherToplevel (clase)</a><ul>
+  <li><a href="GraphFrame.html">GraphFrame (clase)</a><ul>
+      <li>Previous: <a href="GraphFrame.html" title="previous chapter">GraphFrame (clase)</a></li>
+      <li>Next: <a href="SummaryFrame.html" title="next chapter">SummaryFrame (clase)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/View/Additional/ResultsGrapher/CustomNavigationToolbar2TkAgg.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/View/Additional/ResultsGrapher/CustomNavigationToolbar2TkAgg.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

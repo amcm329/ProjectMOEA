@@ -1,0 +1,9 @@
+InternalOptionFrame (clase)
+===========================
+
+
+.. automodule:: View.Additional.MenuInternalOption.InternalOptionFrame
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:

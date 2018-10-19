@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Verifier (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Controller (Sección)" href="Controller.html" />
+    <link rel="prev" title="XMLParser (clase)" href="XMLParser.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Controller.Verifier">
+<span id="verifier-clase"></span><h1>Verifier (clase)<a class="headerlink" href="#module-Controller.Verifier" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Controller.Verifier.Verifier">
+<em class="property">class </em><code class="descname">Verifier</code><a class="headerlink" href="#Controller.Verifier.Verifier" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Realiza principalmente la verificación y transformación adecuada de los datos 
+que el usuario introduce en <strong>View/MainWindow.py</strong> para alimentar a los algoritmos 
+que se encuentran en la sección Model <strong>(más en concreto Model/MOEA)</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">En caso de haber algún error regresa los mensajes de error adecuados para que puedan
+ser interpretados por la capa Vista y precisar al usuario el acontecimiento ocurrido.</div>
+<div class="line"><br /></div>
+<div class="line">Por otra parte si se ha llevado a cabo la verificación correctamente se obtiene la información
+transformada apropiadamente.</div>
+<div class="line"><br /></div>
+<div class="line">De manera secundaria también ofrece métodos de verificación para la extracción
+y colocación de datos en los archivos .xml <strong>(véase XMLParser y el directorio Controller/XML)</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Controller.Verifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Instance</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Controller.Verifier.Verifier._Verifier__cast_parameter">
+<code class="descname">_Verifier__cast_parameter</code><span class="sig-paren">(</span><em>parameter_value</em>, <em>parameter_settings</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier._Verifier__cast_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Verifica un parámetro asociado a alguna técnica.
+Primero asegura que el parámetro se pueda evaluar correctamente,
+posteriormente convierte apropiadamente el tipo de dato pasando 
+de String a Boolean, Integer ó Float según corresponda.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parameter_value</strong> (<em>Float</em>) &#8211; El valor actual del parámetro.</li>
+<li><strong>parameter_settings</strong> (<em>Dictionary</em>) &#8211; Un diccionario que contiene el tipo del parámetro
+<strong>(bool, integer ó float)</strong> y el rango que debe tomar
+tanto inferior como superior.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">El valor saneado del parámetro si no hay fallas, pero si se encuentra
+algún desperfecto entonces se regresa un diccionario con la información
+detallada del desperfecto.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(Boolean, Integer, Float)/Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier._Verifier__verify_instance">
+<code class="descname">_Verifier__verify_instance</code><span class="sig-paren">(</span><em>name_class</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier._Verifier__verify_instance" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<div class="line-block">
+<div class="line">Devuelve una instancia del nombre de la clase que se le pase
+como parámetro.</div>
+<div class="line"><br /></div>
+<div class="line">Esta funcionalidad es útil sobre todo para la sección Model ya que
+uno de los objetivos es proporcionar al usuario de una infraestructura 
+rápida con técnicas fácilmente intercambiables sin necesidad de estar
+importando explícitamente cada una de éstas.</div>
+<div class="line"><br /></div>
+<div class="line">De esta forma con base en una instancia se puede ejecutar cualquier método
+de manera dinámica.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name_class</strong> (<em>String</em>) &#8211; el nombre de la clase <strong>(con su ruta)</strong> de la cual se
+desea obtener una instancia.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Una instancia de la clase solicitada si el proceso es exitoso,
+en otro caso se obtiene un diccionario con los detalles de la
+falla.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Instance/Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.get_dynamic_function">
+<code class="descname">get_dynamic_function</code><span class="sig-paren">(</span><em>complete_function</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.get_dynamic_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una instancia de una función en un String 
+de la forma <strong>biblioteca.función</strong>.
+Este método se usa para convertir las expresiones de Python
+en instancias que serán utilizadas al momento de evaluar  
+funciones objetivo <strong>(véase View/Additional/MenuInternalOption/InternalOptionTab/PythonExpressionFrame.py,
+Controller/XML/PythonExpressions.xml)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>complete_function</strong> (<em>String</em>) &#8211; un String preferentemente de la forma
+<strong>biblioteca.función</strong> <strong>(el punto debe ir incluido)</strong>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Una instancia de la función asociada a la biblioteca.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.sanitize_decision_variables">
+<code class="descname">sanitize_decision_variables</code><span class="sig-paren">(</span><em>vector_variables</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.sanitize_decision_variables" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Verifica el conjunto de elementos de la categoría &#8220;Decision Variables&#8221;
+<strong>(véase View/Main/DecisionVariable/DecisionVariableFrame.py)</strong>, los cuales
+son precisamente las variables de decisión.</div>
+<div class="line">Primero se asegura que cada variable de decisión se pueda evaluar
+correctamente, posteriormente convierte apropiadamente el tipo
+de dato de sus respectivos rangos, pasando de String a Float.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>vector_variables</strong> (<em>Dictionary</em>) &#8211; El vector que contiene las variables de 
+decisión con sus correspondientes rangos.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Un diccionario con las variables de decisión y sus 
+rangos debidamente saneados.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.sanitize_genetic_operators_settings">
+<code class="descname">sanitize_genetic_operators_settings</code><span class="sig-paren">(</span><em>genetic_operators_settings</em>, <em>features</em>, <em>vector_variables</em>, <em>number_of_decimals</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.sanitize_genetic_operators_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Revisa la integridad y sanea los datos que ingresó el usuario 
+concernientes a la sección &#8220;Genetic Operators Settings&#8221;
+<strong>(véase View/Main/GeneticOperator/GeneticOperatorFrame.py)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>genetic_operators_settings</strong> (<em>Dictionary</em>) &#8211; El listado de técnicas y sus parámetros que el usuario
+eligió en la sección correspondiente.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; El conjunto de las opciones disponibles 
+para esta sección, así como sus características.</li>
+<li><strong>vector_variables</strong> (<em>List</em>) &#8211; El vector de variables de decisión.</li>
+<li><strong>number_of_decimals</strong> (<em>Integer</em>) &#8211; El número de decimales que llevará cada solución en 
+Population.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un diccionario que, dependiendo de los resultados, puede contener
+o información del error encontrado durante el procedimiento o 
+todos los datos debidamente verificados y transformados.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.sanitize_moeas_settings">
+<code class="descname">sanitize_moeas_settings</code><span class="sig-paren">(</span><em>moeas_settings</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.sanitize_moeas_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica integridad y lleva a cabo el saneamiento de 
+los datos que ingresó el usuario concernientes a la 
+sección &#8220;MOEAs Settings&#8221; <strong>(véase View/Main/MOEA/MOEAFrame.py)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>moeas_settings</strong> (<em>Dictionary</em>) &#8211; El listado de técnicas y sus parámetros que el usuario
+eligió en la sección correspondiente.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; El conjunto de las opciones disponibles 
+para esta sección, así como sus características.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un diccionario que, dependiendo de los resultados, puede contener
+o información del error encontrado durante el procedimiento o 
+todos los datos debidamente verificados y transformados.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.sanitize_objective_functions">
+<code class="descname">sanitize_objective_functions</code><span class="sig-paren">(</span><em>vector_variables</em>, <em>available_expressions</em>, <em>vector_functions</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.sanitize_objective_functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lleva a cabo el saneamiento de los elementos correspondientes a la categoría
+&#8220;Objective Functions&#8221; <strong>(véase View/Main/ObjectiveFuncion/ObjectiveFunctionFrame.py)</strong>, 
+los cuales son de hecho sólo las funciones objetivo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>vector_variables</strong> (<em>Dictionary</em>) &#8211; El vector de variables de decisión que el usuario
+ha ingresado.</li>
+<li><strong>available_expressions</strong> (<em>Dictionary</em>) &#8211; Un listado con las expresiones de Python
+disponibles <strong>(véase Controller/XML/PythonExpressions.xml,
+View/Additional/MenuInternalOption/InternalOptionTab/PythonExpressionFrame.py)</strong>.</li>
+<li><strong>vector_functions</strong> (<em>Dictionary</em>) &#8211; El vector de funciones objetivo ingresados por el usuario.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Si el proceso fue exitoso, se obtiene el mismo vector_functions,
+en otro caso se regresa un diccionario con información detallada
+sobre el errror encontrado.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List/Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.sanitize_population_settings">
+<code class="descname">sanitize_population_settings</code><span class="sig-paren">(</span><em>population_settings</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.sanitize_population_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica la consistencia y realiza el saneamiento de los datos
+que ingresó el usuario concernientes a la sección &#8220;Population Settings&#8221;
+<strong>(véase View/Main/Population/PopulationFrame.py)</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>population_settings</strong> (<em>Dictionary</em>) &#8211; El listado de técnicas y sus parámetros que el usuario
+eligió en la sección correspondiente.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; El conjunto de las opciones disponibles 
+para esta sección, así como sus características.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un diccionario que, dependiendo de los resultados, puede contener
+o información del error encontrado durante el procedimiento o 
+todos los datos debidamente verificados y transformados.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.sanitize_techniques">
+<code class="descname">sanitize_techniques</code><span class="sig-paren">(</span><em>general_information</em>, <em>features</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.sanitize_techniques" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Realiza una verificación adicional concerniente al tipo de representación de todas las técnicas seleccionadas.</div>
+<div class="line">Lo anterior significa que, usando la Representación Cromosómica <strong>(ó Chromosomal Representation,
+véase Model/ChromosomalRepresentation, View/Main/Population/PopulationFrame.py)</strong>, todas las técnicas
+deben concordar con el mismo tipo de representación cromosómica que se haya seleccionado.</div>
+<div class="line">Para esta versión sólo están disponibles las representaciones binaria y de punto flotante.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>general_information</strong> (<em>Dictionary</em>) &#8211; El listado de características disponibles <strong>(véase XMLParser.py)</strong>.</li>
+<li><strong>features</strong> (<em>Dictionary</em>) &#8211; La colección de datos que seleccionó el usuario en la sección View.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Un diccionario el cual, si la verificación es exitosa, es el mismo general_informacion,
+si por el contrario falla, entonces es un diccionario que contiene detalles del error.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Dictionary</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.verify_load_xml_features">
+<code class="descname">verify_load_xml_features</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.verify_load_xml_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica que los datos obtenidos de las técnicas disponibles que alimentan 
+a la Ventana Principal <strong>(véase View/MainWindow.py)</strong> no tengan defectos.
+Este método se apoya de <strong>load_xml_features</strong> localizado en 
+<strong>Controller/XMLParser.py</strong>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>Dictionary</em>) &#8211; Los datos que son leídos por el método <strong>load_xml_features</strong>
+mencionado previamente.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Si los datos contienen algún error, un diccionario con las características
+de la falla, en otro caso los datos mismos.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.verify_load_xml_mop_examples">
+<code class="descname">verify_load_xml_mop_examples</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.verify_load_xml_mop_examples" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Revisa que los M.O.P.&#8217;s <strong>(Multi-Objective Problems)</strong>
+que se muestran en <strong>View/MainWindow.py</strong> a través de</div>
+<div class="line"><strong>View/Additional/MenuInternalOption/InternalOptionTab/MOPExampleFrame.py</strong> 
+estén libres de errores.</div>
+<div class="line">Este método se apoya de <strong>load_mop_examples</strong> localizado en 
+<strong>Controller/XMLParser.py</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>Dictionary</em>) &#8211; Los datos que son leídos por el método <strong>load_mop_examples</strong>
+mencionado previamente.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Si los datos contienen algún error, un diccionario con las características
+de la falla, en otro caso los datos mismos.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.verify_load_xml_python_expressions">
+<code class="descname">verify_load_xml_python_expressions</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.verify_load_xml_python_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Revisa que las expresiones de Python estén libres de errores.</div>
+<div class="line">Este método se apoya de <strong>load_python_expressions</strong> localizado en 
+<strong>Controller/XMLParser.py</strong>.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>Dictionary</em>) &#8211; Los datos que son leídos por el método <strong>load_python_expressions</strong>
+mencionado previamente.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Si los datos contienen algún error, un diccionario con las características
+de la falla, en otro caso los datos mismos.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Controller.Verifier.Verifier.verify_write_xml_python_expressions">
+<code class="descname">verify_write_xml_python_expressions</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#Controller.Verifier.Verifier.verify_write_xml_python_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica la consistencia de los datos relativos a las
+expresiones de Python antes de ser escritos en el archivo .xml
+correspondiente.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>List</em>) &#8211; El conjunto de expresiones que serán almacenadas.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Un mensaje &#8220;OK&#8221; si la verificación fue satisfactoria,
+y &#8220;ERROR&#8221; en caso de aparecer alguna falla.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="Controller.html">Controller (Sección)</a><ul>
+      <li>Previous: <a href="XMLParser.html" title="previous chapter">XMLParser (clase)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Controller/Verifier.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/Controller/Verifier.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

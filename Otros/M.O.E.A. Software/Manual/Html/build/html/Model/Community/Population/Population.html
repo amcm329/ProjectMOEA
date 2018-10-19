@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Population (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Community (clase)" href="../Community.html" />
+    <link rel="next" title="Individual (clase)" href="Individual/Individual.html" />
+    <link rel="prev" title="Community (clase)" href="../Community.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Model.Community.Population.Population">
+<span id="population-clase"></span><h1>Population (clase)<a class="headerlink" href="#module-Model.Community.Population.Population" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Model.Community.Population.Population.Population">
+<em class="property">class </em><code class="descname">Population</code><span class="sig-paren">(</span><em>population_size</em>, <em>vector_functions</em>, <em>vector_variables</em>, <em>available_expressions</em>, <em>number_of_decimals</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Consiste en un conjunto de instancias de la clase Individual, proporcionando además métodos y atributos que 
+se manifiestan tanto en grupo como de manera individual.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>population_size</strong> (<em>Integer</em>) &#8211; El tamaño de la población.</li>
+<li><strong>vector_functions</strong> (<em>List</em>) &#8211; Lista con las funciones objetivo.</li>
+<li><strong>vector_variables</strong> (<em>List</em>) &#8211; Lista con las variables de decisión y sus rangos.</li>
+<li><strong>available_expressions</strong> (<em>Dictionary</em>) &#8211; Diccionario que contiene algunas funciones escritas como azúcar sintáctica
+para que puedan ser utilizadas más fácilmente por el usuario y evaluadas
+más ŕapidamente en el programa <strong>(véase Controller/XML/PythonExpressions.xml)</strong>.</li>
+<li><strong>number_of_decimals</strong> (<em>Integer</em>) &#8211; Número de decimales que tendrá cada solución <strong>(tanto en variables de decisión como
+funciones objetivo)</strong>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Model.Community.Population</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.add_individual">
+<code class="descname">add_individual</code><span class="sig-paren">(</span><em>position</em>, <em>complete_chromosome</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.add_individual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Añade un individuo a la Población.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>position</strong> (<em>Integer</em>) &#8211; La posición dentro del arreglo de individuos 
+donde se colocará el nuevo elemento.</li>
+<li><strong>complete_chromosome</strong> (<em>Array</em>) &#8211; El cromosoma del Individuo.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.calculate_population_properties">
+<code class="descname">calculate_population_properties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.calculate_population_properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcula atributos individuales con base en los valores de toda la Población.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.get_decision_variables_extreme_values">
+<code class="descname">get_decision_variables_extreme_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.get_decision_variables_extreme_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el listado de los valores máximo y mínimo de las 
+variables de decisión para el cálculo de sigma share.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Una colección con los valores máximo y mínimo para las
+variables de decisión.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Dictionary</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.get_individuals">
+<code class="descname">get_individuals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.get_individuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa los individuos de la Población.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Estructura que contiene a los Individuos de la Población.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.get_length_vector_functions">
+<code class="descname">get_length_vector_functions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.get_length_vector_functions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el número de elementos del vector de funciones objetivo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Número de funciones objetivo.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Integer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.get_objective_functions_extreme_values">
+<code class="descname">get_objective_functions_extreme_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.get_objective_functions_extreme_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el listado de los valores máximo y mínimo de las 
+funciones objetivo para el cálculo de sigma share.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El listado con los valores máximo y mínimo para las
+funciones objetivo.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.get_size">
+<code class="descname">get_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.get_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Otorga el tamaño de la Población.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El tamaño de la Población.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Integer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.get_total_expected_value">
+<code class="descname">get_total_expected_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.get_total_expected_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el valor esperado de la Población.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El valor esperado.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.get_total_fitness">
+<code class="descname">get_total_fitness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.get_total_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Captura el Fitness total de la Población.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">El valor del Fitness poblacional.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.get_vector_variables">
+<code class="descname">get_vector_variables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.get_vector_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regresa el vector de variables de decisión.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Conjunto que contiene las variables de decisión con sus rangos.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.print_info">
+<code class="descname">print_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.print_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imprime en texto las características de los Individuos
+de la Población, tanto grupales como individuales <strong>(en consola)</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.set_decision_variables_extreme_values">
+<code class="descname">set_decision_variables_extreme_values</code><span class="sig-paren">(</span><em>decision_variables_extreme_values</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.set_decision_variables_extreme_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el listado de valores máximo y mínimo de las
+variables de decisión para el cálculo de sigma share.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>decision_variables_extreme_values</strong> (<em>Dictionary</em>) &#8211; Un conjunto con los valores máximo y mínimo
+de cada una de las variables de decisión.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.set_objective_functions_extreme_values">
+<code class="descname">set_objective_functions_extreme_values</code><span class="sig-paren">(</span><em>objective_functions_extreme_values</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.set_objective_functions_extreme_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el listado de valores máximo y mínimo de las
+funciones objetivo para el cálculo de sigma share.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>objective_functions_extreme_values</strong> (<em>List</em>) &#8211; Una lista con los valores máximo y mínimo
+de cada una de las funciones objetivo.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.set_total_fitness">
+<code class="descname">set_total_fitness</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.set_total_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el Fitness total de la Población.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>Float</em>) &#8211; El valor a actualizar.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.shuffle_individuals">
+<code class="descname">shuffle_individuals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.shuffle_individuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Desordena los elementos de la Población.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Model.Community.Population.Population.Population.sort_individuals">
+<code class="descname">sort_individuals</code><span class="sig-paren">(</span><em>method</em>, <em>is_descendent</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Community.Population.Population.Population.sort_individuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ordena los Individuos de acuerdo a algún criterio dado.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>method</strong> (<em>String</em>) &#8211; El método o atributo sobre el cual se hará la comparación.</li>
+<li><strong>is_descendent</strong> (<em>Boolean</em>) &#8211; Indica si el ordenamiento es ascendente o descendente.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<p>La clase actual tiene como base el siguiente elemento:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Individual/Individual.html">Individual (clase)</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../Model.html">Model (sección)</a><ul>
+  <li><a href="../Community.html">Community (clase)</a><ul>
+      <li>Previous: <a href="../Community.html" title="previous chapter">Community (clase)</a></li>
+      <li>Next: <a href="Individual/Individual.html" title="next chapter">Individual (clase)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/Model/Community/Population/Population.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/Model/Community/Population/Population.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

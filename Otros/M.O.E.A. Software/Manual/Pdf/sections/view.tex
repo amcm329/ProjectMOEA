@@ -1,0 +1,3560 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Este archivo contiene información relacionada con la capa Vista
+%(ó View), la cual representa tanto física como lógicamente a uno de 
+%los componentes que conforman el producto de software y por tanto al 
+%Manual Técnico. 
+
+
+%Se indica que el documento es de tipo reporte bajo el paquete standalone.
+\documentclass[class=report, crop=false]{standalone}
+
+%Se cargan los paquetes relacionados con los subapéndices (elementos que
+%conforman el Apéndice en su totalidad).
+\usepackage{packages_used_section}
+
+%Comienza el documento.
+\begin{document}
+
+\section{View (sección)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3).
+\label{sec:a_3}
+La capa View \textbf{(ó Vista)} contiene todos los elementos que 
+serán alusivos a la interfaz gráfica. De acuerdo al modelo MVC 
+\textbf{(Model-View-Controller)}, opera exclusivamente con la capa 
+Controller \textbf{(ó Controlador)}.\medskip\break
+A continuación se muestran los elementos que conforman esta sección.
+
+%******* Empieza clase *******
+\subsection{MainWindow (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_1).
+\label{sec:a_3_1}
+
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Mezcla todas las estructuras gráficas que forman parte de la 
+sección View \textbf{(ó vista)}.\break
+Se trata de una Ventana que contendrá todas las opciones necesarias 
+para que el usuario pueda ejecutar a voluntad M.O.E.A.'s \textbf{(Multi Objective Evolutionary Algorithm
+ó Algoritmo Evolutivo Multi Objetivo)}\medskip\break
+El flujo que se suele seguir es el siguiente:
+
+\begin{itemize}
+\item El usuario ingresa las características que desea que contenga el M.O.E.A. que será ejecutado.
+\item Posteriormente el Controller \textbf{(ó Controlador, véase Controller/Controller.py)} verifica la consistencia de los datos anteriores para que no haya conflicto en el lado del Model \textbf{(ó Modelo)}.
+\item Si no existe problema alguno se prosigue con el proceso, en otro caso se arroja un mensaje de error.
+\item Siguiendo con el flujo normal se ejecutará una instancia del M.O.E.A. solicitado en la capa de Model \textbf{(ó Modelo)}, la cual tendrá una ventana asociada en View \textbf{(ó Vista)} que indicará el progreso del primero.
+\item Cuando una instancia termine de ejecutarse, la ventana del progreso desaparece y en su lugar se muestra otra conteniendo los resultados del M.O.E.A. \textbf{(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)}.
+\end{itemize}
+
+Es importante mencionar que esta clase y el proyecto en general están 
+diseñados para que se puedan crear varias instancias simultáneamente, 
+con ello se espera aprovechar al máximo los recursos computacionales 
+en los que el proyecto fuera a ejecutarse.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{change\_frame}}{\emph{current\_frame\_name}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Hace el cambio en la Ventana Principal ocultando un 
+Frame y mostrando otro.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{current\_frame\_name}} (\emph{\texttt{Tkinter.Frame}}) -- El Frame que se va a mostrar en la Ventana Principal.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{check\_queues}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Una vez iniciado un proceso que ejecuta un M.O.E.A., este 
+método revisa periódicamente las colas \textbf{(Queues)} 
+sobre las cuales los procesos escribirán todo tipo de 
+información pertinente.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Método que obtiene los datos ingresados por el usuario
+de cada uno de los Frames asociados a esta Ventana Principal.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Un diccionario con toda las preferencias del usuario recolectadas para cada uno de los Frames disponibles.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{init\_procedure}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Inicia el procedimiento para ejecutar un M.O.E.A.\break
+Los pasos que se realizan son:
+
+\begin{itemize}
+\item Recolecta las preferencias ingresadas por el usuario en los Frames que conforman la Ventana Principal.
+\item Se sanitizan dichos datos con ayuda del Controller.
+\item En caso de no haber problemas con la sanitización, se ejecuta el proceso alojándolo en un hilo \textbf{(Thread)} para que permita seguir teniendo acceso a la Ventana Principal; por el contrario si hubo alguna falla regresa un mensaje de error.
+\end{itemize}
+
+Gracias a este método el proyecto entero tiene la característica 
+de ser Multi-Hilo \textbf{(ó Multi-Threading)}, es decir, se pueden 
+ejecutar varios procedimientos de manera independiente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item\textbf{\texttt{event}} (\emph{\texttt{String}}) -- El evento del elemento gráfico que activa esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{initialize\_frames}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Método que inicializa los Frames que se 
+colocarán en la Ventana Principal como opciones.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_images}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Carga las imágenes que se encuentran en el directorio 
+View/Images para que puedan ser usadas por los Frames.\break
+Es importante recalcar que el método sólo carga imágenee .gif 
+ya que son la extensión más estable para que se muestren 
+las imágenes en la interfaz gráfica.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Un diccionario con todas las imágenes cargadas.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{obtain\_results}}{\emph{execution\_task\_count}, \emph{generations\_queue}, \emph{gathered\_information}, \emph{sanitized\_information}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Ejecuta un M.O.E.A..\break
+Esta es la función que se coloca en un hilo para ser llevada a 
+cabo de manera independiente con la finalidad de dejar libre la 
+Ventana Principal y de manera secundaria ejecutar varios 
+procedimientos simultáneamente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{execution\_task\_count}} (\emph{\texttt{Integer}}) -- El número de proceso actual.
+\item \textbf{\texttt{generations\_queue}} (\emph{\texttt{Instance}}) -- Una referencia a una cola \textbf{(Queue)} donde los procesos escribirán su avance
+en cuanto a las generaciones transcurridas.
+\item \textbf{\texttt{gathered\_information}} (\emph{\texttt{Dictionary}}) -- La información que el usuario ingresó al momento de iniciar el proceso actual.
+\item \textbf{\texttt{sanitized\_information}} (\emph{\texttt{Dictionary}}) -- La información anterior sanitizada.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Limpia y deja por defecto los valores estándar del Frame
+mostrado actualmente en la Ventana Principal.\break
+El método no aplica para regresar a M.O.P.'s \textbf{(Multi Objective Problems)}
+cargados anteriormente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- El evento del elemento gráfico que acciona esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_frame}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Muestra en la Ventana Principal el Frame actual.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- El evento del elemento gráfico que 
+activa la función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_mop\_example}}{\emph{elements}}{}
+Carga el M.O.P \textbf{(Multi Objective Problem)} seleccionado
+a los Frames correspondientes \textbf{(Objective Functions y Decision Variables)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{elements}} (\emph{\texttt{Array}}) -- Un arreglo que contiene dos elementos, el primero son las funciones objetivo precargadas mientras que el segundo son las variables de decisión también precargadas. Ambas provienen del menú secundario \textbf{(véase View/Additional/}\break\textbf{MenuInternalOption/InternalOptionTab/}\break\textbf{MOPExampleFrame.py, Controller/XML/}\break\textbf{MOPExamples.xml)}.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{resource\_path}}{\emph{relative\_path}}{}~
+\vspace{-0.1cm}
+Esta función se utiliza para poder crear ejecutables
+apropiadamente.\break
+A grandes rasgos el ejecutable se empaqueta en un directorio
+llamado \_MEIPASS, entonces aquí se implementa la búsqueda
+de dicho archivo devolviendo un path \textbf{(ruta)}.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+La ruta del directorio \_MEIPASS.
+\item[{Return type}] \leavevmode
+String
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{run}}{}{}
+Lanza la Ventana Principal.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza módulo *******
+\subsection{Main (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2).
+\label{sec:a_3_2}
+Contiene todos los elementos gráficos para que el usuario
+pueda configurar los atributos que intervienen en la ejecución 
+de un M.O.E.A.\medskip\break
+A continuación se colocan todos los elementos que constituen el 
+módulo en cuestión:
+
+%******* Empieza módulo *******
+\subsubsection{Home (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_1).
+\label{sec:a_3_2_1}
+Contiene toda la información posible para poder describir tanto 
+los elementos que conforman el programa como su correcto uso.\medskip\break
+Los elementos que constituyen a este módulo son:
+
+%******* Empieza clase *******
+\paragraph{HomeFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_1_1).
+\label{sec:a_3_2_1_1}
+
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Unifica dos elementos: Canvas e IntroductionFrame.\break
+La razón de haber hecho esto es que, cuando se añaden demasiados 
+elementos al IntroductionFrame, se tiene que agregar una barra de 
+desplazamiento para poder acceder a los que se encuentran hasta abajo.\break
+Dentro del ambiente de Tkinter, el elemento más sencillo para lograr 
+esto es un Canvas, por ello se anida el IntroductionFrame al Canvas.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase
+Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_scrollbar}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento de acuerdo al número de 
+elementos existentes en el Frame, esto para poder hacer un 
+recorrido apropiado de la barra.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{move\_to\_section}}{\emph{y\_coordinate}}{}
+Mueve la barra de desplazamiento (y por ende el contenido)
+con base en la coordenada (en Y) que se le pase como parámetro.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{y\_coordinate}} -- Coordenada que se necesita para hace el desplazamiento. Oscila entre 0 y 1.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Restaura la configuración del Frame a la que tenía por
+defecto.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual se apoya del elemento mostrado a continuación:
+
+%******* Empieza clase *******
+\subparagraph{IntroductionFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_1_1_1).
+\label{sec:a_3_2_1_1_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Contiene información básica y concisa sobre el producto 
+de software, la cual es organizada y mostrada de acuerdo al número 
+de secciones existentes en éste.\break
+De manera secundaria proporciona la infraestructura para poder 
+darle al usuario un desplazamiento más rápido entre dichas 
+secciones.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{canvas\_function}} (\emph{\texttt{Instance}}) -- Una función alusiva al funcionamiento del Canvas.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{go\_to\_selected\_section}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Con base en la liga elegida por el usuario, realiza el
+desplazamiento hacia la sección correspondiente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{DecisionVariable (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_2).
+\label{sec:a_3_2_2}
+
+Proporciona los elementos gráficos para que el usuario pueda
+insertar, modificar y eliminar variables de decisión con sus 
+respectivos rangos.\medskip\break
+Los elementos que constituyen al módulo son:
+
+%******* Empieza clase *******
+\paragraph{DecisionVariableFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_2_1).
+\label{sec:a_3_2_2_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Realiza la fusión de Canvas y VariableFrame, debido a que, 
+cuando se agregan numerosas variables al VariableFrame, se debe 
+insertar una barra de desplazamiento para poder acceder a aquéllos 
+que se encuentren hasta abajo.\break
+Dentro del ambiente de Tkinter, el elemento más sencillo para lograr 
+este efecto es un Canvas, por ello se anida el VariableFrame al Canvas.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{activate\_scroll}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento y con base en esta acción
+la activa o desactiva.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_scrollbar}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento de acuerdo al número de elementos
+existentes en el Frame, esto para poder hacer un recorrido apropiado de 
+la barra.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Regresa la información recabada en el Frame.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{insert\_mop\_example}}{\emph{variables}}{}~
+Inserta un M.O.P \textbf{(Multi Objective Problem ó Problema Multi Objetivo)}.\break
+En este caso significa que se insertarán las variables con sus respectivos 
+rangos en el Frame para poder hacer pruebas rápidas en el programa, habiendo 
+antes limpiado por completo el contenido del Frame.\break
+\textbf{(véase Controller/XML/MOPExample.xml)}\break
+\textbf{(véase View/Additional/MenuInternalOption/InternalOptionFrame.py)}.\break
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{functions}} (\emph{\texttt{List}}) -- Lista de variables para ser insertadas en el Frame.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Restaura el contenido del Frame, en este caso significa que 
+se eliminará todo lo que esté en éste y se dejará una casilla 
+vacía libre.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual se basa en el siguiente elemento:
+
+%******* Empieza clase *******
+\subparagraph{VariableFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_2_1_1).
+\label{sec:a_3_2_2_1_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Proporciona bases gráficas para que el usuario pueda insertar
+variables de decisión, así como información relativa a éstas.\break
+En términos generales, el usuario insertará casillas para ingresar variables
+de decisión, indicando también el valor mínimo y máximo que podrán tener.\medskip\break
+Es importante comentar que todas las variables de decisión deben contener
+rangos finitos, es decir, no se contemplan valores infinitos, aunque algunos
+M.O.P.'s \textbf{(Multi Objective Problems ó Problemas Multi Objetivo)} 
+manejan este tipo de rangos.         
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{add\_variable}}{\emph{event}}{}~
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Agrega una casilla al Frame.\break
+Esta función se usa si fue ejecutada por un 
+evento.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Identificador del elemento gráfico que activó la función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{delete\_single\_variable}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Elimina una casilla y todos los elementos gráficos que 
+la acompañan.\break
+También elimina todo rastro que se encuentre en las 
+estructuras lógicas.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Identificador del elemento gráfico que activó la función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{grid\_widgets}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Coloca elementos en el Frame.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_current\_elements}}{}{}
+Regresa el número actual de casillas en el Frame.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Cantidad de elementos en la estructura rows, donde se guardan las casillas (Entries).
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Toma la información del Frame y regresa las variables con 
+sus rangos que el usuario ingresó.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Un diccionario que contiene una lista con las variables (y rangos) escritas.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{insert\_mop\_example}}{\emph{variables}}{}~
+\vspace{-0.3cm}
+
+Inserta un M.O.P (Multi Objective Problem) que no es más 
+que un conjunto de variables con sus rangos para que se 
+pueda hacer más rápidamente una prueba.\break
+Previo a ésto se limpia el Frame para insertar únicamente 
+el M.O.P.\break
+\textbf{(véase Controller/XML/MOPExample.xml)}\break
+\textbf{(véase View/Additional/MenuInternalOption/InternalOptionFrame.py)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{functions}} (\emph{\texttt{List}}) -- Conjunto de variables para insertar en el Frame.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{insert\_variable}}{\emph{variable=None}}{}~
+\vspace{-0.3cm}
+
+Coloca en el Frame una colección de elementos:\break
+{[}casilla para insertar variable ,casilla de rango minimo, casilla de rango máximo, botón para eliminar{]}\break
+Si el parámetro function es \textbf{None}, se añade 
+la casilla vacía, de lo contrario se agrega ésta con 
+la variable y sus rangos.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{function}} (\emph{\texttt{String}}) -- Una terna (nombre de la variable, rango máximo, rango mínimo) para ser insertada en las casillas correspondientes.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Restaura el contenido del Frame a sus valores por defecto.\break
+Esto significa que borrará cualquier contenido que se 
+encuentre en existencia y dejará una casilla vacía.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{ObjectiveFunction (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_3).
+\label{sec:a_3_2_3}
+Proporciona los elementos gráficos para que el usuario
+pueda insertar, modificar y eliminar funciones objetivo.\medskip\break
+Sus elementos que lo conforman son:
+
+%******* Empieza clase *******
+\paragraph{ObjectiveFunctionFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_3_1).
+\label{sec:a_3_2_3_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Unifica dos elementos: Canvas y FunctionFrame.\break
+La razón de haber hecho esto es que, cuando se agregan muchas 
+funciones al FunctionFrame, se tiene que agregar una barra de 
+desplazamiento para poder acceder a los que se encuentran hasta 
+abajo.\break
+Dentro del ambiente de Tkinter, el elemento más sencillo para 
+lograr esto es un Canvas, por ello se anida el FunctionFrame al 
+Canvas.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{activate\_scroll}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento y con base en esta acción
+la activa o desactiva.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_scrollbar}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento de acuerdo al número 
+de elementos existentes en el Frame, esto para poder hacer 
+un recorrido apropiado de la barra.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Regresa la información recabada en el Frame.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Un diccionario que contiene una lista con las funciones escritas.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{insert\_mop\_example}}{\emph{functions}}{}~
+\vspace{-0.3cm}
+
+Inserta un M.O.P (Multi Objective Problem).\break
+En este caso significa que se insertarán funciones
+para poder hacer pruebas rápidas en el programa.\break
+\textbf{(véase Controller/XML/MOPExample.xml)}\break
+\textbf{(véase View/Additional/MenuInternalOption/InternalOptionFrame.py)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{functions}} (\emph{\texttt{List}}) -- Lista de funciones para ser insertadas en el Frame.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Restaura el contenido del Frame, en este caso significa 
+que se eliminará todo lo que esté en éste y se dejará 
+una casilla vacía libre.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual toma como fundamento lo siguiente:
+
+%******* Empieza clase *******
+\subparagraph{FunctionFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_3_1_1).
+\label{sec:a_3_2_3_1_1}
+
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona una base gráfica para que 
+el usuario pueda agregar tantas functiones objetivo como 
+desee.\break
+A grandes rasgos el usuario podrá agregar casillas donde 
+se colocarán las funciones objetivo, esto utilizando un botón.\break
+De igual manera, las casillas pueden ser eliminadas
+usando un ícono que estará cerca de cada una de éstas.\break
+Importante es mencionar que las funciones deben estar 
+escritas en sintaxis de Python.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{add\_function}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Agrega una casilla al Frame.\break
+Esta función se usa si fue ejecutada 
+por un evento.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Identificador del elemento gráfico que activó la función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{delete\_single\_function}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Elimina una casilla y todos los elementos 
+gráficos que la acompañan.\break
+También elimina todo rastro que se encuentre 
+en las estructuras lógicas.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Identificador del elemento gráfico que activó la función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{grid\_widgets}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Coloca elementos en el Frame.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_current\_elements}}{}{}
+Regresa el número actual de casillas 
+en el Frame.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Cantidad de elementos en la estructura rows, donde se guardan las casillas (Entries).
+
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Toma la información del Frame y regresa las funciones 
+objectivo que el usuario insertó.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Un diccionario que contiene una lista con las funciones escritas.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{insert\_function}}{\emph{function=None}}{}~
+\vspace{-0.3cm}
+
+Coloca en el Frame una colección de elementos:\break
+{[}casilla para insertar funcion, opción de maximizar, opción de minimizar, botón para eliminar{]}\break
+Si el parámetro function es \textbf{None}, se agrega la casilla 
+vacía, de lo contrario se añade ésta con la función.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{function}} (\emph{\texttt{String}}) -- Una función para ser insertada en el primer elemento de la colección.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{insert\_mop\_example}}{\emph{functions}}{}~
+\vspace{-0.3cm}
+
+Inserta un M.O.P (Multi Objective Problem) que no es más 
+que un conjunto de funciones para que se pueda hacer más 
+rápidamente una prueba.\break
+Previo a ésto se limpia el Frame para insertar únicamente 
+el M.O.P.\break
+\textbf{(véase Controller/XML/MOPExample.xml)}\break
+\textbf{(véase View/Additional/MenuInternalOption/InternalOptionFrame.py)}.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{functions}} (\emph{\texttt{List}}) -- Conjunto de funciones para insertar en el Frame.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Restaura el contenido del Frame a sus valores por 
+defecto.\break
+Esto significa que borrará cualquier contenido que se 
+encuentre en existencia y dejará una casilla vacía.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{Population (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_4).
+\label{sec:a_3_2_4}
+Proporciona las estructuras gráficas para que el usuario 
+pueda configurar atributos de la Población.\break
+Los elementos que conforman al módulo son los siguientes:
+
+%******* Empieza módulo *******
+\paragraph{PopulationFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_4_1).
+\label{sec:a_3_2_4_1}
+
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Unifica y mantiene un control sobre las clases 
+PopulaceFrame y FitnessFrame, esto con el fin de poder 
+colocar los elementos apropiadamente y agilizar el 
+intercambio de información con el usuario.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Toma la información propiciada en cada Frame y después
+la unifica para regresar un sólo conjunto de información.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Un diccionario con la información de PopulaceFrame y FitnessFrame.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Restaura los valores por defecto en ambos Frames.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\paragraph{TemplatePopulationFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_4_2).
+\label{sec:a_3_2_4_2}
+
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona la infraestructura gráfica para que el 
+usuario pueda  elegir técnicas y configurar atributos 
+concernientes al Fitness de una Población y a la Población 
+en general.\break
+A grandes rasgos se trata de una plantilla que deberán implementar 
+las clases FitnessFrame y PopulaceFrame.\break
+La clase permite la selección de cada posible técnica disponible y 
+automáticamente se muestran los parámetros necesarios \textbf{(si los hay)} 
+para cada una de éstas.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_dynamic\_widgets}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Inicializa los elementos dinámicos del Frame, esto es, de 
+acuerdo al tipo que lleva cada parámetro se creará un widget 
+diferente.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_widgets}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Realiza solamente la actualización y colocación de elementos 
+dinámicos en el Frame.\break
+Si el parámetro event es distinto de \textbf{None}, significa 
+que se lanzó un evento que provocará que se actualicen los 
+parámetros de acuerdo con la técnica seleccionada.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Contiene el valor del elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Recolecta la información que ha seleccionado e introducido 
+el usuario, también la organiza para que se pueda utilizar 
+apropiadamente.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+
+Un diccionario que contiene:
+
+\begin{itemize}
+\item \textbf{Clase},
+\item \textbf{Técnica},
+\item \textbf{Parametros}
+\end{itemize}
+
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{grid\_widgets}}{}{}
+Permite la colocación adecuada de elementos estáticos y 
+dinámicos, considerando además el espacio o características 
+necesarias de redimensionamiento para éstos últimos.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Asigna los valores por defecto tanto de las técnicas como 
+de sus respectivos parámetros, también limpia aquéllos en 
+donde se hayan insertado valores.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+Los siguientes elementos implementan la plantilla actual:
+
+%******* Empieza clase *******
+\subparagraph{PopulaceFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_4_2_1).
+\label{sec:a_3_2_4_2_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona la infraestructura gráfica para que 
+el usuario pueda elegir métodos y características concernientes a 
+la conformación de la Población.\break
+También hereda atributos de la clase TemplatePopulationFrame con el 
+fin de establecer una forma más rápida y ordenada de colocar componentes 
+y recolectar la información de éstos.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Recolecta la información genérica \textbf{(usando el método de la clase Padre)}, 
+y también se le añade aquélla recolectada exclusivamente 
+en esta clase.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+
+Un diccionario que contiene:
+
+\begin{itemize}
+\item \textbf{Métodos genéricos,}
+\item \textbf{Número de Generaciones,}
+\item \textbf{Tamaño de la Población,}
+\item \textbf{Número de Decimales.}
+\end{itemize}
+
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}~
+\vspace{-0.3cm}
+
+Por un lado, restaura el contenido de los elementos pertenecientes 
+sólo a esta clase, y por el otro, activa el método de la clase 
+Padre que realiza una restauración de los elementos genéricos.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza clase *******
+\subparagraph{FitnessFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_4_2_2).
+\label{sec:a_3_2_4_2_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona la infraestructura gráfica para que 
+el usuario pueda elegir métodos concernientes a la asignación del 
+Fitness para la Población.\break
+Además hereda atributos de la clase TemplatePopulationFrame para 
+facilitar la colocacion y extracción de información pertinente 
+para el usuario.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Llama al método de la clase Padre, el cual recopila toda la 
+información elegida por el usuario y la regresa en forma de 
+diccionario.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Diccionario con información de los métodos genéricos.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Llamar al método de la clase Padre, el cual restaura los 
+valores por defecto de los elementos dinámicos y estáticos 
+del Frame.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{GeneticOperator (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_5).
+\label{sec:a_3_2_5}
+Proporciona los elementos gráficos para que el usuario pueda
+realizar operaciones relacionadas con la Selección, Cruza 
+y Mutación de Individuos de una Población.\medskip\break
+Los elementos que lo conforman son:
+
+%******* Empieza clase *******
+\paragraph{GeneticOperatorFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_5_1).
+\label{sec:a_3_2_5_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Reúne y controla las clases SelectionFrame, CrossoverFrame y  
+MutationFrame con la finalidad de colocar los elementos gráficos apropiadamente y 
+agilizar el intercambio de información con el usuario.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Toma la información propiciada en cada Frame y 
+después la unifica para regresar un sólo conjunto 
+de información.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Un diccionario con la información de SelectionFrame, CrossoverFrame y MutationFrame.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Realiza la restauración de información y contenido 
+en cada uno de los Frames.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\paragraph{TemplateGeneticOperatorFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_5_2).
+\label{sec:a_3_2_5_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Proporciona la infraestructura gráfica para que el usuario 
+pueda elegir técnicas y configurar atributos concernientes a la 
+Selección, Cruza y Mutación de Individuos de una Población.\break
+A grandes rasgos se trata de una plantilla que deberán implementar 
+las clases SelectionFrame, CrossoverFrame y MutationFrame.\break
+La clase permite la selección de cada posible técnica disponible 
+y automáticamente se muestran los parámetros necesarios \textbf{(si los hay)} 
+para cada una de éstas.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\item \textbf{\texttt{sort\_techniques}} (\emph{\texttt{Boolean}}) -- Indica si las técnicas disponibles se ordenan alfabéticamente
+o no.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{dynamic\_widgets}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Inicializa los elementos dinámicos del Frame, esto es, de acuerdo 
+al tipo que lleva cada parámetro se creará un widget diferente.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_widgets}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Realiza solamente la actualización y colocación de elementos dinámicos 
+en el Frame.\break
+Si el parámetro event es distinto de \textbf{None}, significa que se 
+lanzó un evento que provocará que se actualicen los parámetros de 
+acuerdo con la técnica seleccionada.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Contiene el valor del elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Recolecta la información que ha seleccionado e introducido 
+el usuario, también la organiza para que se pueda utilizar 
+apropiadamente.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+
+Un diccionario que contiene:
+
+\begin{itemize}
+\item \textbf{Clase},
+\item \textbf{Técnica},
+\item \textbf{Parámetros}
+\end{itemize}
+
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{grid\_widgets}}{}{}
+Permite la colocación adecuada de elementos estáticos y 
+dinámicos, considerando además el espacio o características 
+necesarias de redimensionamiento para éstos últimos.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Asigna los valores por defecto tanto de las técnicas como 
+de sus respectivos parámetros, también limpia aquéllos en 
+donde se hayan insertado valores.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+Las clases que implementan esta plantilla son las siguientes:
+
+%******* Empieza clase *******
+\subparagraph{SelectionFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_5_2_1).
+\label{sec:a_3_2_5_2_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona la infraestructura gráfica para que 
+el usuario pueda elegir métodos y características relacionadas con 
+la selección de Individuos.\break
+También hereda atributos de la clase TemplateGeneticOperatorFrame 
+para facilitar la carga de elementos en el Frame y su correspondiente 
+recolección de información.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Recolecta la información relativa a esta clase haciendo 
+uso del método de la clase Padre.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Diccionario con información de los métodos genéricos.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Ejecuta el método de la clase Padre, el cual restaura los 
+valores por defecto de los elementos dinámicos y estáticos 
+del Frame.
+
+\end{fulllineitems}
+%******* Terminas función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subparagraph{CrossoverFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_5_2_2).
+\label{sec:a_3_2_5_2_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona la infraestructura gráfica para que 
+el usuario pueda elegir técnicas y características concernientes a 
+la Cruza entre Individuos.\break
+También hereda atributos de la clase TemplateGeneticOperatorFrame 
+para facilitar la carga de elementos en el Frame y su correspondiente 
+recolección de información.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Recolecta la información genérica \textbf{(usando el método de la clase Padre)}, 
+y también se le añade aquélla recolectada exclusivamente 
+en esta clase.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+
+Un diccionario que contiene:
+
+\begin{itemize}
+\item \textbf{Métodos genéricos,}
+\item \textbf{Probabilidad de cruza.}
+\end{itemize}
+
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Ejecuta el método de la clase Padre, el cual restaura los 
+valores por defecto de los elementos dinámicos y estáticos 
+del Frame.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subparagraph{MutationFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_5_2_3).
+\label{sec:a_3_2_5_2_3}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona la infraestructura gráfica para que el 
+usuario pueda elegir técnicas y características relativas a la Mutación 
+de Individuos.\break
+También hereda atributos de la clase TemplateGeneticOperatorFrame 
+para facilitar la carga automática de elementos en el Frame y su 
+consecuente recolección de información.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Recolecta la información genérica \textbf{(usando el método de la clase Padre)}, 
+y también se le añade aquélla recolectada exclusivamente 
+en esta clase.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+
+Un diccionario que contiene:
+
+\begin{itemize}
+\item \textbf{Métodos genéricos,}
+\item \textbf{Probabilidad de mutación.}
+\end{itemize}
+
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Ejecuta el método de la clase Padre, el cual restaura 
+los valores por defecto de los elementos dinámicos y 
+estáticos del Frame.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{MOEA (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_6).
+\label{sec:a_3_2_6}
+Proporciona los elementos gráficos para que el usuario 
+realice configuraciones concernientes a los M.O.E.A.s \textbf{(Multi-Objective Evolutionary Algorithms
+ó Algoritmos Evolutivos Multiobjetivo)} y sus atributos 
+relacionados.\break
+Sus elementos son los siguientes:
+
+%******* Empieza clase *******
+\paragraph{MOEAFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_6_1).
+\label{sec:a_3_2_6_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Unifica los Frames AlgorithmFrame y SharingFunctionFrame, 
+la razón de ésto es para facilitar el acomodo de componentes 
+de manera individual, para así garantizar un acceso asequible 
+a la información.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Toma la información solicitada en cada Frame y después
+la unifica para regresar un sólo conjunto de información.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Un diccionario con la información de AlgorithmFrame y SharingFunctionFrame.
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Restaura los valores por defecto en cada Frame.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual se apoya de los siguientes elementos:
+
+%******* Empieza clase *******
+\subparagraph{AlgorithmFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_6_1_1).
+\label{sec:a_3_2_6_1_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona una base gráfica para que el 
+usuario pueda seleccionar técnicas con sus parámetros 
+correspondientes \textbf{(si es que tienen)} referentes a los 
+M.O.E.A.'s \textbf{(Multi-Objective Evolutionary Algorithms ó Algoritmos Evolutivos Multiobjetivo)}.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_dynamic\_widgets}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Inicializa los elementos dinámicos del Frame, esto es, de acuerdo 
+al tipo que lleva cada parámetro se creará un widget diferente.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{grid\_widgets}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Coloca elementos en el Frame, tanto estáticos como dinámicos.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_widgets}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Realiza solamente la actualización y colocación de elementos dinámicos 
+en el Frame.\break
+Si el parámetro event es distinto de \textbf{None}, significa que se 
+lanzó un evento que provocará que se actualicen los parámetros de 
+acuerdo con la técnica seleccionada.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Contiene el valor del elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Recolecta la información que ha seleccionado e introducido 
+el usuario, también la organiza para que se pueda utilizar 
+apropiadamente.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+
+Un diccionario que contiene:
+
+\begin{itemize}
+\item \textbf{Clase},
+\item \textbf{Técnica},
+\item \textbf{Parámetros.}
+\end{itemize}
+
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Asigna los valores por defecto tanto de las técnicas como 
+de sus respectivos parámetros, también limpia aquéllos en 
+donde se hayan insertado valores.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subparagraph{SharingFunctionFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_2_6_1_2).
+\label{sec:a_3_2_6_1_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase proporciona una base gráfica para que el 
+usuario pueda seleccionar métodos con sus respectivos parámetros 
+\textbf{(si es que tienen)} referentes a Sharing Function.\break         
+Una técnica de Sharing Function sirve para aplicar una selección 
+más intensiva de Individuos en caso de haber un ``empate'' entre 
+éstos.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{name}} (\emph{\texttt{String}}) -- Identificador \textbf{(único)} que tendrá el Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XMLParser.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+\index{\_SharingFunctionFrame\_\_create\_dynamic\_widgets() (SharingFunctionFrame method)}
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_dynamic\_widgets}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Inicializa los elementos dinámicos del Frame, esto es, de 
+acuerdo al tipo que lleva cada parámetro se creará un widget 
+diferente.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{grid\_widgets}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Coloca elementos en el Frame, tanto estáticos como 
+dinámicos.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_widgets}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Realiza solamente la actualización y colocación de elementos 
+dinámicos en el Frame.\break
+Si el parámetro event es distinto de \textbf{None}, significa 
+que se lanzó un evento que provocará que se actualicen los 
+parámetros de acuerdo con la técnica seleccionada.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Contiene el valor del elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}
+Recolecta la información que ha seleccionado e introducido 
+el usuario, también la organiza para que se pueda utilizar 
+apropiadamente.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+
+Un diccionario que contiene:
+
+\begin{itemize}
+\item \textbf{Clase},
+\item \textbf{Técnica},
+\item \textbf{Parámetros.}
+\end{itemize}
+
+\item[{Return type}] \leavevmode
+Dictionary
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{restore\_settings}}{}{}
+Asigna los valores por defecto tanto de las técnicas como de sus 
+respectivos parámetros, también limpia aquéllos en donde se hayan 
+insertado valores.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+%******* Termina módulo *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsection{Additional (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3).
+\label{sec:a_3_3}
+Proporciona elementos gráficos que, aunque no tienen cabilda 
+en la Ventana Principal, sí contienen herramientas auxiliares 
+de importancia.\medskip\break
+El módulo consta de los siguientes elementos:
+
+%******* Empieza clase *******
+\subsubsection{GenerationSignalToplevel (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_1).
+\label{sec:a_3_3_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se trata de un Toplevel \textbf{(ventana independiente)} que 
+muestra el progreso de las generaciones al momento de ejecutar un Task.\break
+Esta ventana aunque es creada y mostrada en los procesos de la capa View, 
+será en \textbf{Model/MOEA} en donde se utilice y actualice, ya que la idea 
+es crear una ``señal'' que indique al usuario el progreso del MOEA en 
+ejecución para que se dé una idea del desempeño del algoritmo.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{path\_image\_logo}} (\emph{\texttt{String}}) -- La ruta al logotipo que se usa en esta ventana independiente.
+\item \textbf{\texttt{execution\_task\_number}} (\emph{\texttt{Integer}}) -- Número que indica el actual Task en ejecución \textbf{(véase View/Additional/}\break\textbf{ResultsGrapher/ResultsGrapherToplevel.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Toplevel
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{center}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Centra la ventana independiente con respecto de la 
+Ventana Principal.\break
+En otras palabras, la ventana independiente será 
+colocada en el centro de la Ventana Principal.
+
+\end{fulllineitems}
+%******* Termina  función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{do\_nothing}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Simplemente es una función ``dummy'' que no realiza 
+nada.\break
+Es utilizada como sustituto de la función del ícono 
+``Cerrar'' y así evitar que el usario intencionadamente 
+intente ocluir la ventana del número de generaciones.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{close}}{}{}
+Oculta y elimina toda referencia gráfica y lógica de la 
+ventana independiente, indicando así que el número de 
+generaciones ha alcanzado su límite.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{hide}}{}{}
+Oculta la ventana independiente de la pantalla pero no 
+la elimina de los registros gráficos.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{show}}{}{}
+Reactiva la ventana independiente, realizando 
+además durante esta ejecución un par de consignas 
+más para dar una experiencia de usuario suficiente 
+y concisa.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_current\_generation}}{\emph{current\_generation}}{}~
+\vspace{-0.3cm}
+
+Actualiza la generación actual en la ventana independiente.\break
+Típicamente esta función será usada en todos los algoritmos de la 
+capa Model/MOEA, pues es allí donde se designará el progreso del 
+algoritmo que a su vez se verá reflejado en la capa de View.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{current\_generation}} (\emph{\texttt{Integer}}) -- La generación que está corriendo actualmente en el MOEA.s
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+1 si se  ha alcanzado la generación límite, 0 en otro caso.
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_number\_of\_generations}}{\emph{number\_of\_generations}}{}
+Actualiza el número total de generaciones.\break
+Generalmente esta función será llamada desde Controller/Controller.py 
+ya que ahí es donde se decide si las configuraciones iniciales son 
+adecuadas para poder ejecutar el algoritmo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{number\_of\_generations}} (\emph{\texttt{Integer.}}) -- El número de generaciones total que tendrá el MOEA.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase  *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsection{MenuInternalOption (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2).
+\label{sec:a_3_3_2}
+Contiene elementos gráficos que permiten acceder a configuraciones 
+internas del programa y también a M.O.P.s \textbf{(Multi-Objective Problems)} 
+previamente cargados para hacer uso fácil de ellos.
+
+%******* Empieza clase *******
+\subsubsection{MenuInternalOption (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_1).
+\label{sec:a_3_3_2_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Se crea el Menú de Opciones Internas o Menú Secundario.\break
+Básicamente se trata de una serie de características que, aunque no
+forman parte esencial del programa, sí ofrecen alternativas que 
+pueden facilitar la experiencia de usuario.\break
+Este menú será atado al Frame Principal y desde allí el usuario podrá
+tener acceso a las opciones que aquí se describen.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- El Frame Padre al que pertenece esta implementación.
+\item \textbf{\texttt{path\_image\_logo}} (\emph{\texttt{String}}) -- La ruta al logotipo que se usa en esta ventana independiente.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Un diccionario con las características que deberá tener cada una de las opciones listadas.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Menu
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{launch\_about\_toplevel}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Abre la ventana independiente \textbf{(Toplevel)} About.
+También verifica que se abra una y sólo una instancia de 
+dicha ventana.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{launch\_internal\_option\_toplevel}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Abre la ventana independiente \textbf{(Toplevel)} Internal 
+Options \textbf{(o simplemente Options)}.\break
+También verifica que se abra una y sólo una instancia de 
+dicha ventana.
+
+\end{fulllineitems}
+%******* Empieza función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{about\_toplevel\_custom\_close}}{}{}
+Indica que la única instancia que debe crearse
+para la opción About está disponible.
+
+\end{fulllineitems}
+%******* Empieza función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{internal\_option\_toplevel\_custom\_close}}{}{}
+Indica que la única instancia que debe crearse
+para la opción Options está disponible.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+El módulo consta de las siguientes características:
+
+%******* Empieza clase *******
+\paragraph{InternalOptionToplevel (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_2).
+\label{sec:a_3_3_2_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Contiene un Menú pequeño con pestañas que indican las
+características internas del sistema a las que puede tener acceso el 
+usuario.\break
+En su mayoría se trata de características que muestran los métodos,
+técnicas y sistemas auxiliares que garantizan un manejo más armonioso 
+del programa y si así lo desea el usuario, modificarlos para ajustar
+su desempeño.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Menu}}) -- El elemento Padre al que pertenece la actual ventana independiente \textbf{(Toplevel)}.
+\item \textbf{\texttt{path\_image\_logo}} (\emph{\texttt{String}}) -- La ruta al logotipo que se usa en esta ventana independiente.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene las características necesarias que serán mostradas en esta ventana independiente.
+\item \textbf{\texttt{custom\_function}} (\emph{\texttt{Instance}}) -- Una variable que contiene una función, la cual redefinirá más apropiadamente el comportamiento de la actual Ventana Principal con respecto de su Frame Padre.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+La ventana independiente que contiene la información
+\item[{Return type}] \leavevmode
+Tkinter.Toplevel
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{center}}{}{}~
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Centra la ventana independiente con respecto de la 
+Ventana Principal.\break
+En otras palabras, la ventana independiente será colocada 
+en el centro de la Ventana Principal.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{close}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Cierra y elimina todo rastro de esta 
+ventana independiente.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza módulo *******
+\paragraph{InternalOptionTab (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_3).
+\label{sec:a_3_3_2_3}
+\begin{fulllineitems}
+\begin{DUlineblock}{0em}
+\item[] Contiene las partes gráficas que conformarán cada una de las pestañas
+concernientes al Toplevel \textbf{(ventana independiente)} de opciones internas
+\textbf{(InternalOptionToplevel)}.\break
+Consta de los siguientes elementos:
+\end{DUlineblock}
+\end{fulllineitems}
+
+%******* Empieza clase *******
+\subparagraph{MOPExampleFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_3_1).
+\label{sec:a_3_3_2_3_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Unifica dos elementos: Canvas y MOPFrame.\break
+La razón de esto es que, en promedio la información mostrada 
+por MOPFrame rebasará el tamaño de la ventana de la información 
+final \textbf{(véase View/Additional/}\break\textbf{ResultsGrapher/ResultsGrapherTopLevel.py)}, 
+es entonces que se deben agregar barras de desplazamiento para poder acceder 
+al contenido que quedaría oculto.\break
+Uno de los elementos en Tkinter más sencillos que cumplen con este 
+cometido es un Canvas. Luego entonces esa es la razón de tal fusión.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Toplevel}}) -- El elemento Padre al que pertenece el actual
+Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene las características necesarias que serán mostradas en este Frame.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+El Frame que contiene la información señalada.
+\item[{Return type}] \leavevmode
+Tkinter.Frame
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_scrollbar}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento de acuerdo al 
+número de elementos existentes en el Frame, esto 
+para poder hacer un recorrido apropiado de la barra.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item\textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual tiene como base el siguiente elemento:
+
+%******* Empieza clase *******
+\subparagraph{MOPFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_3_1_1).
+\label{sec:a_3_3_2_3_1_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Muestra la información relativa a los M.O.P.'s y
+provee de métodos que facilitan la carga de éstos en la
+Ventana Principal.\break
+Un M.O.P. \textbf{(Multi Objective Problem)} es un conjunto 
+de funciones y variables bien definidas que ya han sido previamente 
+estudiadas, así como su comportamiento en conjunto; la idea es 
+proporcionarle al usuario un ambiente de carga fácil de datos 
+para que pueda probar los ejemplos ya tratados por muchos 
+autores en los libros que se citarán en el trabajo escrito.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- El elemento Padre al que pertenece el actual Frame.
+\item \textbf{\texttt{grandparent}} (\emph{\texttt{Tkinter.Toplevel}}) -- El elemento Padre del Padre al que pertenece el actual Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene las características necesarias que serán mostradas en este Frame.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+El Frame que contiene la información señalada.
+\item[{Return type}] \leavevmode
+Tkinter.Frame
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_mop\_example}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Con base en la selección de M.O.P.
+hecha por el usuario, se carga éste
+en la Ventana Principal.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item\textbf{\texttt{event}} (\emph{\texttt{String}}) -- El evento del elemento gráfico que
+activa esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_current\_mop}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Despliega la información relacionada con el
+M.O.P. seleccionado.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- El evento del elemento gráfico que
+activa esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subparagraph{FeatureFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_3_2).
+\label{sec:a_3_3_2_3_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Unifica dos elementos: Canvas y CharacteristicFrame.\break
+La razón de esto es que, en promedio la información mostrada 
+por CharacteristicFrame rebasará el tamaño de la ventana de la 
+información final \textbf{(véase View/}\break\textbf{Additional/ResultsGrapher/ResultsGrapherTopLevel.py)}, es 
+entonces que se deben agregar barras de desplazamiento para poder 
+acceder al contenido que quedaría oculto.\break
+Uno de los elementos en Tkinter más sencillos que cumplen con 
+este cometido es un Canvas. Luego entonces esa es la razón de 
+tal fusión.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Toplevel}}) -- El elemento Padre al que pertenece el actual Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene las características necesarias que serán mostradas en este Frame.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+El Frame que contiene la información señalada.
+\item[{Return type}] \leavevmode
+Tkinter.Frame
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_scrollbar}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento de acuerdo al 
+número de elementos existentes en el Frame, esto 
+para poder hacer un recorrido apropiado de la barra.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual se apoya del siguiente elemento:
+
+%******* Empieza clase *******
+\subparagraph{CharacteristicFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_3_2_1).
+\label{sec:a_3_3_2_3_2_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+
+\begin{DUlineblock}{0em}
+\item[] Despliega información concerniente a todas las técnicas 
+\textbf{(con sus respectivos parámetros)} disponibles para el usuario.\break
+Se agrupan éstas en las mismas categorías que presenta el programa,
+más en concreto, las secciones que conforman a la Ventana Principal 
+\textbf{(véase View/}\break\textbf{MainWindow.py)}.\break
+También señala someramente las instrucciones necesarias para que el
+programa pueda reconocer cualquier técnica que desarrolle el usuario.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Toplevel}}) -- El elemento Padre al que pertenece el actual Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene las características necesarias que serán mostradas en este Frame.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+El Frame que contiene la información señalada.
+\item[{Return type}] \leavevmode
+Tkinter.Frame
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subparagraph{PythonExpressionFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_3_3).
+\label{sec:a_3_3_2_3_3}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Realiza la fusión de Canvas y ExpressionFrame, debido a 
+que, cuando se agregan numerosas variables al ExpressionFrame, 
+se debe insertar una barra de desplazamiento para poder acceder 
+a aquéllos que se encuentren hasta abajo.\break
+Dentro del ambiente de Tkinter, el elemento más sencillo para 
+lograr este efecto es un Canvas, por ello se anida el ExpressionFrame 
+al Canvas.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Conjunto de técnicas con sus respectivos parámetros para que se puedan cargar automáticamente en este Frame \textbf{(véase Controller/XML/}\break\textbf{PythonExpressions.xml)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{activate\_scroll}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento y con base en esta 
+acción la activa o desactiva.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_scrollbar}}{\emph{event=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento de acuerdo al 
+número de elementos existentes en el Frame, esto 
+para poder hacer un recorrido apropiado de la barra.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual toma como referencia el siguiente elemento:
+
+%******* Empieza clase *******
+\subparagraph{ExpressionFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_3_3_1).
+\label{sec:a_3_3_2_3_3_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Ofrece opciones simples para mostrar y añadir expresiones
+de Python.\break 
+Lo anterior ocurre ya que al momento de crear y evaluar funciones 
+objetivo hay algunas palabras reservadas que no pueden ser usadas 
+en Python directamente si no se hace un renombramiento apropiado.\break
+Dicha información se encuentra en \textbf{Controller/XML/PythonExpressions.xml}
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Toplevel}}) -- El elemento Padre al que pertenece el actual Frame.
+\item \textbf{\texttt{features}} (\emph{\texttt{Dictionary}}) -- Un diccionario que contiene las características necesarias que serán mostradas en este Frame.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+El Frame que contiene la información señalada.
+\item[{Return type}] \leavevmode
+Tkinter.Frame
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{add\_expression}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Inserta una casilla que conforma una expresión
+dentro del Frame.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Identificador del elemento gráfico que activó la función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{delete\_single\_expression}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Elimina una expresión y todos los elementos 
+gráficos que la acompañan.\break
+También elimina todo rastro que se encuentre 
+en las estructuras lógicas.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Identificador del elemento gráfico que activó la función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_information}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Toma la información del Frame \textbf{(en específico de las casillas)} 
+y regresa las expresiones con sus respectivos equivalentes en Python.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Una lista que contiene arreglos de dos elementos donde el primero es la expresión normal mientras que el segundo es la expresión equivalente en Python.
+\item[{Return type}] \leavevmode
+List
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{insert\_expression}}{\emph{expression=None}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Coloca en el Frame una colección de elementos:\break
+{[}etiqueta para expresión normal, expresión normal, etiqueta para expresión de Pyrhon, expresión de Python, botón para eliminar{]}\break
+Si el parámetro expression es \textbf{None}, se añade 
+la casilla vacía, de lo contrario se agrega ésta 
+con la información pertinente.\break
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{expression}} (\emph{\texttt{Array}}) -- Un arreglo con dos elementos, el primero contiene la expresión normal mientras que el segundo maneja la información de la expresión equivalente en Python.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{load\_expressions}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Carga las expresiones a manera de contenido gráfico
+en el Frame.\break
+Dichas expresiones son tomadas del archivo \textbf{Controller/XML/}\break\textbf{PythonExpressions.xml.}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{save\_changes}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Toma la información existente en las casillas y procede a 
+sobreescribir el archivo \textbf{Controller/XML/PythonExpressions.xml} 
+con la información recién recabada.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Identificador del elemento gráfico que activó la función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{get\_current\_elements}}{}{}
+Regresa el número actual de casillas en el Frame.
+
+\begin{quote}\begin{description}
+\item[{Returns}] \leavevmode
+Cantidad de elementos en la estructura rows, donde se guardan las casillas \textbf{(Entry's)}.
+\item[{Return type}] \leavevmode
+Integer
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\paragraph{AboutToplevel (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_2_4).
+\label{sec:a_3_3_2_4}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta ventana independiente \textbf{(Toplevel)} 
+proporciona información básica del programa así como 
+de sus desarrolladores.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Menu}}) -- El elemento Padre al que pertenece la actual ventana independiente \textbf{(Toplevel)}.
+\item \textbf{\texttt{path\_image\_logo}} (\emph{\texttt{String}}) -- La ruta al logotipo que se usa en esta ventana independiente.
+\item \textbf{\texttt{custom\_function}} (\emph{\texttt{Instance}}) -- Una variable que contiene una función, la cual redefinirá más apropiadamente el comportamiento de la actual Ventana Principal con respecto de su Frame Padre.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Toplevel
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{center}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Centra la ventana independiente con respecto de 
+la Ventana Principal.\break
+En otras palabras, la ventana independiente será 
+colocada en el centro de la Ventana Principal.
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{close}}{\emph{custom\_function}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Cierra y elimina todo rastro de esta ventana independiente.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{custom\_function}} (\emph{\texttt{Instance}}) -- Una variable que contiene una función que ha de 
+ejecutarse dentro de este método.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+%******* Termina módulo *******
+
+%******* Empieza módulo *******
+\subsubsection{ResultsGrapher (módulo)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_3).
+\label{sec:a_3_3_3}
+Proporciona los elementos gráficos para poder presentar
+las gráficas de los resultados que ha arrojado la ejecución
+de algún M.O.E.A.\medskip\break
+Consta de los siguientes elementos:
+
+%******* Empieza clase *******
+\paragraph{ResultsGrapherToplevel (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_3_1).
+\label{sec:a_3_3_3_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Esta clase lanza una ventana independiente que muestra los 
+resultados arrojados por una configuración previa del usuario.\break
+Primero que nada es menester mencionar que una ventana independiente 
+es un Toplevel en Tkinter, la cual es casi ajena a la Ventana Principal 
+\textbf{(véase View/Main/}\break\textbf{MainWindow.py)}, pero si ésta última es cerrada, 
+se eliminarán también las ventanas independientes creadas.\medskip\break
+Cada ventana independiente mostrará el número de Task, es decir, el 
+orden en el que fue procesada la información con respecto de otros Tasks.\break
+Entiéndase por Task a una ejecución de algún algoritmo MOEA bajo un 
+cierto conjunto de configuraciones iniciales.\break
+Así, los Tasks serán mostrados en una ventana independiente. La numeración 
+de los Tasks irá siempre en orden progresivo, lo que significa que el número 
+será reinicializado sólamente volviendo a ejecutar el programa principal.\break
+De esta manera es posible tener varias ventanas independientes abiertas y 
+en cuestiones más generales, es posible ejecutar varios Tasks simultáneamente, 
+ya que el programa es multi-threading en ese sentido.\medskip\break
+Finalmente, la información será mostrada en dos pestañas: en una 
+\textbf{(SummaryFrame)} se otorga un resumen de todas las funciones objetivo, 
+variables de decisión, MOEA usado y configuraciones adicionales en el Task.\break
+En la otra \textbf{(GraphFrame)} se colocan todas las gráficas pertinentes 
+producto de la ejecución del MOEA con las funciones objectivo, variables de 
+decisión y configuraciones ingresadas \textbf{(véase Model/Community/Community.py)} \textbf{(véase View/}\break\textbf{Additional/ResultsGrapher/GraphFrame.py)}.\break
+Si por cualquier circunstancia llega a haber una falla interna durante la 
+ejecución del proceso, ninguna de las dos pestañas será mostrada y en su 
+lugar aparecerá una de error \textbf{(ErrorFrame)}, especificando además 
+el tipo de error y en qué parte de Model \textbf{(ó Modelo)} ocurrió.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{path\_image\_logo}} (\emph{\texttt{String}}) -- La ruta al logotipo que se usa en esta ventana independiente.
+\item \textbf{\texttt{execution\_task\_count}} (\emph{\texttt{Integer}}) -- Número que indica el actual Task en ejecución.
+\item \textbf{\texttt{main\_features}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene, entre otras cosas, los nombres de los parámetros asociados a cada técnica.
+\item \textbf{\texttt{gathered\_information}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todas las configuraciones recabadas ingresadas por el usuario \textbf{(véase View/Main/MainWindow.py)}.
+\item \textbf{\texttt{final\_results}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene la información procesada lista para graficar\textbf{(véase View/Additional/ResultsGrapher/GraphFrame.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Toplevel
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{center}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Centra la ventana independiente con respecto de la 
+Ventana Principal.\break
+En otras palabras, la ventana independiente será 
+colocada en el centro de Ventana Principal.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_renamed\_settings}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Tal como su nombre lo dice, renombra las funciones objetivo y 
+variables de decisión para posteriormente almacenarlas en una 
+estructura por cada tipo.\break
+Renombrar una función o variable de decisión es hacer un mapeo 
+que consista en:\break
+Elemento\_renombrado -\textgreater{} elemento original.\break
+Para el caso de la función objetivo, el renombramiento se da 
+anteponiendo la letra \textbf{F} seguido de la posición en la 
+que fue insertada originalmente por el usuario.\break
+El caso es análogo para la variable de decisión, sólo que la 
+letra es \textbf{V}.\break
+La idea de renombrar las funciones y variables surge como 
+alternativa al momento de graficar los datos \textbf{(véase View/Additional/ResultsGrapher/}\break\textbf{GraphFrame.py)}, 
+ya que el usuario puede ingresar funciones muy largas o variables 
+con identificadores muy complejos y esto en la parte gráfica se 
+vería muy amontonado; por ello fue preferible mostrar la parte 
+renombrada en la sección de GraphFrame y colocar la muestra original 
+en el SummaryFrame.         
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual consta de los siguientes elementos:
+
+%******* Empieza clase *******
+\subparagraph{GraphFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_3_1_1).
+\label{sec:a_3_3_3_1_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Proporciona un Frame que contiene gráficas 
+alimentadas por los resultados obtenidos al ejecutar 
+algún MOEA, el cual ha sido refinado por las configuraciones
+recabadas de la Ventana Principal \textbf{(véase Model/MOEA)}.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{execution\_task\_count}} (\emph{\texttt{Integer}}) -- Número que indica el actual Task en ejecución.
+\item \textbf{\texttt{objective\_functions}} (\emph{\texttt{List}}) -- Lista que contiene las funciones objetivo renombradas.
+\item \textbf{\texttt{decision\_variables}} (\emph{\texttt{List}}) -- Lista que contiene las variables de decisión renombradas.
+\item \textbf{\texttt{final\_results}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene la información para graficar. Se divide en dos categorías principales: Frente de Pareto y Mejor Individuo por Generación.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{change\_canvas\_category}}{}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Realiza el cambio de Canvas de la categoría de funciones 
+objetivo a la de variables y decision y viceversa, tomando 
+en cuenta factores como por ejemplo si alguna de las dos 
+categorías tiene un OptionMenu asociado \textbf{(para entonces colocarlo apropiadamente)} 
+e identificando siempre el último Canvas seleccionado de la 
+categoría anterior para que cuando sea oportuno se vuelva 
+a colocar.
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{change\_inner\_canvas}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Realiza el cambio de Canvas dentro de una misma categoría, 
+esto en caso en que los datos hayan arrojado más de una gráfica.\break
+El cambio se hace con ayuda de su OptionMenu asociado.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_2d\_canvas}}{\emph{x\_label}, \emph{x\_index}, \emph{y\_label}, \emph{y\_index}, \emph{collection\_points}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Crea una gráfica en 2 dimensiones que es envuelta en 
+un Canvas.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{x\_label}} (\emph{\texttt{String}}) -- Nombre para el eje X de la gráfica.
+\item \textbf{\texttt{x\_index}} (\emph{\texttt{Integer}}) -- Posición dentro de collection\_points para los datos del eje X.
+\item \textbf{\texttt{y\_label}} (\emph{\texttt{String}}) -- Nombre para el eje Y de la gráfica.
+\item \textbf{\texttt{y\_index}} (\emph{\texttt{Integer}}) -- Posición dentro de collection\_points para los datos del eje Y.
+\item \textbf{\texttt{collection\_points}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene los puntos a graficar.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Canvas
+\item[{Return type}] \leavevmode
+matplotlib.backends.backend\_tkagg.FigureCanvasTkAgg
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_3d\_canvas}}{\emph{x\_label}, \emph{x\_index}, \emph{y\_label}, \emph{y\_index}, \emph{z\_label}, \emph{z\_index}, \emph{collection\_points}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Crea una gráfica en 3 dimensiones que es envuelta en 
+un Canvas.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{x\_label}} (\emph{\texttt{String}}) -- Nombre para el eje X de la gráfica.
+\item \textbf{\texttt{x\_index}} (\emph{\texttt{Integer}}) -- Posición dentro de collection\_points para los datos del eje X.
+\item \textbf{\texttt{y\_label}} (\emph{\texttt{String}}) -- Nombre para el eje Y de la gráfica.
+\item \textbf{\texttt{y\_index}} (\emph{\texttt{Integer}}) -- Posición dentro de collection\_points para los datos del eje Y.
+\item \textbf{\texttt{z\_label}} (\emph{\texttt{String}}) -- Nombre para el eje Z de la gráfica.
+\item \textbf{\texttt{z\_index}} (\emph{\texttt{Integer}}) -- Posición dentro de collection\_points para los datos del eje Z.
+\item \textbf{\texttt{collection\_points}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene los puntos a graficar.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Canvas
+\item[{Return type}] \leavevmode
+matplotlib.backends.backend\_tkagg.FigureCanvasTkAgg
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_decision\_variables\_canvas}}{\emph{decision\_variables}, \emph{collection\_points}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado
+\end{notice}
+
+Crea los Canvas para las variables de decisión.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{decision\_variables}} (\emph{\texttt{List}}) -- Lista que contiene las variables de decisión renombradas.
+\item \textbf{\texttt{collection\_points}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene los valores de las funciones objetivo de todos los Individuos en la Población final.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{create\_objective\_functions\_canvas}}{\emph{objective\_functions}, \emph{collection\_points}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Crea los Canvas para las funciones objetivo.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{objective\_functions}} (\emph{\texttt{List}}) -- Lista que contiene las funciones objetivo renombradas.
+\item \textbf{\texttt{collection\_points}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene los valores de las funciones objetivo de todos los Individuos en la Población final.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual toma como referencia el siguiente elemento:
+
+%******* Empieza clase *******
+\subparagraph{CustomNavigationToolbar2TkAgg (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_3_1_1_1).
+\label{sec:a_3_3_3_1_1_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Proporciona una Barra de Navegación \textbf{(ó NavigationToolbar)} 
+que se anexa a cada una de las gráficas con el fin de facilitar la exploración 
+y almacenamiento de los datos obtenidos.\break
+Por defecto la barra de navegación original se encuentra obsoleta a las 
+necesidades inherentes a este proyecto, por ello es que se crea una barra 
+personalizada que responde a requerimientos tales como la obtención apropiada 
+de imágenes relativas a las gráficas así como su correcto funcionamiento sin 
+importar el sistema operativo empleado.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{canvas}} (\emph{\texttt{matplotlib.backends.backend\_tkagg.\break FigureCanvasTkAgg}}) -- La estructura que contiene tanto a la gráfica como a la Barra de Navegación.
+\item \textbf{\texttt{window}} (\emph{\texttt{Tkinter.Frame}}) -- El Frame que contiene a canvas.
+\item \textbf{\texttt{parent\_frame}} (\emph{\texttt{Tkinter.Frame}}) -- El Frame que contiene a window, en este caso ResultsGrapherToplevel.py.
+\item \textbf{\texttt{execution\_task\_count}} (\emph{\texttt{Integer}}) -- Un identificador que precisa el número de tarea \textbf{(Task)} en ejecución \textbf{(véase View/Additional/ResultsGrapher/}\break\textbf{ResultsGrapherToplevel.py)}.
+\item \textbf{\texttt{image\_text}} (\emph{\texttt{String}}) -- El nombre que tendrán por defecto las imágenes resultantes al guardarse en el equipo de cómputo.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+matplotlib.backends.backend\_tkagg.NavigationToolbar2TkAgg
+\item[{Rype}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{save\_figure}}{\emph{*args}}{}~
+
+\begin{notice}{note}{Note:}
+Este método sobreescribe al original.
+\end{notice}
+
+Arroja una ventana emergente modificada para guardar archivos, 
+en este caso las gráficas.\break
+Las modificaciones con respecto de la función original consisten 
+en agregar un título para tener conocimiento de las imágenes del 
+Task que se van a guardar.\break
+Además se modifica el comportamiento de la ventana para adherirlo 
+a la ventana del Task y no a la Ventana Principal.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{args}} (\emph{\texttt{Tuple}}) -- Un listado con parámetros que aunque no se ocupan en el método se coloca porque así lo estructuraron los desarrolladores originales de la biblioteca.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subparagraph{SummaryFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_3_1_2).
+\label{sec:a_3_3_3_1_2}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Unifica dos elementos: Canvas y ContentFrame.\break
+La razón de esto es que, en promedio la información 
+mostrada por ContentFrame rebasará el tamaño de la 
+ventana de la información final \textbf{(véase View/Additional/}\break\textbf{ResultsGrapher/ResultsGrapherTopLevel.py)}, 
+es entonces que se deben agregar barras de desplazamiento 
+para poder acceder al contenido que quedaría oculto.\break
+Uno de los elementos en Tkinter más sencillos que 
+cumplen con este cometido es un Canvas. Luego entonces 
+esa es la razón de tal fusión.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{renamed\_objective\_functions}} (\emph{\texttt{Dictionary}}) -- Diccionario de funciones objetivo renombradas \textbf{(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)}.
+\item \textbf{\texttt{renamed\_decision\_variables}} (\emph{\texttt{Dictionary}}) -- Diccionario de variables de decisión renombradas  
+\textbf{(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)}.
+\item \textbf{\texttt{main\_features}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene, entre otras cosas, los nombres de los
+parámetros asociados a cada técnica.
+\item \textbf{\texttt{gathered\_information}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todas las configuraciones 
+recabadas ingresadas por el usuario \textbf{(véase View/Main/MainWindow.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+%******* Termina descripción *******
+
+%******* Empieza función *******
+\begin{fulllineitems}
+
+\pysiglinewithargsret{\sphinxbfcode{update\_scrollbar}}{\emph{event}}{}~
+
+\begin{notice}{note}{Note:}
+Este método es privado.
+\end{notice}
+
+Actualiza la barra de desplazamiento de acuerdo al 
+número de elementos existentes en el Frame, esto 
+para poder hacer un recorrido apropiado de la barra.
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{event}} (\emph{\texttt{String}}) -- Elemento que ejecutó esta función.
+\end{itemize}
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina función *******
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+La clase actual toma como base el siguiente elemento:
+
+%******* Empieza clase *******
+\subparagraph{ContentFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_3_1_2_1).
+\label{sec:a_3_3_3_1_2_1}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Recaba el contenido de todas las funciones 
+objetivo, variables de decisión y demás parámetros 
+que el usuario ingresó para poder ejecutar un Task 
+determinado.\break
+Es entonces que plasma toda esta información en un 
+Frame para que el usuario pueda cotejar los datos 
+ingresados con los resultados obtenidos \textbf{(véase View/Additional/}\break\textbf{ResultsGrapher/GraphFrame.py)}.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{renamed\_objective\_functions}} (\emph{\texttt{Dictionary}}) -- Diccionario de funciones objetivo renombradas \textbf{(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)}.
+\item \textbf{\texttt{renamed\_decision\_variables}} (\emph{\texttt{Dictionary}}) -- Diccionario de variables de decisión renombradas \textbf{(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)}.
+\item \textbf{\texttt{main\_features}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene, entre otras cosas, los nombres de los parámetros asociados a cada técnica.
+\item \textbf{\texttt{gathered\_information}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene todas las configuraciones  recabadas ingresadas por el usuario \textbf{(véase View/Main/MainWindow.py)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina clase *******
+
+%******* Empieza clase *******
+\subparagraph{ErrorFrame (clase)}
+%Se coloca el vínculo interno procedente de esta misma sección (a_3_3_3_1_3).
+\label{sec:a_3_3_3_1_3}
+%******* Empieza descripción *******
+\begin{fulllineitems}
+
+\begin{DUlineblock}{0em}
+\item[] Este Frame surge si durante el proceso 
+interno en el Modelo \textbf{(véase Model/MOEA)} se 
+suscita algún error del cual el método no se pueda 
+recuperar.\break
+Entonces aquí se desplegará toda la información 
+relativa a la falla, asímismo funciona como medida 
+de contingencia para darle una salida al programa 
+y evitar que se quede atorado.
+\end{DUlineblock}
+
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item \textbf{\texttt{parent}} (\emph{\texttt{Tkinter.Frame}}) -- Frame padre al que pertenece.
+\item \textbf{\texttt{final\_results}} (\emph{\texttt{Dictionary}}) -- Diccionario que contiene en este caso las características alusivas a la falla \textbf{(véase Model/MOEA)}.
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+Tkinter.Frame
+\item[{Return type}] \leavevmode
+Instance
+\end{description}\end{quote}
+
+\end{fulllineitems}
+%******* Termina clase *******
+%******* Termina módulo *******
+%******* Termina módulo *******
+
+%******* Termina documento *******
+\end{document}

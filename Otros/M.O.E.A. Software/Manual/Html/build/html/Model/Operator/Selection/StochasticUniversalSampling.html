@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>StochasticUniversalSampling (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Selection (módulo)" href="Selection.html" />
+    <link rel="next" title="Crossover (módulo)" href="../Crossover/Crossover.html" />
+    <link rel="prev" title="ProbabilisticTournament (script)" href="ProbabilisticTournament.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="stochasticuniversalsampling-script">
+<h1>StochasticUniversalSampling (script)<a class="headerlink" href="#stochasticuniversalsampling-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Se determina la técnica conocida como Stochastic Universal Sampling
+<strong>(ó Muestreo Estocástico Universal)</strong>.</div>
+<div class="line">Primero que nada es menester mencionar que es necesario el uso del Expected Value <strong>(ó Valor Esperado)</strong> de cada Individuo.</div>
+<div class="line">Para fines concernientes a este proyecto, se trata del número de &#8220;hijos&#8221; que un Individuo puede ofrecer. Éste se calcula de la siguiente forma:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../../_images/math/9f0fdeb1bd4b6a748d2d1fd796e903fc38d57cfd.png" alt="Valor\_Esperado(Individuo) = \frac{tama\tilde{n}o\_poblaci\acute{o}n \cdot Fitness(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}Fitness(Individuo_i)}"/></strong></p><div class="line-block">
+<div class="line">Con base a lo anterior, el método consiste en lo siguiente:</div>
+</div>
+<ul class="simple">
+<li>Se selecciona un valor aleatorio entre 0 y 1, a éste se le llamará Pointer <strong>(ó Puntero)</strong></li>
+<li>De manera secuencial se seleccionarán tantos Individuos como el tamaño de la población, los cuales deben estar igualmente espaciados en su Valor Esperado tomando como referencia el valor de Pointer.</li>
+</ul>
+<div class="line-block">
+<div class="line">Es importante aclarar el segundo punto, así que se abordará desde una perspectiva computacional:</div>
+</div>
+<ul class="simple">
+<li>Se deben tener variables adicionales que indiquen la acumulación tanto del Pointer <strong>(CP, Cumulative Pointers)</strong> como de los Valores Esperados <strong>(CEV, Cumulative Expected Value)</strong> así como al Individuo actual que está siendo seleccionado <strong>(I)</strong>.</li>
+<li>Para averiguar si un Individuo está igualmente espaciado en su Valor Esperado con respecto de los demás basándose en Pointer, basta con corroborar que:</li>
+</ul>
+<p class="centered">
+<strong><img class="math" src="../../../_images/math/b3f5fc0bfae898dbf81d11e7a822cfe31e622c04.png" alt="CP + Pointer &gt; CEV + EV"/></strong></p><ul class="simple">
+<li>Si la condición descrita es verdadera los valores EV e I deben actualizarse <strong>(I se ajusta al siguiente Individuo)</strong> ya que esto indica que se buscará al siguiente Individuo espaciado equitativamente con el valor Pointer. No se hace nada si la condición es falsa.</li>
+<li>Independientemente del valor de la condición anterior, CP y CEV deben actualizarse durante todo el ciclo.</li>
+</ul>
+<div class="line-block">
+<div class="line">Cabe mencionar que si la lista de Individuos se agota, se puede volver a iterar
+desde el inicio teniendo cautela en conservar CEV y CP.</div>
+</div>
+<span class="target" id="module-Model.Operator.Selection.StochasticUniversalSampling"></span><dl class="function">
+<dt id="Model.Operator.Selection.StochasticUniversalSampling.execute_selection_technique">
+<code class="descname">execute_selection_technique</code><span class="sig-paren">(</span><em>population</em>, <em>selection_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Operator.Selection.StochasticUniversalSampling.execute_selection_technique" title="Permalink to this definition">¶</a></dt>
+<dd><p>De acuerdo a la información provista anteriormente, se implementa
+el método conocido como Stochastic Universal Sampling <strong>(ó Muestreo Estocástico Universal)</strong>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../Model.html">Model (sección)</a><ul>
+  <li><a href="../Operator.html">Operator (módulo)</a><ul>
+  <li><a href="Selection.html">Selection (módulo)</a><ul>
+      <li>Previous: <a href="ProbabilisticTournament.html" title="previous chapter">ProbabilisticTournament (script)</a></li>
+      <li>Next: <a href="../Crossover/Crossover.html" title="next chapter">Crossover (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/Model/Operator/Selection/StochasticUniversalSampling.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/Model/Operator/Selection/StochasticUniversalSampling.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

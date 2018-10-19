@@ -1,0 +1,26 @@
+FloatPointCrossover (script)
+============================
+
+
+| Se lleva a cabo la implementación de la técnica conocida como FloatPointCrossover
+ **(ó Cruza de Punto Flotante)**.
+| Primero que nada y haciendo alusión a su nombre, esta operación está fabricada
+ para usarse única y exclusivamente con la Representación Cromosómica **(véase Model/ChromosomalRepresentation)**
+ de tipo FloatPoint **(ó Punto Flotante)**.
+|
+| La característica de esta operación es crear nuevos Individuos intercambiando secuencialmente los alelos de sus
+ padres; visto de una manera más estructurada consiste en lo siguiente:
+* Tenemos a los cromosomas de los padres Padre A: :math:`A_1A_2...A_n` y Padre B: :math:`B_1B_2...B_n`
+* Ahora, cada hijo será construido con alelos de uno y sólo uno de los padres a menos que se indique lo contrario; este movimiento será posible con una variable denominada flip **(F)** que toma valores de 0 a 1 y una probabilidad de flip **(PF)** que también toma valores de 0 a 1. Entonces lo anterior se puede declarar así:   
+ * Para el hijo :math:`(H_1)` que tomará sus alelos del padre A **(PA)**: 
+  Si :math:`F \leqslant PF\ entonces\ H_1(i) = A_i,\ en\ otro\ caso\ H_1(i) = B_i; 1 \leqslant i \leqslant n`
+ * Para el hijo :math:`(H_2)` que tomará sus alelos del padre B **(PB)**: 
+  Si :math:`F \leqslant PF\ entonces\ H_2(i) = B_i,\ en\ otro\ caso\ H_1(i) = A_i; 1 \leqslant i \leqslant n`
+|
+
+
+.. automodule:: Model.Operator.Crossover.FloatPointCrossover
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:

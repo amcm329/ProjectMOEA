@@ -1,0 +1,46 @@
+Model.Fitness package
+=====================
+
+Submodules
+----------
+
+Model.Fitness.LinearRankingFitness module
+-----------------------------------------
+
+.. automodule:: Model.Fitness.LinearRankingFitness
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Fitness.LinearScalingFitness module
+-----------------------------------------
+
+.. automodule:: Model.Fitness.LinearScalingFitness
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Fitness.NonLinearRankingFitness module
+--------------------------------------------
+
+.. automodule:: Model.Fitness.NonLinearRankingFitness
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Model.Fitness.ProportionalFitness module
+----------------------------------------
+
+.. automodule:: Model.Fitness.ProportionalFitness
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: Model.Fitness
+    :members:
+    :undoc-members:
+    :show-inheritance:

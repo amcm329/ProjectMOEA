@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>NonLinearRankingFitness (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Fitness (módulo)" href="Fitness.html" />
+    <link rel="next" title="ProportionalFitness (script)" href="ProportionalFitness.html" />
+    <link rel="prev" title="LinearRankingFitness (script)" href="LinearRankingFitness.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nonlinearrankingfitness-script">
+<h1>NonLinearRankingFitness (script)<a class="headerlink" href="#nonlinearrankingfitness-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Se implementa la asignación de Fitness conocida como Non-Linear Ranking
+<strong>(ó Ranking No Lineal)</strong> que, a diferencia de los demás métodos, la aplica
+usando como base la posición del Individual <strong>(ó Individuo)</strong> en la Population
+<strong>(ó Población)</strong> como resultado de las operaciones de ranking
+<strong>(véase Model/Community/Community.py)</strong>.</div>
+<div class="line">Posteriormente el Fitness se constituye tomando la posición del Individuo y
+una función polinomial <strong>(la cual es una función no lineal, de ahí el nombre)</strong>.</div>
+<div class="line">La fórmula es la siguiente:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/46f03b4f82b7fcaf817faa49e59f7539be63cba2.png" alt="Fitness(Individuo) = \frac{TP \cdot X^{posici\acute{o}n(Individuo)}}{\sum_{i=1}^{TP}X^{i - 1}}"/></strong></p><div class="line-block">
+<div class="line">Donde:</div>
+<div class="line-block">
+<div class="line"><strong>TP</strong> es el tamaño de la Población.</div>
+<div class="line"><strong>Posición(Individuo)</strong> es la que ocupa éste de acuerdo al ranking previo.</div>
+<div class="line"><strong>X</strong> es la solución al polinomio: <img class="math" src="../../_images/math/ec87a2cc1f04d978aaca94861959b490df34ed01.png" alt="(SP - TP) \cdot X^{TP - 1} + SP \cdot X^{TP - 2} + ... + SP \cdot X + SP = 0"/></div>
+<div class="line"><strong>SP (Selective Pressure ó Presión Selectiva)</strong> varía entre 1 y 2.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">Haciendo un análisis somero en la fórmula, se puede apreciar que los
+Individuos con mejor Fitness serán aquéllos que se encuentren en las últimas posiciones,
+sin embargo los rankings que se manejan en este proyecto son inversamente proporcionales
+a la calidad de los Individuos <strong>(véase Model/Community/Community.py)</strong>;
+por ello es importante ordenar a los Individuos de manera descendente para que la operación tenga sentido.</div>
+<div class="line">La función encargada de esto se llama sort_individuals y está en <strong>Model/Community/Population/Population.py</strong>.</div>
+</div>
+<span class="target" id="module-Model.Fitness.NonLinearRankingFitness"></span><dl class="function">
+<dt id="Model.Fitness.NonLinearRankingFitness.assign_fitness">
+<code class="descname">assign_fitness</code><span class="sig-paren">(</span><em>population</em>, <em>fitness_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Fitness.NonLinearRankingFitness.assign_fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utilizando la explicación concretada al principio, se realiza
+la implementación de la asignación de Non-Linear Ranking Fitness <strong>(ó Fitness de Ranking No Lineal)</strong>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.Fitness.NonLinearRankingFitness.calculate_root">
+<code class="descname">calculate_root</code><span class="sig-paren">(</span><em>polynome</em>, <em>x_0</em>, <em>epsilon</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Fitness.NonLinearRankingFitness.calculate_root" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Calcula la solución de un polinomio usando el método Newton-Raphson.</dt>
+<dd>A grandes rasgos el funcionamiento es el siguiente:</dd>
+</dl>
+<div class="line-block">
+<div class="line">Tomando como base el punto <img class="math" src="../../_images/math/307e583980f527b3f26e1e159435e0a8d262736b.png" alt="x_0"/> se obtiene <img class="math" src="../../_images/math/fdf6501bec5987984965f15d09235c645fe06ccb.png" alt="x_1"/> así:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/78e0cad8ebfe33cefb82d78fa5cac13352ac9ec5.png" alt="x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}"/></strong></p><div class="line-block">
+<div class="line">Una vez obtenido <img class="math" src="../../_images/math/fdf6501bec5987984965f15d09235c645fe06ccb.png" alt="x_1"/> se calcula <img class="math" src="../../_images/math/1f1a225cd22b81817fc48b3a84dcf8f1a9e145d8.png" alt="x_2"/> de la misma manera:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/a118fecd7e92f30549142293e54b0ad005e9c6da.png" alt="x_2 = x_1 - \frac{f(x_1)}{f'(x_1)}"/></strong></p><div class="line-block">
+<div class="line">El proceso se repite para &#8216;n&#8217; iteraciones hasta que el valor alcance la
+precisión de epsilon ó el polinomio ya no tenga más derivadas. Concretando lo anterior:</div>
+</div>
+<p class="centered">
+<strong><img class="math" src="../../_images/math/c84f140d8df92a6bbd855052ffe7ae707ec2cfc6.png" alt="x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}"/></strong></p><div class="line-block">
+<div class="line">Cuando <img class="math" src="../../_images/math/3a1a3ef9ebc130fd753237540740a3d7c725f399.png" alt="x_{n+1}"/> se acerque a epsilon ó cuando el
+polinomio no sea más derivable el método se detendrá.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>polynome</strong> (<em>List</em>) &#8211; El polinomio en el que se buscará la solución.</li>
+<li><strong>x_0</strong> (<em>Float</em>) &#8211; el punto sobre el que se hará la evaluación del polinomio.</li>
+<li><strong>epsilon</strong> (<em>Float</em>) &#8211; La precisión decimal que se necesita para poder devolver
+el resultado.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">La solución al polinomio.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.Fitness.NonLinearRankingFitness.derivate">
+<code class="descname">derivate</code><span class="sig-paren">(</span><em>polynome</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Fitness.NonLinearRankingFitness.derivate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método que calcula la derivada de un polinomio, modificando
+directamente éste sin regresar nada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>polynome</strong> (<em>List</em>) &#8211; El polinomio inicial.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.Fitness.NonLinearRankingFitness.evaluate_polynome">
+<code class="descname">evaluate_polynome</code><span class="sig-paren">(</span><em>polynome</em>, <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.Fitness.NonLinearRankingFitness.evaluate_polynome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evalúa un polinomio en un cierto valor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>polynome</strong> (<em>List</em>) &#8211; El polinomio a evaluar.</li>
+<li><strong>x</strong> (<em>Float</em>) &#8211; El valor sobre el que se evaluará el polinomio.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">La evaluación del polinomio.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="Fitness.html">Fitness (módulo)</a><ul>
+      <li>Previous: <a href="LinearRankingFitness.html" title="previous chapter">LinearRankingFitness (script)</a></li>
+      <li>Next: <a href="ProportionalFitness.html" title="next chapter">ProportionalFitness (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/Fitness/NonLinearRankingFitness.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/Fitness/NonLinearRankingFitness.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

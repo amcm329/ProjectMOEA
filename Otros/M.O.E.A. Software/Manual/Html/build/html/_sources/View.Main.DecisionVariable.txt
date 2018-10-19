@@ -1,0 +1,30 @@
+View.Main.DecisionVariable package
+==================================
+
+Submodules
+----------
+
+View.Main.DecisionVariable.DecisionVariableFrame module
+-------------------------------------------------------
+
+.. automodule:: View.Main.DecisionVariable.DecisionVariableFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Main.DecisionVariable.VariableFrame module
+-----------------------------------------------
+
+.. automodule:: View.Main.DecisionVariable.VariableFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Main.DecisionVariable
+    :members:
+    :undoc-members:
+    :show-inheritance:

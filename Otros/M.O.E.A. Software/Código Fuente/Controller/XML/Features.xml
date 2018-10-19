@@ -1,0 +1,81 @@
+<Features>
+
+   <classification name="Population Settings">
+            <Division name="Population" path="Model.ChromosomalRepresentation." community_path="Model.Community.Community">
+                      <Technique name="Binary Representation" class="BinaryRepresentation" classification="binary">
+                                 <Parameter name="Gray Coding" variable="gray_coding_binary_representation" type="bool" lower_range="-" upper_range="-" default="False"/>
+                      </Technique>
+                      <Technique name="Float Point Representation" class="FloatPointRepresentation" classification="float">
+                      </Technique>
+            </Division>
+            <Division name="Fitness" path="Model.Fitness.">
+                      <Technique name="Proportional Fitness" class="ProportionalFitness" classification="-">
+                      </Technique>
+                      <Technique name="Linear Ranking Fitness" class="LinearRankingFitness" classification="-">
+                                 <Parameter name="SP" variable="sp_linear_ranking_fitness" type="float" lower_range="1" upper_range="2" default="1"/>
+                      </Technique>
+                      <Technique name="Non-Linear Ranking Fitness" class="NonLinearRankingFitness" classification="-">
+                                 <Parameter name="SP" variable="sp_non_linear_ranking_fitness" type="float" lower_range="1" upper_range="2" default="1"/>
+                      </Technique> 
+            </Division>
+   
+   </classification>
+
+   <classification name="Genetic Operators Settings">
+            
+             <Division name="Selection" path="Model.Operator.Selection.">
+                        <Technique name="Roulette" class="Roulette" classification="-"> 
+                        </Technique>
+                        <Technique name="Stochastic Universal Sampling" class="StochasticUniversalSampling" classification="-">
+                        </Technique>
+                        <Technique name="Probabilistic Tournament" class="ProbabilisticTournament" classification="-">
+                                   <Parameter name="Number of Contenders" variable="contenders_amount_probabilistic_tournament" type="int" lower_range="2" upper_range="-" default="2"/>
+                        </Technique>
+             </Division>
+
+             <Division name="Crossover" path="Model.Operator.Crossover.">
+                        <Technique name="N-Points Crossover" class="NPointsCrossover" classification="-">
+                                   <Parameter name="Number of Points" variable="how_many_points_npoints_crossover" type="int" lower_range="1" upper_range="-" default="1"/>
+                        </Technique>
+                        <Technique name="Uniform Crossover" class="UniformCrossover" classification="-">
+                                   <Parameter name="Pmask" variable="pmask_uniform_crossover" type="float" lower_range="0" upper_range="1" default="0.5"/>
+                        </Technique>
+             </Division>
+
+             <Division name="Mutation" path="Model.Operator.Mutation.">
+                       <Technique name="Binary Mutation" class="BinaryMutation" classification="binary">
+                       </Technique>
+                       <Technique name="Float Point Mutation" class="FloatPointMutation" classification="float">
+                       </Technique>
+             </Division>
+
+   </classification>
+
+   <classification name="MOEAs Settings">
+             <Division name="Sharing Function" path="Model.SharingFunction.">
+                       <Technique name="Hamming Distance" class="GenotypicSimilarity.HammingDistance" classification="-">
+                                  <Parameter name="Percentage of Acceptance" variable="percentage_of_acceptance" type="float" lower_range="0" upper_range="1" default="0.40"/>
+                       </Technique>
+                       <Technique name="Euclidean Distance" class="PhenotypicSimilarity.EuclideanDistance" classification="-">
+                       </Technique>
+             </Division>
+
+            <Division name ="MOEA" path="Model.MOEA.">
+                  <Technique name="V.E.G.A. (Vector Evaluated Genetic Algorithm)" class="VEGA" classification="-">
+                  </Technique>
+                  <Technique name="M.O.G.A. (Multi Objective Genetic Algorithm)" class="MOGA" classification="-">
+                  </Technique>
+                  <Technique name="N.S.G.A. II (Nondominated Sorting Genetic Algorithm)" class="NSGAII" classification="-">
+                  </Technique>
+                  <Technique name="S.P.E.A. II (Strength Pareto Evolutionary Algorithm)" class="SPEAII" classification="-">
+                  </Technique>
+            </Division>
+
+   </classification>   
+
+</Features>
+
+
+
+
+    

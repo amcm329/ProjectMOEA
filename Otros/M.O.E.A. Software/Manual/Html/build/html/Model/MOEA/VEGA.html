@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>VEGA (script) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="MOEA (módulo)" href="MOEA.html" />
+    <link rel="next" title="SPEAII (script)" href="SPEAII.html" />
+    <link rel="prev" title="MOEA (módulo)" href="MOEA.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="vega-script">
+<h1>VEGA (script)<a class="headerlink" href="#vega-script" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">Se implementa la técnica M.O.E.A conocida como V.E.G.A. <strong>(Vector Evaluated Genetic
+Algorithm ó Algoritmo Genético de Vectores Evaluados)</strong>.</div>
+<div class="line">La forma de proceder del algoritmo es la siguiente:</div>
+<div class="line"><br /></div>
+<div class="line">1.- Se crea la Población Padre (de tamaño <img class="math" src="../../_images/math/e11f2701c4a39c7fe543a6c4150b421d50f1c159.png" alt="n"/>).</div>
+</div>
+<div class="line-block">
+<div class="line">2.- Tomando en cuenta las <img class="math" src="../../_images/math/0b7c1e16a3a8a849bb8ffdcdbf86f65fd1f30438.png" alt="k"/> funciones objetivo y la Población Padre, se crean <img class="math" src="../../_images/math/0b7c1e16a3a8a849bb8ffdcdbf86f65fd1f30438.png" alt="k"/> subpoblaciones de tamaño <img class="math" src="../../_images/math/226dac0fd7016c8457c46662b1ffe3e467e071f7.png" alt="n/k"/> cada una, si este número llega a ser irracional se pueden hacer ajustes con respecto de la distribución de los Individuos.</div>
+</div>
+<div class="line-block">
+<div class="line">3.- Por cada subpoblación, se aplica la técnica de Selección y obtienen los <img class="math" src="../../_images/math/226dac0fd7016c8457c46662b1ffe3e467e071f7.png" alt="n/k"/> Individuos, terminado esto se deben unificar todos los seleccionados de nuevo en una súper Población.</div>
+</div>
+<div class="line-block">
+<div class="line">4.- Con la súper Población del paso 3, se crea a la población Hija, la cual pasará a convertirse en la la nueva Población Padre.</div>
+</div>
+<div class="line-block">
+<div class="line">5.- Se repiten los pasos 2 a 4 hasta haber alcanzado el número de generaciones <strong>(iteraciones)</strong> límite.</div>
+<div class="line"><br /></div>
+<div class="line">Como se puede apreciar es una implementación muy sencilla de optimización multiobjetivo,
+sin embargo el inconveniente que tiene es la fácil pérdida de material genético valioso.</div>
+<div class="line">Lo anterior significa que un Individuo que en una generación previa era el mejor para una
+función objetivo <img class="math" src="../../_images/math/df0deb143e5ac127f00bd248ee8001ecae572adc.png" alt="i"/> al momento de ser separado y seleccionado en una subpoblación <img class="math" src="../../_images/math/6b21e0b0899a0d2879d3b8019087fa630bab4ea2.png" alt="j"/>
+(y por ende analizado bajo la función objetivo <img class="math" src="../../_images/math/6b21e0b0899a0d2879d3b8019087fa630bab4ea2.png" alt="j"/>) puede ser muy malo en calidad y por tanto no ser seleccionado;
+perdiéndose la ganancia genética hasta el momento obtenida para la función objetivo <img class="math" src="../../_images/math/0528e29b63bb4884f31531734c6f64a94f8c08c3.png" alt="i;\ i \neq j"/>.</div>
+<div class="line"><br /></div>
+<div class="line">Por ello es que se puede decir que V.E.G.A. genera soluciones promedio que destacan con una calidad media
+para todas las funciones objetivo.</div>
+<div class="line"><br /></div>
+<div class="line">Finalmente hay que comentar que para este algoritmo no se requiere aplicar un Ranking específico, no obstante,
+se ha decidido utilizar el de Fonseca &amp; Flemming <strong>(véase Model/Community/Community.py)</strong> pues es el más sencillo
+de implementar.</div>
+</div>
+<span class="target" id="module-Model.MOEA.VEGA"></span><dl class="function">
+<dt id="Model.MOEA.VEGA.create_subpopulations">
+<code class="descname">create_subpopulations</code><span class="sig-paren">(</span><em>comunidad</em>, <em>main_population</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.MOEA.VEGA.create_subpopulations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método que divide a la Población principal en subpoblaciones
+de acuerdo al número de funciones objetivo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>comunidad</strong> (<em>Instance</em>) &#8211; Una instancia de Community para poder crear
+poblaciones..</li>
+<li><strong>main_population</strong> (<em>Instance</em>) &#8211; La Población que será dividida.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Una lista con las subpoblaciones <strong>(de tipo Population)</strong>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Model.MOEA.VEGA.execute_moea">
+<code class="descname">execute_moea</code><span class="sig-paren">(</span><em>execution_task_count</em>, <em>generations_queue</em>, <em>generations</em>, <em>population_size</em>, <em>vector_functions</em>, <em>vector_variables</em>, <em>available_expressions</em>, <em>number_of_decimals</em>, <em>community_instance</em>, <em>algorithm_parameters</em>, <em>representation_instance</em>, <em>representation_parameters</em>, <em>fitness_instance</em>, <em>fitness_parameters</em>, <em>sharing_function_instance</em>, <em>sharing_function_parameters</em>, <em>selection_instance</em>, <em>selection_parameters</em>, <em>crossover_instance</em>, <em>crossover_parameters</em>, <em>mutation_instance</em>, <em>mutation_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#Model.MOEA.VEGA.execute_moea" title="Permalink to this definition">¶</a></dt>
+<dd><p>De acuerdo a la información proporcionada con anterioridad, se 
+implementa el método que representa a la técnica M.O.E.A. conocida 
+como V.E.G.A. <strong>(Vector Evaluated Genetic Algorithm ó Algoritmo 
+Genético de Vectores Evaluados)</strong>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../Model.html">Model (sección)</a><ul>
+  <li><a href="MOEA.html">MOEA (módulo)</a><ul>
+      <li>Previous: <a href="MOEA.html" title="previous chapter">MOEA (módulo)</a></li>
+      <li>Next: <a href="SPEAII.html" title="next chapter">SPEAII (script)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/Model/MOEA/VEGA.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../_sources/Model/MOEA/VEGA.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

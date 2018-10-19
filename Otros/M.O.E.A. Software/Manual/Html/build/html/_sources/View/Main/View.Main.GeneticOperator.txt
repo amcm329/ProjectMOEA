@@ -1,0 +1,53 @@
+View.Main.GeneticOperator package
+=================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    View.Main.GeneticOperator.Template
+
+Submodules
+----------
+
+View.Main.GeneticOperator.CrossoverFrame module
+-----------------------------------------------
+
+.. automodule:: View.Main.GeneticOperator.CrossoverFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Main.GeneticOperator.GeneticOperatorFrame module
+-----------------------------------------------------
+
+.. automodule:: View.Main.GeneticOperator.GeneticOperatorFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Main.GeneticOperator.MutationFrame module
+----------------------------------------------
+
+.. automodule:: View.Main.GeneticOperator.MutationFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+View.Main.GeneticOperator.SelectionFrame module
+-----------------------------------------------
+
+.. automodule:: View.Main.GeneticOperator.SelectionFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Main.GeneticOperator
+    :members:
+    :undoc-members:
+    :show-inheritance:

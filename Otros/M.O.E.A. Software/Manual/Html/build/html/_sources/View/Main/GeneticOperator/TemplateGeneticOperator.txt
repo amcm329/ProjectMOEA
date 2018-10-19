@@ -1,0 +1,22 @@
+GeneticOperatorTemplate (módulo)
+================================
+
+Submodules
+----------
+
+View.Main.GeneticOperator.Template.TemplateFrame module
+-------------------------------------------------------
+
+.. automodule:: View.Main.GeneticOperator.Template.TemplateFrame
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: View.Main.GeneticOperator.Template
+    :members:
+    :undoc-members:
+    :show-inheritance:

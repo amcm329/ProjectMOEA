@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>GenerationSignalToplevel (clase) &mdash; M.O.E.A. Software 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="M.O.E.A. Software 1.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Additional (módulo)" href="../Additional.html" />
+    <link rel="next" title="MenuInternalOption (módulo)" href="../MenuInternalOption/MenuInternalOption.html" />
+    <link rel="prev" title="Additional (módulo)" href="../Additional.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-View.Additional.GenerationSignal.GenerationSignalToplevel">
+<span id="generationsignaltoplevel-clase"></span><h1>GenerationSignalToplevel (clase)<a class="headerlink" href="#module-View.Additional.GenerationSignal.GenerationSignalToplevel" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel">
+<em class="property">class </em><code class="descname">GenerationSignalToplevel</code><span class="sig-paren">(</span><em>parent</em>, <em>path_image_logo</em>, <em>execution_task_number</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Tkinter.Toplevel</span></code></p>
+<div class="line-block">
+<div class="line">Se trata de un Toplevel <strong>(ventana independiente)</strong> que muestra el progreso de las generaciones
+al momento de ejecutar un Task.</div>
+<div class="line">Esta ventana aunque es creada y mostrada en los procesos de la capa View, será en <strong>Model/MOEA</strong>
+en donde se utilice y actualice, ya que la idea es crear una &#8220;señal&#8221; que indique al usuario el progreso
+del MOEA en ejecución para que se dé una idea del desempeño del algoritmo.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> (<em>Tkinter.Frame</em>) &#8211; Frame padre al que pertenece.</li>
+<li><strong>path_image_logo</strong> &#8211; La ruta al logotipo que se usa en esta ventana independiente.</li>
+<li><strong>execution_task_number</strong> &#8211; Número que indica el actual Task en ejecución 
+<strong>(véase View/Additional/ResultsGrapher/ResultsGrapherToplevel.py)</strong>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>;type path_image_logo: String
+:type execution_task_number: Integer
+:returns: Tkinter.Toplevel
+:rtype: Instance</p>
+<dl class="method">
+<dt id="View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel._GenerationSignalToplevel__center">
+<code class="descname">_GenerationSignalToplevel__center</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel._GenerationSignalToplevel__center" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Centra la ventana independiente con respecto de la ventana principal.
+En otras palabras, la ventana independiente será colocada en el centro de la 
+ventana principal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel._GenerationSignalToplevel__do_nothing">
+<code class="descname">_GenerationSignalToplevel__do_nothing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel._GenerationSignalToplevel__do_nothing" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Este método es privado.</p>
+</div>
+<p>Simplemente es una función &#8220;dummy&#8221; que no realiza nada. 
+Es utilizada como sustituto de la función del ícono &#8220;Cerrar&#8221; y así evitar
+que el usario intencionadamente intente ocluir la ventana del número de generaciones.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Oculta y elimina toda referencia gráfica y lógica de la 
+ventana independiente, indicando así que el número de generaciones ha alcanzado
+su límite.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.hide">
+<code class="descname">hide</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.hide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Oculta la ventana independiente de la pantalla pero no la elimina de los registros
+gráficos.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.show">
+<code class="descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reactiva la ventana independiente, realizando además durante esta ejecución
+un par de consignas más para dar una experiencia de usuario suficiente y concisa.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.update_current_generation">
+<code class="descname">update_current_generation</code><span class="sig-paren">(</span><em>current_generation</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.update_current_generation" title="Permalink to this definition">¶</a></dt>
+<dd><div class="line-block">
+<div class="line">Actualiza la generación actual en la ventana independiente.</div>
+<div class="line">Típicamente esta función será usada en todos los algoritmos de la capa Model/MOEA, pues
+es allí donde se designará el progreso del algoritmo que a su vez se verá 
+reflejado en la capa de View.</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>current_generation</strong> (<em>Integer</em>) &#8211; La generación que está corriendo actualmente en el MOEA.s</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">1 si se  ha alcanzado la generación límite, 0 en otro caso.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Integer</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.update_number_of_generations">
+<code class="descname">update_number_of_generations</code><span class="sig-paren">(</span><em>number_of_generations</em><span class="sig-paren">)</span><a class="headerlink" href="#View.Additional.GenerationSignal.GenerationSignalToplevel.GenerationSignalToplevel.update_number_of_generations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actualiza el número total de generaciones. Generalmente esta función
+será llamada desde Controller/Controller.py ya que ahí es donde se decide
+si las configuraciones iniciales son adecuadas para poder ejecutar el algoritmo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>number_of_generations</strong> (<em>Integer.</em>) &#8211; El número de generaciones total que tendrá el MOEA.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../View.html">View (sección)</a><ul>
+  <li><a href="../Additional.html">Additional (módulo)</a><ul>
+      <li>Previous: <a href="../Additional.html" title="previous chapter">Additional (módulo)</a></li>
+      <li>Next: <a href="../MenuInternalOption/MenuInternalOption.html" title="next chapter">MenuInternalOption (módulo)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/View/Additional/GenerationSignal/GenerationSignal.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Aarón Martín Castillo Medina.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../../../_sources/View/Additional/GenerationSignal/GenerationSignal.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

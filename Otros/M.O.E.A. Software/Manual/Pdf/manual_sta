@@ -1,0 +1,27 @@
+%Autor: Aarón Martín Castillo Medina.
+%Asesora: Dra. Katya Rodríguez Vázquez.
+%Contacto: katya.rodriguez@iimas.unam.mx; amcm329@hotmail.com
+
+%Como parte del uso del paquete "standalone", el archivo manual.tex
+%se apoya de este archivo para averiguar el total de subarchivos 
+%existentes, así como los correspondientes paquetes cargados por 
+%cada uno. 
+%De esta manera siempre que se compile el proyecto se genera un 
+%archivo denominado manual.sta; si llega a existir alguna falla 
+%durante el proceso de compilación se debe en gran medida a dicho 
+%archivo, por ello es que simplemente se reemplaza el contenido 
+%de este archivo con el de aquél y se vuelve a ejecutar la 
+%compilación.
+
+
+\standalonepreambles
+\subpreamble{sections/model.tex}
+\usepackage {packages_used_section}
+\endsubpreamble
+\subpreamble{sections/view.tex}
+\usepackage {packages_used_section}
+\endsubpreamble
+\subpreamble{sections/controller.tex}
+\usepackage {packages_used_section}
+\endsubpreamble
+\endstandalonepreambles

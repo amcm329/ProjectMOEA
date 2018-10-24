@@ -167,48 +167,43 @@ y debido a la necesidad de operar con múltiples poblaciones
 simultáneamente en cada uno de los algoritmos se decidió crear 
 una entidad con este nombre que no sólo satisfaciera las necesidades 
 técnicas sino también que proporcionara un sentido biológico 
-inherente al proyecto.
-
+inherente al proyecto.\break
 Como se aclaró previamente, se decidió mantener una escición
-entre los conceptos \textit{cromosoma} e \textit{individuo} ya que
-en secciones posteriores será de gran utilidad puesto que, si bien 
-en la práctica ambos conceptos se manejan indistintamente, esto ayudará 
-a comprender mejor tanto el proceso evolutivo como sus 
-implementaciones.\break
-
-Continuar con el cromosoma, gen y alelo
-
-Conviene mencionar además algunos conceptos que van ligados a las 
-interacciones entre las poblaciones, entre los cuales se encuentran
+entre los conceptos \textit{cromosoma} e \textit{individuo} 
+ya queen secciones posteriores será de gran utilidad puesto que, 
+si bien en la práctica ambos conceptos se manejan indistintamente, 
+esto ayudará a comprender mejor tanto el proceso evolutivo como 
+sus implementaciones.\medskip\break
+Entonces se define el cromosoma como una estructura que está 
+conformada por elementos varios; tomando en cuenta que en el 
+argot biológico ésta contiene proteínas, en el entorno computacional 
+contendrá símbolos. Las definiciones que siguen corresponden 
+a gen y alelo donde básicamente el primero es el espacio donde 
+se puede almacenar los elementos antes mencionados respectivamente 
+y a su vez el alelo es elemento en sí que va alojado en un gen.\medskip\break  
+Luego, retomando el nivel de organización mayor conviene 
+mencionar además algunos conceptos que van ligados a las 
+interacciones entre las comunidades, entre los cuales se encuentran:
 
 \begin{itemize}
-\item Presión Selectiva - consiste en la implantación de algún tipo de 
-catalizador en una población con la finalidad de obtener al mejor 
-individuo generalmente bajo un número pequeño de generaciones. 
-\item Especiación - se trata de un proceso en el cual, a partir de una 
-población original se deriva al menos un descendiente, los cuales pueden
-compartir apenas pocas características en común. 
-Epístasis - es considerada una situación en la interacción genética (genotipo) 
-en la cual ***(poner referencia)*** una expresión de un gen (fenotipo) puede ser modificada radicalmente
-por la acción de dos o más. En términos más coloquiales la combinación de dos genes puede dar 
-un resultado totalmente diferente para el que se estaba pensado inicialmente. 
+\item Presión Selectiva - consiste en la implantación de algún 
+tipo de catalizador en una población con la finalidad de obtener al 
+mejor individuo generalmente bajo un número pequeño de generaciones. 
+\item Especiación - se trata de un proceso en el cual, a partir de 
+una población original se deriva al menos un descendiente, los cuales 
+puedencompartir apenas pocas características en común. 
+\item Epístasis - es considerada una situación en la interacción 
+genética (genotipo) en la cual ***(poner referencia)*** una expresión 
+de un gen (fenotipo) puede ser modificada radicalmente por la acción 
+de dos o más. En términos más coloquiales la combinación de dos genes 
+puede dar un resultado totalmente diferente para el que se estaba 
+pensado inicialmente. 
 \end{itemize}
 
-lo que significa que ....
-
-Ahora va lo de la representación cromosómica.
-
-
-%ci ́ n se refiere:
-%o
-%Se a ̃ aden individuo, cromosoma, gen, alelo, imagen, poblacion y haciendo conexi ́ n di-
-%n
-%o poner aquí la representación cromosómica.
-%recta con MoEA sSoftware, Mencionar que en este se encuentran individuo, Comunidad
-%haciendo referencia a las clases blablabla. Adem ́ s se tienen los siguientes conceptos: Co-
-%a
-%mo dato para posteriores referencias, un gen hace referencia a una casilla del cromosoma
-%mientras que un alelo es el valor que puede existir en un gen.
+Una vez explicado todo el ámbito biológico sobre el cual se va a estar 
+laborando, es momento de aterrizar todos estos conceptos y relaciones
+en una perspectiva computacional, se comienza entonces por describir
+de manera más sucinta todo lo relacionado con el cromosoma:
 
 %Se inicia esta subsección dando paso a las funciones relacionadas
 %con la representación cromosómica.
@@ -225,6 +220,9 @@ y mutación, ésto porque dichas operaciones funcionan con
 cromosomas.\medskip\break
 Las variantes implementadas para este proyecto son:
 
+Una vez erigida la estructura computacional de un cromosoma, se 
+
+
 %A continuación se manejan en esta subsección las técnicas manejadas
 %para la aptitud.
 \subsection{Aptitud}
@@ -239,6 +237,10 @@ Indirectamente, esto nos indica que un individuo con un
 fitness alto tiene más probabilidades de ser elegido y propagar 
 su carga genética; así el criterio para escoger a un individuo 
 está basado comúnmente en su fitness.\medskip\break
+
+Aquí por eso era importante mencionar que el individuo contiene
+a un cromosoma porque uno de los atributos calculados es 
+
 
 ***
 Es importante mencionar que el listado de técnicas que se 

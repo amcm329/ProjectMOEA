@@ -181,6 +181,10 @@ contendrá símbolos. Las definiciones que siguen corresponden
 a gen y alelo donde básicamente el primero es el espacio donde 
 se puede almacenar los elementos antes mencionados respectivamente 
 y a su vez el alelo es elemento en sí que va alojado en un gen.\medskip\break  
+De lo anterior se incluyen dos conceptos clave que serán de utilidad 
+genotipo y fenotipo:
+
+
 Luego, retomando el nivel de organización mayor conviene 
 mencionar además algunos conceptos que van ligados a las 
 interacciones entre las comunidades, entre los cuales se encuentran:
@@ -200,27 +204,28 @@ puede dar un resultado totalmente diferente para el que se estaba
 pensado inicialmente. 
 \end{itemize}
 
-Una vez explicado todo el ámbito biológico sobre el cual se va a estar 
-laborando, es momento de aterrizar todos estos conceptos y relaciones
-en una perspectiva computacional, se comienza entonces por describir
-de manera más sucinta todo lo relacionado con el cromosoma:
+Una vez explicado todo el ámbito biológico sobre el cual se va a 
+estar laborando, es momento de aterrizar todos estos conceptos 
+y relaciones en una perspectiva computacional, se comienza entonces 
+por describir de manera más sucinta todo lo relacionado con el 
+cromosoma:
 
 %Se inicia esta subsección dando paso a las funciones relacionadas
 %con la representación cromosómica.
 \subsection{Representación Cromosómica}
 %Se coloca el vínculo interno procedente del capítulo 2 (c2_5).
 \label{sec:c2_5}
-Ofrece elementos para elaborar una codificación adecuada.\break
-Entiéndase por codificación a la forma de determinar el 
-cromosoma y sus propiedades; cabe mencionar que el cromosoma 
-será portado por los individuos.\break
-Es importante mencionar que cualquier codificación implementada 
-debe ser sustentada en los métodos correspondientes a la cruza 
-y mutación, ésto porque dichas operaciones funcionan con 
-cromosomas.\medskip\break
-Las variantes implementadas para este proyecto son:
+Se define representación cromosómica a la forma de determinar 
+el cromosoma y sus propiedades; como ya se mencionó previamente 
+el cromosoma será portado por los individuos.\break
+Para fines computacionales el cromosoma consiste en una estructura de almacenamiento tipo arreglo donde
+cada uno de los espacios disponibles (genes) contendrán símbolos (alelos).
+Para fines prácticos la representación tiene su base en dos variantes: binaria y punto flotante*** poner referencia
+La primera sólo puede almacenar valores 1 y 0 en sus alelos mientras que la segunda puede almacenar cualquier valor que
+permita el equipo de cómputo en el que se esté implementando
 
-Una vez erigida la estructura computacional de un cromosoma, se 
+
+Una vez erigida la estructura computacional de un cromosoma, se
 
 
 %A continuación se manejan en esta subsección las técnicas manejadas

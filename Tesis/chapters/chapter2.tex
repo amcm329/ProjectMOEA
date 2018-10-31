@@ -182,8 +182,10 @@ a gen y alelo donde básicamente el primero es el espacio donde
 se puede almacenar los elementos antes mencionados respectivamente 
 y a su vez el alelo es elemento en sí que va alojado en un gen.\medskip\break  
 De lo anterior se incluyen dos conceptos clave que serán de utilidad 
-genotipo y fenotipo:
-
+genotipo y fenotipo: mientras que el genotipo se define prácticamente 
+como una conjunción de genes (el cromosoma), el fenotipo es considerado 
+como el resultado de haber procesado (expresado) el genotipo bajo un 
+determinado entorno.
 
 Luego, retomando el nivel de organización mayor conviene 
 mencionar además algunos conceptos que van ligados a las 
@@ -199,9 +201,9 @@ puedencompartir apenas pocas características en común.
 \item Epístasis - es considerada una situación en la interacción 
 genética (genotipo) en la cual ***(poner referencia)*** una expresión 
 de un gen (fenotipo) puede ser modificada radicalmente por la acción 
-de dos o más. En términos más coloquiales la combinación de dos genes 
-puede dar un resultado totalmente diferente para el que se estaba 
-pensado inicialmente. 
+de dos o más de éstos. En términos más coloquiales la combinación de 
+al menos dos genes puede dar un resultado totalmente diferente para 
+el que se estaba pensado inicialmente. 
 \end{itemize}
 
 Una vez explicado todo el ámbito biológico sobre el cual se va a 
@@ -218,15 +220,25 @@ cromosoma:
 Se define representación cromosómica a la forma de determinar 
 el cromosoma y sus propiedades; como ya se mencionó previamente 
 el cromosoma será portado por los individuos.\break
-Para fines computacionales el cromosoma consiste en una estructura de almacenamiento tipo arreglo donde
-cada uno de los espacios disponibles (genes) contendrán símbolos (alelos).
-Para fines prácticos la representación tiene su base en dos variantes: binaria y punto flotante*** poner referencia
-La primera sólo puede almacenar valores 1 y 0 en sus alelos mientras que la segunda puede almacenar cualquier valor que
-permita el equipo de cómputo en el que se esté implementando
+Aterrizando lo anterior en un entorno computacional el cromosoma 
+consiste en una estructura de almacenamiento tipo arreglo donde cada 
+uno de los espacios disponibles (genes) contendrán símbolos (alelos).
+Para fines prácticos la representación tiene su base en dos variantes: 
+binaria y punto flotante*** poner referencia
+La primera sólo puede almacenar valores 1 y 0 en sus alelos mientras 
+que la segunda puede almacenar cualquier valor que permita el equipo 
+de cómputo en el que se esté implementando.
 
+Una vez erigida la estructura computacional de un cromosoma y de
+acuerdo al proceso evolutivo y como un paso intermedio, se debe
+obtener el fenotipo, es decir, los resultados de haber procesado el 
+genotipo, para ello se debe tomar la función de evaluación descrita al
+comienzo y justamente a este paso previo se le denomina "evaluación de la
+función objetivo.\break
 
-Una vez erigida la estructura computacional de un cromosoma, se
-
+Dicho lo anterior y con base en las evaluaciones de la función objetivo 
+es necesario indicar una métrica que nos permita segmentar a los individuos 
+del "peor" al "mejor", a ésta se le conoce como aptitud.
 
 %A continuación se manejan en esta subsección las técnicas manejadas
 %para la aptitud.
@@ -236,29 +248,34 @@ Una vez erigida la estructura computacional de un cromosoma, se
 Se denomina aptitud \footnote{También denominado \textit{fitness}; 
 durante el trabajo escrito ambos términos se usan indistintamente.} 
 a un valor escalar que indica la calidad del individuo, esto es, 
-a mayor fitness, mayor es la probalidad de que este sea la 
+a mayor fitness, mayor es la probabilidad de que este sea la 
 solución optima.\break
 Indirectamente, esto nos indica que un individuo con un 
 fitness alto tiene más probabilidades de ser elegido y propagar 
 su carga genética; así el criterio para escoger a un individuo 
 está basado comúnmente en su fitness.\medskip\break
 
-Aquí por eso era importante mencionar que el individuo contiene
-a un cromosoma porque uno de los atributos calculados es 
+De lo anterior se desprende que típicamente en las implementaciones
+se asocia a un cromosoma con su aptitud, no obstante lo más adecuado
+es ligar un fitness con un individuo ya que, como se verá más adelante,
+es posible que de varios cromosomas se obtenga un sólo resultado de aptitud 
 
+Sólo como comentario adicional y con base en lo descrito en algunos 
+párrafos previos, podemos aseverar que la aptitud se obtiene de los
+fenotipos que se reciban de la evaluación en la función objetivo, por lo cual
+la gran mayoría de las opciones para asociar un cromosoma 
+a una aptitud contienen características en común. 
 
-***
 Es importante mencionar que el listado de técnicas que se 
 enuncian a continuación se muestran tal y como se han concebido 
 originalmente, sin embargo para poder llevar a cabo el ajuste 
 adecuado al ámbito Multiobjetivo es necesario reemplazar la 
 función objetivo ($F_0$) por el Rankeo, del cual se hablará 
 en el siguiente capítulo.\medskip\break
-***
 
 Los ejemplos mostrados para este proyecto son:
 
-%Comienza la subsubsección dedicada al fitness Proporcional.
+%Comienza la subsubsección dedicada a la aptitud Proporcional.
 \subsubsection{Proporcional}
 El fitness está dado por la siguiente función:\medskip\break
 \centerline{$Fitness(Individuo) = \frac{F_0(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}F_0(Individuo_i)}$}\medskip\break

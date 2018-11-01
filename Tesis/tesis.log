@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.10.10)  10 OCT 2018 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.10.10)  31 OCT 2018 19:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1047,25 +1047,25 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 ))
 Package hyperref Info: Option `colorlinks' set `true' on input line 41.
  (./tesis.aux
-LaTeX Info: Redefining \. on input line 24.
-LaTeX Info: Redefining \% on input line 24.
-LaTeX Font Info:    Try loading font information for T2A+cmr on input line 28.
+LaTeX Info: Redefining \. on input line 25.
+LaTeX Info: Redefining \% on input line 25.
+LaTeX Font Info:    Try loading font information for T2A+cmr on input line 29.
 
 (/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmr.fd
 File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
-LaTeX Info: Redefining \. on input line 32.
-LaTeX Info: Redefining \% on input line 32.
-LaTeX Info: Redefining \. on input line 40.
-LaTeX Info: Redefining \% on input line 40.
-LaTeX Info: Redefining \. on input line 48.
-LaTeX Info: Redefining \% on input line 48.
-LaTeX Info: Redefining \. on input line 56.
-LaTeX Info: Redefining \% on input line 56.
-LaTeX Info: Redefining \. on input line 64.
-LaTeX Info: Redefining \% on input line 64.
-LaTeX Info: Redefining \. on input line 72.
-LaTeX Info: Redefining \% on input line 72.
+LaTeX Info: Redefining \. on input line 33.
+LaTeX Info: Redefining \% on input line 33.
+LaTeX Info: Redefining \. on input line 41.
+LaTeX Info: Redefining \% on input line 41.
+LaTeX Info: Redefining \. on input line 49.
+LaTeX Info: Redefining \% on input line 49.
+LaTeX Info: Redefining \. on input line 57.
+LaTeX Info: Redefining \% on input line 57.
+LaTeX Info: Redefining \. on input line 65.
+LaTeX Info: Redefining \% on input line 65.
+LaTeX Info: Redefining \. on input line 73.
+LaTeX Info: Redefining \% on input line 73.
 
 
 LaTeX Warning: Label `sec:c2_5' multiply defined.
@@ -1543,518 +1543,533 @@ File: images/c23.png Graphic file (type png)
 Package pdftex.def Info: images/c23.png used on input line 156.
 (pdftex.def)             Requested size: 369.89911pt x 230.46785pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 mar la si-guien-te fra-se que en-glo-ba to-do el pro-ce-di-mien
 -to: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/it/12 de las for-mas me-nos per-fec-cio-na-das''\OT1/ptm/m/n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 re-que-ri-das. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 Gen[]eti-cos y las Es-tra-te-gias Evo-lu-ti-vas res-pec-ti-va-m
 en-te. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 ce-di-mien-to biol[]ogi-co y por en-de de ob-ten-ci[]on de re-s
 ul-ta-dos. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 vos. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 bre-ve des-crip-ci[]on: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 se acer-quen tan-to a la me-ta ideal co-mo otros. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 bas pa-la-bras tendr[]an acep-cio-nes dis-tin-tas. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 fac-tor co-no-ci-do co-mo [][][]\OT1/ptm/b/n/12 ap-ti-tud[][][]
 \OT1/ptm/m/n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 men-cion[]o al prin-ci-pio, se acer-quen m[]as a la so-lu-ci[]o
 n id[]onea. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/it/12 ci[]on\OT1/ptm/m/n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 co-mo un re-qui-si-to alu-si-vo a la ap-ti-tud. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 un in-di-vi-duo, as[]^^P co-mo al-gu-nos fac-to-res que gi-ran 
 en torno a []este: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--171
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 co-sa que el con-jun-to de dos o m[]as in-di-vi-duos. 
  []
 
-[5
 
-] [6 <./images/c21.jpg>]
-LaTeX Info: Redefining \. on input line 171.
-LaTeX Info: Redefining \% on input line 171.
- [7 <./images/c22.png>] [8 <./images/c23.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 172--178
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
 \OT1/ptm/m/n/12 der me-jor tan-to el pro-ce-so evo-lu-ti-vo co-mo sus im-ple-me
 n-ta-cio-nes. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--178
- 
+Underfull \hbox (badness 10000) in paragraph at lines 44--189
+\OT1/ptm/m/n/12 do en un gen. 
  []
 
+[5
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--222
-[]\OT1/ptm/m/n/12 Ofrece ele-men-tos pa-ra ela-bo-rar una co-di-fi-ca-ci[]on ad
-e-cua-da. 
+] [6 <./images/c21.jpg>]
+LaTeX Info: Redefining \. on input line 189.
+LaTeX Info: Redefining \% on input line 189.
+ [7 <./images/c22.png>] [8 <./images/c23.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 220--231
+\OT1/ptm/m/n/12 duos. 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--222
-\OT1/ptm/m/n/12 ca-be men-cio-nar que el cro-mo-so-ma ser[]a por-ta-do por los 
-in-di-vi-duos. 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--222
-\OT1/ptm/m/n/12 cio-nan con cro-mo-so-mas. 
- []
-
-
-Underfull \hbox (badness 4378) in paragraph at lines 228--237
-\OT1/ptm/m/n/12 ma-yor fit-ness, ma-yor es la pro-ba-li-dad de que es-te sea la
- so-lu-ci[]on op-ti-ma. 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--237
-\OT1/ptm/m/n/12 duo est[]a ba-sa-do com[]unmen-te en su fit-ness. 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--237
- 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 238--246
-\OT1/ptm/m/n/12 ($\OML/ztmcm/m/it/12 F[]$\OT1/ptm/m/n/12 ) por el Ran-keo, del 
-cual se ha-blar[]a en el si-guien-te cap[]^^Ptu-lo. 
- []
-
-LaTeX Info: Redefining \. on input line 246.
-LaTeX Info: Redefining \% on input line 246.
+LaTeX Info: Redefining \. on input line 231.
+LaTeX Info: Redefining \% on input line 231.
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 251--254
-[]\OT1/ptm/m/n/12 El fit-ness est[]a da-do por la si-guien-te fun-ci[]on: 
+Underfull \hbox (badness 10000) in paragraph at lines 232--238
+\OT1/ptm/m/n/12 je-ti-vo. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--278
+Underfull \hbox (badness 10000) in paragraph at lines 232--238
+ 
+ []
+
+
+Underfull \hbox (badness 2744) in paragraph at lines 248--257
+\OT1/ptm/m/n/12 ma-yor ap-ti-tud, ma-yor es la pro-ba-bi-li-dad de que es-te se
+a la so-lu-ci[]on op-ti-ma. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--257
+\OT1/ptm/m/n/12 duo est[]a ba-sa-do com[]unmen-te en su ap-ti-tud. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--257
+ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--277
+\OT1/ptm/m/n/12 del cual se ha-blar[]a en el si-guien-te cap[]^^Ptu-lo. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--277
+ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--285
+[]\OT1/ptm/m/n/12 la ap-ti-tud est[]a da-do por la si-guien-te fun-ci[]on: 
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 299--309
 \OT1/ptm/m/n/12 da-men-to la po-si-ci[]on que ocu-pa el in-di-vi-duo den-tro de
  la po-bla-ci[]on. 
  []
 
 
-Underfull \hbox (badness 4229) in paragraph at lines 268--278
-\OT1/ptm/m/n/12 M[]as en es-pec[]^^Pfi-co, el fit-ness est[]a pro-por-cio-na-do
- por la si-guien-te f[]ormu-la: 
+Underfull \hbox (badness 1824) in paragraph at lines 299--309
+\OT1/ptm/m/n/12 pa. M[]as en es-pec[]^^Pfi-co, la ap-ti-tud est[]a pro-por-cio-
+na-do por la si-guien-te f[]ormu-la: 
  []
 
 
-Underfull \hbox (badness 4254) in paragraph at lines 291--298
+Underfull \hbox (badness 4254) in paragraph at lines 322--329
 \OT1/ptm/b/n/12 es una fun-ci[]on no li-neal, de ah[]^^P el nom-bre)\OT1/ptm/m/
 n/12 . La f[]ormu-la es la si-guien-te: 
  []
 
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 316--332
+LaTeX Info: Redefining \. on input line 341.
+LaTeX Info: Redefining \% on input line 341.
+[11]
+Underfull \hbox (badness 7486) in paragraph at lines 351--370
+\OT1/ptm/m/n/12 di-vi-duo pue-de ser se-lec-cio-na-do m[]as de una vez si la ca
+u-sa lo ame-ri-ta. 
+ []
+
+
+Overfull \hbox (4.22606pt too wide) in paragraph at lines 351--370
+\OT1/ptm/m/n/12 De es-ta ma-ne-ra se ele-gir[]an tan-tos in-di-vi-duos co-mo el
+e-men-tos ha-ya en la po-bla-ci[]on **agre- 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 351--370
+\OT1/ptm/m/n/12 gar el re-em-pla-zo**. 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 351--370
 \OT1/ptm/m/n/12 gen[]eti-ca. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--352
+Underfull \hbox (badness 10000) in paragraph at lines 374--390
 []\OT1/ptm/m/n/12 Tambi[]en es lla-ma-do Se-lec-ci[]on Pro-por-cio-nal. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--352
+Underfull \hbox (badness 10000) in paragraph at lines 374--390
 \OT1/ptm/m/n/12 pa-ra que se eli-ja al ele-men-to. 
  []
 
 
-Underfull \hbox (badness 1454) in paragraph at lines 336--352
+Underfull \hbox (badness 1454) in paragraph at lines 374--390
 \OT1/ptm/m/n/12 Para la pri-me-ra eta-pa se to-ma co-mo ba-se el Va-lor Es-pe-r
 a-do de ca-da in-di-vi-duo. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--352
+Underfull \hbox (badness 10000) in paragraph at lines 374--390
 \OT1/ptm/m/n/12 ta y por en-de su pro-ba-bi-li-dad de elec-ci[]on au-men-ta. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--352
+Underfull \hbox (badness 10000) in paragraph at lines 374--390
 \OT1/ptm/m/n/12 que se ex-ce-da el va-lor alea-to-rio men-cio-na-do an-tes. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--352
+Underfull \hbox (badness 10000) in paragraph at lines 374--390
 \OT1/ptm/m/n/12 se-lec-cio-na-do pa-ra la eta-pa de cru-za. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--363
+Underfull \hbox (badness 10000) in paragraph at lines 394--401
 \OT1/ptm/m/n/12 di-rec-ta en-tre los in-di-vi-duos. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--363
+Underfull \hbox (badness 10000) in paragraph at lines 394--401
 \OT1/ptm/m/n/12 de-ci-si[]on no de-pen-de to-tal-men-te del fac-tor an-tes men-
 cio-na-do. 
  []
 
-LaTeX Info: Redefining \. on input line 363.
-LaTeX Info: Redefining \% on input line 363.
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 367--376
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 405--414
 \OT1/ptm/m/n/12 an-te-rior en-fren-tar-lo con C y as[]^^P su-ce-si-va-men-te. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 367--376
-\OT1/ptm/m/n/12 ma-yor fit-ness. 
+Underfull \hbox (badness 10000) in paragraph at lines 405--414
+\OT1/ptm/m/n/12 ma-yor ap-ti-tud. 
  []
 
 
-Underfull \hbox (badness 2181) in paragraph at lines 402--411
+Underfull \hbox (badness 2181) in paragraph at lines 440--449
 \OT1/ptm/m/n/12 res-pec-to de los dem[]as bas[]ando-se en Poin-ter, bas-ta con 
 co-rro-bo-rar que: 
  []
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 402--411
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 440--449
 [] 
  []
 
-[12]
-Underfull \hbox (badness 10000) in paragraph at lines 423--435
+LaTeX Info: Redefining \. on input line 449.
+LaTeX Info: Redefining \% on input line 449.
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 464--476
 \OT1/ptm/m/n/12 se lle-va a ca-bo la con-cep-ci[]on de nue-vos in-di-vi-duos. 
  []
 
 
-Underfull \hbox (badness 1472) in paragraph at lines 423--435
+Underfull \hbox (badness 1472) in paragraph at lines 464--476
 \OT1/ptm/m/n/12 ci-dos por el usua-rio des-de un ini-cio bas[]ando-se en las so
 -lu-cio-nes pre-de-ce-so-ras. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 423--435
+Underfull \hbox (badness 10000) in paragraph at lines 464--476
 \OT1/ptm/m/n/12 pre de-ben ha-ber dos pa-dres y siem-pre de-be re-gre-sar dos h
 i-jos. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 439--452
+Underfull \hbox (badness 10000) in paragraph at lines 480--493
 \OT1/ptm/m/n/12 guien-te: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 439--452
+Underfull \hbox (badness 10000) in paragraph at lines 480--493
 \OT1/ptm/m/n/12 blo-ques. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--484
+Underfull \hbox (badness 10000) in paragraph at lines 512--525
 \OT1/ptm/m/n/12 en lo si-guien-te: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--484
+Underfull \hbox (badness 10000) in paragraph at lines 512--525
 \OT1/ptm/m/n/12 lo-res de 0 a 1. En-ton-ces lo an-te-rior se pue-de de-cla-rar 
 as[]^^P: 
  []
 
-LaTeX Info: Redefining \. on input line 484.
-LaTeX Info: Redefining \% on input line 484.
-[13]
-Underfull \hbox (badness 1199) in paragraph at lines 498--509
+[14]
+Underfull \hbox (badness 1199) in paragraph at lines 539--550
 \OT1/ptm/m/n/12 dos los hi-jos, se mo-di-fi-can los ale-los de sus cro-mo-so-ma
 s de ma-ne-ra in-di-vi-dual. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 498--509
+Underfull \hbox (badness 10000) in paragraph at lines 539--550
 \OT1/ptm/m/n/12 en el pe-li-gro de per-der ca-rac-ter[]^^Psti-cas va-lio-sas en
  la po-bla-ci[]on. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 498--509
+Underfull \hbox (badness 10000) in paragraph at lines 539--550
 \OT1/ptm/m/n/12 a la vez. 
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 545--590
+LaTeX Info: Redefining \. on input line 576.
+LaTeX Info: Redefining \% on input line 576.
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 590--635
 \OT1/ptm/m/n/12 es que se de-be ser cau-te-lo-so en la ad-qui-si-ci[]on de so-l
 u-cio-nes. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 545--590
+Underfull \hbox (badness 10000) in paragraph at lines 590--635
 \OT1/ptm/m/n/12 vec-tor de fun-cio-nes ob-je-ti-vo: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 545--590
+Underfull \hbox (badness 10000) in paragraph at lines 590--635
 \OT1/ptm/m/n/12 Donde: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 545--590
+Underfull \hbox (badness 10000) in paragraph at lines 590--635
 \OT1/ptm/m/n/12 Tal que: 
  []
 
 
-Overfull \hbox (3.0pt too wide) in paragraph at lines 545--590
+Overfull \hbox (3.0pt too wide) in paragraph at lines 590--635
 []\OT1/ptm/m/n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 545--590
+Underfull \hbox (badness 10000) in paragraph at lines 590--635
 \OT1/ptm/m/n/12 va-ria-bles de de-ci-si[]on de-be es-tar su-je-to a las res-tri
 c-cio-nes: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 545--590
+Underfull \hbox (badness 10000) in paragraph at lines 590--635
 \OT1/ptm/m/n/12 va-ria-bles de de-ci-si[]on. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 545--590
+Underfull \hbox (badness 10000) in paragraph at lines 590--635
 \OT1/ptm/m/n/12 rea-li-za la sus-ti-tu-ci[]on: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 545--590
+Underfull \hbox (badness 10000) in paragraph at lines 590--635
 \OT1/ptm/m/n/12 ya con-tem-pla es-te ti-po de ca-sos. 
  []
 
-LaTeX Info: Redefining \. on input line 590.
-LaTeX Info: Redefining \% on input line 590.
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 otro y as[]^^P otor-gar la so-lu-ci[]on id[]onea. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/b/n/12 to\OT1/ptm/m/n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 sen-ti-do. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/it/12 do-mi-na-da por U si\OT1/ptm/m/n/12 : 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 tra-par-te d[]ebil. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/b/n/12 re-to\OT1/ptm/m/n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 cum-ple con la si-guien-te con-di-ci[]on: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 de-ci-si[]on; co-mo con-se-cuen-cia se tie-ne que $\OML/ztmcm/m
 /it/12 P[] \OMS/ztmcm/m/n/12 ^^R \OML/ztmcm/m/it/12 FS \OMS/ztmcm/m/n/12 ^^R \O
 ML/ztmcm/m/it/12 IR[]$\OT1/ptm/m/n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 Ahora el Fren-te de Pa-re-to es el con-jun-to des-cri-to a con-
 ti-nua-ci[]on: 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 las fun-cio-nes ob-je-ti-vo. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 pec-to del es-pa-cio de fun-cio-nes ob-je-ti-vo. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 594--658
+Underfull \hbox (badness 10000) in paragraph at lines 639--703
 \OT1/ptm/m/n/12 pa-ra en-con-trar el ya men-cio-na-do Fren-te de Pa-re-to. 
  []
 
-[16]) (./chapters/chapter3.tex
-LaTeX Info: Redefining \. on input line 22.
-LaTeX Info: Redefining \% on input line 22.
- [17]
+LaTeX Info: Redefining \. on input line 703.
+LaTeX Info: Redefining \% on input line 703.
+[17]) (./chapters/chapter3.tex [18]
 Cap\'{\i }tulo 3.
-[18
+[19
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 72--88
+Underfull \hbox (badness 10000) in paragraph at lines 74--90
 \OT1/ptm/m/n/12 so. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 72--88
+Underfull \hbox (badness 10000) in paragraph at lines 74--90
 \OT1/ptm/m/n/12 pa-ra la fun-ci[]on ob-je-ti-vo $\OML/ztmcm/m/it/12 i\OT1/ztmcm
 /m/n/12 ;  \OML/ztmcm/m/it/12 i \OMS/ztmcm/m/n/12 6\OT1/ztmcm/m/n/12 = \OML/ztm
 cm/m/it/12 j$\OT1/ptm/m/n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 72--88
+Underfull \hbox (badness 10000) in paragraph at lines 74--90
 \OT1/ptm/m/n/12 con una ca-li-dad me-dia pa-ra to-das las fun-cio-nes ob-je-ti-
 vo. 
  []
 
-LaTeX Info: Redefining \. on input line 94.
-LaTeX Info: Redefining \% on input line 94.
-[19]
-Overfull \hbox (16.83806pt too wide) in paragraph at lines 114--117
+[20]
+Overfull \hbox (16.83806pt too wide) in paragraph at lines 116--119
 []\OT1/ptm/m/n/12 Se desa-rro-lla la im-ple-men-ta-ci[]on de la t[]ecni-ca M.O.
 E.A. co-no-ci-da co-mo S.P.E.A. II \OT1/ptm/b/n/12 (Strength 
  []
 
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 121--123
+LaTeX Info: Redefining \. on input line 123.
+LaTeX Info: Redefining \% on input line 123.
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 123--125
 \OT1/ptm/m/it/12 MI-NA-DOS \OT1/ptm/m/n/12 de \OT1/ptm/m/it/12 E \OT1/ptm/m/n/1
 2 en \OT1/ptm/m/it/12 S\OT1/ptm/m/n/12 . 
  []
 
 
-Overfull \hbox (0.15681pt too wide) in paragraph at lines 127--128
+Overfull \hbox (0.15681pt too wide) in paragraph at lines 129--130
 []\OT1/ptm/m/it/12 S \OT1/ptm/m/n/12 ser[]a la nue-va \OT1/ptm/m/it/12 E\OT1/pt
 m/m/n/12 , adem[]as se crea la po-bla-ci[]on Hi-ja de la re-ci[]en crea-da \OT1
 /ptm/m/it/12 E \OT1/ptm/b/n/12 (E-Child)\OT1/ptm/m/n/12 .  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--160
+Underfull \hbox (badness 10000) in paragraph at lines 134--162
 \OT1/ptm/m/n/12 di-vi-duos de to-das las ge-ne-ra-cio-nes. 
  []
 
 
-Underfull \hbox (badness 7468) in paragraph at lines 132--160
+Underfull \hbox (badness 7468) in paragraph at lines 134--162
 \OT1/ptm/m/n/12 se tie-ne el res-pal-do de \OT1/ptm/m/it/12 E \OT1/ptm/m/n/12 p
 a-ra una ge-ne-ra-ci[]on pos-te-rior pa-ra for-mar \OT1/ptm/m/it/12 S\OT1/ptm/m
 /n/12 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--160
+Underfull \hbox (badness 10000) in paragraph at lines 134--162
 \OT1/ptm/m/n/12 ele-men-tos in-vo-lu-cra-dos. 
  []
 
-LaTeX Info: Redefining \. on input line 165.
-LaTeX Info: Redefining \% on input line 165.
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 170--174
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 172--176
 \OT1/ptm/m/n/12 mi-nan-cia. 
  []
 
 
-Underfull \hbox (badness 3668) in paragraph at lines 174--176
+Underfull \hbox (badness 3668) in paragraph at lines 176--178
 \OT1/ptm/m/n/12 Ran-king \OT1/ptm/b/n/12 (Gold-berg) \OT1/ptm/m/n/12 y pos-te-r
 ior-men-te se les asig-na el Fit-ness. 
  []
 
 
-Overfull \hbox (37.34615pt too wide) in paragraph at lines 174--176
+Overfull \hbox (37.34615pt too wide) in paragraph at lines 176--178
 \OT1/ptm/m/n/12 Con los va-lo-res an-te-rio-res se cal-cu-la el Ni-che Count \O
 T1/ptm/b/n/12 (v[]ease Mo-del/SharingFunction) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--200
+Underfull \hbox (badness 10000) in paragraph at lines 183--202
 \OT1/ptm/m/n/12 di-vi-duos en ni-ve-les pa-ra su pos-te-rior se-lec-ci[]on. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--200
+Underfull \hbox (badness 10000) in paragraph at lines 183--202
 \OT1/ptm/m/n/12 Eli-tis-mo. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--200
+Underfull \hbox (badness 10000) in paragraph at lines 183--202
 \OT1/ptm/m/n/12 dor pa-ra guiar apro-pia-da-men-te al usua-rio en el flu-jo del
  al-go-rit-mo. 
  []
 
-[22]) (./chapters/chapter4.tex
-LaTeX Info: Redefining \. on input line 21.
-LaTeX Info: Redefining \% on input line 21.
- [23]
+LaTeX Info: Redefining \. on input line 202.
+LaTeX Info: Redefining \% on input line 202.
+[23]) (./chapters/chapter4.tex [24]
 Cap\'{\i }tulo 4.
 
 Overfull \hbox (12.90071pt too wide) in paragraph at lines 21--21
 |\OT1/ptm/b/n/24.88 Experimentaci[]on y An[]ali-sis de Re-sul-ta-dos| 
  []
 
-) (./chapters/chapter5.tex [24
+) (./chapters/chapter5.tex [25
 
 ]
 Cap\'{\i }tulo 5.
-) (./chapters/bibliography.tex [25
+) (./chapters/bibliography.tex [26
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 61--63
@@ -2074,7 +2089,7 @@ Underfull \hbox (badness 3098) in paragraph at lines 71--74
 Clash Two Years Early\OT1/ptm/m/n/12 . 
  []
 
-) (./chapters/appendix.tex [26
+) (./chapters/appendix.tex [27
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 37--65
@@ -2124,7 +2139,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 70--82
 []\OT1/ptm/b/n/12 o Modelo-Vista-Controlador)\OT1/ptm/m/n/12 . 
  []
 
-[27
+[28
 
 ]
 Overfull \hbox (6.75648pt too wide) in paragraph at lines 84--87
@@ -2155,7 +2170,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--150
 
 LaTeX Info: Redefining \. on input line 150.
 LaTeX Info: Redefining \% on input line 150.
-[28]
+[29]
 Underfull \hbox (badness 10000) in paragraph at lines 151--152
 []\OT1/ptm/b/n/12 DEAP, Dis-tri-bu-ted Evo-lu-tio-nary Al-go-rithms in Pyt-hon 
 
@@ -2201,7 +2216,7 @@ is-te-mas ope-ra-ti-vos Win-dows y GNU/Linux
 
 LaTeX Info: Redefining \. on input line 205.
 LaTeX Info: Redefining \% on input line 205.
-[29]
+[30]
 Underfull \hbox (badness 10000) in paragraph at lines 214--257
 \OT1/ptm/m/n/12 vo em-plea-do. 
  []
@@ -2257,7 +2272,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 214--257
 
 LaTeX Info: Redefining \. on input line 257.
 LaTeX Info: Redefining \% on input line 257.
-[30]
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 259--260
 []\OT1/ptm/b/n/12 Tkinter\OT1/ptm/m/n/12 , ver-si[]on 8.5  
  []
@@ -2302,11 +2317,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 280--301
 
 LaTeX Info: Redefining \. on input line 301.
 LaTeX Info: Redefining \% on input line 301.
-[31])
+[32])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 174.
 LaTeX Info: Redefining \. on input line 174.
 LaTeX Info: Redefining \% on input line 174.
- [32]
+ [33]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 174.
  (./tesis.aux
 LaTeX Info: Redefining \. on input line 25.
@@ -2338,13 +2353,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 174.
  ) 
 Here is how much of TeX's memory you used:
- 12115 strings out of 493013
- 174634 string characters out of 6135681
- 289454 words of memory out of 5000000
- 15194 multiletter control sequences out of 15000+600000
+ 12124 strings out of 493013
+ 174749 string characters out of 6135681
+ 291445 words of memory out of 5000000
+ 15202 multiletter control sequences out of 15000+600000
  67707 words of font info for 144 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,13n,100p,494b,690s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,12n,100p,494b,690s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -2357,22 +2372,22 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
 
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </root/.texlive2016
-/texmf-var/fonts/pk/ljfour/public/bbding/bbding10.720pk>{/usr/share/texmf/fonts
-/enc/dvips/cm-super/cm-super-t2a.enc}</usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
-mbols/msam10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
-imes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pf
-b>
-Output written on tesis.pdf (41 pages, 402040 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/aaron/.texli
+ve2016/texmf-var/fonts/pk/ljfour/public/bbding/bbding10.720pk>{/usr/share/texmf
+/fonts/enc/dvips/cm-super/cm-super-t2a.enc}</usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on tesis.pdf (42 pages, 404969 bytes).
 PDF statistics:
- 437 PDF objects out of 1000 (max. 8388607)
- 372 compressed objects within 4 object streams
- 147 named destinations out of 1000 (max. 500000)
+ 441 PDF objects out of 1000 (max. 8388607)
+ 375 compressed objects within 4 object streams
+ 148 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

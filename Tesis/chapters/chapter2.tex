@@ -245,62 +245,64 @@ del "peor" al "mejor", a ésta se le conoce como aptitud.
 \subsection{Aptitud}
 %Se coloca el vínculo interno procedente del capítulo 2 (c2_3).
 \label{sec:c2_3}
-Se denomina aptitud \footnote{También denominado \textit{fitness}; 
+Se denomina aptitud \footnote{También denominado \textit{aptitud}; 
 durante el trabajo escrito ambos términos se usan indistintamente.} 
 a un valor escalar que indica la calidad del individuo, esto es, 
-a mayor fitness, mayor es la probabilidad de que este sea la 
+a mayor aptitud, mayor es la probabilidad de que este sea la 
 solución optima.\break
 Indirectamente, esto nos indica que un individuo con un 
-fitness alto tiene más probabilidades de ser elegido y propagar 
+aptitud alto tiene más probabilidades de ser elegido y propagar 
 su carga genética; así el criterio para escoger a un individuo 
-está basado comúnmente en su fitness.\medskip\break
+está basado comúnmente en su aptitud.\medskip\break
 
 De lo anterior se desprende que típicamente en las implementaciones
 se asocia a un cromosoma con su aptitud, no obstante lo más adecuado
-es ligar un fitness con un individuo ya que, como se verá más adelante,
-es posible que de varios cromosomas se obtenga un sólo resultado de aptitud 
+es ligar la aptitud con un individuo ya que, como se verá más 
+adelante, es posible que de varios cromosomas inherentes a un individuo 
+se obtenga un sólo resultado de aptitud 
 
 Sólo como comentario adicional y con base en lo descrito en algunos 
 párrafos previos, podemos aseverar que la aptitud se obtiene de los
-fenotipos que se reciban de la evaluación en la función objetivo, por lo cual
-la gran mayoría de las opciones para asociar un cromosoma 
+fenotipos que se reciban de la evaluación en la función objetivo, 
+por lo cual la gran mayoría de las opciones para asociar un cromosoma 
 a una aptitud contienen características en común. 
 
 Es importante mencionar que el listado de técnicas que se 
 enuncian a continuación se muestran tal y como se han concebido 
 originalmente, sin embargo para poder llevar a cabo el ajuste 
-adecuado al ámbito Multiobjetivo es necesario reemplazar la 
-función objetivo ($F_0$) por el Rankeo, del cual se hablará 
+adecuado al ámbito Multiobjetivo es necesario reemplazar a la
+función objetivo ($F_0$) por el Rankeo y a su vez alimentar éste 
+por la evaluación de la función objetivo, del cual se hablará 
 en el siguiente capítulo.\medskip\break
 
 Los ejemplos mostrados para este proyecto son:
 
 %Comienza la subsubsección dedicada a la aptitud Proporcional.
 \subsubsection{Proporcional}
-El fitness está dado por la siguiente función:\medskip\break
+la aptitud está dado por la siguiente función:\medskip\break
 \centerline{$Fitness(Individuo) = \frac{F_0(Individuo)}{\sum_{i=1}^{tama\tilde{n}o\_poblaci\acute{o}n}F_0(Individuo_i)}$}\medskip\break
 Donde:
 
 \begin{itemize}
 \item $F_0$ es conocido como el valor de la función objetivo del 
-individuo. Nótese que $F_0$ debe ser proporcional al fitness del 
+individuo. Nótese que $F_0$ debe ser proporcional a la aptitud del 
 individuo.
 \end{itemize}
 
 De acuerdo a la información provista anteriormente la asignación 
-es llamada así porque, como dice el nombre, el fitness de un 
+es llamada así porque, como dice el nombre, la aptitud de un 
 individuo corresponde a la parte proporcional de la cantidad 
 total de $F_0$ de la población.
 
 %Empieza la subsubsección dedicada a la aptitud de Rankeo Lineal.
 \subsubsection{Ranking Lineal}
-Es denominado así porque el fitness se asigna con una función 
+Es denominado así porque la aptitud se asigna con una función 
 lineal que tiene como fundamento la posición que ocupa el 
 individuo dentro de la población.\break
 El procedimiento es: los individuos se ordenan de acuerdo 
-la evaluación en su función objetivo y entonces el fitness 
+la evaluación en su función objetivo y entonces la aptitud 
 se basa en la posición que cada uno de los individuos ocupa. 
-Más en específico, el fitness está proporcionado por la 
+Más en específico, la aptitud está proporcionado por la 
 siguiente fórmula:\medskip\break
 \centerline{$Fitness(Individuo) = 2 - SP + \frac{2 \cdot (SP - 1) \cdot posici\acute{o}n(Individuo)}{tama\tilde{n}o\_poblaci\acute{o}n - 1}$}\medskip\break
 Donde:
@@ -311,13 +313,13 @@ Donde:
 \end{itemize}
 
 Haciendo un análisis somero en la fórmula, se puede apreciar 
-que los individuos con mejor fitness serán aquéllos que se 
+que los individuos con mejor aptitud serán aquéllos que se 
 encuentren en las últimas posiciones.
 
 %Inicia la subsubsección relativa a la aptitud de Rankeo 
 %No Lineal.
 \subsubsection{Rankeo No Lineal}
-El fitness se constituye ordenando los elementos de la 
+la aptitud se constituye ordenando los elementos de la 
 población con base en su función objetivo y después 
 tomando la posición del individuo y una función 
 polinomial \textbf{(la cual es una función no lineal, de ahí el nombre)}. 
@@ -333,20 +335,27 @@ Donde:
 \end{itemize}
 
 Realizando un análisis básico en la fórmula, al igual que 
-con el fitness anterior se puede apreciar que los individuos 
-con mejor fitness serán aquéllos que se encuentren en las 
+con la aptitud anterior se puede apreciar que los individuos 
+con mejor aptitud serán aquéllos que se encuentren en las 
 últimas posiciones.
+
+Una vez llevada a cabo la asignación de aptitud y de acuerdo
+al esquema del proceso evolutivo, tiene lugar la operación de 
+selección, la cual justamente obtiene típicamente  
 
 %Se prosigue con la subsección que contiene el listado de técnicas 
 %de selección.
 \subsection{Selección}
 %Se coloca el vínculo interno procedente del capítulo 2 (c2_4).
 \label{sec:c2_4}
+En la etapa de la selección la operación consiste en seleccionar 
+los individuos en principio más aptos como resultado de 
+la asignación de la opración anterior.
 Durante dicha operación la importancia de la elección radica 
-en el fitness de cada individuo, además un individuo puede ser 
+en la aptitud de cada individuo, además un individuo puede ser 
 seleccionado más de una vez si la causa lo amerita.\break
 De esta manera se elegirán tantos individuos como elementos haya 
-en la población.\medskip\break
+en la población **agregar el reemplazo**.\medskip\break
 El objetivo radica en mantener el equilibrio entre una ``selección 
 justa'' y la oportunidad de permitir a los individuos con una 
 calidad media o baja la propagación de su carga genética.\medskip\break
@@ -384,8 +393,8 @@ de la población.
 \subsubsection{Torneo Probabilístico}
 Tal como lo sugiere el nombre, la selecciín será llevada a 
 cabo en forma de competencia directa entre los individuos.\break
-Tradicionalmente se comparan sus fitness y de esta manera 
-el individuo ganador es aquél con la cantidad mayor de fitness, 
+Tradicionalmente se comparan sus aptitud y de esta manera 
+el individuo ganador es aquél con la cantidad mayor de aptitud, 
 pero dado que se maneja un esquema probabilístico la 
 decisión no depende totalmente del factor antes mencionado.\medskip\break
 De esta manera se pueden recapitular los siguientes pasos:
@@ -399,7 +408,7 @@ elemento A y enfrentarlo con B, al resultado de la batalla
 anterior enfrentarlo con C y así sucesivamente.\break
 Para ello por cada encuentro se crea un número aleatorio 
 entre 0 y 1, si el número es menor a 0.5 se toma al elemento 
-con menor fitness, de lo contrario se elige al de mayor fitness.\break
+con menor aptitud, de lo contrario se elige al de mayor aptitud.\break
 La operación se lleva a cabo hasta que se tenga un ganador 
 de los $k$ individuos.
 \item Los dos pasos anteriores se repiten hasta que se hayan 
@@ -443,6 +452,9 @@ y CEV deben actualizarse durante todo el ciclo.
 Cabe mencionar que si la lista de individuos se agota, se puede 
 volver a iterar desde el inicio teniendo cautela en conservar CEV 
 y CP.
+
+
+
 
 %Ahora en esta subsección se realiza el desglose de las técnicas 
 %de cruza.
@@ -568,6 +580,10 @@ Entonces se crea el nuevo número con la precisión decimal
 requerida y se sustituye por el anterior.
 \end{enumerate}
 
+
+Paso del elitismo en teoría sólo se agregan las poblaciones m + L etc para este tema y pos fines de simplicidad
+blabla blabla
+
 %A continuación se lleva a cabo el desarrollo de la sección
 %relativo a la Optimización Multiobjetivo.
 \section{Optimización Multiobjetivo}
@@ -684,6 +700,10 @@ numerosas aproximaciones elaboradas \cite{b6} para encontrar el ya
 mencionado Frente de Pareto.\break
 Debido al alcance de este proyecto, tales técnicas alternativas no 
 se mencionan.
+
+%https://www.google.com.mx/search?q=multi+objective+evolutionary+algorithm+diagram&tbm=isch&source=iu&ictx=1&fir=868gdaZPoA3UmM%253A%252CqDoaNIynX99gdM%252C_&usg=AI4_-kQU3NfAVyhXZ4wmURV9yVuMxg3syg&sa=X&ved=2ahUKEwi61Jj8_bHeAhUNG6wKHWNRAV0Q9QEwA3oECAUQCg#imgrc=ax98ZCp-sQ-NCM:
+
+agregar las definiciones.
 
 %Termina el documento.
 \end{document}

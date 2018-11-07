@@ -15,7 +15,7 @@
 \contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{2}{chapter.1}
 \contentsline {chapter}{\numberline {2}Fundamentos}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Algoritmos Evolutivos}{5}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Representaci\IeC {\'o}n Cromos\IeC {\'o}mica}{9}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.1}Representaci\IeC {\'o}n Cromos\IeC {\'o}mica}{10}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Aptitud}{10}{subsection.2.1.2}
 \contentsline {subsubsection}{\numberline {2.1.2.1}Proporcional}{11}{subsubsection.2.1.2.1}
 \contentsline {subsubsection}{\numberline {2.1.2.2}Ranking Lineal}{11}{subsubsection.2.1.2.2}

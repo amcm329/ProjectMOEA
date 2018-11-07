@@ -16,6 +16,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{packages_used_standard}
 
+%Para poner definiciones, teoremas,
+%etc.
+\usepackage{amsthm}
+% Esta línea se añade para que se pueda 
+%tener el alias de definition como 
+%Definición.
+\newtheorem{definition}{Definici\'on}
+
 %Para símbolos matemáticos.
 \usepackage{amsmath}
 
@@ -31,22 +39,26 @@
 %Para añadir comentarios de más de una línea.
 \usepackage{comment}
 
-%Para posicionar imágenes adecuadamente en el texto.
+%Para posicionar imágenes adecuadamente en 
+%el texto.
 \usepackage{eso-pic}
 
-%Para poner encabezados y pie de paginas automatizados.
+%Para poner encabezados y pie de paginas 
+%automatizados.
 \usepackage{fancyhdr}
 
 %Para poder incluir imágenes.
 \usepackage{graphicx}
 
-%Para poder añadir enlaces (tanto internos como externos)
+%Para poder añadir enlaces (tanto internos 
+%como externos)
 \usepackage{hyperref}
 
 %Para poder insertar .pdfs como imágenes.
 \usepackage{mathptmx}
 
-%Para poder modificar los títulos de Capítulos y Secciones.
+%Para poder modificar los títulos de Capítulos 
+%y Secciones.
 \usepackage{titlesec}
 
 %Para agregar páginas en blanco.
@@ -55,25 +67,30 @@
 %Para colocar las enumeraciones (puntos y listados).
 \usepackage{enumerate}
 
-%Para poner imágenes de fondo tenues (principalmente en el título).
+%Para poner imágenes de fondo tenues (principalmente 
+%en el título).
 \usepackage{transparent}
+
 
 \usepackage{bbding}
 
 
-%Para poder usar las plantillas en los idiomas español y ruso.
-%Conviene recordar que el idioma por defecto es el último que se
-%coloca, en este caso, spanish.
+%Para poder usar las plantillas en los idiomas 
+%español y ruso.
+%Conviene recordar que el idioma por defecto es 
+%el último que se coloca, en este caso, spanish.
 \usepackage[russian,spanish]{babel}
 
-%Para usar la codificación utf-8 y con ello incluir acentos.
+%Para usar la codificación utf-8 y con ello 
+%incluir acentos.
 \usepackage[utf8]{inputenc}
 
 %Para justificar a la izquierda todo el documento.
 \usepackage[document]{ragged2e}
 
-%Para el twoside, más en específico, para garantizar que exista
-%el mismo espacio entre los flancos izquierdo y derecho en cualquier
+%Para el twoside, más en específico, para 
+%garantizar que exista el mismo espacio entre 
+%los flancos izquierdo y derecho en cualquier
 %página.
 \usepackage[margin=3.2cm]{geometry}
 

@@ -598,6 +598,9 @@ requerida y se sustituye por el anterior.
 Paso del elitismo en teoría sólo se agregan las poblaciones m + L etc para este tema y pos fines de simplicidad
 blabla blabla
 
+%https://www.google.com.mx/search?q=multi+objective+evolutionary+algorithm+diagram&tbm=isch&source=iu&ictx=1&fir=868gdaZPoA3UmM%253A%252CqDoaNIynX99gdM%252C_&usg=AI4_-kQU3NfAVyhXZ4wmURV9yVuMxg3syg&sa=X&ved=2ahUKEwi61Jj8_bHeAhUNG6wKHWNRAV0Q9QEwA3oECAUQCg#imgrc=ax98ZCp-sQ-NCM:
+agregar las definiciones.
+
 %A continuación se lleva a cabo el desarrollo de la sección
 %relativo a la Optimización Multiobjetivo.
 \section{Optimización Multiobjetivo}
@@ -715,9 +718,47 @@ mencionado Frente de Pareto.\break
 Debido al alcance de este proyecto, tales técnicas alternativas no 
 se mencionan.
 
-%https://www.google.com.mx/search?q=multi+objective+evolutionary+algorithm+diagram&tbm=isch&source=iu&ictx=1&fir=868gdaZPoA3UmM%253A%252CqDoaNIynX99gdM%252C_&usg=AI4_-kQU3NfAVyhXZ4wmURV9yVuMxg3syg&sa=X&ved=2ahUKEwi61Jj8_bHeAhUNG6wKHWNRAV0Q9QEwA3oECAUQCg#imgrc=ax98ZCp-sQ-NCM:
+\subsection{M.O.P.}      
 
-agregar las definiciones.
+Un Problema Multiobjetivo (Multi-Objective Problem ó simplemente M.O.P.) es un escenario 
+bien estudiado que contiene
+funciones objetivo y ariables de decision que se ejecutan bajo 
+determinadas coniciones iniciales.
+La meta de un M.O.P consiste en ver el comportamiento de la solución 
+bajo ciertos algoritmos, en estecaso
+los que se toman como ejemplificaciones (MOGA; SPEA2, NSGA, VEGA),
+Ademas, para fines de este trabajo, el papel del M.O.P. es fundamental 
+para el desarrollo del producto de 
+software puesto que esas comparaciones permitieron calibrar el programa 
+para volverlo útil y práctico para el lector.
+
+Para esta entrega, los M.O.Ps empleados son:
+
+
+\begin{center}
+ \begin{tabular}{|| m{2.5cm} | c | c||} 
+ \hline
+ Nombre M.O.P. & Definición & Restricciones  \\ [0.5ex] 
+ \hline\hline
+ Binh (1) (Binh and Korn 1996) & \makecell{\\ $F = (f_1(x,y),f_2(x,y))$, donde \\ \\ $f_1(x,y)  =  x^{2} + y^{2} $ \\ $f_2(x,y)  = (x-5)^{2} + (y-5)^{2}$ \\ \\} & $-5 \leq x,y \leq 10$ \\ 
+ \hline
+ Kursawe (1) (Kursawe 1991) & \makecell{\\ $F = (f_1(\vec{x}),f_2(\vec{x}))$, donde \\ $f_1(\vec{x}) = \sum\limits_{i=1}^{n-1} (-10e^{(-0.2) * \sqrt{x_{i}^{2} + x_{i+1}^{2}}})$ \\ $f_2(\vec{x}) = \sum\limits_{i=1}^{n} ({\mid x_i \mid}^{0.8} + 5sin(x_i)^{3})$ \\} & Ninguna  \\
+ \hline
+ Fonseca (1) (Fonseca and Flemming 1995d) & \makecell{\\ $F = (f_1(x,y),f_2(x,y))$,donde \\ \\ $f_1(x,y) = 1 - exp(-(x-1)^{2} - (y+1)^{2})$ \\ $f_2(x,y) = 1 - exp(-(x+1)^{2} - (y-1)^{2})$ \\ \\} & Ninguna  \\
+ \hline
+ Viennet (3) (Viennet et al. 1996) & \makecell{\\ $F = (f_1(x,y),f_2(x,y),f_3(x,y))$, donde \\ \\  $f_1(x,y) = 0.5 * (x^{2} + y^{2}) + sin(x^{2} + y^{2})$  \\ $f_2(x,y) = \frac{(3x - 2y + 4)^{2}}{8} + \frac{(x - y + 1)^{2}}{27} + 15$  \\  $f_3(x,y) = \frac{1}{(x^{2} + y^{2} + 1)} - 1.1e^{(-x^{2}- y^{2})}$   \\ \\} & $-3 \leq x,y \leq 3$ \\
+ \hline
+\end{tabular}
+\end{center}
+
+A continuación se anexan las imágenes donde 
+
+Es importante menionar que, para que se puedan llegar a estos comparativos, blablabla se cambian, quedando asi: 
+
+
+
+
+Las gráficas esperadas de cada uno son las siguientes:
 
 %Termina el documento.
 \end{document}

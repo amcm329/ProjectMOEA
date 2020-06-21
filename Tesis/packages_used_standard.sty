@@ -16,13 +16,13 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{packages_used_standard}
 
-%Para poner definiciones, teoremas,
-%etc.
-\usepackage{amsthm}
-% Esta línea se añade para que se pueda 
-%tener el alias de definition como 
-%Definición.
-\newtheorem{definition}{Definici\'on}
+%Para agregar páginas en blanco.
+\usepackage{afterpage}
+
+%Para tener un mejor control en
+%las celdas de las tabls que se 
+%crean.
+\usepackage{array}
 
 %Para símbolos matemáticos.
 \usepackage{amsmath}
@@ -30,14 +30,28 @@
 %Para símbolos matemáticos adicionales.
 \usepackage{amssymb}
 
+%Para poner definiciones, teoremas, etc.
+\usepackage{amsthm}
+
 %Para textos con simbología matemática.
 \usepackage{amstext}
+
+%Para poder usar las plantillas en los idiomas 
+%español y ruso.
+%Conviene recordar que el idioma por defecto es 
+%el último que se coloca, en este caso, spanish.
+\usepackage[russian,spanish]{babel}
+
+\usepackage{bbding}
 
 %Para que las imágenes tengan descripción.
 \usepackage{caption}
 
 %Para añadir comentarios de más de una línea.
 \usepackage{comment}
+
+%Para colocar las enumeraciones (puntos y listados).
+\usepackage{enumerate}
 
 %Para posicionar imágenes adecuadamente en 
 %el texto.
@@ -47,6 +61,12 @@
 %automatizados.
 \usepackage{fancyhdr}
 
+%Para el twoside, más en específico, para 
+%garantizar que exista el mismo espacio entre 
+%los flancos izquierdo y derecho en cualquier
+%página.
+\usepackage[margin=3.2cm]{geometry}
+
 %Para poder incluir imágenes.
 \usepackage{graphicx}
 
@@ -54,45 +74,32 @@
 %como externos)
 \usepackage{hyperref}
 
+%Para usar la codificación utf-8 y con ello 
+%incluir acentos.
+\usepackage[utf8]{inputenc}
+
+%Permite manejar celdas con saltos de
+%línea en las tablas.
+\usepackage{makecell}
+
 %Para poder insertar .pdfs como imágenes.
 \usepackage{mathptmx}
 
-%Para poder modificar los títulos de Capítulos 
-%y Secciones.
-\usepackage{titlesec}
-
-%Para agregar páginas en blanco.
-\usepackage{afterpage}
-
-%Para colocar las enumeraciones (puntos y listados).
-\usepackage{enumerate}
+%Para justificar a la izquierda todo el documento.
+\usepackage[document]{ragged2e}
 
 %Para poner imágenes de fondo tenues (principalmente 
 %en el título).
 \usepackage{transparent}
 
+%Para poder modificar los títulos de Capítulos 
+%y Secciones.
+\usepackage{titlesec}
 
-\usepackage{bbding}
-
-
-%Para poder usar las plantillas en los idiomas 
-%español y ruso.
-%Conviene recordar que el idioma por defecto es 
-%el último que se coloca, en este caso, spanish.
-\usepackage[russian,spanish]{babel}
-
-%Para usar la codificación utf-8 y con ello 
-%incluir acentos.
-\usepackage[utf8]{inputenc}
-
-%Para justificar a la izquierda todo el documento.
-\usepackage[document]{ragged2e}
-
-%Para el twoside, más en específico, para 
-%garantizar que exista el mismo espacio entre 
-%los flancos izquierdo y derecho en cualquier
-%página.
-\usepackage[margin=3.2cm]{geometry}
+%Esta línea se añade para que se pueda 
+%tener el alias de definition como 
+%Definición.
+\newtheorem{definition}{Definici\'on}
 
 %Termina la constitución del documento.
 \endinput

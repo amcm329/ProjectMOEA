@@ -35,6 +35,7 @@
 %Para ajustar los colores de los hipervínculos.
 \hypersetup{
             colorlinks = true,
+            citecolor = blue,
             linkcolor = black,
             filecolor = magenta,      
             urlcolor = cyan
@@ -103,22 +104,30 @@
        %Se inserta la portada que se encuentra en el archivo cover.tex.
        \input{chapters/cover}
 
-       %Se lleva a cabo la elaboración del título anterios.
+       %Se lleva a cabo la elaboración del título anterior.
        \maketitle 
 
-       %Se inserta la presentación que se encuentra en presentation.tex.
-       \input{chapters/presentation}
+       %Se inserta la presentación que se encuentra en presentation.tex. (POR AHORA NO SE PONE)
+       %\input{chapters/presentation}
 
        %Se elabora la tabla de contenido de los capítulos siguientes.
-       \tableofcontents   
+       \tableofcontents
+
+       %Se reduce el espacio en blanco entre el inicio de la Tabla de Contenido
+       % y el título "Tabla de Contenido".
+       %\addtocontents{toc}{\vskip-100pt}
 
        %Para que la tabla de contenido no tenga numeración se coloca esta
        %instrucción.
        \pagenumbering{gobble}
 
        %Se agrega una hoja en blanco entre la tabla de contenido y el primer
-       %capítulo
+       %capítulo.
        \addtocontents{toc}{\protect\thispagestyle{empty}}
+
+       %Se agrega una hoja en blanco entre la tabla de contenido y el primer
+       %capítulo (esta línea se coloca por si la anterior no funciona)
+       \afterpage{\blankpage}
 
        %Con esta instrucción se activan el formato personalizado para encabezado
        %y pie de página descrito anteriormente.

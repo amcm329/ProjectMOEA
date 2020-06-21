@@ -21,26 +21,117 @@
 %ejemplos y métricas alusivas a un M.O.E.A.
 \chapter {M.O.E.A.}
 
+Una vez que se han descrito los dos preceptos más importantes 
+de M.O.E.A., entonces podemos definir a un Multi-Objective 
+Evolutionary Algorithm \textbf{(Algoritmo Multiobjetivo Evolutivo)} 
+como un problema de optimización multiobjetivo donde para su 
+resolución se emplean algoritmos evolutivos.\break
 
-Una vez llevada a cabo la definición de los dos preceptos más importantes
-de M.O.E.A. entonces podemos definir a un Multi-Objective Evolutionary 
-Algorithm como un problema de optimizacón multiobjetivo donde para su
-resolución se ocupan algoritmos evolutivos.
+Como se ha visto con anterioridad, la gama de técnicas y en 
+general de opciones ya sea de un antecedente o del otro es muy 
+amplia y por ende existe también en ésta una variedad considerable 
+de métodos \cite[Coello 145-146]{b5}, no obstante y para fines 
+de este trabajo se toma una muestra representativa, destacando:
 
-Como se ha visto con anterioridad, la gama de técnicas y en general de opciones
-ya sea de un lado o del otro es muy amplia, y por ende existe también aquí
-una variaedad grande*** de algoritmos que se verificarán con detenimiento.
+\begin{itemize}
+\item {V.E.G.A. \textbf{(Vector Evaluated Genetic Algorithm)}.}
+\item {M.O.G.A. \textbf{(Multi-Objective Genetic Algorithm)}.}
+\item {S.P.E.A. 2 \textbf{(Strength Pareto Evolutionary Algorithm 2)}.}
+\item {N.S.G.A. II \textbf{(Non-Dominated Sorting Genetic Algorithm II)}.}
+\end{itemize}
 
-Hasta este punto se tiene que comentar que el proceso evolutivo tiene que cambiar
-ligeramente ya que como se mencionó en el capítulo anterior 
+De esta manera, se indican en este capítulo las características
+de cada una y se llevan a cabo comparaciones con métricas que 
+se tratan más adelante.\break
+
+Se tiene que comentar además que el algoritmo evolutivo debe 
+cambiar su estructura ya que como se mencionó en el capítulo 
+anterior éste lidia con la minimizacion de un solo objetivo 
+mientras que en este caso se tratan con múltiples funciones,
+lo cual indica que se deben introducir otras comparativas 
+para obtener a los mejores individuos.\break
+
+Así, se proporciona un algoritmo genérico para introducir al 
+M.O.E.A. \cite[Coello 147-148]{b5}:
+
+\begin{enumerate}
+\item Fase de inicialización donde se generan N individuos 
+en una población $P^{0}(i), i=0$ y se evalúa el fitness. 
+La codificación de cada individuo puede ser binaria, entera 
+o real.
+\item Se eliminan los individuos dominados con base en las 
+comparaciones basadas en Pareto en $P^{0}(i), i=0$ y tomando 
+en cuenta las evaluaciones multiobjetivo. $P^{0}(i) \xrightarrow{} P^{1}(i)$.
+\item Se descartan los individuos inviables de $P^{1}(i)$ o
+ se ``reparan'' basándose en otras condiciones. $P^{1}(i) \xrightarrow{} P^{2}(i)$. 
+\item Se usa un algoritmo de clusterización para limitar el 
+número de individuos en $P^{2}(i)$ en pequeñas regiones del 
+$PF_{known}$ ó $P_{known}$ de la población actual y las cuales 
+incluyen al \textit{niching}, \textit{aptitud compartida} 
+y \textit{crowding} con valores paramétricos asociados.
+\item Se llevan a cabo operaciones de M.O.E.A. (cruza, 
+mutación, etc.) para crear una nueva población usando los 
+apropiados valores paramétricos; $P^{2}(i) \xrightarrow{} P^{3}(i)$. 
+Para elegir a estos individuos se pueden emplear técnicas
+de selección tales como elección aleatoria, torneo binario,
+selección, elitismo, etc.
+\item Se toman los individuos que conformen la siguiente 
+generación (población $P^{4}(i)$) mediante operaciones en
+$P^{3}(i)$ o $P^{2}(i) \cup P^{3}(i)$. Para esto se pueden
+usar técnicas de selección binaria, elección por torneo 
+(con ó sin reemplazo), rankeo o elitismo para que se limite
+el tamaño de $P^{4}(i)$.
+\item Si la condición de término no se cumple (ya sea un
+número límite de generaciones o algún criterio de convergencia)
+se asigna $P^{4}(i) a P^{0}(i), i=i+1$ y se regresa al paso 2.
+\item Se eliminan los individuos dominados bajo la comparativa
+de Pareto y en general los individuos inviables de $P^{4}(i)$
+o se ``reparan''. Se asigna $P^{4}(i) a P^{0}(i)$.
+\end{enumerate}
+
+Es importante comentar que en los pasos 3 a 5 es posible
+auxiliarse de algún entorno de almacenamiento secundario para
+almacenar los individuos no dominados de $P^{3}$ y que sirvan
+como ``reparación'' o reemplazo para conformar las poblaciones
+nuevas.
+
+A continuación se describen los nuevos términos añadidos:
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 \section{Rankeo}
+El rankeo (ranking) en estructo sentido funge como una métrica 
+que permite asignar un valor escalar a un individuo tomando como 
+base resultados de multiples objetivos.\break
+
+Es este concepto el que se introduce en los M.O.E.A.'s porque 
+tradicionalmente en un algoritmo evolutivo se persigue la 
+optimización de un sólo objetivo, mientras que en este caso 
+al generalizarse a múltiples funciones, surge un problema de 
+represantividad, es decir, se requiere de un elemento que 
+proporcione la eficiencia o falta de ésta de una solucion
+bajo multiples objetivos. En otras palabras el ranking lleva 
+acabo una reduccion de dimensionalidad
+
+*poner la formula.*
+
+Como suele darse el caso en ese tipo de tópicos, se proporciona 
+un conjunto clave de ejemplificaciones de rankeo, destacando: 
+
+Ranking Fonseca y Flemming
+
+Ranking Sistler and Thiele
+
+RAnking Goldberg
+
+
 
 \section{Aptitud Compartida}  
-También llamado Shared Fitness
+También llamado Shared Fitness, es un método que se añade para los M.O.E.A.'s que va ligado al de ranking.
+
+Una definicion ad-hoc al asunto evolutivo india que el Shared Fitness trata de realzar una seleccion mas profunda cuando
+dos individuos tienen el mismo ranking. De este modo eñ Shared Fitness permite llevar a cabo un desempate
+
+Mencionar el Fitness De la poblacion, hay de dos tipos: fenotipico y genotipico, poner la formula.
 
 \section{Algoritmos}
 Con base en el capítulo anterior, el funcionamiento de un M.O.E.A. 
@@ -66,10 +157,12 @@ manera:
 
 A grandes rasgos la diferencia entre un M.O.E.A. y otro es la Presión Selectiva 
 \textbf{(en inglés Selective Pressure)} que se aplica durante el procedimiento, para fines de este proyecto
-se trata de la tolerancia para seleccionar a los Individuos de calidad media o baja frente a los
+se trata de la tolerancia cualitativa para seleccionar a los Individuos de calidad media o baja frente a los
 mejores. Una baja Presión Selectiva permite elegir Individuos no tan aptos; el caso es análogo para
 una alta Presión Selectiva.
 
+Habiendo integrado todos los elementos anteriores, a continuacion se exponen distintas maneras de llevar
+a cabo un proceso evolutivo multiobjetivo, cada una con sus propias caracteristicas intrinsecas y oportunidades de mejora 
 
 
 \subsection{V.E.G.A.}
@@ -95,10 +188,11 @@ la función objetivo \(i;\ i \neq j\).\medskip\break
 Por ello es que se puede decir que V.E.G.A. genera soluciones 
 promedio que destacan con una calidad media para todas las 
 funciones objetivo.\medskip\break
+
+\textbf{¿Mencionar esto?
 Finalmente hay que comentar que para este algoritmo no se requiere 
 aplicar un Ranking específico, no obstante, se ha decidido utilizar 
-el de Fonseca \& Flemming \textbf{(véase Model/Community/Community.py)} 
-pues es el más sencillo de implementar.
+el de Fonseca \& Flemming pues es el más sencillo de implementar.}
 
 \subsection{M.O.G.A.}
 Su funcionamiento es el siguiente:
@@ -212,12 +306,19 @@ sin embargo se le ha formalizado con un identificador para guiar
 apropiadamente al usuario en el flujo del algoritmo.\medskip\break
 Para finalizar se señala que el uso del ranking de Goldberg 
 
-\section{M.O.P.}      
+
+
 \section{Indicadores de Desempeño}
+
+Los indicadores de desempeño con 	
 \section{Introducción a M.O.E.A Software}
 Habiendo detallado todos los elementos 
 
-M.O.E.A. Software surge como una solución ante la problemática blablabla.
+M.O.E.A. Software surge como una solución ante la necesidad inicial de tener visualizadores adecuados donde se puedan interpretar
+adecuadamente los M.O.E.A's y sus correspondientes modificaciones.
+
+Si bien existen tanto en el mundo de codigo libre como privativo soluciones asequibles, no han abordado aun de manera grafica
+escenarios multobjetivo por lo que es común tener limitantes con los analisis.
 
 Para abordar detalles de índole más técnica se recomienda visitar la sección **Características Técnicas** perteneciente al Apéndice.
 

@@ -2,9 +2,6 @@
 \subpreamble{chapters/cover.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
-\subpreamble{chapters/presentation.tex}
-\usepackage {packages_used_standard}
-\endsubpreamble
 \subpreamble{chapters/chapter1.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble

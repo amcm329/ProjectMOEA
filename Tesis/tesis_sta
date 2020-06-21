@@ -15,31 +15,41 @@
 
 
 \standalonepreambles
+
 \subpreamble{chapters/cover.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \subpreamble{chapters/presentation.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \subpreamble{chapters/chapter1.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \subpreamble{chapters/chapter2.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \subpreamble{chapters/chapter3.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \subpreamble{chapters/chapter4.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \subpreamble{chapters/chapter5.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \subpreamble{chapters/bibliography.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \subpreamble{chapters/appendix.tex}
 \usepackage {packages_used_standard}
 \endsubpreamble
+
 \endstandalonepreambles
